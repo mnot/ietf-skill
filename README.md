@@ -15,26 +15,33 @@ The two norm skills are plain Markdown: guidance the assistant reads, with no
 scripts or other executable parts. They're useful on their own, with no other
 tooling installed. `ietf-corpus` drives a command-line tool and depends on it.
 
-## Two ways in — pick one
+## Two ways in — by execution environment
 
-There are two independent ways an assistant can reach the IETF record, and you
-want one, not both:
+Which path you want isn't about *which product* you use — it's whether the
+assistant runs commands on a **persistent local machine** or in an **ephemeral
+remote sandbox**. `ietf-corpus` drives a local command-line tool, so it only
+works in the first case.
 
-- **These skills + the `ietf-llm-query` tool.** Install the skills (below),
-  `pipx install ietf-llm`, and the assistant queries a corpus you gather
-  locally.
-- **The hosted `ietf-llm` MCP server.** If your assistant connects to it, the
-  server delivers routing guidance, the norms, and the query tools itself — so
-  you don't need *any* of these skills installed on that path.
+- **Local execution** — Claude Code (the CLI, and Claude Desktop's **Code** tab
+  in Local mode, which shares `~/.claude`), Codex CLI, Gemini CLI, Cursor,
+  Copilot in VS Code. Install the skills, `pipx install ietf-llm`, and the
+  assistant queries a corpus you gather once and keep.
+- **Remote / ephemeral execution** — Claude Desktop's **Chat** and **Cowork**
+  tabs, claude.ai, cloud coding agents. Each session is a throwaway sandbox with
+  no persistent install and no saved corpus, so the CLI path can't work — it
+  would re-install and re-gather every time. Use the hosted **`ietf-llm` MCP**
+  instead: the corpus lives server-side, and the norms and routing come from the
+  MCP itself, so you install nothing.
 
-Running both query paths — `ietf-corpus` over a local gather *and* the hosted
-MCP — points the assistant at two different corpora with no coordination, so it
-can't cite a single coherent record. (The norm skills query nothing, so having
-them installed alongside the MCP is just redundant, not a conflict.) Pick the
-path that fits your setup.
+The split runs straight through one product — Claude Desktop's Code tab (Local)
+is the local case, its Chat tab the remote case.
 
-(If all you want is the drafting or reading guidance, install just the two norm
-skills — they need neither the tool nor the MCP.)
+Two rules follow: **don't install `ietf-corpus` on a remote/hosted assistant**
+(use the MCP there — see Install), and **don't run both query paths at once** —
+`ietf-corpus` over a local gather *and* the MCP point at two different corpora
+with no coordination, so the assistant can't cite one coherent record. The norm
+skills query nothing, so they're fine anywhere: install them here, or take them
+from the MCP.
 
 ## Install
 
@@ -44,6 +51,15 @@ You need [`git`](https://git-scm.com/). Clone the repository once:
 git clone https://github.com/mnot/ietf-skill.git
 cd ietf-skill
 ```
+
+> **On a remote/hosted assistant — Claude Desktop's Chat or Cowork tab,
+> claude.ai, a cloud coding agent — do not install `ietf-corpus`.** It drives a
+> local command-line tool and can't work in an ephemeral cloud session (it would
+> re-install and re-gather every time); use the hosted `ietf-llm` MCP for corpus
+> access there instead. Install just the norm skills (`make install-norms`), or
+> take everything from the MCP. `ietf-corpus` is for local-execution clients —
+> including Claude Desktop's **Code** tab in Local mode, which shares
+> `~/.claude/skills` with the CLI.
 
 Then install from the clone — with `make` (simplest; macOS / Linux) or a manual
 copy (any OS).
