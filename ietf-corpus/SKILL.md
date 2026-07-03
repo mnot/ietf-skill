@@ -17,11 +17,9 @@ don't apply.
 
 Before relying on the tool, confirm it's installed:
 
-    command -v ietf-llm-query || echo "Not installed — run: pipx install ietf-llm"
+    ietf-llm --version
 
-If it's absent, tell the user to `pipx install ietf-llm` and stop there. If it's
-present, check `ietf-llm-query --version` meets the minimum this skill needs and
-warn if it's older.
+Assure that the minimum this skill needs and warn if not.
 
 ## Route to the corpus first
 
