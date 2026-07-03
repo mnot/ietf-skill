@@ -2,8 +2,7 @@
 #
 # The install targets ONLY copy the Markdown skill directories into the skills
 # folders of AI assistants you already have installed. They install no software
-# and run nothing else. `pipx install ietf-llm` (needed only by the ietf-corpus
-# skill) stays a manual step — see the README.
+# and run nothing else.
 #
 # The version/release targets are adapted from mnot/pyproject-tmpl, minus the
 # Python bits: the version lives in the VERSION file, `check` is the no-Python
@@ -11,8 +10,7 @@
 #
 # Run it from a clone of this repository.
 
-NORMS  := ietf-contributing ietf-interpreting
-CORPUS := ietf-corpus
+SKILLS := ietf-contributing ietf-interpreting
 
 VERSION    := $(shell cat VERSION 2>/dev/null)
 VERSIONING ?= patch          # patch | minor | major — bump flavour for `make version`
@@ -30,7 +28,7 @@ TOOL_DIRS := \
 PRESENT := $(foreach d,$(TOOL_DIRS),$(wildcard $(d)))
 
 .DEFAULT_GOAL := list
-.PHONY: list help install-norms install-corpus update uninstall \
+.PHONY: list help install update uninstall \
 	check version version-major version-minor version-patch changelog release
 
 help: list
@@ -44,7 +42,7 @@ list:
 		for d in $(PRESENT); do \
 			printf "  %s/skills   installed:" "$$d"; \
 			found=""; \
-			for s in $(NORMS) $(CORPUS); do \
+			for s in $(SKILLS); do \
 				[ -d "$$d/skills/$$s" ] && printf " %s" "$$s" && found=1; \
 			done; \
 			[ -z "$$found" ] && printf " (none)"; \
@@ -53,10 +51,9 @@ list:
 	fi
 	@echo
 	@echo "Install targets:"
-	@echo "  make install-norms    copy ietf-contributing + ietf-interpreting into every detected dir"
-	@echo "  make install-corpus   also copy ietf-corpus (then: pipx install ietf-llm; don't run alongside the hosted MCP)"
+	@echo "  make install          copy the skills into every detected dir"
 	@echo "  make update           git pull, then refresh whatever is already installed in each dir"
-	@echo "  make uninstall        remove all three skills from every detected dir"
+	@echo "  make uninstall        remove the skills from every detected dir"
 	@echo
 	@echo "Release targets:"
 	@echo "  make check            validate every SKILL.md (name matches dir, description <= 1024 chars)"
@@ -64,35 +61,21 @@ list:
 	@echo "  make changelog        list commit subjects since the last tag"
 	@echo "  make release          tag v$(VERSION) from the changelog and push the tag"
 
-install-norms:
+install:
 	@if [ -z "$(PRESENT)" ]; then echo "No assistant config dirs found; nothing to do (see README for manual paths)."; exit 0; fi
 	@for d in $(PRESENT); do \
 		mkdir -p "$$d/skills"; \
-		for s in $(NORMS); do \
+		for s in $(SKILLS); do \
 			rm -rf "$$d/skills/$$s"; \
 			cp -R "$$s" "$$d/skills/"; \
 			echo "installed $$s -> $$d/skills/"; \
 		done; \
 	done
-
-install-corpus:
-	@if [ -z "$(PRESENT)" ]; then echo "No assistant config dirs found; nothing to do (see README for manual paths)."; exit 0; fi
-	@for d in $(PRESENT); do \
-		mkdir -p "$$d/skills"; \
-		for s in $(CORPUS); do \
-			rm -rf "$$d/skills/$$s"; \
-			cp -R "$$s" "$$d/skills/"; \
-			echo "installed $$s -> $$d/skills/"; \
-		done; \
-	done
-	@echo
-	@echo "ietf-corpus needs the CLI:  pipx install ietf-llm"
-	@echo "Use the CLI path OR the hosted ietf-llm MCP, not both (see README)."
 
 update:
 	git pull --ff-only
 	@for d in $(PRESENT); do \
-		for s in $(NORMS) $(CORPUS); do \
+		for s in $(SKILLS); do \
 			if [ -d "$$d/skills/$$s" ]; then \
 				rm -rf "$$d/skills/$$s"; \
 				cp -R "$$s" "$$d/skills/"; \
@@ -103,7 +86,7 @@ update:
 
 uninstall:
 	@for d in $(PRESENT); do \
-		for s in $(NORMS) $(CORPUS); do \
+		for s in $(SKILLS); do \
 			if [ -d "$$d/skills/$$s" ]; then \
 				rm -rf "$$d/skills/$$s"; \
 				echo "removed $$s from $$d/skills/"; \
@@ -117,7 +100,7 @@ uninstall:
 # well-formed, and has a description within the 1024-char spec limit.
 check:
 	@ok=1; \
-	for d in $(NORMS) $(CORPUS); do \
+	for d in $(SKILLS); do \
 		f="$$d/SKILL.md"; \
 		[ -f "$$f" ] || { echo "$$d: missing SKILL.md"; ok=0; continue; }; \
 		name=$$(awk -F': ' '/^name:/{print $$2; exit}' "$$f"); \
