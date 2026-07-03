@@ -1,9 +1,7 @@
 # IETF Agent Skills
 
 Norms and tooling for participating in [IETF](https://www.ietf.org/) and IRTF
-work, packaged as [Agent Skills](https://agentskills.io/) — portable across the
-tools that adopted the format (Claude Code, OpenAI Codex, Gemini CLI, GitHub
-Copilot / VS Code, Cursor, and others), not tied to one vendor.
+work, packaged as [Agent Skills](https://agentskills.io/).
 
 Three skills, split by what they need:
 
@@ -26,12 +24,14 @@ want one, not both:
   `pipx install ietf-llm`, and the assistant queries a corpus you gather
   locally.
 - **The hosted `ietf-llm` MCP server.** If your assistant connects to it, the
-  server delivers its own routing guidance and norms — you don't need
-  `ietf-corpus` installed for that path.
+  server delivers routing guidance, the norms, and the query tools itself — so
+  you don't need *any* of these skills installed on that path.
 
-Running both points the assistant at two different corpora — your local gather
-versus the hosted set — with no coordination between them, so it can't cite a
-single coherent record. Pick the path that fits your setup.
+Running both query paths — `ietf-corpus` over a local gather *and* the hosted
+MCP — points the assistant at two different corpora with no coordination, so it
+can't cite a single coherent record. (The norm skills query nothing, so having
+them installed alongside the MCP is just redundant, not a conflict.) Pick the
+path that fits your setup.
 
 (If all you want is the drafting or reading guidance, install just the two norm
 skills — they need neither the tool nor the MCP.)
