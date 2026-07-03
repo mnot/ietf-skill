@@ -1,4 +1,10 @@
-# Contributing to an IETF/IRTF effort
+---
+name: ietf-contributing
+description: Norms for contributing to an IETF Working Group. Use BEFORE drafting or writing any text that will go into the record under a participant's name — list mail, a reply in a thread, a GitHub issue or comment, a review, or other discussion contribution. Authoring Internet-Drafts is out of scope. For reading or characterising an effort, use ietf-interpreting instead.
+license: CC-BY-4.0
+---
+
+# Participating in an IETF effort
 
 Helping a human draft list mail, GitHub issues/comments, or other discussion contributions. Authoring Internet-Drafts is out of scope.
 

@@ -1,41 +1,40 @@
-# IETF Agent Skill
+# IETF Agent Skills
 
-An [Agent Skill](https://agentskills.io/) that teaches an AI assistant the norms
-of participating in [IETF](https://www.ietf.org/) and IRTF work. It is written to
-the open `SKILL.md` format, so it works in any tool that has adopted it — Claude
-Code, OpenAI Codex, Gemini CLI, GitHub Copilot / VS Code, Cursor, and others —
-not just one vendor.
+Norms and tooling for participating in [IETF](https://www.ietf.org/) and IRTF
+work, packaged as [Agent Skills](https://agentskills.io/) — portable across the
+tools that adopted the format (Claude Code, OpenAI Codex, Gemini CLI, GitHub
+Copilot / VS Code, Cursor, and others), not tied to one vendor.
 
-The skill is plain Markdown: guidance the assistant reads, with no scripts or
-other executable parts. Installing it copies text files into a folder your
-assistant reads from, and the assistant loads a given capability only when your
-task calls for it.
+Three skills, split by what they need:
 
-## Capabilities
+| Skill | What it does | Needs |
+| --- | --- | --- |
+| [`ietf-contributing`](ietf-contributing/SKILL.md) | Norms for drafting text that goes into the record under your name — list mail, replies, GitHub issues/comments, reviews | nothing — plain guidance |
+| [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Norms for reading the record and reporting where a group stands — consensus, positions, draft/RFC status | nothing — plain guidance |
+| [`ietf-corpus`](ietf-corpus/SKILL.md) | Query the gathered record of an effort — routing, search, grounding citations in primary text | the `ietf-llm` tool (see below) |
 
-The skill is `ietf`, organised by capability so it can grow without disturbing
-what already works:
+The two norm skills are plain Markdown: guidance the assistant reads, with no
+scripts or other executable parts. They're useful on their own, with no other
+tooling installed. `ietf-corpus` drives a command-line tool and depends on it.
 
-```
-ietf/
-├── SKILL.md                     # entry point: what the skill is, and its capabilities
-└── references/
-    ├── contributing.md          # drafting contributions to the record
-    └── interpreting.md          # reading the record and reporting where a group stands
-```
+## Two ways in — pick one
 
-- **contributing** — norms for drafting text that will go into the record under a
-  participant's name (mailing-list mail, thread replies, GitHub issues/comments,
-  reviews). Accountability, disclosing AI involvement, the terse technical
-  register, grounding claims, staying on charter, not manufacturing consensus
-  signal.
-- **interpreting** — norms for reading the record and characterising where a
-  group stands: consensus is chair-declared, decisions are confirmed on-list,
-  positions belong to individuals, and what draft names and RFC streams do and
-  don't imply.
+There are two independent ways an assistant can reach the IETF record, and you
+want one, not both:
 
-Your assistant loads the matching capability file on its own when the task calls
-for it. Further capabilities can be added as separate files under `references/`.
+- **These skills + the `ietf-llm-query` tool.** Install the skills (below),
+  `pipx install ietf-llm`, and the assistant queries a corpus you gather
+  locally.
+- **The hosted `ietf-llm` MCP server.** If your assistant connects to it, the
+  server delivers its own routing guidance and norms — you don't need
+  `ietf-corpus` installed for that path.
+
+Running both points the assistant at two different corpora — your local gather
+versus the hosted set — with no coordination between them, so it can't cite a
+single coherent record. Pick the path that fits your setup.
+
+(If all you want is the drafting or reading guidance, install just the two norm
+skills — they need neither the tool nor the MCP.)
 
 ## Install
 
@@ -46,26 +45,49 @@ git clone https://github.com/mnot/ietf-skill.git
 cd ietf-skill
 ```
 
-Then copy the `ietf` directory into your tool's skills folder. Pick your tool:
+Then copy the skills you want into your tool's skills folder. Pick your tool:
 
-| Tool | Command |
+| Tool | Skills folder |
 | --- | --- |
-| **Claude Code** | `mkdir -p ~/.claude/skills && cp -R ietf ~/.claude/skills/` |
-| **OpenAI Codex** | `mkdir -p ~/.agents/skills && cp -R ietf ~/.agents/skills/` |
-| **Gemini CLI** | `mkdir -p ~/.gemini/skills && cp -R ietf ~/.gemini/skills/` |
-| **GitHub Copilot / VS Code** | `mkdir -p ~/.copilot/skills && cp -R ietf ~/.copilot/skills/` |
-| **Cursor** | `mkdir -p ~/.cursor/skills && cp -R ietf ~/.cursor/skills/` |
+| **Claude Code** | `~/.claude/skills/` |
+| **OpenAI Codex** | `~/.agents/skills/` |
+| **Gemini CLI** | `~/.gemini/skills/` |
+| **GitHub Copilot / VS Code** | `~/.copilot/skills/` |
+| **Cursor** | `~/.cursor/skills/` |
+
+For example, for Claude Code — all three skills:
+
+```sh
+mkdir -p ~/.claude/skills
+cp -R ietf-contributing ietf-interpreting ietf-corpus ~/.claude/skills/
+```
+
+Or just the norms (no tooling required):
+
+```sh
+cp -R ietf-contributing ietf-interpreting ~/.claude/skills/
+```
 
 `~/.agents/skills/` is a vendor-neutral location that several tools (Codex,
-Copilot/VS Code) also read from, so a single copy there can cover more than one.
+Copilot/VS Code) also read from. Every tool above also supports project-scoped
+skills — the same folder names without the `~/`, under a project directory
+(`.claude/skills/`, `.agents/skills/`, `.gemini/skills/`, `.github/skills/`,
+`.cursor/skills/`) — for guidance active only inside one repository.
 
-### Per-project instead of global
+### `ietf-corpus` also needs the tool
 
-Every tool above also supports project-scoped skills: put the `ietf` directory
-under the project's folder instead of your home directory — `.claude/skills/`,
-`.agents/skills/`, `.gemini/skills/`, `.github/skills/`, or `.cursor/skills/`
-respectively. Use this when you want the guidance active only inside a specific
-repository.
+```sh
+pipx install ietf-llm
+```
+
+This provides `ietf-llm-query` (read a gathered corpus) and `ietf-llm` (gather
+one). The skill checks for `ietf-llm-query` before using it and tells the user
+to install it if it's missing.
+
+> **Status:** `ietf-corpus` is provisional — it's written against the
+> `ietf-llm-query` command surface, which isn't released yet. Command names,
+> flags, and the minimum version pin may change until that lands. The two norm
+> skills are stable.
 
 ### Updating
 
@@ -74,15 +96,16 @@ cd ietf-skill
 git pull
 ```
 
-Then re-run the copy command for your tool to overwrite the installed copy.
+Then re-run the copy command for your tool to overwrite the installed copies.
 
 ## How it activates
 
-You don't invoke this manually. Your assistant reads the skill's short
-description at startup and loads the relevant capability on its own when your
-task matches — the `contributing` guidance when you ask it to help draft a
-message, comment, or review that will go out under your name; the `interpreting`
-guidance when you ask what a group decided or whether there is consensus.
+You don't invoke these manually. Your assistant reads each skill's short
+description at startup and loads the full guidance on its own when your task
+matches — `ietf-contributing` when you ask it to help draft a message, comment,
+or review that goes out under your name; `ietf-interpreting` when you ask what a
+group decided or whether there's consensus; `ietf-corpus` when you ask what a
+named effort is doing or discussing.
 
 ## License
 

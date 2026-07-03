@@ -1,4 +1,10 @@
-# Interpreting the IETF/IRTF record
+---
+name: ietf-interpreting
+description: Interpretive norms for reading the record of an IETF/IRTF effort. Use BEFORE characterising what a working group decided, whether there is consensus, who supports or opposes a proposal, or where the group stands — any sentence asserting a collective outcome (settled, decided, agreed, rejected, consensus, "the WG thinks/wants"). Covers consensus is chair-declared not vote-counted, decisions happen on the mailing list not in meetings, positions belong to individuals not their employers, and what Internet-Draft names and RFC streams do and don't imply. Reporting what a named individual said does not require this; any claim about where the group landed does. For drafting a contribution, use ietf-contributing instead.
+license: CC-BY-4.0
+---
+
+# Reading the IETF record
 
 The trigger is grammatical, not a self-assessment: **before you write any
 sentence asserting a collective outcome** — settled, decided, agreed,
@@ -6,7 +12,7 @@ rejected, "there is consensus," or "the WG thinks/wants" — you should have rea
 these norms. Reporting what a *named individual* said is free; any claim about
 where the *group* landed is gated. Not enforced — the point is to make skipping
 the check something you notice choosing, not ordinary efficient judgment. For
-the write side — drafting contributions — see [contributing](contributing.md).
+the write side — drafting contributions — see the `ietf-contributing` skill.
 
 ## The trap is what you already know
 
