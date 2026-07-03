@@ -15,11 +15,11 @@ SKILLS := ietf-contributing ietf-interpreting
 VERSION    := $(shell cat VERSION 2>/dev/null)
 VERSIONING ?= patch          # patch | minor | major — bump flavour for `make version`
 
-# Per-tool config directories, checked for presence. ~/.agents is deliberately
-# left out of the sweep: several tools also read it, so auto-installing there
-# could register a skill twice. Copy it there by hand if you want it.
+# Per-tool skills dirs, installed where present. ~/.agents is Codex's personal
+# dir (and a vendor-neutral location some other tools also read).
 TOOL_DIRS := \
 	$(HOME)/.claude \
+	$(HOME)/.agents \
 	$(HOME)/.gemini \
 	$(HOME)/.cursor \
 	$(HOME)/.copilot

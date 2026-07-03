@@ -38,7 +38,7 @@ make update     # git pull, then refresh whatever's already installed
 make uninstall  # remove them again
 ```
 
-It sweeps the per-tool dirs (`~/.claude`, `~/.gemini`, `~/.cursor`, `~/.copilot`) and installs only where the tool is present. `~/.agents/` is left out of the sweep on purpose — several tools also read it, so auto-installing there could register a skill twice; copy it there by hand if you want.
+It sweeps the per-tool dirs (`~/.claude`, `~/.agents`, `~/.gemini`, `~/.cursor`, `~/.copilot`) and installs only where the tool is present.
 
 ### Manual copy (any OS)
 
@@ -58,6 +58,15 @@ cp -R ietf-contributing ietf-interpreting ~/.claude/skills/
 ```
 
 `~/.agents/skills/` is a vendor-neutral location that several tools (Codex, Copilot/VS Code) also read from.
+
+### Claude Desktop
+
+The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), skills are uploaded, not copied: zip each skill folder and add it under **Customize → Skills → + → Upload a skill**.
+
+```sh
+zip -r ietf-contributing.zip ietf-contributing
+zip -r ietf-interpreting.zip ietf-interpreting
+```
 
 ### Updating
 
