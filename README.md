@@ -45,7 +45,32 @@ git clone https://github.com/mnot/ietf-skill.git
 cd ietf-skill
 ```
 
-Then copy the skills you want into your tool's skills folder. Pick your tool:
+Then install from the clone — with `make` (simplest; macOS / Linux) or a manual
+copy (any OS).
+
+### Using `make` (macOS / Linux)
+
+A Makefile installs into every assistant config dir you already have and keeps
+them in sync. It only ever copies the Markdown skill directories — it installs
+no software and runs nothing else (`pipx install ietf-llm` stays a manual step):
+
+```sh
+make                  # list detected config dirs and what's installed
+make install-norms    # copy the two norm skills into every detected dir
+make install-corpus   # also copy ietf-corpus (then: pipx install ietf-llm)
+make update           # git pull, then refresh whatever's already installed
+make uninstall        # remove them again
+```
+
+It sweeps the per-tool dirs (`~/.claude`, `~/.gemini`, `~/.cursor`,
+`~/.copilot`) and installs only where the tool is present. `~/.agents/` is left
+out of the sweep on purpose — several tools also read it, so auto-installing
+there could register a skill twice; copy it there by hand if you want.
+
+### Manual copy (any OS)
+
+On Windows, or to place skills yourself, copy the ones you want into your tool's
+skills folder:
 
 | Tool | Skills folder |
 | --- | --- |
@@ -73,27 +98,6 @@ Copilot/VS Code) also read from. Every tool above also supports project-scoped
 skills — the same folder names without the `~/`, under a project directory
 (`.claude/skills/`, `.agents/skills/`, `.gemini/skills/`, `.github/skills/`,
 `.cursor/skills/`) — for guidance active only inside one repository.
-
-### Or use `make` (macOS / Linux)
-
-From a clone, a Makefile installs into every assistant config dir you already
-have and keeps them in sync. It only ever copies the Markdown skill directories
-— it installs no software and runs nothing else (`pipx install ietf-llm` stays
-a manual step):
-
-```sh
-make                  # list detected config dirs and what's installed
-make install-norms    # copy the two norm skills into every detected dir
-make install-corpus   # also copy ietf-corpus (then: pipx install ietf-llm)
-make update           # git pull, then refresh whatever's already installed
-make uninstall        # remove them again
-```
-
-It sweeps the per-tool dirs (`~/.claude`, `~/.gemini`, `~/.cursor`,
-`~/.copilot`) and installs only where the tool is present. `~/.agents/` is left
-out of the sweep on purpose — several tools also read it, so auto-installing
-there could register a skill twice; copy it there by hand if you want. On
-Windows, use the manual copy above.
 
 ### `ietf-corpus` also needs the tool
 
