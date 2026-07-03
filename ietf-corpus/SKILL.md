@@ -50,22 +50,33 @@ read commands error cleanly on a missing corpus rather than inventing one.
 
 ## Read the record
 
-| Need | Command | Reads |
-| --- | --- | --- |
-| Orient — chairs, themes, drafts, issues, threads | `overview <corpus>` | corpus |
-| Positions & chair statements on a question | `tally-positions <corpus> <query>` | corpus |
-| Filtered catalogue, incl. chronology | `read-digest <corpus> --kind issues\|threads\|people\|timeline` | corpus |
-| RFCs / draft metadata | `rfc-search` · `get-rfc` · `draft-authors` | corpus |
-| Semantic search | `search <corpus> <query>` · `search-corpora <a b …> <query>` | embeddings |
-| Chronological narrative | `read-topic <corpus> <query>` | embeddings |
+Commands fall in three tiers, and it matters which one you reach for.
 
-The `embeddings` commands (`search`, `search-corpora`, `read-topic`, and the
-routing `which-corpus`) reach a remote embedding endpoint **only in deployments
-configured for one** — the default is a local in-process model. So if a query
-reports embeddings unreachable, that's a remote-embed deployment with the
-endpoint down: say so and fall back to the corpus-only commands (`overview`,
-`read-digest`, `tally-positions`) rather than reporting "nothing found." The
-rest never touch the network.
+**Offline** — reads the gathered corpus, never touches the network:
+
+- `overview <corpus>` — chairs, themes, drafts, issues, threads.
+- `tally-positions <corpus> <query>` — positions and chair statements on a question.
+- `read-digest <corpus> --kind issues|threads|people|timeline` — filtered catalogue.
+- `read-minutes <corpus>` · `list-sessions <corpus>` — meeting minutes and sessions, including gathered polls.
+- `draft-state <name>` — a draft's offline lifecycle (active / expired / became-RFC / replaced / withdrawn).
+- `rfc-search` · `get-rfc` · `draft-authors` — RFCs and draft metadata.
+
+**Embeddings** — reach a remote embedding endpoint **only in deployments configured for one** (the default is a local in-process model):
+
+- `search <corpus> <query>` · `search-corpora <a b …> <query>` · `read-topic <corpus> <query>` — semantic search and narrative.
+- `which-corpus` — routing (embeds the query to route it).
+
+**Live Datatracker** — always network, TTL-cached; may be slow, and unavailable when the user is offline:
+
+- `draft-status <name>` — authoritative process state (WGLC, IESG review, etc.), fresher and more precise than the offline lifecycle.
+- `meeting-sessions <corpus>` — current session information.
+
+For a draft's process state, prefer live `draft-status` (authoritative); fall
+back to offline `draft-state` when the user is offline or the live tier is
+unreachable. More generally: a network command (embeddings or Datatracker) that
+reports its endpoint unreachable should be reported as such, and answered from
+the offline tier (`overview`, `read-digest`, `tally-positions`, `read-minutes`,
+`draft-state`) — never as "nothing found."
 
 To tell an adopted draft from an individual one, read the name, don't call a
 lookup: `draft-ietf-<wg>-…` is adopted by that WG, `draft-<author>-…` is an
