@@ -6,40 +6,36 @@ the open `SKILL.md` format, so it works in any tool that has adopted it — Clau
 Code, OpenAI Codex, Gemini CLI, GitHub Copilot / VS Code, Cursor, and others —
 not just one vendor.
 
-The audience is IETF participants, not developers. You do not need to write or
-run any code to use it.
+The skill is plain Markdown: guidance the assistant reads, with no scripts or
+other executable parts. Installing it copies text files into a folder your
+assistant reads from, and the assistant loads a given capability only when your
+task calls for it.
 
-## Instructions only — no executable code
+## Capabilities
 
-This skill is **plain Markdown** — written guidance, and nothing else. There are
-no scripts, no install hooks, no commands that run on your machine. Installing it
-just copies text files into a folder your assistant reads from; the assistant
-pulls the guidance in only when it is relevant to what you are doing.
-
-You can — and should — open the files and read them before installing. It is all
-prose. Nothing in this repository executes.
-
-## What's here
-
-The skill is `ietf`. It is organised by capability, so it can grow without
-disturbing what already works:
+The skill is `ietf`, organised by capability so it can grow without disturbing
+what already works:
 
 ```
 ietf/
 ├── SKILL.md                     # entry point: what the skill is, and its capabilities
 └── references/
-    └── contributing.md          # capability: drafting contributions to the record
+    ├── contributing.md          # drafting contributions to the record
+    └── interpreting.md          # reading the record and reporting where a group stands
 ```
 
 - **contributing** — norms for drafting text that will go into the record under a
   participant's name (mailing-list mail, thread replies, GitHub issues/comments,
-  reviews). Covers accountability, disclosing AI involvement, the terse technical
-  register, grounding claims, staying on charter, and not manufacturing consensus
+  reviews). Accountability, disclosing AI involvement, the terse technical
+  register, grounding claims, staying on charter, not manufacturing consensus
   signal.
+- **interpreting** — norms for reading the record and characterising where a
+  group stands: consensus is chair-declared, decisions are confirmed on-list,
+  positions belong to individuals, and what draft names and RFC streams do and
+  don't imply.
 
-Your assistant loads a capability file on its own when the task calls for it;
-you don't open them by hand. Further capabilities will be added as separate files
-under `references/`.
+Your assistant loads the matching capability file on its own when the task calls
+for it. Further capabilities can be added as separate files under `references/`.
 
 ## Install
 
@@ -83,12 +79,14 @@ Then re-run the copy command for your tool to overwrite the installed copy.
 ## How it activates
 
 You don't invoke this manually. Your assistant reads the skill's short
-description at startup and loads the full guidance on its own when your task
-matches — for the `contributing` capability, that's whenever you ask it to help
-draft a mailing-list message, a GitHub comment, a review, or any other
-contribution that will go out under your name.
+description at startup and loads the relevant capability on its own when your
+task matches — the `contributing` guidance when you ask it to help draft a
+message, comment, or review that will go out under your name; the `interpreting`
+guidance when you ask what a group decided or whether there is consensus.
 
-## Status
+## License
 
-This guidance describes IETF community norms as understood by its author. It is
-not a normative IETF document and carries no official standing.
+Released under [CC BY 4.0](LICENSE) — share or adapt freely, with attribution.
+
+This describes IETF community norms as understood by its author. It is not a
+normative IETF document and carries no official standing.
