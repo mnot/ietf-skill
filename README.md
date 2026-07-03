@@ -61,12 +61,7 @@ cp -R ietf-contributing ietf-interpreting ~/.claude/skills/
 
 ### Claude Desktop
 
-The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), skills are uploaded, not copied: zip each skill folder and add it under **Customize → Skills → + → Upload a skill**.
-
-```sh
-zip -r ietf-contributing.zip ietf-contributing
-zip -r ietf-interpreting.zip ietf-interpreting
-```
+The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill** — these are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed).
 
 ### Updating
 
