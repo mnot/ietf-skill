@@ -6,13 +6,13 @@ as [Agent Skills](https://agentskills.io/).
 | Skill | What it does |
 | --- | --- |
 | [`ietf-contributing`](ietf-contributing/SKILL.md) | Drafting text that goes into the record under your name — list mail, replies, GitHub issues/comments, reviews. |
-| [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Understanding how the IETF works; e.g.,  consensus, positions, draft/RFC status. |
+| [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Understanding how the IETF works; e.g., consensus, positions, draft/RFC status. |
 
 Both are only Markdown, no executables.
 
 ## Querying the record
 
-These skills are about *how to participate*. To actually read the public record of an effort — mailing list, drafts, RFCs, GitHub issues, minutes — install the [ietf-llm](https://pypi.org/project/ietf-llm/) MCP server**.
+These skills are about *how to participate*. To actually read the public record of an effort — mailing list, drafts, RFCs, GitHub issues, minutes — install the [ietf-llm](https://pypi.org/project/ietf-llm/) MCP server.
 
 The MCP server also serves these norms (as tools), but installing both does no harm.
 
@@ -57,7 +57,7 @@ mkdir -p ~/.claude/skills
 cp -R ietf-contributing ietf-interpreting ~/.claude/skills/
 ```
 
-`~/.agents/skills/` is a vendor-neutral location that several tools (Codex, Copilot/VS Code) also read from. 
+`~/.agents/skills/` is a vendor-neutral location that several tools (Codex, Copilot/VS Code) also read from.
 
 ### Updating
 
