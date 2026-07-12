@@ -112,8 +112,6 @@ check:
 	done; \
 	if [ "$$ok" = 1 ]; then echo "skills valid (version $(VERSION))"; else echo "check FAILED"; exit 1; fi
 
-version: version-$(VERSIONING)
-
 version-major version-minor version-patch: version-%: check
 	@[ -n "$(VERSION)" ] || { echo "no VERSION file"; exit 1; }; \
 	maj=$$(echo "$(VERSION)" | cut -d. -f1); \
