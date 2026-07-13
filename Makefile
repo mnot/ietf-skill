@@ -13,7 +13,6 @@
 SKILLS := ietf-contributing ietf-interpreting
 
 VERSION    := $(shell cat VERSION 2>/dev/null)
-VERSIONING ?= patch          # patch | minor | major — bump flavour for `make version`
 
 # Per-tool skills dirs, installed where present. ~/.agents is Codex's personal
 # dir (and a vendor-neutral location some other tools also read).
@@ -57,7 +56,7 @@ list:
 	@echo
 	@echo "Release targets:"
 	@echo "  make check            validate every SKILL.md (name matches dir, description <= 1024 chars)"
-	@echo "  make version          bump VERSION ($(VERSIONING)) and commit — also version-minor / version-major"
+	@echo "  make version-*        bump VERSION and commit — * is patch / minor / major"
 	@echo "  make changelog        list commit subjects since the last tag"
 	@echo "  make release          tag v$(VERSION) from the changelog and push the tag"
 
