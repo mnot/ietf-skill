@@ -4,7 +4,7 @@ description: Guidelines for how IETF protocol specifications that use or extend 
 license: CC-BY-4.0
 ---
 
-# HTTP Review Skill
+# HTTP Specification Skill
 
 Drafting, reviewing, or modifying IETF Internet-Drafts and similar specifications that use the HTTP protocol. Covers editorial style, best practices, and common pitfalls.
 
@@ -12,16 +12,16 @@ This skill is not designed for use without human supervision; it does not captur
 
 The content of this skill mirrors much of the content of BCP 56 / RFC 9205.
 
-First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?"
+First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?" If it is not, stop and advise the user that this skill isn't applicable. 
 
 From there:
+* If you are creating or modifying a specification that uses HTTP, follow the steps in "Creating HTTP Specifications".
 * If you are reviewing a specification that uses HTTP, follow the steps in "Review Process".
-* If you are creating a specification that uses HTTP, follow the steps in "Creating HTTP Specifications".
 
 
 ## Is HTTP Being Used?
 
-A specification is using HTTP -- and so this skill applies -- if it defines an application that does any of the following:
+A specification is using HTTP -- and so this skill applies -- if it:
 
 * uses transport port 80 or 443, or
 * uses the "http" or "https" URI scheme, or
@@ -30,24 +30,35 @@ A specification is using HTTP -- and so this skill applies -- if it defines an a
 
 When a specification is using HTTP, all of the requirements of the HTTP protocol suite are in force -- RFC 9110 in particular, but also the specific version(s) of HTTP in use and any extensions.
 
-An application can rely on HTTP without meeting these criteria -- for example, reusing its message format while changing other aspects of its operation. Doing so buys freedom to modify the protocol, at the cost of most of the benefits in "Goals for Using HTTP", because existing implementations won't easily adapt. Such specifications MUST NOT use HTTP's URI schemes, transport ports, ALPN protocol IDs, or IANA registries; they are encouraged to establish their own.
-
-Note that this skill addresses applications that use HTTP, not generic extensions to HTTP; the guidance here does not necessarily apply to the latter.
-
+An application can rely on parts of the HTTP specification without meeting these criteria -- for example, reusing its message format for other purposes. Doing so buys freedom to modify the protocol, at the cost of most of the benefits in "Goals for Using HTTP", because existing implementations won't easily adapt. Such specifications MUST NOT use HTTP's URI schemes, transport ports, ALPN protocol IDs, or IANA registries; they are encouraged to establish their own.
 
 ## Creating HTTP Specifications
 
-Specify the application's server-side behaviour by defining these protocol elements, and composing them into a set of resources:
+Follow these steps when the user wishes to create a new specification that uses HTTP.
 
-* media types, often based on a format convention such as JSON;
+### 0. Understand the Relationship with HTTP
+
+Talk to the user about why they are using HTTP for their protocol. While most authors will have broad familiarity with the protocol, they may not appreciate everything it provides (see in particular "Goals for Using HTTP"), or all of the constraints that will be placed upon them (see "Web Compatibility"). A discussion about these aspects with the user will assure that HTTP is a good fit for their application.
+
+### 1. Define Your Resources and Representations
+
+Start by specifying the application's server-side behaviour by defining these protocol elements:
+
+* Formats, identified by media types and often based on a format convention such as JSON (see "Content");
 * HTTP fields, per "Header and Trailer Fields"; and
-* the behaviour of resources, as identified by link relations.
+* Resources that consume and produce those formats when operated on by methods (see "Methods"), returning responses associated with status codes (see "Status Codes") and whose types are identified by link relations (see "Linking").
 
-Between them, these can express retrieval of resource state with GET, creation or update with POST or PUT, data processing with POST, and deletion with DELETE -- without the specification fixing any URL. For example:
+Between them, these primitives can express retrieval of resource state with GET, creation or update with POST or PUT, data processing with POST, and deletion with DELETE -- without the specification fixing any URL. For example:
 
 > Resources linked to with the "example-widget" link relation type are Widgets. The state of a Widget can be fetched in the "application/example-widget+json" format, and can be updated by PUT to the same link. Widget resources can be deleted.
 
-Client behaviour ought to be closely aligned with that of Web browsers, to avoid interoperability problems when browsers are used. If browser compatibility is a goal, define client interaction in terms of [Fetch](https://fetch.spec.whatwg.org), since that is the abstraction browsers use for HTTP.
+Generally, a protocol that uses HTTP well will define a number of specific formats and resource types. Those that only define a single format or resource type may be at risk of tunnelling (see "Tunnelling").
+
+### 2. Define Client Constraints
+
+Next, define the requirements and assumptions for clients accessing those resources. 
+
+Generally, client behaviour ought to be closely aligned with that of Web browsers, to avoid interoperability problems when browsers are used -- even if they are not the intended client population, it is almost inevitable that browsers will at some point access the resources defined by an application. 
 
 Some client behaviours and extensions aren't required by HTTP but have become common; if the specification doesn't address them explicitly, expect confusion:
 
@@ -55,78 +66,112 @@ Some client behaviours and extensions aren't required by HTTP but have become co
 * Cookies: reference the Cookie specification explicitly if they are required.
 * Certificates: specify that TLS certificates are checked per Section 4.3.4 of HTTP when HTTPS is used.
 
-Use RFC 9110 as the primary reference for HTTP; referencing the rest of the suite is only necessary when a specific feature is called out.
-
-It is NOT RECOMMENDED that a specification require a minimum version of HTTP; because HTTP is hop-by-hop, connections can be handled by implementations the application doesn't control (proxies, CDNs, firewalls). If a deployment benefits from a particular version (e.g., HTTP/2's multiplexing), note that instead. Specifications MUST NOT specify a maximum version, to preserve the protocol's ability to evolve.
-
 
 ## Review Process
 
 To review a specification that uses HTTP, go through the following steps. 
 
-* What section(s) of the specification use or extend HTTP?
-* What section(s) of the document have other interactions with HTTP?
-* Identify the HTTP extensions proposed by the specification.
-* Apply the guidelines in "Editorial Style".
-* Check that the correct documents are referenced correctly.
+1. Identify the section(s) of the specification that use or extend HTTP.
+2. Evaluate them according to the criteria in this skill.
+3. Double check the document's references for currency and correctness (see "References").
+3. Fill out the Review Template below.
+
 
 ### Review Template
+
+The following template can serve as the basis for a specification review. Empty sections should be omitted, and if other kinds of information are relevant, new sections should be created as appropriate.
+
+~~~markdown
+# HTTP Review for [document identifier]
+
+## Overview
+
+_assess, at a high level, how likely the specification is to benefit from using HTTP; see "Goals for Using HTTP"_
+
+_assess, at a high level, how web-compatible the specification is; see "Web Compatibility"_
+
+## Technical Recommendations
+
+_For each of the relevent skill sections, create a `###` subsection and evaluate the specification's conformance, making concrete recommendations for improvement. Omit sections that are not relevant._
+
+## Editorial Nits
+
+_Review "Editorial Style" and enumerate the issues found, as a numbered list with appropriate references. Keep this as compact as possible; for example, do not emit five separate 'needs an example in this format' nits; instead, emit one with five sub-bullets or similar references._
+~~~
 
 
 ## Goals for Using HTTP
 
-Reuse of infrastructure:
-* Browsers
-* CDNs, proxy caches, other intermediaries
-* WAFs and other security infrastructure
-* Servers
-* Frameworks and tooling
+When deciding to use HTTP, as well as how to use the protocol, it is helpful to have a solid grasp of the benefits of doing so. 
 
-Evolution
+The primary benefit of using HTTP as the basis of a protocol is _reuse_ -- of deployed infrastructure, available implementations and tools, and knowledge / familiarity by humans. HTTP offers intuitive, higher-level abstractions that -- when properly used -- can handle problems without significant effort. 
 
-Deployment flexibility
+For example, it can provide:
 
-Separation of interface and implementation 
+* Message framing
+* Well-understood semantics (e.g. "GET")
+* Caching for scalability, reliability, and performance
+* Intermediary infrastructure for management and operability
+* Security infrastructure such as WAFs
+* Authentication frameworks
+* Browsers as a powerful user interface
+* Protocol evolution mechanisms
+* Flexibility in deployment (e.g., alongside other Web applications, and integrated into them)
+* Separation of interface and implementation 
 
-Scalability
-
-Higher Level Semantics
-
-Mindshare
+Often, protocol designers may not appreciate or anticipate these benefits immediately. For example, it may not be apparent that caching is necessary in the early deployments of a protocol, but at scale it is often a critical capability. Designing to enable use of as many of HTTP's capabilities as is reasonably possible enables these unforeseen future requirements to be met more easily.
 
 
+## Web Compatibility
 
+The Web is a rich, interlinked ecosystem with many actors. Applications that use HTTP need to co-exist well with other parts of this ecosystem, even when there is no intended overlap. 
+
+This has many implications:
+
+* Because the most widespread client for HTTP is the Web browser, applications MUST consider the implications of browser access even if it is not a target client; see "Security" for details. 
+* Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often have no application-specific knowledge, and are difficult to modify. Therefore, applications need to be designed with it in mind; see especially "Caching", "Stateful Connections", and "Subsuming Generic Features".
+* Some applications can benefit from flexible deployment on servers, "mixing and matching" with other applications, as well as cross-linking between them. See "Linking".
+
+### HTTP Versions
+
+Specifications MUST NOT require a minimum version of HTTP; because HTTP is hop-by-hop, connections can be handled by implementations the application doesn't control (proxies, CDNs, firewalls). If a deployment benefits from a particular version (e.g., HTTP/2's multiplexing), note that instead. Likewise, specifications MUST NOT specify a maximum version, to preserve the protocol's ability to evolve.
 
 ## Resources and URIs
 
-Parts of the URL are designed to be under the control of the server's owner, to give them flexibility in deployment. As a result, specifications for applications that use HTTP won't usually contain fixed URLs or paths; specifying a path prefix like "/app/v1" is common practice for a single-deployment API, but inappropriate in an IETF specification. See [BCP 190](https://www.rfc-editor.org/rfc/rfc8820).
+Resources are identified by URIs (also called URLs, but most IETF specifications use URI). They consume and produce representations -- bundles of content with header (and possibly trailer) fields. Requests contain a method that operate upon the resource; responses contain a status code that indicates the outcome of the operation. 
 
 Applications will typically use the "http" and/or "https" URI schemes; "https" is RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and origin-based features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
 
-Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. Using a non-default port has privacy implications (the protocol can now be distinguished from other traffic) that should be documented in Security Considerations, as well as operability concerns, since some networks block or interfere with it.
+Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. Using a non-default port has privacy implications (the protocol can now be distinguished from other traffic) that should be documented in Security Considerations, as well as operability concerns, since some networks might block or interfere with it.
 
 ### Linking
 
 Assuming that a server's namespace (or a portion of it) is exclusively for one application's use overlays application-specific semantics onto that space and precludes others from using it. Such "squatting" usurps the server's authority over its own resources and is bad practice in standards.
 
-Instead of statically defining URI components like paths, it is RECOMMENDED that applications define and use links. Beyond deployment flexibility, links let a request be routed to a different server without the overhead of a redirect, allow different applications to be "mixed and matched" on the same server, offer a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
+Specifications that use HTTP MUST NOT specify fixed paths for their resources. For example, specifying that`/app/widget.xml` is the path for a particular resources in the protocol is not allowed. See [BCP 190 / RFC 8820](https://www.rfc-editor.org/rfc/rfc8820) for details.
 
-Applications can also use URI Templates to let clients generate URLs from runtime data.
+The one exception to this is a `/.well-known` URI - see "Discovery".
+
+Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links, as defined by [RFC 8288](https://www.rfc-editor.org/info/rfc8288/). Doing so has significant operational advantages: servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking also offers a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
+
+Applications can also use [URI Templates](https://www.rfc-editor.org/info/rfc6570/) to let clients generate URLs from runtime data.
+
+A resource type can specify the semantics and syntax of the query components of its URIs. While many use the `foo=bar&baz=bam` format from HTML forms due to its widespread use, this is not required. 
 
 ### Discovery
 
-A client typically begins by fetching an initial document that describes the particular deployment and links to other relevant resources. This keeps the deployment flexible (potentially spanning multiple servers), allows evolution, and lets the application tailor the discovery document to the client. Once fetched, it can be cached (if its metadata allows) and used to locate the application's other resources.
+A client typically begins interacting with a server by fetching an initial document that describes the particular deployment and links to other relevant resources. This keeps the deployment flexible (potentially spanning multiple servers), allows evolution, and lets the application tailor the discovery document to the client. Once fetched, it can be cached (if its metadata allows) and used to locate the application's other resources.
 
-The most straightforward way for a client to find that initial URL is to be configured with the full URL. If the client only knows the server's hostname and the identity of the application, a specification can instead:
+The most straightforward way for a client to find that initial discovery document is to be configured with its full URL. If the client only knows the server's hostname and the identity of the application, a specification can instead:
 
-* register a well-known URI as an entry point, giving a fixed path on every potential server that won't collide with other applications; or
+* register a [well-known URI](https://www.rfc-editor.org/info/rfc8615/) as an entry point, giving a fixed path on every potential server that won't collide with other applications; or
 * enable the server authority to convey a URI Template (or similar) for generating an entry point URL -- for example, in a configuration document.
 
 An application that doesn't want a discovery document -- because communication is very brief, or the added latency is unacceptable -- can place all of its resources under a well-known location.
 
 ### Redirection
 
-The 3xx status codes direct the user agent to another resource. The most common -- 301, 302, 307, and 308 -- all use the Location response header field, and differ along two axes:
+The 3xx status codes direct the client to another resource. The most common -- 301, 302, 307, and 308 -- all use the Location response header field, and differ along two axes:
 
 | | Permanent | Temporary |
 | --- | --- | --- |
@@ -135,7 +180,7 @@ The 3xx status codes direct the user agent to another resource. The most common 
 
 Permanent redirects can be used to update links stored in the client (e.g., bookmarks); temporary ones cannot. This is separate from HTTP caching and has no effect on it. Browsers generally do change POST to GET for 301 and 302, which is why 307 and 308 were created. 303 (See Other) informs the client that the result of an operation is available at a different location using GET.
 
-A user agent is allowed to follow a 3xx redirect with a Location header field automatically, even if it doesn't understand the specific status code -- but it isn't required to. If an application needs redirects to be followed automatically, it MUST say so, specifying the circumstances.
+If an application needs redirects to be followed automatically, it MUST say so, specifying the circumstances.
 
 Redirects can be cached when appropriate cache directives are present, but they aren't "sticky": redirecting one URI doesn't imply that similar URIs (e.g., with different query parameters) are redirected.
 
@@ -147,8 +192,6 @@ Common syntactic conventions for message content include JSON, XML, and CBOR; be
 
 Applications should register a distinct media type for each format they define, so that it can be identified unambiguously and negotiated for.
 
-### Content Negotiation
-
 ## Methods
 
 Protocols that use HTTP must only use methods that are registered in the IANA HTTP method registry, and will typically confine themselves to the following methods: GET POST PUT DELETE PATCH QUERY
@@ -159,9 +202,9 @@ See below for advice about using specific methods.
 
 GET is the most common and useful method; its retrieval semantics allow caching and side-effect-free linking, and underlie many of the benefits of using HTTP.
 
-Queries can be performed with GET, usually using the query component of the URL -- a familiar pattern from Web browsing, with the advantage that results can be cached. GET can be unwieldy for larger queries, though: binary query terms have to be encoded to conform to URI syntax, and some implementations limit URL size (modern software typically allows considerably more than the 8000 octets required by HTTP). An application might therefore consider expressing queries in the content of a POST, at the cost of losing caching and the ability to link to query results; applications that need POST queries ought to consider allowing both methods.
+Queries can be performed with GET, usually using the query component of the URL -- a familiar pattern from Web browsing, with the advantage that results can be cached. GET can be unwieldy for larger queries, though: binary query terms have to be encoded to conform to URI syntax, and some implementations limit URL size (modern software typically allows considerably more than the 8000 octets required by HTTP). For these cases, see QUERY.
 
-Processing of a GET should not change application state or have other side effects significant to the client, since implementations do retry failed GETs, and GETs protected by TLS early data may be vulnerable to replay. This does not include logging and similar functions.
+Processing of a GET should not change application state or have other side effects significant to the client, since implementations do retry failed GETs, and GETs protected by TLS early data may be vulnerable to replay. Side effects do not include logging and similar functions.
 
 ### POST
 
@@ -169,15 +212,15 @@ POST is the appropriate method for data processing, and for resource creation or
 
 Because a browser can be coaxed into cross-site request forgery (CSRF) from an arbitrary site, an application whose state can be changed with POST needs to consider browsers even if it doesn't intend to be used by one; see "Security".
 
-### PUT and DELETE
-
-PUT creates or updates the state of a resource at a known URL; DELETE removes it.
-
 ### PATCH
+
+PATCH allows a client to deterministically update the state of a resource using a patch format. When specifying use of PATCH, the specific patching algorithm MUST be determined by the media type of the request; resources MUST NOT assume a patch type without this information.
 
 ### QUERY
 
-### Other Methods
+QUERY is a relatively new method that was designed to address limitations of expressing complex queries using GET (mostly due to URL length limitations). Applications that use QUERY should understand that caching support for it is not yet widespread, and that some software (e.g., WAFs) might block its use until it becomes more widespread.
+
+### OPTIONS
 
 OPTIONS is often considered for retrieving metadata, because HTTP-based APIs frequently need it, but it has significant limitations:
 
@@ -212,7 +255,7 @@ Therefore, applications should:
 * Convey finer-grained error information in the response's content and/or header fields; [Problem Details](https://www.rfc-editor.org/rfc/rfc9457) is one way to do so.
 * Point out explicitly that clients ought to handle all applicable status codes gracefully, falling back to the generic n00 semantics of a code they don't recognise (e.g., handling 499 as 400). This is preferable to a "laundry list" of potential status codes, which won't stay complete.
 
-Applications MUST only use registered status codes, and MUST NOT re-specify their semantics -- even by copying their definition. It is NOT RECOMMENDED that specific reason phrases be required; the reason phrase has no function in HTTP, isn't guaranteed to be preserved, and isn't carried at all in HTTP/2.
+Applications MUST only use registered status codes, and MUST NOT re-specify their semantics -- even by copying their definition. It is NOT RECOMMENDED that specific reason phrases be required; the reason phrase has no function in HTTP, isn't guaranteed to be preserved, and isn't carried at all in HTTP/2 or HTTP/3.
 
 ### Defining New Status Codes
 
@@ -232,7 +275,7 @@ Defining a new field is appropriate when at least one of the following holds:
 * the field is useful to generic HTTP software (e.g., clients, servers); or
 * the value can't be carried in the message content, usually because the format doesn't allow it.
 
-Otherwise, it is usually better to convey application-specific information elsewhere -- in the message content, or the URL's query string.
+Otherwise, it is usually better to convey application-specific information elsewhere -- e.g., in the message content, or the URL's query string.
 
 The semantics of existing fields MUST NOT be redefined without updating their registration or defining an extension to them (where that is allowed). For example, an application cannot specify that the Location header field has a special meaning in a certain context.
 
@@ -305,32 +348,45 @@ Finally, note that applications that require modification of implementations -- 
 
 ## Anti-Patterns
 
+The following anti-patterns should be called out and warned against (with explanation) when encountered:
+
 ### Tunnelling
 
-Overuse of POST
+"Tunnelling" is treating HTTP as a transport protocol. Typically, this is seen as overuse of POST -- in extreme cases, putting all traffic through POSTs to a single resource. Sometimes, tunnelling is indicated when a protocol creates a "HTTP binding" to existing semantics, since those semantics rarely map directly onto HTTP resources and representations.
 
-### GET with Body
+Tunnelling indicates that the application is unlikely to realise most of the benefits of using HTTP (see "Goals for Using HTTP"). 
 
-The generic HTTP syntax allows a GET request to contain content, but only so that message parsers can be generic. Content in a GET is not recommended, has no meaning, and will be ignored or rejected by generic HTTP software -- intermediaries, caches, servers, and client libraries. Use the query component, or POST; see "GET".
+Tunnelling is not forbidden in specifications, but careful attention needs to be paid to how HTTP is used, because authors that do not engage deeply with the protocol often make invalid assumptions about how the protocol is deployed -- for example, assuming that connections are stateful.
+
+### Stateful Connections
+
+HTTP's use of the underlying transport protocol is stateless. Just because two messages occurred on the same connection does not guarantee that they will remain on the same connection when forwarded to a downstream recipient.
+
+Therefore, specifications MUST NOT assume that two messages have any non-explicit relationship. If statefulness is required, use HTTP Cookies or other mechanisms. 
+
+### GET with Content
+
+The generic HTTP syntax allows a GET request to contain content, but only so that message parsers can be generic. Content in a GET is not recommended, has no meaning, and will be ignored or rejected by generic HTTP software -- intermediaries, caches, servers, and client libraries. Use the query component of the URI, POST, or QUERY; see "GET".
+
+Specifications MUST NOT use GET with content.
 
 ### Mandatory Features
 
-Applications should not require clients to statically support HTTP features that are usually negotiated. For example, requiring support for responses with a certain content coding, instead of negotiating for it, means that otherwise conformant clients cannot interoperate with the application. Encouraging implementation of such features is fine.
+Applications MUST NOT require clients to statically support HTTP features that are usually negotiated. For example, requiring support for responses with a certain content coding, instead of negotiating for it, means that otherwise conformant clients cannot interoperate with the application. Encouraging implementation of such features is fine.
 
-Similarly, don't require a minimum or maximum version of HTTP; see "Creating HTTP Specifications".
+Similarly, don't require a minimum or maximum version of HTTP; see "HTTP Versions".
 
 ### Subsuming Generic Semantics
 
 Much of the value of HTTP is in its generic semantics: the protocol elements HTTP defines are potentially applicable to every resource, and aren't specific to a particular context. That split lets a message be handled by common software -- servers, intermediaries, client implementations, caches -- without those implementations understanding the application, and lets people apply their knowledge of HTTP without specialised knowledge of the application.
 
-Applications that use HTTP therefore MUST NOT redefine, refine, or overlay the semantics of generic protocol elements such as methods, status codes, or existing header fields. Application-specific semantics belong in message content and in fields the application defines -- and specifications should focus on the protocol elements that are specific to the application, namely its resources.
+Therefore, specifications MUST NOT redefine, refine, or overlay the semantics of generic protocol elements such as methods, status codes, or existing header fields. Application-specific semantics belong in message content and in fields the application defines -- and specifications should focus on the protocol elements that are specific to the application, namely its resources.
 
 A related trap is specifying exactly how HTTP is to be implemented and used, which easily produces an unintended profile of HTTP behaviour. For example:
 
 > A POST request MUST result in a 201 (Created) response.
 
 This forms an expectation in the client that the response will always be 201, when in fact a real deployment might return something else -- a proxy requiring authentication, a server-side error, a redirect. If the client doesn't anticipate that, the deployment is brittle.
-
 
 
 ## Editorial Style
@@ -458,7 +514,7 @@ The following reference names are preferred (but not required):
 * COOKIES - Cookies: HTTP State Management Mechanism (RFC 6265)
 * TLS - The Transport Layer Security (TLS) Protocol Version 1.3 (RFC 9846)
 
-Specifications MUST reference the most recent RFC (see above).
+Specifications MUST reference the most recent RFC (see above). Use RFC 9110 as the primary reference for HTTP; referencing the rest of the suite is only necessary when a specific feature is called out.
 
 Note that to include / in an anchor name in markdown, the reference needs to be declared in the YAML header like this:
 
