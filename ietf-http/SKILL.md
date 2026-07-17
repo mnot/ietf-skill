@@ -129,7 +129,7 @@ The Web is a rich, interlinked ecosystem with many actors. Applications that use
 This has many implications:
 
 * Because the most widespread client for HTTP is the Web browser, applications MUST consider the implications of browser access even if it is not a target client; see "Security" for details. 
-* Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often have no application-specific knowledge, and are difficult to modify. Therefore, applications need to be designed with it in mind; see especially "Caching", "Stateful Connections", and "Subsuming Generic Features".
+* Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often have no application-specific knowledge, and are difficult to modify. Therefore, applications need to be designed with it in mind; see especially "Caching", "Stateful Connections", and "Subsuming Generic Semantics".
 * Some applications can benefit from flexible deployment on servers, "mixing and matching" with other applications, as well as cross-linking between them. See "Linking".
 
 ### HTTP Versions
@@ -208,7 +208,7 @@ Processing of a GET should not change application state or have other side effec
 
 ### POST
 
-POST is the appropriate method for data processing, and for resource creation or update where the client isn't supplying the target URL. See also "GET" (for queries) and "Overuse of POST".
+POST is the appropriate method for data processing, and for resource creation or update where the client isn't supplying the target URL. See also "GET" (for queries) and "Tunnelling" (for overuse of POST).
 
 Because a browser can be coaxed into cross-site request forgery (CSRF) from an arbitrary site, an application whose state can be changed with POST needs to consider browsers even if it doesn't intend to be used by one; see "Security".
 
