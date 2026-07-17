@@ -148,7 +148,7 @@ Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deploye
 
 Assuming that a server's namespace (or a portion of it) is exclusively for one application's use overlays application-specific semantics onto that space and precludes others from using it. Such "squatting" usurps the server's authority over its own resources and is bad practice in standards.
 
-Specifications that use HTTP MUST NOT specify fixed paths for their resources. For example, specifying that`/app/widget.xml` is the path for a particular resources in the protocol is not allowed. See [BCP 190 / RFC 8820](https://www.rfc-editor.org/rfc/rfc8820) for details.
+Specifications that use HTTP MUST NOT specify fixed paths for their resources. For example, specifying that `/app/widget.xml` is the path for a particular resources in the protocol is not allowed. See [BCP 190 / RFC 8820](https://www.rfc-editor.org/rfc/rfc8820) for details.
 
 The one exception to this is a `/.well-known` URI - see "Discovery".
 
