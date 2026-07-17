@@ -74,7 +74,7 @@ To review a specification that uses HTTP, go through the following steps.
 1. Identify the section(s) of the specification that use or extend HTTP.
 2. Evaluate them according to the criteria in this skill.
 3. Double check the document's references for currency and correctness (see "References").
-3. Fill out the Review Template below.
+4. Fill out the Review Template below.
 
 
 ### Review Template
