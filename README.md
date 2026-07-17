@@ -7,8 +7,9 @@ as [Agent Skills](https://agentskills.io/).
 | --- | --- |
 | [`ietf-contributing`](ietf-contributing/SKILL.md) | Drafting text that goes into the record under your name — list mail, replies, GitHub issues/comments, reviews. |
 | [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Understanding how the IETF works; e.g., consensus, positions, draft/RFC status. |
+| [`ietf-http`](ietf-http/SKILL.md) | Best practices for writing IETF specifications that use or extend HTTP. |
 
-Both are only Markdown, no executables.
+All are currently only Markdown, no executables.
 
 ## Querying the record
 
