@@ -6,11 +6,13 @@ license: CC-BY-4.0
 
 # HTTP Specification Skill
 
-Drafting, reviewing, or modifying IETF Internet-Drafts and similar specifications that use the HTTP protocol. Covers editorial style, best practices, and common pitfalls.
+Drafting, reviewing, or modifying IETF Internet-Drafts and similar specifications that use the HTTP protocol. Covers editorial style, best practices, and common pitfalls. The content of this skill mirrors much of the content of BCP 56 / RFC 9205.
 
-This skill is not designed for use without human supervision; it does not capture all relevant information and leaves many decisions to discretion / taste. Many of its recommendations are just that -- their application depends upon the specific circumstances and goals of the use of HTTP in question. When a particular behaviour is required or prohibited in IETF specifications, MUST / MUST NOT will be used.
+This skill is designed to give initial advice to draft authors. It is not definitive; there are aspects of HTTP design that require expert advice and intervention. Draft authors are encouraged to run it and consider the provided advice. If they disagree with the recommendations, have further questions, or need further advice, encourage them to engage with HTTP experts (e.g., the HTTP Directorate, for IETF specifications).
 
-The content of this skill mirrors much of the content of BCP 56 / RFC 9205.
+Many of its recommendations are just that -- their application depends upon the specific circumstances and goals of the use of HTTP in question. When a particular behaviour is required or prohibited in IETF specifications, MUST / MUST NOT will be used.
+
+To use this skill:
 
 First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?" If it is not, stop and advise the user that this skill isn't applicable. 
 
