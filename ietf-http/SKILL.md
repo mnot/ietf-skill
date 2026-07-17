@@ -1,6 +1,6 @@
 ---
 name: ietf-http
-description: Guidelines for how IETF protocol specifications that use or extend HTTP should be written. Use to assist in reviewing draft specifications, creating new ones, or refining existing ones.
+description: Best practices for writing IETF specifications that use or extend HTTP, per BCP 56 / RFC 9205. Use whenever an Internet-Draft, RFC, or similar specification defines a protocol or API over HTTP -- reviewing one, writing one, or revising one -- including when the user asks about only a piece of it, such as defining a header field, status code, method, media type, URL structure, caching behaviour, or an API's error format. Trigger it even when the user never says BCP 56, HTTP review, or httpbis; asks like 'does this draft use HTTP right?', 'I'm adding a header to my draft', or 'review my API spec' are all in scope. Not for implementing HTTP clients or servers, or debugging live traffic.
 license: CC-BY-4.0
 ---
 
