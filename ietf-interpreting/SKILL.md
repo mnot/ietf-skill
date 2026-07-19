@@ -37,6 +37,10 @@ procedural message — chair characterisations get disputed on-list too. Look fo
 the chair's actual procedural messages for a thread — the consensus call, WGLC,
 or closure — rather than relying on a summary of them.
 
+Another signal worth paying attention to is when a draft is updated to address 
+feedback received. Although lack of further pushback is not hard evidence of 
+consensus, it is persuasive that the group accepts the edits made.
+
 ## Not every decision is called, and none is final until Last Call
 
 Two symmetric mistakes about finality. First, the *absence* of a consensus
