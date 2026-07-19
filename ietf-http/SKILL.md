@@ -364,7 +364,9 @@ Tunnelling is not forbidden in specifications, but careful attention needs to be
 
 HTTP's use of the underlying transport protocol is stateless. Just because two messages occurred on the same connection does not guarantee that they will remain on the same connection when forwarded to a downstream recipient.
 
-Therefore, specifications MUST NOT assume that two messages have any non-explicit relationship. If statefulness is required, use HTTP Cookies or other mechanisms. 
+Therefore, specifications MUST NOT assume that two messages have any non-explicit relationship. If statefulness is required, consider using HTTP Cookies or other mechanisms. 
+
+Cookies re-establish the association between messages, but a cookie only identifies a session -- it does not route the request to a server holding that session's state. "Sticky" routing can pin a client to one backend, but only across infrastructure the operator controls; an intermediary they don't control (a CDN, a forward proxy) may spread a client's requests across backends anyway. So a specification whose correctness depends on session state MUST NOT treat connection affinity and shared session storage as interchangeable -- only shared storage stays correct when requests are spread across servers.
 
 ### GET with Content
 
