@@ -460,7 +460,7 @@ When discussing status codes in general, the correct reference is Section 15 of 
 
 If your specification has examples of HTTP messages (and it probably should), they should give enough context for readers to understand. Generally, this means showing a substantial portion of the message; e.g., not just a header field in isolation, but an entire request or response message (with a truncated body if applicable). Where appropriate, an entire exchange (request and response) can be illustrated using two subsequent example sections.
 
-Examples should be in HTTP/1.1 format unless they are specific to another version of the protocol. HTTP/1.1 examples should be labeled with the http-message type so that the validator can check them.
+Examples should be in HTTP/1.1 format unless they are specific to another version of the protocol. HTTP/1.1 examples should be labeled with the `http-message` type so that the validator can check them.
 
 For example (in Markdown):
 
@@ -471,6 +471,8 @@ Example-Header: foo
 
 [ content ]
 ~~~
+
+The [rfc-http-validate](https://github.com/mnot/rfc-http-validate) tool (Python package, installable via pipx) can be used to validate draft examples marked in this fashion.
 
 Examples with long lines (over 78 characters) should be wrapped using the line folding convention where possible. For example:
 
