@@ -95,7 +95,7 @@ _assess, at a high level, how web-compatible the specification is; see "Web Comp
 
 ## Technical Recommendations
 
-_For each of the relevent skill sections, create a `###` subsection and evaluate the specification's conformance, making concrete recommendations for improvement. Omit sections that are not relevant._
+_For each relevant skill section, create a `###` subsection and evaluate the specification's conformance, making concrete recommendations. Omit sections that don't apply. Where it aids the authors, separate factual defects that have a single correct answer (state the correction) from design choices that need an author decision (pose these as questions rather than diffs) -- the former are harder to leave unaddressed when they can't be reframed as matters of taste._
 
 ## Editorial Nits
 
