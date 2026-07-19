@@ -209,6 +209,8 @@ Queries can be performed with GET, usually using the query component of the URL 
 
 Processing of a GET should not change application state or have other side effects significant to the client, since implementations do retry failed GETs, and GETs protected by TLS early data may be vulnerable to replay. Side effects do not include logging and similar functions.
 
+A particular thing to watch for: a GET whose purpose is to create server state -- minting a session, token, or resource. Because GET is safe, such a request can be prefetched, retried by intermediaries, or replayed from TLS early data; the creating request should use POST.
+
 ### POST
 
 POST is the appropriate method for data processing, and for resource creation or update where the client isn't supplying the target URL. See also "GET" (for queries) and "Tunnelling" (for overuse of POST).
