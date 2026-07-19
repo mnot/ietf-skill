@@ -78,6 +78,7 @@ To review a specification that uses HTTP, go through the following steps.
 3. Double check the document's references for currency and correctness (see "References").
 4. Fill out the Review Template below.
 
+If the specification is a revision, check for prior HTTP reviews (from this reviewer or others, e.g. HTTPDIR) and reconcile against them: note which points were addressed and which recur unchanged.
 
 ### Review Template
 
