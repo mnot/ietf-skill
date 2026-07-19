@@ -300,7 +300,7 @@ Assigning even a short freshness lifetime -- e.g., 5 seconds -- allows a respons
 * The most common method is the max-age response directive. Expires also works, but isn't necessary; all modern caches support Cache-Control, and a delta is more convenient and less error-prone.
 * The public response directive is not needed for most responses; it is only necessary to store an authenticated response, or when the status code isn't understood by the cache and there is no explicit freshness information.
 * Responses without explicit freshness directives may be stored and served using a heuristic freshness lifetime. The heuristic isn't under the application's control, so it is generally preferable to set an explicit lifetime or make the response explicitly uncacheable.
-* To prevent caching, the appropriate directive is no-store; no other directives are needed. Despite its name, no-cache allows a response to be stored -- it only prevents reuse without validation.
+* To prevent storage, the directive is no-store, and no other is needed. A frequent mistake is using no-cache or Expires: 0 to try to stop caching: no-cache permits storage and only forces revalidation, and Expires: 0 merely sets an already-past expiry (relying on an invalid date being treated as stale). Neither prevents a cache from storing the response, which matters when it carries per-client data such as a session identifier.
 
 Stale responses (e.g., with `Cache-Control: max-age=0`) can be reused by caches when disconnected from the origin server, which can be useful for handling network issues. If that isn't suitable for a given response, send the must-revalidate directive. Assigning a validator lets stale responses be refreshed, saving both bandwidth and latency for large responses.
 
