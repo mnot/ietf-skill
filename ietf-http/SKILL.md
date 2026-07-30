@@ -137,13 +137,15 @@ This has many implications:
 
 ### HTTP Versions
 
-Specifications MUST NOT require a minimum version of HTTP; because HTTP is hop-by-hop, connections can be handled by implementations the application doesn't control (proxies, CDNs, firewalls). If a deployment benefits from a particular version (e.g., HTTP/2's multiplexing), note that instead. Likewise, specifications MUST NOT specify a maximum version, to preserve the protocol's ability to evolve.
+Specifications MUST NOT require a minimum version of HTTP; because HTTP is hop-by-hop, connections can be handled by implementations the application doesn't control (proxies, CDNs, firewalls). If there are particular benefits from a particular version (e.g., HTTP/2's multiplexing), note that instead. Likewise, specifications MUST NOT specify a maximum version, to preserve the protocol's ability to evolve.
+
+HTTP/2 and HTTP/3 define server push.  Use of this feature is generally inadvisable; it is not widely available.
 
 ## Resources and URIs
 
 Resources are identified by URIs (also called URLs, but most IETF specifications use URI). They consume and produce representations -- bundles of content with header (and possibly trailer) fields. Requests contain a method that operate upon the resource; responses contain a status code that indicates the outcome of the operation. 
 
-Applications will typically use the "http" and/or "https" URI schemes; "https" is RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and origin-based features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
+Applications will typically use the "http" and/or "https" URI schemes; "https" is strongly RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and web-related features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
 
 Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. Using a non-default port has privacy implications (the protocol can now be distinguished from other traffic) that should be documented in Security Considerations, as well as operability concerns, since some networks might block or interfere with it.
 
@@ -155,7 +157,7 @@ Specifications that use HTTP MUST NOT specify fixed paths for their resources. F
 
 The one exception to this is a `/.well-known` URI - see "Discovery".
 
-Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links, as defined by [RFC 8288](https://www.rfc-editor.org/info/rfc8288/). Doing so has significant operational advantages: servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking also offers a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
+Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links. This can be done by adding URIs with specific semantics to application-specific representation formats or by using the generically-typed linked relations defined in [RFC 8288](https://www.rfc-editor.org/info/rfc8288/). Doing so has significant operational advantages: servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking also offers a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
 
 Applications can also use [URI Templates](https://www.rfc-editor.org/info/rfc6570/) to let clients generate URLs from runtime data.
 
@@ -423,7 +425,7 @@ When specifying a Structured Field in prose, preferred practice is to add the fo
 > This document uses the following terminology from {{Section 3 of STRUCTURED-FIELDS}}
 > to specify syntax and parsing: List, Dictionary, and Integer.
 
-adjusting the terms listed as appropriate. Then, when using one of the terms, just use the bare,  capitalised term; e.g.,
+adjusting the terms listed as appropriate. Then, when using one of the terms, just use the bare, capitalised term; e.g.,
 
 > The Foo header field’s value is a List of Integers.
 
@@ -477,9 +479,9 @@ Example-Header: foo
 [ content ]
 ~~~
 
-The [rfc-http-validate](https://github.com/mnot/rfc-http-validate) tool (Python package, installable via pipx) can be used to validate draft examples marked in this fashion.
+The [rfc-http-validate](https://github.com/mnot/rfc-http-validate) tool (Python package) can be used to validate draft examples marked in this fashion.
 
-Examples with long lines (over 78 characters) should be wrapped using the line folding convention where possible. For example:
+Examples with long lines (over 72 characters) should be wrapped using the line folding convention where possible. For example:
 
 ~~~ http-message
 HTTP/1.1 200 OK
@@ -525,7 +527,7 @@ The following reference names are preferred (but not required):
 
 Specifications MUST reference the most recent RFC (see above). Use RFC 9110 as the primary reference for HTTP; referencing the rest of the suite is only necessary when a specific feature is called out.
 
-Note that to include / in an anchor name in markdown, the reference needs to be declared in the YAML header like this:
+Note that to include / in an anchor name in the kramdown-rfc flavor of markdown, the reference needs to be declared in the YAML header like this:
 
 ~~~yaml
 normative:
