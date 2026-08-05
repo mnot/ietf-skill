@@ -1,6 +1,6 @@
 ---
 name: ietf-reviewing
-description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Also covers reviewing through a named participant's lens.
+description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft".
 license: CC-BY-4.0
 ---
 
@@ -12,6 +12,8 @@ they are accountable for every word of it. See `ietf-contributing`.
 Most review types have a conventional form. Get it from a recent real review by the team you are
 writing for. The steps below are what goes in that form, not the form itself.
 
+For directorate reviews, see the wiki page of the review directorate for details (and possibly a format). Directorates are listed at <https://datatracker.ietf.org/review/> and their wiki pages are (usually) listed in their datatracker 'about' page.
+
 ## 1. Establish the question before reading
 
 A review answers the question in front of the audience:
@@ -22,11 +24,10 @@ A review answers the question in front of the audience:
 | Dispatch / BoF proposal | Should the IETF take this on, and if so where? |
 | Call for adoption | Should this WG adopt *this document* as its starting point? |
 | WG document, in progress | Is the design right, and what has to change? |
-| WGLC | Is it ready to leave the WG? |
+| WGLC | Does this document a coherent and complete design that addresses the stated need? |
 | IETF Last Call / directorate | Is there a blocking problem? |
 
-An *early* directorate review is the exception: it is invited while change is still
-cheap, so it asks "what has to change", not "is there a blocking problem".
+Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is different: they are requested for in-progress WG documents, and focus on whether any blocking problems are anticipated.
 
 Write the question down before reading. The review's opening sentence should answer it. If the
 review request carried a note from the AD or chair, read it first -- it usually says what they
@@ -175,105 +176,4 @@ Delete prose. Do not delete defects.
 - Does anything read as position-taking without reference to what the document says? Cut it.
 - Have you answered the Step 1 question, in the first two sentences, unambiguously?
 
----
 
-# Reviewing as a named participant
-
-Additional rules when the review is modelled on how a specific person would read the document. For
-example, this might be done to anticipate what concerns will be raised when a draft is sent to a
-mailing list, or to prepare authors for a directorate review.
-
-**This is a simulation and must be labelled as one wherever it goes.** Do not use the modeled reviewer's name in the review except in a clear AI disclosure banner.
-
-Do not reach for the conventional form of the review type. Real reviewers vary these forms and
-sometimes ignore them. Derive the shape from that person's own reviews.
-
-## Three buckets, kept visibly separate
-
-When considering the modeled reviewer's position on a matter, classify it as:
-
-- **Grounded** -- they demonstrably wrote about this topic. Cite the message and archive URL.
-- **Inferred** -- their method, your application to this document.
-- **Unevidenced** -- you believe it, you cannot show it.
-
-**Check that the words are theirs before grounding a claim on them.** Archived mail interleaves
-voices: most often, the unprefixed lines are the sender's, and `>` lines belong to whoever they are
-quoting. Quoting the wrong source is the worst direction for an error to run. Snippets and search
-results are where this bites: they cut mid-message and drop the attribution line. Open the message
-before citing it.
-
-**State the classification in the output**, not just in your working. A persona review whose
-provenance is not visible is worth less than none, because a reader cannot tell which parts to
-check -- and the unevidenced ones are where they should discount you hardest.
-
-## Wrong-mouth check
-
-For each primary concern, ask: **is this argument already on the record as someone else's?** A
-technical community has a division of labour. Attributing a real, correct, well-known argument to
-the wrong person is the characteristic failure of persona review.
-
-**This applies to arguments, not citations.** Do not suppress a relevant RFC or BCP merely because
-you cannot show this reviewer citing it before. Competent reviewers cite documents they have never
-cited in your corpus.
-
-**The test is remit, not authorship.** An argument being *associated with* someone else -- even
-written by them -- does not put it in their mouth. What makes a finding wrong-mouth is being
-outside this reviewer's lane. A directorate reviewer invoking the BCP their directorate exists to
-apply is in lane no matter who wrote it. Ask "would this person raise this?", never "is this
-argument someone's?"
-
-## Correct for corpus bias
-
-Mailing-list archives **over-serve technical positions and under-serve institutional ones**.
-Venue, SDO boundaries, chartering thresholds and change control get argued in rooms and in short
-interventions that index poorly; protocol arguments are long, quotable and repeated.
-
-So absence of evidence on an institutional question is not evidence the reviewer lacks the
-position. Run Step 5 regardless and mark its outputs inferred.
-
-A second skew, where the source is scoped to one person: **you see what they raised and not how it
-landed.** The replies are not there. You cannot see where they were persuaded, overruled, or
-quietly let something drop. Treat a single instance as weaker evidence than a position they
-returned to.
-
-## Match register, not vocabulary
-
-Model the *shape* of the modelled reviewer's work: the opening move, how many concerns they run,
-declarative versus interrogative, whether they hedge confidence or position, how they mark
-sections, how they sign off.
-
-Sample only text you have confirmed is theirs. Quoted material carries the interlocutor's register,
-so a model built partly from it produces a voice that reads fluently and belongs to the wrong
-person.
-
-Do not lift catchphrases. A borrowed phrase in the wrong argument is more conspicuous than plain
-prose.
-
-Weight their actual **reviews** far above their authored drafts. Those are different registers, and
-the drafts are usually the larger and more tempting corpus.
-
-## Expected moves are predictions, not prohibitions
-
-Identify the two or three gestures that would be the *easy* way to sound like this person -- the
-signature citation, the framing they reach for, the known hobby-horse. Treat that list as
-predictions. If a move is characteristic and the document independently supports it, make the move
-and mark it inferred.
-
-Suppress only **lifted phrases**. Borrow the argument, never the wording.
-
-**When you rule a move out, keep looking.** Establishing that they would not object where you
-assumed is half the work -- they reviewed the document and found something. Check what sits beside
-the cleared target: the same design decision from another angle, or the neighbouring mechanism.
-Raise that **as well**, not instead.
-
-**A draft that pre-empts an objection has not answered it.** It has stated a position the reviewer
-may reject. Test the pre-emption against the rest of the specification -- a document calling some
-primitive "not a security feature, merely a mapping" may still impose requirements elsewhere that
-depend on the property it just disclaimed. Where the rebuttal is arguable, make the objection
-anyway; that disagreement is often the finding.
-
-## Do not invent heat
-
-Where the record is silent on how strongly the modeled reviewer feels about a topic, write the
-finding in their method and keep the temperature low. Under-reading intensity is a smaller error
-than manufacturing it.
