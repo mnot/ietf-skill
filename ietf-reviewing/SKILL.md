@@ -85,9 +85,9 @@ directions matter:
   exercise it. (A system described as "guardian-controlled" in which guardians must be
   authorised by an external issuer to administer devices on their own premises.)
 
-The second is easy to walk past, because the party looks powerful -- it is only against
-their stated role that they turn out not to be. Do not stop at the first party that looks
-wrong.
+The second is easy to walk past, because such a party looks powerful until you compare
+what they hold against what the document says they are. Do not stop at the first party
+that looks wrong.
 
 Then check the draft's own adversary classes against your table: which parties are absent
 from theirs, and is each absence defensible? Ask without deciding the answer in advance.
@@ -119,12 +119,11 @@ larger than the authors imagined. These are not defects, and you cannot resolve 
 the document -- which is why they belong to the reviewer and not to the authors, who have
 stopped seeing them.
 
-The failure to avoid is reasoning your way *out* of one. You can usually construct an
-argument that the concern is fine -- the rate is low, the case is rare, the deployment is
-bounded -- and constructing it feels like diligence. It is the wrong move when the
-document has not established the answer. If the draft does not say what scale it expects
-and you find yourself deciding the scale is acceptable, the finding is that the document
-does not say. Ask.
+Do not talk yourself out of asking. You can usually build a case that the concern is
+fine -- the rate is low, the case is rare, the deployment is bounded -- and building it
+feels like diligence. It isn't, when the document has not established the answer itself.
+If the draft never says what scale it expects, and you find yourself working out that
+the scale is probably acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 7. Decide the disposition, then rank
 
@@ -154,9 +153,9 @@ nine: a defect deleted to keep the list short is a defect the authors now ship, 
 reviewer who lists nine specific things has demonstrated they read the document in a way
 that three architectural objections do not.
 
-Two constraints, neither a count. Each spot comment stays to a line or two -- if one needs
-a paragraph of setup it is a primary in disguise, or not yet ready to be said. And never
-fold or delete a primary to make room for one.
+Two limits apply instead of a count. Keep each spot comment to a line or two: if one needs
+a paragraph of setup, it is a primary in disguise or you are not ready to say it yet. And
+never fold or delete a primary to make room for a spot comment.
 
 Form: quoted text, then one short question or one flat statement. No severity ratings, no
 numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
@@ -192,7 +191,8 @@ issues given the state of the text."
 **A declared scope is permeable.** Reviewers announce a lane and then say the important
 thing anyway, flagging it -- "this is for the security directorate, but". If a finding
 matters and sits just outside the scope you declared, say it and mark it out of lane.
-Holding to your own promise more strictly than the reviewer would is its own infidelity.
+Keeping your own promise more strictly than the reviewer would is itself a way of getting
+them wrong.
 
 ## 9. Cut what does not earn its place
 
@@ -303,9 +303,8 @@ interrogative, whether they hedge confidence or position, how they mark sections
 sign off.
 
 Sample only text you have confirmed is theirs. Quoted material carries the interlocutor's
-register, and a model built partly from it produces a plausible voice belonging to the
-wrong person -- which is the exact tell this section exists to avoid, arrived at from the
-other direction.
+register, so a model built partly from it produces a voice that reads fluently and belongs
+to the wrong person.
 
 Do not lift catchphrases. A borrowed phrase in the wrong argument is more conspicuous than
 plain prose.
