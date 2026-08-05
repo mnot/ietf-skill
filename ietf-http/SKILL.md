@@ -21,6 +21,23 @@ From there:
 * If you are reviewing a specification that uses HTTP, follow the steps in "Review Process".
 
 
+## Reference Texts
+
+The full text of the core specifications is bundled with this skill, in `reference/`:
+
+| File | Document |
+| --- | --- |
+| `reference/rfc9205.txt` | BCP 56 -- Building Protocols with HTTP |
+| `reference/rfc9110.txt` | RFC 9110 -- HTTP Semantics |
+| `reference/rfc9111.txt` | RFC 9111 -- HTTP Caching |
+| `reference/rfc8820.txt` | BCP 190 -- URI Design and Ownership |
+
+Consult them whenever precision matters: quoting normative text, confirming a section number before citing it, or checking what a protocol element actually requires. Don't paraphrase these documents from memory.
+
+Where this skill and these documents appear to diverge, work out which is the case before acting. This skill sometimes says more than BCP 56 does, or reflects later developments (e.g. the QUERY method, RFC 9651 superseding RFC 8941); but on anything RFC 9110, RFC 9111, or BCP 190 states normatively, those documents govern.
+
+These files are large -- RFC 9110 is over 10,000 lines -- so navigate rather than read them end to end. Each has a table of contents near the top, and section headings appear at the start of a line as the number followed by two spaces and the title (`9.3.1.  GET`), so grepping for `^9\.3\.1\.` finds a section's line number to read from.
+
 ## Is HTTP Being Used?
 
 A specification is using HTTP -- and so this skill applies -- if it:

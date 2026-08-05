@@ -9,7 +9,10 @@ as [Agent Skills](https://agentskills.io/).
 | [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Understanding how the IETF works; e.g., consensus, positions, draft/RFC status. |
 | [`ietf-http`](ietf-http/SKILL.md) | Best practices for writing IETF specifications that use or extend HTTP. |
 
-All are currently only Markdown, no executables.
+All are currently only Markdown and plain text, no executables. `ietf-http` also
+bundles the text of the RFCs it summarises (BCP 56 / RFC 9205, RFC 9110, RFC 9111,
+BCP 190 / RFC 8820) under `ietf-http/reference/`, so the assistant can consult
+them directly instead of recalling them.
 
 ## Querying the record
 
@@ -55,14 +58,14 @@ On Windows, or to place skills yourself, copy them into your tool's skills folde
 
 ```sh
 mkdir -p ~/.claude/skills
-cp -R ietf-contributing ietf-interpreting ~/.claude/skills/
+cp -R ietf-contributing ietf-interpreting ietf-http ~/.claude/skills/
 ```
 
 `~/.agents/skills/` is a vendor-neutral location that several tools (Codex, Copilot/VS Code) also read from.
 
 ### Claude Desktop
 
-The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill** — these are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed).
+The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill**. `ietf-contributing` and `ietf-interpreting` are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed). `ietf-http` carries its `reference/` directory, so zip the whole directory first (`zip -r ietf-http.zip ietf-http`) and upload that.
 
 ### Updating
 
@@ -80,6 +83,13 @@ You don't invoke these manually. Your assistant reads each skill's short descrip
 ## License
 
 Released under [CC BY 4.0](LICENSE) — share or adapt freely, with attribution.
+
+The RFC texts under `ietf-http/reference/` are excluded from that; they are
+Copyright (c) IETF Trust and the persons identified as their authors, and are
+reproduced in full under the [IETF Trust's legal
+provisions](https://trustee.ietf.org/license-info). They are the published
+`.txt` renderings from the RFC Editor, unchanged apart from stripping a
+byte-order mark, leading blank lines, and trailing whitespace.
 
 This describes IETF community norms as understood by its author. It is not a
 normative IETF document and carries no official standing.
