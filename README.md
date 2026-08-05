@@ -10,8 +10,9 @@ as [Agent Skills](https://agentskills.io/).
 | [`ietf-reviewing`](ietf-reviewing/SKILL.md) | Reviewing an Internet-Draft — which question the review answers, what to look for, how to land a verdict. |
 | [`ietf-http`](ietf-http/SKILL.md) | Best practices for writing IETF specifications that use or extend HTTP. |
 
-All are currently only Markdown and plain text, no executables. `ietf-http` also
-bundles the text of the RFCs it summarises (BCP 56 / RFC 9205, RFC 9110, RFC 9111,
+All are currently only Markdown and plain text, no executables. `ietf-reviewing`
+bundles the conventional form of each review type under `ietf-reviewing/reference/`.
+`ietf-http` also bundles the text of the RFCs it summarises (BCP 56 / RFC 9205, RFC 9110, RFC 9111,
 BCP 190 / RFC 8820) under `ietf-http/reference/`, so the assistant can consult
 them directly instead of recalling them.
 
@@ -66,7 +67,7 @@ cp -R ietf-contributing ietf-interpreting ietf-reviewing ietf-http ~/.claude/ski
 
 ### Claude Desktop
 
-The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill**. `ietf-contributing`, `ietf-interpreting` and `ietf-reviewing` are single files, so upload `ietf-contributing/SKILL.md`, `ietf-interpreting/SKILL.md` and `ietf-reviewing/SKILL.md` directly (no zip needed). `ietf-http` carries its `reference/` directory, so zip the whole directory first (`zip -r ietf-http.zip ietf-http`) and upload that.
+The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill**. `ietf-contributing` and `ietf-interpreting` are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed). `ietf-http` and `ietf-reviewing` carry `reference/` directories, so zip each whole directory first (`zip -r ietf-http.zip ietf-http`) and upload that.
 
 ### Updating
 

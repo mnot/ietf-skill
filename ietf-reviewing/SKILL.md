@@ -1,26 +1,24 @@
 ---
 name: ietf-reviewing
-description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Covers working out which question the review is actually answering (it changes with the document's stage), what to look for, when to say a document is fine and stop, and how to land a verdict rather than trailing off into concerns. Also covers reviewing through a named participant's lens, to anticipate what a draft will draw when it reaches a list. For the register and accountability rules that apply to any text going into the record under a person's name -- including the finished review -- use ietf-contributing. For reading or characterising an effort rather than assessing a document, use ietf-interpreting.
+description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Also covers reviewing through a named participant's lens, to anticipate what a draft will draw when it reaches a list. For the register and accountability rules that apply to any text going into the record under a person's name, including the finished review, use ietf-contributing. For reading or characterising an effort rather than assessing a document, use ietf-interpreting.
 license: CC-BY-4.0
 ---
 
 # Reviewing an Internet-Draft
 
-Producing a review of an Internet-Draft. Layer 1 applies to any review. Layer 2 applies
-additionally when the review is written through a named reviewer's lens.
-
 **You draft; the human sends.** A review goes into the record under a person's name and
 they are accountable for every word of it. See `ietf-contributing` for the register and
 the disclosure norms that apply to the finished text.
 
----
-
-# Layer 1 — Review discipline
+`reference/` carries the conventional form of each review type -- the boilerplate, the
+expected sections, and the shared `Result` ladder -- derived from real reviews. Read the
+one that applies before writing. It tells you the shape; the steps below tell you what
+goes in it.
 
 ## 1. Establish the question before reading
 
-A review answers the question actually in front of the audience. That question is
-set by the document's stage, not by the reviewer's interests:
+A review answers the question in front of the audience, and that question is set by the
+document's stage, not by the reviewer's interests:
 
 | Stage | The question |
 |---|---|
@@ -31,331 +29,288 @@ set by the document's stage, not by the reviewer's interests:
 | WGLC | Is it ready to leave the WG? |
 | IETF Last Call / directorate | Is there a blocking problem? |
 
-Write the question down before reading. The review's opening sentence answers it.
+An *early* directorate review is the exception: it is invited while change is still
+cheap, so it asks "what has to change", not "is there a blocking problem".
+
+Write the question down before reading. The review's opening sentence answers it. If the
+review request carried a note from the AD or chair, read it first -- it usually says what
+they actually want looked at.
 
 ## 2. Establish the review surface
 
-Enumerate everything the author put in front of the audience — not just the `.txt`.
-A draft presented at a meeting was presented *with slides*, and the slides routinely
-carry claims the draft does not: deployment interest, named supporters, scope,
-relationship to other bodies. Reviewers in the room review both.
+Enumerate everything the author put in front of the audience, not just the `.txt`. A
+draft presented at a meeting was presented *with slides*, and slides routinely carry
+claims the draft does not: deployment interest, named supporters, scope, relationship to
+other bodies. Reviewers in the room review both.
 
-Check for: the draft (and which revision), slide decks, the GitHub repo, a proposed
-charter, the author's introductory mail, prior revisions, related drafts by the same
-authors. Then record explicitly what you could not obtain, and treat gaps as limits
-on the review rather than as absences in the work.
+Check for the draft and which revision, slide decks, the repo, a proposed charter, the
+author's introductory mail, prior revisions, related drafts by the same authors. Record
+what you could not obtain, and treat gaps as limits on the review rather than as
+absences in the work.
 
-## 3. Cold read, whole document, first
+## 3. Read it cold, and quote what you find
 
-Read every line before consulting anything else — no searches, no prior commentary,
-no persona material. Produce your own issue list and keep it; it is the control
-against which everything later gets filtered.
+Read every line before consulting anything else -- no searches, no prior commentary, no
+persona material. Keep your own issue list; it is the control against which everything
+later gets filtered.
 
-**Quote before you claim.** Every defect must carry the document's own words. Never
-build an objection on your paraphrase of the draft — that is where fabricated
-findings come from. If you cannot quote it, you have not found it.
+**Quote before you claim.** Every defect carries the document's own words. Never build an
+objection on your paraphrase -- that is where fabricated findings come from. If you
+cannot quote it, you have not found it.
+
+**Never rule a finding out on a source you could not read.** If a document you would need
+to confirm or refute a point is unavailable -- an RFC body, a registration template, a
+referenced specification -- raise the point with the uncertainty stated. Do not drop it,
+and do not settle it from memory: a rule you remember as governing one part of a
+specification often governs a different part, and the part you need is the one you
+cannot check. Say "I could not verify X" and make the finding anyway.
+
+Better still, get the text. A review written with the specification open cites it by
+section and finds more than one written from recall.
 
 ## 4. Enumerate the actors
 
-For any draft describing a system, list *every* party the architecture names, then
-fill this in for each:
+For any draft describing a system, list *every* party the architecture names, and for
+each: what do they control, what can they not refuse, what key material do they hold,
+what protocol affordance do they have and who receives it, and what happens when **they**
+are the adversary?
 
-- What do they control?
-- What can they not refuse?
-- What key material do they hold?
-- What protocol affordance do they have, and who receives it?
-- What happens when **they** are the adversary?
+Then rank by **mismatch between a party's stated role and their actual power**. Both
+directions matter:
 
-Do this exhaustively before forming a view, then rank by **mismatch between a party's
-stated role and their actual power** — not by how little they hold.
+- A party the document calls central, or names as the one being protected, who holds
+  nothing. (A draft calling someone "the rights-bearing subject" and then giving them no
+  key material and no protocol affordance.)
+- A party the document frames as *in control* who needs a third party's permission to
+  exercise it. (A system described as "guardian-controlled" in which guardians must be
+  authorised by an external issuer to administer devices on their own premises.)
 
-Both directions of mismatch matter, and the second is easier to miss:
+The second is easy to walk past, because the party looks powerful -- it is only against
+their stated role that they turn out not to be. Do not stop at the first party that looks
+wrong.
 
-- A party the document calls central, or names as the one being protected, who turns
-  out to hold nothing. (A draft calling someone "the rights-bearing subject" and then
-  giving them no key material and no protocol affordance.)
-- A party the document frames as *in control* who turns out to need a third party's
-  permission to exercise it. (A system described as "guardian-controlled" in which
-  guardians must be authorised by an external issuer to administer devices on their
-  own premises.)
+Then check the draft's own adversary classes against your table: which parties are absent
+from theirs, and is each absence defensible? Ask without deciding the answer in advance.
+The gap may be a layer confusion, a party the authors assume benign, or nothing at all.
 
-The second kind is easy to walk past, because the party in question looks powerful — it
-is only against their stated role that they turn out not to be. Do not stop at the
-first party that looks wrong.
+## 5. Run the institutional checklist -- every time
 
-Then check the draft's own stated adversary classes against your table: which parties
-in your table are absent from theirs, and is each absence defensible? Ask the question
-without deciding the answer in advance — the gap may be a layer confusion, a party the
-authors assume benign, or nothing at all. Name what you find, not what you expected.
+These decide outcomes at early stages and are the least likely to surface from reading
+alone. Ask them from the list:
 
-## 5. Run the institutional checklist — every time, regardless of evidence
-
-These questions decide outcomes at early stages, and they are the ones least likely
-to be surfaced by searching a corpus. Ask them from the checklist, not from retrieval.
-
-- Is the IETF the right venue? Does a layer this depends on sit in another SDO, and
-  if so, what is the change-control story?
-- Does this depend on policy defined elsewhere? Can the technical work even be
-  evaluated without seeing that policy?
+- Is the IETF the right venue? Does a layer this depends on sit in another SDO, and if
+  so, what is the change-control story?
+- Does this depend on policy defined elsewhere? Can the technical work be evaluated
+  without seeing that policy?
 - Who has said they will implement and deploy? Are the parties who would *have* to
   implement it among them? Named interest is not the same as the right named interest.
-- Does existing IETF architectural policy bear on this? (RFC 2804 wiretapping,
-  RFC 7754 filtering and blocking, RFC 7258 pervasive monitoring, RFC 8890 end users,
-  RFC 3552 endpoint assumptions.) Cite at most the one or two that actually bite.
+- Does existing IETF architectural policy bear on this? (RFC 2804 wiretapping, RFC 7754
+  filtering and blocking, RFC 7258 pervasive monitoring, RFC 8890 end users, RFC 3552
+  endpoint assumptions.) Cite at most the one or two that actually bite.
 - Is the mechanism narrower than its framing? If chartered under framing X, would the
   artefact serve purposes X disclaims?
-- What is the incremental deployment story, and what is the incentive for the first
-  implementer?
+- What is the incremental deployment story, and what does the first implementer get?
 
-## 6. Decide the disposition first, then rank and cut
+## 6. Ask what you cannot answer
 
-**Settle what you think of the document before you decide how many findings to run.**
-Taken the other way round, the finding count sets the verdict: a process built to
-locate problems will locate enough of them to justify severity, whether or not the
-document deserves it. A review with ten findings has said something different from one
-with two, whatever each finding says on its own.
+Much of what a reviewer contributes is questions they do not know the answer to: what
+scale is expected, who is going to operate this, what happens when the deployment is
+larger than the authors imagined. These are not defects, and you cannot resolve them from
+the document -- which is why they belong to the reviewer and not to the authors, who have
+stopped seeing them.
 
-**The bar is set by the document's intended status and stage, not only by its
-contents.** An Experimental document with a clearly stated experiment and a plan to
-revise on results is being held to a different standard than a Proposed Standard, and
-saying so is part of the verdict rather than background colour. Ask what this document
-is *for* before asking what is wrong with it.
+The failure to avoid is reasoning your way *out* of one. You can usually construct an
+argument that the concern is fine -- the rate is low, the case is rare, the deployment is
+bounded -- and constructing it feels like diligence. It is the wrong move when the
+document has not established the answer. If the draft does not say what scale it expects
+and you find yourself deciding the scale is acceptable, the finding is that the document
+does not say. Ask.
 
-**Most documents are fine.** A review can legitimately be three lines: the reviewer
-checked the thing they were asked to check, it holds up, here are two clarifications.
-If that is the honest answer, give it and stop — do not go looking for a third concern
-to justify the effort. Under-reviewing a bad document and over-reviewing a good one are
-the same failure, and the second is the one that goes unnoticed.
+## 7. Decide the disposition, then rank
 
-**Primary concerns and spot comments have different economies. Do not apply one's
-test to the other.**
+**Settle what you think of the document before deciding how many findings to run.** Taken
+the other way round the count sets the verdict: a process built to locate problems will
+locate enough to justify severity, whether or not the document deserves it.
+
+**The bar is set by intended status and stage, not only by contents.** An Experimental
+document with a stated experiment and a plan to revise on results is held to a different
+standard than a Proposed Standard, and saying so is part of the verdict. Ask what the
+document is *for* before asking what is wrong with it.
+
+**Most documents are fine.** A review can legitimately be three lines: you checked the
+thing you were asked to check, it holds up, here are two clarifications. If that is the
+honest answer, give it and stop. Under-reviewing a bad document and over-reviewing a good
+one are the same failure, and the second goes unnoticed.
+
+Then rank -- but primary concerns and spot comments have different economies, so do not
+apply one's test to the other.
 
 **Primaries.** Usually two or three, sometimes none. The test: *would this survive any
-amount of drafting work?* A concern a revision could fix is not primary — demote it to
-a spot comment. Be ruthless about what counts as primary; this is where over-length
-comes from.
+amount of drafting work?* A concern a revision could fix is not primary; demote it.
 
-**Spot comments.** The survivability test does **not** apply to these — do not delete
-one merely because a revision would fix it; that is what spot comments are *for*.
-Keep the concrete, checkable, quotable ones, however trivially fixable. A one-line
-absurdity lands harder than a paragraph of architecture.
-
-**Keep every one that earns its place.** If you find nine quotable one-liners, write
-nine. A defect deleted to keep the list short is a defect the authors now ship, and a
+**Spot comments.** The survivability test does **not** apply -- being trivially fixable
+is what they are for. Keep every concrete, checkable, quotable one. If you find nine, write
+nine: a defect deleted to keep the list short is a defect the authors now ship, and a
 reviewer who lists nine specific things has demonstrated they read the document in a way
 that three architectural objections do not.
 
-Two constraints, neither of them a count. Each spot comment stays to a line or two: if
-one needs a paragraph of setup it is a primary in disguise, or it is not yet ready to be
-said. And **never fold, compress, or delete a primary to make room for one** — if
-something has to give it is the spot comments, because they are individually cheaper,
-not because there is a limit.
+Two constraints, neither a count. Each spot comment stays to a line or two -- if one needs
+a paragraph of setup it is a primary in disguise, or not yet ready to be said. And never
+fold or delete a primary to make room for one.
 
-Form: quoted text, then one short question or one flat statement. No severity ratings,
-no numbering, no interleaved thanks. Prefer the question form — asking whether you
-have read it correctly is both more accurate and harder to dismiss than asserting a
-defect.
+Form: quoted text, then one short question or one flat statement. No severity ratings, no
+numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
+correctly is both more accurate and harder to dismiss than asserting a defect.
 
-**Ask the things you cannot answer.** A large part of what reviewers contribute is
-questions they do not know the answer to: what scale is expected, who is going to
-operate this, what happens when the deployment is larger than the authors imagined.
-These are not defects and you cannot resolve them from the document — which is exactly
-why they belong to the reviewer and not to the authors, who have stopped seeing them.
+## 8. Verdict first
 
-The failure to avoid is reasoning your way *out* of one. You will often be able to
-construct an argument that the concern is fine — the rate is low, the case is rare, the
-deployment is bounded — and constructing it feels like diligence. It is the wrong move
-when the document itself has not established the answer. If the draft does not say what
-scale it expects and you find yourself deciding the scale is acceptable, the finding is
-that the document does not say. Ask.
+Open with the disposition, in one or two sentences, answering the Step 1 question. Then
+the concerns.
 
-Decline whole categories out loud rather than skipping silently ("I'll skip editorial
-issues given the state of the text").
+Do not open with methodology, a summary of the draft, or praise. Do not defer the verdict
+to the closing paragraph, and do not substitute a process recommendation ("let's not
+discuss work items yet") for an answer -- that is a disposition about the *conversation*.
+
+State the concession after the verdict, not instead of it. *This should not be picked up
+in its current state, though something of roughly this shape might be* is a verdict.
+*Here are some concerns* is not.
+
+**A favourable verdict takes the same slot.** *This is fine, and here are two things worth
+clarifying* belongs in the opening exactly as a refusal would, and carries the same
+obligation to say why -- usually by naming what the document is for. Do not bury approval
+under the findings, do not phrase it as the absence of objections, and do not let a run of
+clarifications imply a severity the disposition does not support.
+
+**Decline whole categories out loud** rather than skipping silently: "I'll skip editorial
+issues given the state of the text."
 
 **A declared scope is permeable.** Reviewers announce a lane and then say the important
-thing anyway, flagging it as they go — "and because I can't help myself", "this is for
-the security directorate, but". If a finding matters and sits just outside the scope you
-declared, say it and mark it as out of lane. Do not drop it to keep your own promise
-tidy. Declaring a scope is a courtesy to the reader, not a gag, and holding to it more
-strictly than the reviewer would is its own infidelity.
+thing anyway, flagging it -- "this is for the security directorate, but". If a finding
+matters and sits just outside the scope you declared, say it and mark it out of lane.
+Holding to your own promise more strictly than the reviewer would is its own infidelity.
 
-**Never cut a finding on the strength of a source you could not read.** If a document
-you would need in order to confirm or refute a point is unavailable — an RFC body, a
-registration template, a referenced specification — that is a reason to raise the point
-with the uncertainty stated, not a reason to drop it and not a reason to rule it out
-from memory. Recalled summaries of a specification are reliably wrong in the specific
-place that matters: a rule you remember as applying to one part of a document often
-applies to a different part, and the part you need is the one you cannot check. Say
-"I could not verify X" and make the finding anyway.
+## 9. Cut what does not earn its place
 
-Better still, get the text. A review written with the referenced specification open
-cites it by section and finds more than one written from recall — and, more to the
-point, it will not rule a correct finding *out* on a half-remembered rule.
+Not to a word count. How long a real review runs depends on how much time the reviewer
+had that week, and any single example is one draw from a wide spread -- the same person
+writes four sentences on one document and two thousand words on the next.
 
-## 7. Verdict first
+What does hold: **length tracks disposition**. A reviewer who thinks a document is fine
+says so briefly and stops; long reviews are usually the salvageable middle, where the
+input will change something; and the harshest verdicts are often short, because once the
+answer is no there is no point itemising. Use that as a sanity check on where your draft
+sits, not as a budget.
 
-Open with the disposition, in one or two sentences, answering the Step 1 question.
-Then the concerns.
-
-Do not open with methodology, with a summary of the draft, or with praise. Do not
-defer the verdict to the closing paragraph, and do not substitute a process
-recommendation ("let's not discuss work items yet") for an answer — that is a
-disposition about the *conversation*, not about the *document*.
-
-State the concession after the verdict, not instead of it: *this should not be picked
-up in its current state, though something of roughly this shape might be different* is
-a verdict. *Here are some concerns* is not.
-
-**A favourable verdict is a verdict and takes the same slot.** *This is fine, and here
-are two things worth clarifying* belongs in the opening exactly as a refusal would, and
-carries the same obligation to say why — usually by naming what the document is for.
-Do not bury approval under the findings, do not phrase it as the absence of objections,
-and do not let a run of clarifications imply a severity the disposition does not
-support. If the honest verdict is that the document is ready, the rest of the review
-has to read like it.
-
-## 8. Cut what does not earn its place
-
-Not to a word count. **How long a real review runs depends on how much time the
-reviewer had that week**, and any single example of theirs is one draw from a wide
-spread — the same person writes four sentences on one document and two thousand words
-on the next. Matching the length of one review you have read is fitting to noise, and
-a target set that way will delete real findings to hit it.
-
-What does hold, and is worth modelling: **length tracks disposition**. A reviewer who
-thinks a document is fine says so briefly and stops; the long reviews are usually the
-salvageable middle, where they think the input will change something; and the harshest
-verdicts are often short, because once the answer is no there is no point itemising.
-If you can derive that ladder from the reviewer's own record, use it as a sanity check
-on where your draft sits — not as a budget.
-
-The test is per-sentence, not per-review: *would removing this change what the
-recipient does?* If not, cut it. Over-length is real and it is the most common failure,
-but it comes from padding the argument — restating the draft, hedging, explaining
-findings that speak for themselves — not from having found a lot of things.
+The test is per-sentence: *would removing this change what the recipient does?* If not,
+cut it. Over-length comes from padding the argument -- restating the draft, hedging,
+explaining findings that speak for themselves -- not from having found a lot of things.
 
 Delete prose. Do not delete defects.
 
-## 9. Falsification pass
+## 10. Falsification pass
 
-- Is each claim about the **document**, or about the **topic**? Cut reviews of the topic.
+- Is each claim about the **document** or about the **topic**? Cut reviews of the topic.
 - Does the quoted text actually support the claim made about it?
 - Does anything read as position-taking without a document hook? Cut it.
 - Have you answered the Step 1 question, in the first two sentences, unambiguously?
 
 ---
 
-# Layer 2 — Reviewing through a named reviewer's lens
+# Reviewing as a named participant
 
 Additional rules when the review is modelled on how a specific person would read the
-document — to anticipate what a draft will draw when it reaches a list, or to prepare
+document -- to anticipate what a draft will draw when it reaches a list, or to prepare
 authors for a directorate review.
 
 **This is a simulation and must be labelled as one wherever it goes.** It is not that
-person's review, they have not seen it, and it must never be sent to a list, filed in
-the datatracker, or otherwise put into the record under their name — nor presented to
-anyone in a way that could be mistaken for their opinion. The output's value is as a
-prediction to test your own draft against; treat it as nothing more.
+person's review, they have not seen it, and it must never be sent to a list, filed in the
+datatracker, or otherwise put into the record under their name -- nor presented to anyone
+in a way that could be mistaken for their opinion. Its value is as a prediction to test a
+draft against.
 
-## A. Three buckets, kept visibly separate
+Do not use the forms in `reference/`. Real reviewers vary within the conventional form
+and sometimes ignore it. Derive the shape from that person's own reviews.
 
-- **Grounded** — they demonstrably wrote this. Cite the message and archive URL.
-- **Inferred** — their method, your application to this document.
-- **Unevidenced** — you believe it, you cannot show it.
+## Three buckets, kept visibly separate
 
-Never let bucket 3 inherit bucket 1's confidence. Maintain a fourth note: *positions
-they would plausibly hold but for which the record is silent.*
+- **Grounded** -- they demonstrably wrote this. Cite the message and archive URL.
+- **Inferred** -- their method, your application to this document.
+- **Unevidenced** -- you believe it, you cannot show it.
 
-## B. Wrong-mouth check
+Keep a fourth note: positions they would plausibly hold where the record is silent.
 
-Before finalising, ask of each primary concern: **is this argument already on the
-record as someone else's?** A technical community has a division of labour, and
-experienced reviewers stay in their lane. Attributing a real, correct, well-known
-argument to the wrong person is the characteristic failure of persona review — worse
-than missing it, because it is confidently wrong in a way that is checkable.
+**State this in the output**, not just in your working. A persona review whose provenance
+is not visible is worth less than none, because a reader cannot tell which parts to check
+-- and the unevidenced ones are where they should discount you hardest.
 
-**This check applies to arguments, not to citations.** Do not suppress a relevant RFC,
-BCP, or prior specification merely because you cannot show this reviewer citing it
-before. Competent reviewers cite documents they have never cited in your corpus — the
-citation is a fact about the subject matter, not a personal mannerism. Cite it, keep
-it to one clause, and mark it inferred in the evidence table.
+## Wrong-mouth check
 
-**The test is remit, not authorship.** An argument being *associated with* someone
-else — even written by them, even in a document they authored — does not put it in
-their mouth. What makes a finding wrong-mouth is being outside this reviewer's lane, so
-that only an odd reading of the record has them raising it. A directorate reviewer
-invoking the BCP their directorate exists to apply is squarely in lane no matter who
-wrote that BCP; suppressing it because the author is a well-known figure in the same
-community is the check misfiring. Ask "would this person raise this?", never "is this
-argument someone's?"
+Ask of each primary concern: **is this argument already on the record as someone else's?**
+A technical community has a division of labour. Attributing a real, correct, well-known
+argument to the wrong person is the characteristic failure of persona review -- worse than
+missing it, because it is confidently wrong in a way that is checkable.
 
-Over-firing costs real findings, and it costs them silently — a suppressed finding
-leaves no trace in the output for anyone to challenge.
+**This applies to arguments, not citations.** Do not suppress a relevant RFC or BCP merely
+because you cannot show this reviewer citing it before. Competent reviewers cite documents
+they have never cited in your corpus; the citation is a fact about the subject matter, not
+a mannerism.
 
-## C. Correct for corpus bias
+**The test is remit, not authorship.** An argument being *associated with* someone else --
+even written by them -- does not put it in their mouth. What makes a finding wrong-mouth
+is being outside this reviewer's lane. A directorate reviewer invoking the BCP their
+directorate exists to apply is in lane no matter who wrote it. Ask "would this person
+raise this?", never "is this argument someone's?"
 
-Retrieval over mailing-list archives systematically **over-serves technical positions
-and under-serves institutional ones**. Venue, SDO boundaries, chartering thresholds,
-change control, and "is this our lane" get argued in rooms and in short interventions
-that index poorly, while protocol arguments are long, quotable, and repeated.
+Over-firing costs findings silently: a suppressed one leaves no trace for anyone to
+challenge.
 
-Therefore: absence of evidence on an institutional question is *not* evidence the
-reviewer lacks the position. Run Layer 1 Step 5 regardless, and mark its outputs as
-inferred rather than dropping them for want of a citation. Expect the finding you can
+## Correct for corpus bias
+
+Retrieval over mailing-list archives **over-serves technical positions and under-serves
+institutional ones**. Venue, SDO boundaries, chartering thresholds and change control get
+argued in rooms and in short interventions that index poorly; protocol arguments are long,
+quotable and repeated.
+
+So absence of evidence on an institutional question is not evidence the reviewer lacks the
+position. Run Step 5 regardless and mark its outputs inferred. Expect the finding you can
 evidence least to be among the ones that matter most.
 
-## D. Match register, not vocabulary
+## Match register, not vocabulary
 
 Model the *shape*: the opening move, how many concerns they run, declarative versus
-interrogative, whether they hedge confidence or position, how they mark sections, how
-they sign off, and how their length varies with document maturity.
+interrogative, whether they hedge confidence or position, how they mark sections, how they
+sign off.
 
-Do not lift catchphrases. A borrowed phrase in the wrong argument is more conspicuous
-than plain prose.
+Do not lift catchphrases. A borrowed phrase in the wrong argument is more conspicuous than
+plain prose.
 
-Note the difference between how someone writes a **draft** and how they write a
-**review** — they are different registers, and the drafts are usually the larger and
-more tempting corpus. Weight actual reviews far more heavily.
+Weight their actual **reviews** far above their authored drafts. Those are different
+registers, and the drafts are usually the larger and more tempting corpus.
 
-## E. Expected moves are predictions, not prohibitions
+## Expected moves are predictions, not prohibitions
 
-Before writing, identify the two or three gestures that would be the *easy* way to
-sound like this person — the signature citation, the framing they reach for, the known
-hobby-horse.
+Identify the two or three gestures that would be the *easy* way to sound like this person
+-- the signature citation, the framing they reach for, the known hobby-horse. Treat that
+list as predictions. If a move is characteristic, the likely thing is that they made it;
+the only question is whether the document independently supports it. If it does, make the
+move and mark it inferred. Being recognisable is what you are trying to achieve.
 
-Treat that list as predictions, not temptations. If a move is characteristic of this
-reviewer, the likely thing is that they made it. The only question is whether the
-document independently supports it — if it does, make the move and mark it inferred.
-Being recognisable is what you are trying to achieve.
+Suppress only **lifted phrases**. Borrow the argument, never the wording.
 
-Suppress only **lifted phrases**: a distinctive turn of speech carried over verbatim.
-Borrow the argument, never the wording.
+**When you rule a move out, keep looking.** Establishing that they would not object where
+you assumed is half the work -- they reviewed the document and found something. Check what
+sits beside the cleared target: the same design decision from another angle, or the
+neighbouring mechanism. Raise that **as well**, not instead.
 
-**When you rule a move out, keep looking.** Establishing that they would not object
-where you assumed is half the work — they reviewed the document and found something.
-Check what sits beside the cleared target: the same design decision from another
-angle, or the neighbouring mechanism. Raise that **as well**, not instead.
+**A draft that pre-empts an objection has not answered it.** It has stated a position the
+reviewer may reject. Test the pre-emption against the rest of the specification -- a
+document calling some primitive "not a security feature, merely a mapping" may still
+impose requirements elsewhere that depend on the property it just disclaimed. Where the
+rebuttal is arguable, make the objection anyway; that disagreement is often the finding.
 
-**A draft that pre-empts an objection has not answered it.** It has stated a position
-the reviewer may reject. Test the pre-emption against the rest of the specification —
-a document calling some primitive "not a security feature, merely a mapping" may still
-impose requirements elsewhere that depend on the property it just disclaimed. Where
-the rebuttal is arguable, make the objection anyway; that disagreement is often the
-finding.
+## Do not invent heat
 
-## F. Do not invent heat
-
-Where the record is silent on how strongly someone feels about a topic, write the
-finding in their method and keep the temperature low. Under-reading intensity is a
-smaller error than manufacturing it, and manufactured intensity is the most visible
-tell to anyone who knows the person.
-
-## G. Say what you could not establish
-
-Close with what the model rests on: which positions you can cite, which are the
-person's method applied by you, and which you believe but cannot show. Keep a fourth
-note for positions they would plausibly hold where the record is silent — those are
-the places a reader should discount you hardest.
-
-A persona review whose provenance is not visible is worth less than no review, because
-a reader cannot tell which parts to check.
+Where the record is silent on how strongly someone feels about a topic, write the finding
+in their method and keep the temperature low. Under-reading intensity is a smaller error
+than manufacturing it, and manufactured intensity is the most visible tell to anyone who
+knows the person.
