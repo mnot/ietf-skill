@@ -10,10 +10,10 @@ license: CC-BY-4.0
 they are accountable for every word of it. See `ietf-contributing` for the register and
 the disclosure norms that apply to the finished text.
 
-`reference/` carries the conventional form of each review type -- the boilerplate, the
-expected sections, and the shared `Result` ladder -- derived from real reviews. Read the
-one that applies before writing. It tells you the shape; the steps below tell you what
-goes in it.
+Each review type has a conventional form -- boilerplate, expected sections, where the
+verdict goes. Get it from a recent real review by the team you are writing for, not from
+memory and not from an old example: the boilerplate text and its links change, and each
+team's differs. The steps below are what goes in that form, not the form itself.
 
 ## 1. Establish the question before reading
 
@@ -181,6 +181,11 @@ obligation to say why -- usually by naming what the document is for. Do not bury
 under the findings, do not phrase it as the absence of objections, and do not let a run of
 clarifications imply a severity the disposition does not support.
 
+On a directorate review the disposition also goes in the datatracker `Result` field, and
+that is a six-rung ladder rather than a pass/fail: `Ready`, `Ready with Nits`, `Ready
+with Issues`, `Almost Ready`, `On the Right Track`, `Not Ready`. Pick the rung the
+document earns; the prose verdict should say the same thing the field does.
+
 **Decline whole categories out loud** rather than skipping silently: "I'll skip editorial
 issues given the state of the text."
 
@@ -228,8 +233,9 @@ datatracker, or otherwise put into the record under their name -- nor presented 
 in a way that could be mistaken for their opinion. Its value is as a prediction to test a
 draft against.
 
-Do not use the forms in `reference/`. Real reviewers vary within the conventional form
-and sometimes ignore it. Derive the shape from that person's own reviews.
+Do not reach for the conventional form of the review type. Real reviewers vary within it
+and sometimes ignore it -- their own section headings, boilerplate dropped where it does
+not apply, findings ordered their way. Derive the shape from that person's own reviews.
 
 ## Three buckets, kept visibly separate
 
