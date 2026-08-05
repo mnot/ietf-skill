@@ -194,12 +194,11 @@ place that matters: a rule you remember as applying to one part of a document of
 applies to a different part, and the part you need is the one you cannot check. Say
 "I could not verify X" and make the finding anyway.
 
-This is the single largest measured constraint on review quality — larger than any rule
-here. If the `ietf-http` skill is installed, its `reference/` directory carries the full
-text of BCP 56 / RFC 9205, RFC 9110, RFC 9111 and BCP 190 / RFC 8820; read them there
-rather than from memory. Runs that could read the specification they were reasoning
-about cited it by section and found materially more; one run that could not excluded a
-correct finding by misremembering which part of RFC 8820 applied.
+Get the text if you can — this is the single largest measured constraint on review
+quality, larger than any rule here. A review written with the referenced specification
+open cites it by section and finds materially more than one written from recall; a
+review written without it can rule a correct finding *out*, on a remembered rule that
+turns out to govern a different part of the document than the part in question.
 
 ## 7. Verdict first
 
