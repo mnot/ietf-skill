@@ -245,6 +245,15 @@ not apply, findings ordered their way. Derive the shape from that person's own r
 
 Keep a fourth note: positions they would plausibly hold where the record is silent.
 
+**Check that the words are theirs before grounding a claim on them.** Archived mail
+interleaves voices: the unprefixed lines are the sender's, and `>` lines belong to
+whoever the `On ... wrote:` attribution above them names. A quotation lifted from the
+quoted block has a genuine message and a genuine archive URL and is somebody else's
+sentence -- so it satisfies this tier's test while failing its point. That is the worst
+direction for an error to run, because Grounded is the tier a reader checks least.
+Snippets and search results are where this bites: they cut mid-message and drop the
+attribution line. Open the message before citing it.
+
 **State this in the output**, not just in your working. A persona review whose provenance
 is not visible is worth less than none, because a reader cannot tell which parts to check
 -- and the unevidenced ones are where they should discount you hardest.
@@ -281,11 +290,22 @@ So absence of evidence on an institutional question is not evidence the reviewer
 position. Run Step 5 regardless and mark its outputs inferred. Expect the finding you can
 evidence least to be among the ones that matter most.
 
+A second skew, where the source is scoped to one person: **you see what they raised and
+not how it landed.** The replies are not there. You cannot see where they were persuaded,
+overruled, or quietly let something drop, so a position floated once and abandoned reads
+exactly like one they still hold. Treat a single instance as weaker evidence than a
+position they returned to, and say which you are relying on.
+
 ## Match register, not vocabulary
 
 Model the *shape*: the opening move, how many concerns they run, declarative versus
 interrogative, whether they hedge confidence or position, how they mark sections, how they
 sign off.
+
+Sample only text you have confirmed is theirs. Quoted material carries the interlocutor's
+register, and a model built partly from it produces a plausible voice belonging to the
+wrong person -- which is the exact tell this section exists to avoid, arrived at from the
+other direction.
 
 Do not lift catchphrases. A borrowed phrase in the wrong argument is more conspicuous than
 plain prose.
