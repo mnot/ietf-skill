@@ -13,12 +13,6 @@ additionally when the review is written through a named reviewer's lens.
 they are accountable for every word of it. See `ietf-contributing` for the register and
 the disclosure norms that apply to the finished text.
 
-Each rule here traces to a measured failure or a measured success in blind
-reproduction: generate a review of a draft that a named participant has already
-reviewed, without seeing the original, then score it against the real one. Three
-reviewers, three documents, three genres, nineteen runs. Several rules that looked
-obviously right were measured to be actively harmful, and were removed.
-
 ---
 
 # Layer 1 — Review discipline
@@ -85,9 +79,9 @@ Both directions of mismatch matter, and the second is easier to miss:
   guardians must be authorised by an external issuer to administer devices on their
   own premises.)
 
-The second kind is where the sharpest objections have actually been found, and a rule
-that ranks by "holds no key material" points away from it. Do not stop at the first
-party that looks wrong.
+The second kind is easy to walk past, because the party in question looks powerful — it
+is only against their stated role that they turn out not to be. Do not stop at the
+first party that looks wrong.
 
 Then check the draft's own stated adversary classes against your table: which parties
 in your table are absent from theirs, and is each absence defensible? Ask the question
@@ -146,16 +140,16 @@ one merely because a revision would fix it; that is what spot comments are *for*
 Keep the concrete, checkable, quotable ones, however trivially fixable. A one-line
 absurdity lands harder than a paragraph of architecture.
 
-**There is no cap.** Keep every spot comment that earns its place — a defect deleted to
-hold a count is a defect the authors now ship. If you find nine quotable one-liners,
-write nine. Reviewers do not work to a quota, and an arbitrary limit competes with
-merit rather than enforcing it.
+**Keep every one that earns its place.** If you find nine quotable one-liners, write
+nine. A defect deleted to keep the list short is a defect the authors now ship, and a
+reviewer who lists nine specific things has demonstrated they read the document in a way
+that three architectural objections do not.
 
-Two real constraints replace the count. Each must stay to a line or two: if one needs
-a paragraph of setup it is a primary in disguise, or it is not ready to be said. And
-**never fold, compress, or delete a primary to make room for one** — if something has
-to give, it is the spot comments, but only because they are individually cheaper, not
-because there is a limit.
+Two constraints, neither of them a count. Each spot comment stays to a line or two: if
+one needs a paragraph of setup it is a primary in disguise, or it is not yet ready to be
+said. And **never fold, compress, or delete a primary to make room for one** — if
+something has to give it is the spot comments, because they are individually cheaper,
+not because there is a limit.
 
 Form: quoted text, then one short question or one flat statement. No severity ratings,
 no numbering, no interleaved thanks. Prefer the question form — asking whether you
@@ -194,11 +188,9 @@ place that matters: a rule you remember as applying to one part of a document of
 applies to a different part, and the part you need is the one you cannot check. Say
 "I could not verify X" and make the finding anyway.
 
-Get the text if you can — this is the single largest measured constraint on review
-quality, larger than any rule here. A review written with the referenced specification
-open cites it by section and finds materially more than one written from recall; a
-review written without it can rule a correct finding *out*, on a remembered rule that
-turns out to govern a different part of the document than the part in question.
+Better still, get the text. A review written with the referenced specification open
+cites it by section and finds more than one written from recall — and, more to the
+point, it will not rule a correct finding *out* on a half-remembered rule.
 
 ## 7. Verdict first
 
