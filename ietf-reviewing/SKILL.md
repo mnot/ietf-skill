@@ -183,7 +183,11 @@ failure, and the second goes unnoticed.
 
 Then rank -- but primary concerns and spot comments have different economies:
 
-**Primaries.** Usually two or three, sometimes none. The test: *would this remain regardless of editorial work?* A concern fixed by a textual revision is not primary; demote it.
+**Primaries.** Usually two or three, sometimes none. The test: *would this remain regardless of
+editorial work?* The test is about the question, not the sentence. An ambiguity that leaves two
+implementers building different things is primary even though a sentence fixes it, because the
+authors have to decide something first. A concern where the decision is already made and only the
+wording is missing is not.
 
 **Spot comments.** The survivability test does **not** apply -- being trivially fixable
 is what they are for. Keep every concrete, checkable, quotable one.
