@@ -64,7 +64,7 @@ Then check the draft's own adversary classes against your table: which parties a
 from theirs, and is each absence defensible? Ask without deciding the answer in advance.
 The gap may be a layer confusion, a party the authors assume benign, or nothing at all.
 
-## 4. Architectural review
+## 5. Architectural review
 
 Does existing IETF architectural guidance or policy bear on any aspect of the draft? In particular look at the draft through each of the following lenses, creating primary concerns where applicable:
 
@@ -77,7 +77,7 @@ Does existing IETF architectural guidance or policy bear on any aspect of the dr
 - RFC 6950 Application Features in the DNS
 - RFC 9205 Building Protocols with HTTP (see also the ietf-http skill)
 
-## 5. Institutional questions
+## 6. Institutional questions
 
 These are the least likely to surface from reading alone, and are determinative for adoption and
 early-stage decisions. Ask each of:
@@ -91,7 +91,7 @@ early-stage decisions. Ask each of:
   serve purposes X disclaims?
 - What is the incremental deployment story, and what does the first implementer get?
 
-## 6. Ask what you cannot answer
+## 7. Ask what you cannot answer
 
 A reviewer's contribution includes the questions they do not know the answer to: what scale is
 expected, who is going to operate this, what happens when the deployment is larger than the authors
@@ -103,7 +103,7 @@ diligence. It isn't, when the document has not established the answer itself. If
 says what scale it expects, and you find yourself working out that the scale is probably
 acceptable, stop: the finding is that the draft never says. Ask.
 
-## 7. Probe the draft context
+## 8. Probe the draft context
 
 This step should be done in an isolated context (e.g., subagent) if possible, so that your context is not polluted by other materials.
 
@@ -121,7 +121,7 @@ If new concerns can be derived from the broader context (not just copied from ot
 
 Then, if this is an adoption or DISPATCH review, consider who has said they will implement and deploy. Are the parties who would *have* to implement it among them? Characterise the level of support for the draft. If there is not sufficient support, add that concern.
 
-## 7. Decide the disposition of concerns, then rank
+## 9. Decide the disposition of concerns, then rank
 
 **Settle what you think of the document before deciding how many concerns to surface.** A process
 built to locate problems will locate enough to justify severity, whether or not the document
@@ -152,7 +152,7 @@ Form: quoted text, then one short question or one flat statement. No severity ra
 numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
 correctly is both more accurate and harder to dismiss than asserting a defect.
 
-## 8. Draft the review
+## 10. Draft the review
 
 Open with the disposition, in one or two sentences, answering the Step 1 question. Then
 the concerns.
@@ -182,7 +182,7 @@ given the state of the text."
 anyway, flagging it -- "this is for the security directorate, but". If a finding matters and sits
 just outside the scope you declared, say it and mark it out of lane. 
 
-## 9. Cut what does not earn its place
+## 11. Cut what does not earn its place
 
 A reviewer who thinks a document is fine says so briefly and stops; long reviews are usually the
 salvageable middle, where the input will change something; and the harshest verdicts are often
@@ -195,7 +195,7 @@ that speak for themselves -- not from having found a lot of things.
 
 Delete prose. Do not delete defects.
 
-## 10. Final pass
+## 12. Final pass
 
 Double check the review for these issues:
 
