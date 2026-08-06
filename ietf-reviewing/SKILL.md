@@ -67,28 +67,38 @@ The gap may be a layer confusion, a party the authors assume benign, or nothing 
 
 ## 5. Architectural review
 
-Does existing IETF architectural guidance or policy bear on any aspect of the draft? In particular look at the draft through each of the following lenses, creating primary concerns where applicable:
+Does existing IETF architectural guidance or policy bear on any aspect of the draft? Each lens
+below carries a trigger -- a property of the document you can check against your Step 2 read. Work
+down the list and open the text of every lens whose trigger fires.
 
-| Lens | Document | Text |
-| --- | --- | --- |
-| Wiretapping | RFC 2804 | `reference/rfc2804.txt` |
-| Filtering and blocking | RFC 7754 | `reference/rfc7754.txt` |
-| Pervasive monitoring | RFC 7258 | `reference/rfc7258.txt` |
-| End users | RFC 8890 | `reference/rfc8890.txt` |
-| Endpoint assumptions | RFC 3552 | `reference/rfc3552.txt` |
-| Privacy Considerations | RFC 6973 | `reference/rfc6973.txt` |
-| Application Features in the DNS | RFC 6950 | `reference/rfc6950.txt` |
-| Building Protocols with HTTP | RFC 9205 | see the `ietf-http` skill |
+| Lens | Document | Applies when | Text |
+| --- | --- | --- | --- |
+| Endpoint assumptions | RFC 3552 | Always -- the draft has, or should have, Security Considerations | `reference/rfc3552.txt` |
+| Privacy considerations | RFC 6973 | The draft handles data about identifiable people, or emits per-user events someone else can observe | `reference/rfc6973.txt` |
+| Pervasive monitoring | RFC 7258 | The design creates or widens a vantage point from which many users' activity can be seen | `reference/rfc7258.txt` |
+| Partitioning for privacy | RFC 9614 | One party learns more than it needs to do its job | `reference/rfc9614.txt` |
+| End users | RFC 8890 | The parties who bear the consequences are not the parties the protocol serves | `reference/rfc8890.txt` |
+| Filtering and blocking | RFC 7754 | Something in the design decides whether a communication proceeds | `reference/rfc7754.txt` |
+| Wiretapping | RFC 2804 | The design lets a party other than the endpoints obtain content or metadata, or makes an endpoint report on its user | `reference/rfc2804.txt` |
+| Protocol extensions | RFC 6709 | The draft defines a version, a reserved field, an extension point, a registry, or a rule for unknown elements | `reference/rfc6709.txt` |
+| Extension viability | RFC 9170 | As above, and nothing in the document exercises the extension point it defines | `reference/rfc9170.txt` |
+| Application features in the DNS | RFC 6950 | The draft puts data into, or takes it out of, the DNS | `reference/rfc6950.txt` |
+| Building protocols with HTTP | RFC 9205 | The draft uses HTTP | see the `ietf-http` skill |
 
 The full text of each is bundled with this skill, in `reference/` -- except RFC 9205, which
-`ietf-http` carries along with the other HTTP specifications. Read the ones that bite rather than
-citing them from memory; whether a lens applies is a question about what the draft actually does,
-and the answer is usually a section or two rather than the whole document.
+`ietf-http` carries along with the other HTTP specifications.
+
+**Open the text; do not judge a lens from its title.** Finding that one does not apply is a result
+worth having and takes minutes. Where you are unsure whether a trigger fires, open it.
+
+**Never cite a lens you did not read.** A citation from memory looks as authoritative as a checked
+one, and nothing in the finished review shows the difference -- which is what makes it worth
+guarding against. This is Step 2's *quote before you claim*, applied to the reference texts.
 
 They are long, so navigate rather than read end to end. Each has a table of contents near the top,
 and a section heading starts a line with its number, so grepping for `^3\.1\.` finds where to read
-from. All but RFC 8890 are the older paginated renderings, so expect form feeds and running headers
-mid-section.
+from. All but RFC 8890, RFC 9170 and RFC 9614 are the older paginated renderings, so expect form
+feeds and running headers mid-section.
 
 ## 6. Institutional questions
 
