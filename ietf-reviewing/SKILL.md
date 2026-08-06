@@ -105,21 +105,42 @@ acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 8. Probe the draft context
 
-This step should be done in an isolated context (e.g., subagent) if possible, so that your context is not polluted by other materials.
+Your list of concerns is now closed, and you have formed a provisional view of the document -- not
+the final disposition, but enough that you will notice if reading someone else's review changes it.
 
-Enumerate everything related to the draft - e.g., if it was presented at a meeting, there are
-likely slides and a relevant transcript. Gather e-mail list traffic related to the draft, check for
-a repo, and obtain the author's introductory mail, prior revisions and prior reviews, related
-drafts by the same authors, and any competing drafts.
+Enumerate everything related to the draft -- if it was presented at a meeting there are likely
+slides and a transcript. Gather e-mail list traffic about the draft, check for a repo, and obtain
+the author's introductory mail, prior revisions, related drafts by the same authors, and any
+competing drafts. Record what you could not obtain: a gap is a limit on your review, not an absence
+in the work.
+
+This should be done in an isolated context (e.g., subagent) if possible, so that your context is
+not polluted by other materials. Have the isolated context answer your specific questions about the
+concerns you already hold, rather than return a summary of everything it found -- a digest pollutes
+your context as effectively as reading the material yourself.
 
 Then, for each concern already identified:
 
-- If the concern has already been raised elsewhere, note that.
-- If the author has modified their position *and* expresses an intent to update the draft, update the concern, noting the disposition of the author's intentions.
+- If it has already been raised elsewhere, note that.
+- If the author has answered it, evaluate the answer rather than restating the concern.
+- If the author has modified their position *and* expressed an intent to update the draft,
+  update the concern to reflect the disposition of that intent.
 
-If new concerns can be derived from the broader context (not just copied from other reviews), add them. In particular the authors' statements about applicability, their clarifications and similar statements should be evaluated.
+New concerns may come from the charter, the slides, the transcript, prior revisions, a competing
+draft, or the authors' own statements -- their claims about applicability and their clarifications
+especially, since those often say something the draft does not.
 
-Then, if this is an adoption or DISPATCH review, consider who has said they will implement and deploy. Are the parties who would *have* to implement it among them? Characterise the level of support for the draft. If there is not sufficient support, add that concern.
+A prior review of this draft is not a source of new concerns. It is the one thing you gather here
+that is the same artefact you are producing, so it anchors hardest, and on the disposition most of
+all. Use it to learn whether a concern of yours is already on the record and what the authors said
+back. A concern you did not find yourself does not become yours by reading it: if another
+reviewer's point is right and unaddressed, support it by attribution — "I agree with X's point
+about Y" — rather than restating it as your own. If a prior review moves your disposition, say what
+moved it.
+
+Then, if this is an adoption or DISPATCH review, consider who has said they will implement and
+deploy. Are the parties who would *have* to implement it among them? Characterise the level of
+support, and if it is not sufficient, add that concern.
 
 ## 9. Decide the disposition of concerns, then rank
 
