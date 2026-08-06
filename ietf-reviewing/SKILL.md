@@ -9,6 +9,11 @@ license: CC-BY-4.0
 **You draft; the human sends.** A review goes into the record under a person's name and
 they are accountable for every word of it. See `ietf-contributing`.
 
+So the default output of these steps is **findings**, not a finished review: the concerns,
+what each rests on, and what would resolve it. The reviewer decides what to raise and what
+it adds up to. Writing the review itself is a separate step, below the rule at the end, and
+it comes after those decisions rather than before them.
+
 ## 1. Establish the review question and form
 
 A review answers the question in front of the audience:
@@ -24,15 +29,18 @@ A review answers the question in front of the audience:
 
 The table is about the document's stage. The review type is a separate axis: an early directorate review asks "what has to change" whatever the stage, and the stage decides how much weight the answer carries.
 
-Most review types have a conventional form. Get it from a recent similar review -- if reviewing for
-a directorate, use one by the team you are writing for. The steps below are what goes in that form,
-not the form itself.
+**These steps produce findings, not review text** -- see Step 10, and the separate section at the
+end for turning findings into a review once the reviewer has chosen what to raise.
+
+Most review types have a conventional form, which matters at that step rather than this one. Get it
+from a recent similar review -- if reviewing for a directorate, use one by the team you are writing
+for. The steps below are what goes in that form, not the form itself.
 
 For directorate reviews, see the wiki page of the review directorate for review guidelines, requirements, resources, and possibly a form. Directorates are listed at <https://datatracker.ietf.org/review/> and their wiki pages are (usually) listed in their datatracker 'about' page.
 
 Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is different: they are requested for in-progress WG documents, and focus on whether any blocking problems are anticipated.
 
-Write the question down before reading. The review's opening sentence should answer it. If the
+Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If the
 review request carried a note from the AD or chair, read it first -- it usually says what they
 actually want looked at.
 
@@ -169,7 +177,7 @@ Then, if this is an adoption or DISPATCH review, consider who has said they will
 deploy. Are the parties who would *have* to implement it among them? Characterise the level of
 support, and if it is not sufficient, add that concern.
 
-## 9. Decide the disposition of concerns, then rank
+## 9. Rank the concerns, and form a provisional view
 
 **Settle what you think of the document before deciding how many concerns to surface.** A process
 built to locate problems will locate enough to justify severity, whether or not the document
@@ -204,7 +212,46 @@ Form: quoted text, then one short question or one flat statement. No severity ra
 numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
 correctly is both more accurate and harder to dismiss than asserting a defect.
 
-## 10. Draft the review
+## 10. Assemble the findings
+
+This is the output. It is not a review: it is what a reviewer needs in order to decide what to
+raise, and to defend it once raised. They form the position; your job is to put everything they
+need in front of them and nothing else.
+
+For each primary concern:
+
+- **The concern**, in a sentence.
+- **The document's own words** -- the quotes it rests on, with section numbers.
+- **The argument**, including any RFC section you are relying on and what it says there.
+- **What would resolve it, and what would change your mind.** A concern nobody can act on is not
+  finished.
+
+Then:
+
+- **Spot comments**, compact: quoted text, one line each.
+- **Nits**, compact.
+- **What you considered and dropped, with the reason.** A lens that turned out not to apply, a
+  concern the draft's own text refuses, an objection that is really about the topic -- those are
+  results, and the reviewer should not have to rediscover them. Only what a reader might plausibly
+  expect to see raised earns a line; this is not a log of everything you thought about.
+- **What you could not obtain**, and what it means the analysis cannot say.
+- **Your provisional view**, with its reasoning: what you would call it and why, answering the Step
+  1 question. Mark it as yours. The disposition belongs to the reviewer, and they should be
+  overriding a stated view rather than starting from nothing.
+
+The economy test is not a review's. Ask: *would removing this change what the reviewer decides to
+raise, or how they would defend it?* Restating the draft fails that. The argument behind a concern
+passes it, and so does the reason you dropped one.
+
+---
+
+# Writing the review
+
+**Optional, and second.** Do this only when the reviewer asks for the finished text, only after
+they have chosen what to raise, and only on what they chose. Everything below is about
+composition; nothing in it should reach back and change a finding.
+
+## Open with the verdict
 
 Open with the disposition, in one or two sentences, answering the Step 1 question. Then
 the concerns.
@@ -234,7 +281,7 @@ given the state of the text."
 anyway, flagging it -- "this is for the security directorate, but". If a finding matters and sits
 just outside the scope you declared, say it and mark it out of lane. 
 
-## 11. Cut what does not earn its place
+## Cut what does not earn its place
 
 A reviewer who thinks a document is fine says so briefly and stops; long reviews are usually the
 salvageable middle, where the input will change something; and the harshest verdicts are often
@@ -245,9 +292,10 @@ The test is per-sentence: *would removing this change what the recipient does?* 
 Over-length comes from padding the argument -- restating the draft, hedging, explaining findings
 that speak for themselves -- not from having found a lot of things.
 
-Delete prose. Do not delete defects.
+Delete prose. Do not delete defects. A finding the reviewer chose to raise stays in, even if the
+prose around it goes.
 
-## 12. Final pass
+## Final pass
 
 Double check the review for these issues:
 
