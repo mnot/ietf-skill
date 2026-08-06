@@ -73,6 +73,7 @@ Does existing IETF architectural guidance or policy bear on any aspect of the dr
 below carries a trigger -- a property of the document you can check against your Step 2 read. Work
 down the list and open the text of every lens whose trigger fires.
 
+<<<<<<< HEAD
 | Lens | Document | Applies when | Text |
 | --- | --- | --- | --- |
 | Endpoint assumptions | RFC 3552 | Always -- the draft has, or should have, Security Considerations | `reference/rfc3552.txt` |
@@ -85,13 +86,17 @@ down the list and open the text of every lens whose trigger fires.
 | Protocol extensions | RFC 6709 | The draft defines a version, a reserved field, an extension point, a registry, or a rule for unknown elements | `reference/rfc6709.txt` |
 | Extension viability | RFC 9170 | As above, and nothing in the document exercises the extension point it defines | `reference/rfc9170.txt` |
 | Application features in the DNS | RFC 6950 | The draft puts data into, or takes it out of, the DNS | `reference/rfc6950.txt` |
-| Building protocols with HTTP | RFC 9205 | The draft uses HTTP | see the `ietf-http` skill |
+| Building protocols with HTTP | RFC 9205 | The draft uses HTTP | ../ietf-http/reference/rfc9205.txt |
 
 The full text of each is bundled with this skill, in `reference/` -- except RFC 9205, which
 `ietf-http` carries along with the other HTTP specifications.
 
 **Open the text; do not judge a lens from its title.** Finding that one does not apply is a result
 worth having and takes minutes. Where you are unsure whether a trigger fires, open it.
+
+The last four lenses are structural: their triggers are facts you can find by searching the draft,
+so if the trigger does not fire, skip the lens and say you did. The others are about harms, and
+whether one applies is a judgement you cannot make from a title -- open all of them.
 
 **Never cite a lens you did not read.** A citation from memory looks as authoritative as a checked
 one, and nothing in the finished review shows the difference -- which is what makes it worth
@@ -101,8 +106,6 @@ They are long, so navigate rather than read end to end. Each has a table of cont
 and a section heading starts a line with its number, so grepping for `^3\.1\.` finds where to read
 from. All but RFC 8890, RFC 9170 and RFC 9614 are the older paginated renderings, so expect form
 feeds and running headers mid-section.
-
-The last four lenses are structural: their triggers are facts you can find by searching the draft, so if the trigger does not fire, skip the lens and say you did. The others are about harms, and whether one applies is a judgement you cannot make from a title -- open all of them.
 
 ## 6. Institutional questions
 
