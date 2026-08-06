@@ -98,9 +98,9 @@ acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 7. Decide the disposition, then rank
 
-**Settle what you think of the document before deciding how detailed the review should be.** A
-process built to locate problems will locate enough to justify severity, whether or not the
-document deserves it.
+**Settle what you think of the document before deciding how many concerns to surface.** A process
+built to locate problems will locate enough to justify severity, whether or not the document
+deserves it.
 
 **The bar is set by intended status and stage, not only by contents.** An Experimental
 document with a stated experiment and a plan to revise on results is held to a different
