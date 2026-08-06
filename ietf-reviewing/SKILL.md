@@ -105,8 +105,7 @@ acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 8. Probe the draft context
 
-Your list of concerns is now closed, and you have formed a provisional view of the document -- not
-the final disposition, but enough that you will notice if reading someone else's review changes it.
+Your list of concerns is now closed. Form a provisional view of the document too -- not the final disposition, but enough that you will notice if reading someone else's review changes it.
 
 Enumerate everything related to the draft -- if it was presented at a meeting there are likely
 slides and a transcript. Gather e-mail list traffic about the draft, check for a repo, and obtain
