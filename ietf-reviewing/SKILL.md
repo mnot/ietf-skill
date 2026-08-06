@@ -68,14 +68,26 @@ The gap may be a layer confusion, a party the authors assume benign, or nothing 
 
 Does existing IETF architectural guidance or policy bear on any aspect of the draft? In particular look at the draft through each of the following lenses, creating primary concerns where applicable:
 
-- RFC 2804 wiretapping
-- RFC 7754 filtering and blocking
-- RFC 7258 pervasive monitoring
-- RFC 8890 end users
-- RFC 3552 endpoint assumptions
-- RFC 6973 Privacy Considerations
-- RFC 6950 Application Features in the DNS
-- RFC 9205 Building Protocols with HTTP (see also the ietf-http skill)
+| Lens | Document | Text |
+| --- | --- | --- |
+| Wiretapping | RFC 2804 | `reference/rfc2804.txt` |
+| Filtering and blocking | RFC 7754 | `reference/rfc7754.txt` |
+| Pervasive monitoring | RFC 7258 | `reference/rfc7258.txt` |
+| End users | RFC 8890 | `reference/rfc8890.txt` |
+| Endpoint assumptions | RFC 3552 | `reference/rfc3552.txt` |
+| Privacy Considerations | RFC 6973 | `reference/rfc6973.txt` |
+| Application Features in the DNS | RFC 6950 | `reference/rfc6950.txt` |
+| Building Protocols with HTTP | RFC 9205 | see the `ietf-http` skill |
+
+The full text of each is bundled with this skill, in `reference/` -- except RFC 9205, which
+`ietf-http` carries along with the other HTTP specifications. Read the ones that bite rather than
+citing them from memory; whether a lens applies is a question about what the draft actually does,
+and the answer is usually a section or two rather than the whole document.
+
+They are long, so navigate rather than read end to end. Each has a table of contents near the top,
+and a section heading starts a line with its number, so grepping for `^3\.1\.` finds where to read
+from. All but RFC 8890 are the older paginated renderings, so expect form feeds and running headers
+mid-section.
 
 ## 6. Institutional questions
 
