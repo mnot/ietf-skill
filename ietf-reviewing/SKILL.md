@@ -33,27 +33,24 @@ Write the question down before reading. The review's opening sentence should ans
 review request carried a note from the AD or chair, read it first -- it usually says what they
 actually want looked at.
 
-## 2. Establish the review surface
+## 2. Read it cold
 
-Enumerate everything related to the draft - e.g., if it was presented at a meeting, there are
-likely slides and a relevant transcript. They carry important context.
-
-Check for a repo, proposed or active charter that's relevant, the author's introductory mail,
-prior revisions and prior reviews, related drafts by the same authors, and any competing drafts for context. Record what you could not obtain and treat gaps as limits on the review, rather than
-as absences in the work.
-
-## 3. Read it cold, and quote what you find
-
-Read the entire draft before consulting anything else. Keep your own list of concerns; it is the
+Read the entire draft without consulting anything else. Keep your own list of concerns; it is the
 control against which everything later gets filtered.
 
 **Quote before you claim.** Every concern should contain its basis in the document's own words.
 Never build an objection on your paraphrase -- that is where fabricated findings come from.
 
-**Never rule a finding out on a source you could not read.** If a document you would need to
+**Never rule a concern out on a source you could not read.** If a document you would need to
 confirm or refute a point is unavailable -- an RFC body, a registration template, a referenced
 specification -- raise the point with the uncertainty stated. Say "I could not verify X" and make
-the finding anyway. Better still, get the text and cite by section.
+the concern anyway. Better still, get the text and cite by section.
+
+## 3. Verify the draft's fit to the venue
+
+If this is a proposal to or an adopted draft of an active Working Group, that group's charter is a primary artefact and the draft should be evaluated within it. If the draft is out of defined scope of the charter, point out why and stop here. 
+
+The only exception here is a proposal to a DISPATCH group, which exists to figure out where the proposal should go.
 
 ## 4. Enumerate the actors
 
@@ -67,19 +64,29 @@ Then check the draft's own adversary classes against your table: which parties a
 from theirs, and is each absence defensible? Ask without deciding the answer in advance.
 The gap may be a layer confusion, a party the authors assume benign, or nothing at all.
 
-## 5. Run the institutional checklist -- every time
+## 4. Architectural review
 
-These decide outcomes at early stages and are the least likely to surface from reading
-alone. Ask them from the list:
+Does existing IETF architectural guidance or policy bear on any aspect of the draft? In particular look at the draft through each of the following lenses, creating primary concerns where applicable:
 
-- Is the IETF the right venue? Does something this depends on live another SDO, and if so, what is
-  the change-control story?
+- RFC 2804 wiretapping
+- RFC 7754 filtering and blocking
+- RFC 7258 pervasive monitoring
+- RFC 8890 end users
+- RFC 3552 endpoint assumptions
+- RFC 6973 Privacy Considerations
+- RFC 6950 Application Features in the DNS
+- RFC 9205 Building Protocols with HTTP (see also the ietf-http skill)
+
+## 5. Institutional questions
+
+These are the least likely to surface from reading alone, and are determinative for adoption and
+early-stage decisions. Ask each of:
+
+- Is the IETF the right venue for this work? In particular, is the necessary locus of expertise
+  here?
+- Does something this depends on live in another SDO, and if so, what is the status?
 - Does this depend on policy defined elsewhere? Can the technical work be evaluated without seeing
   that policy?
-- Who has said they will implement and deploy? Are the parties who would *have* to implement it
-  among them? Named interest is not the same as the right named interest.
-- Does existing IETF architectural policy bear on this? (RFC 2804 wiretapping, RFC 7754 filtering
-  and blocking, RFC 7258 pervasive monitoring, RFC 8890 end users, RFC 3552 endpoint assumptions.)
 - Is the mechanism narrower than its framing? If chartered under framing X, would the artefact
   serve purposes X disclaims?
 - What is the incremental deployment story, and what does the first implementer get?
@@ -96,7 +103,25 @@ diligence. It isn't, when the document has not established the answer itself. If
 says what scale it expects, and you find yourself working out that the scale is probably
 acceptable, stop: the finding is that the draft never says. Ask.
 
-## 7. Decide the disposition, then rank
+## 7. Probe the draft context
+
+This step should be done in an isolated context (e.g., subagent) if possible, so that your context is not polluted by other materials.
+
+Enumerate everything related to the draft - e.g., if it was presented at a meeting, there are
+likely slides and a relevant transcript. Gather e-mail list traffic related to the draft, check for
+a repo, and obtain the author's introductory mail, prior revisions and prior reviews, related
+drafts by the same authors, and any competing drafts.
+
+Then, for each concern already identified:
+
+- If the concern has already been raised elsewhere, note that.
+- If the author has modified their position *and* express an intent to update the draft, update the concern, noting the disposition of the author's intentions.
+
+If new concerns can be derived from the broader context (not just copied from other reviews), add them. In particular the authors' statements about applicability, their clarifications and similar statements should be evaluated.
+
+Then, if this is an adoption or DISPATCH review, consider who has said they will implement and deploy. Are the parties who would *have* to implement it among them? Characterise the level of support for the draft. If there is not sufficient support, add that concern.
+
+## 7. Decide the disposition of concerns, then rank
 
 **Settle what you think of the document before deciding how many concerns to surface.** A process
 built to locate problems will locate enough to justify severity, whether or not the document
@@ -127,7 +152,7 @@ Form: quoted text, then one short question or one flat statement. No severity ra
 numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
 correctly is both more accurate and harder to dismiss than asserting a defect.
 
-## 8. Verdict first
+## 8. Draft the review
 
 Open with the disposition, in one or two sentences, answering the Step 1 question. Then
 the concerns.
@@ -170,9 +195,11 @@ that speak for themselves -- not from having found a lot of things.
 
 Delete prose. Do not delete defects.
 
-## 10. Falsification pass
+## 10. Final pass
 
-- Is each claim about the **document** or about the **topic**? Cut reviews of the topic.
+Double check the review for these issues:
+
+- Is each claim about the **document** or about the **topic**? Cut comments on the topic.
 - Does the quoted text actually support the claim made about it?
 - Does anything read as position-taking without reference to what the document says? Cut it.
 - Have you answered the Step 1 question, in the first two sentences, unambiguously?
