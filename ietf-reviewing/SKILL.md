@@ -94,16 +94,20 @@ down the list and open the text of every lens whose trigger fires.
 | Extension viability | RFC 9170 | As above, and nothing in the document exercises the extension point it defines | `reference/rfc9170.txt` |
 | Application features in the DNS | RFC 6950 | The draft puts data into, or takes it out of, the DNS | `reference/rfc6950.txt` |
 | Building protocols with HTTP | RFC 9205 | The draft uses HTTP | ../ietf-http/reference/rfc9205.txt |
+| URI design and ownership | RFC 8820 | The draft specifies URL structure -- a fixed hostname label, a path prefix, or query syntax | ../ietf-http/reference/rfc8820.txt |
 
-The full text of each is bundled with this skill, in `reference/` -- except RFC 9205, which
-`ietf-http` carries along with the other HTTP specifications.
+The full text of each is bundled with this skill, in `reference/` -- except RFC 9205 and RFC 8820,
+which `ietf-http` carries along with the other HTTP specifications. RFC 9205 defers the whole
+URL-structure question to RFC 8820, so a draft that trips the last row usually needs both.
 
 **Open the text; do not judge a lens from its title.** Finding that one does not apply is a result
 worth having and takes minutes. Where you are unsure whether a trigger fires, open it.
 
-The last four lenses are structural: their triggers are facts you can find by searching the draft,
-so if the trigger does not fire, skip the lens and say you did. The others are about harms, and
-whether one applies is a judgement you cannot make from a title -- open all of them.
+The last five lenses are structural: their triggers are facts you can find by searching the draft,
+so when the search plainly comes back empty -- no HTTP, no DNS, no extension point -- skip the lens
+and say you did. Anything short of plainly empty, open it: a trigger that half fires is not a
+trigger that failed. The other seven are about harms, and whether one applies is a judgement you
+cannot make from a title -- open all of them.
 
 **Never cite a lens you did not read.** A citation from memory looks as authoritative as a checked
 one, and nothing in the finished review shows the difference -- which is what makes it worth
