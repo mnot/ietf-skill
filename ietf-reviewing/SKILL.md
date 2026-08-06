@@ -100,6 +100,8 @@ and a section heading starts a line with its number, so grepping for `^3\.1\.` f
 from. All but RFC 8890, RFC 9170 and RFC 9614 are the older paginated renderings, so expect form
 feeds and running headers mid-section.
 
+The last four lenses are structural: their triggers are facts you can find by searching the draft, so if the trigger does not fire, skip the lens and say you did. The others are about harms, and whether one applies is a judgement you cannot make from a title -- open all of them.
+
 ## 6. Institutional questions
 
 These are the least likely to surface from reading alone, and are determinative for adoption and
