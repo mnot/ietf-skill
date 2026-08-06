@@ -140,7 +140,7 @@ competing drafts. Record what you could not obtain: a gap is a limit on your rev
 in the work.
 
 This should be done in an isolated context (e.g., subagent) if possible, so that your context is
-not polluted by other materials. Have the isolated context answer your specific questions about the concerns you already hold, rather than return a summary of everything it found -- a digest pollutes your context as effectively as reading the material yourself. This matters most for list traffic and prior reviews; the charter, the slides and the author's own mail are primary sources and are meant to be read.
+not polluted by other materials. Have the isolated context answer your specific questions about the concerns you already hold, rather than return a summary of everything it found -- a digest pollutes your context as effectively as reading the material yourself. This matters most for list traffic and prior reviews; the charter, the slides and the author's own mail are primary sources and are meant to be read. Read those yourself: a diff of prior revisions, or a slide the draft does not reflect, will hand you a concern you did not know to ask for.
 
 Then, for each concern identified:
 
