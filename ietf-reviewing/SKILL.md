@@ -105,7 +105,8 @@ acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 8. Probe the draft context
 
-Your list of concerns is now closed. Form a provisional view of the document too -- not the final disposition, but enough that you will notice if reading someone else's review changes it.
+Your list of concerns is now closed. Form a provisional view of the document too -- not the final
+disposition, but enough that you will notice if reading someone else's review changes it.
 
 Enumerate everything related to the draft -- if it was presented at a meeting there are likely
 slides and a transcript. Gather e-mail list traffic about the draft, check for a repo, and obtain
@@ -114,11 +115,9 @@ competing drafts. Record what you could not obtain: a gap is a limit on your rev
 in the work.
 
 This should be done in an isolated context (e.g., subagent) if possible, so that your context is
-not polluted by other materials. Have the isolated context answer your specific questions about the
-concerns you already hold, rather than return a summary of everything it found -- a digest pollutes
-your context as effectively as reading the material yourself.
+not polluted by other materials. Have the isolated context answer your specific questions about the concerns you already hold, rather than return a summary of everything it found -- a digest pollutes your context as effectively as reading the material yourself. This matters most for list traffic and prior reviews; the charter, the slides and the author's own mail are primary sources and are meant to be read.
 
-Then, for each concern already identified:
+Then, for each concern identified:
 
 - If it has already been raised elsewhere, note that.
 - If the author has answered it, evaluate the answer rather than restating the concern.
