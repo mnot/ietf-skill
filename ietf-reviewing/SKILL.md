@@ -218,8 +218,8 @@ just outside the scope you declared, say it and mark it out of lane.
 
 A reviewer who thinks a document is fine says so briefly and stops; long reviews are usually the
 salvageable middle, where the input will change something; and the harshest verdicts are often
-short, because once the answer is no there is no point itemising. Use that as a sanity check on
-where your draft review sits, not as a budget.
+short, because there's no point in enumerating small nits when fundamental issues loom. Use that as
+a sanity check on where your draft review sits, not as a budget.
 
 The test is per-sentence: *would removing this change what the recipient does?* If not, cut it.
 Over-length comes from padding the argument -- restating the draft, hedging, explaining findings
