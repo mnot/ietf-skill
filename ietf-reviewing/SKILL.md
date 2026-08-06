@@ -199,9 +199,9 @@ correctly is both more accurate and harder to dismiss than asserting a defect.
 Open with the disposition, in one or two sentences, answering the Step 1 question. Then
 the concerns.
 
-Do not open with methodology, a summary of the draft, or praise. Do not substitute a process
-recommendation ("let's not discuss work items yet") for an answer -- that is a disposition about
-the *conversation*.
+Do not open with methodology or a summary of the draft. A line of genuine thanks before the verdict
+is often conventional in directorate reviews; what to avoid is praise standing in for a verdict, or
+warmth calibrated to soften one.
 
 State the concession after the verdict, not instead of it. *This should not be picked up in its
 current state, though something of roughly this shape might be* is a verdict. *Here are some
