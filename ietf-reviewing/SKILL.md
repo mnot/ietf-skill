@@ -115,7 +115,7 @@ drafts by the same authors, and any competing drafts.
 Then, for each concern already identified:
 
 - If the concern has already been raised elsewhere, note that.
-- If the author has modified their position *and* express an intent to update the draft, update the concern, noting the disposition of the author's intentions.
+- If the author has modified their position *and* expresses an intent to update the draft, update the concern, noting the disposition of the author's intentions.
 
 If new concerns can be derived from the broader context (not just copied from other reviews), add them. In particular the authors' statements about applicability, their clarifications and similar statements should be evaluated.
 
