@@ -73,7 +73,6 @@ Does existing IETF architectural guidance or policy bear on any aspect of the dr
 below carries a trigger -- a property of the document you can check against your Step 2 read. Work
 down the list and open the text of every lens whose trigger fires.
 
-<<<<<<< HEAD
 | Lens | Document | Applies when | Text |
 | --- | --- | --- | --- |
 | Endpoint assumptions | RFC 3552 | Always -- the draft has, or should have, Security Considerations | `reference/rfc3552.txt` |
