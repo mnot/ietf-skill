@@ -132,10 +132,10 @@ document with a stated experiment and a plan to revise on results is held to a d
 standard than a Proposed Standard, and saying so is part of the verdict. Ask what the
 document is *for* before asking what is wrong with it.
 
-**A document can be fine.** A review can legitimately be three lines: you checked the thing you
-were asked to check, it holds up, here are two clarifications. If that is the honest answer, give
-it and stop. Under-reviewing a bad document and over-reviewing a good one are the same failure, and
-the second goes unnoticed.
+**A document can be fine.** A review can legitimately be three lines: "you checked the thing you
+were asked to check, it holds up, here are two requests for clarification". If that is the honest
+answer, give it and stop. Under-reviewing a bad document and over-reviewing a good one are the same
+failure, and the second goes unnoticed.
 
 Then rank -- but primary concerns and spot comments have different economies:
 
