@@ -24,7 +24,7 @@ A review answers the question in front of the audience:
 | Dispatch / BoF proposal | Should the IETF take this on, and if so where? |
 | Call for adoption | Should this WG adopt *this document* as its starting point? |
 | WG document, in progress | Is the design right, and what has to change? |
-| WGLC | Does this document a coherent and complete design that addresses the stated need? |
+| WGLC | Does this document have a coherent and complete design that addresses the stated need? |
 | IETF Last Call / directorate | Is there a blocking problem? |
 
 Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is different: they are requested for in-progress WG documents, and focus on whether any blocking problems are anticipated.
