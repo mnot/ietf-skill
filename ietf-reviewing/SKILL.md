@@ -9,12 +9,7 @@ license: CC-BY-4.0
 **You draft; the human sends.** A review goes into the record under a person's name and
 they are accountable for every word of it. See `ietf-contributing`.
 
-Most review types have a conventional form. Get it from a recent real review by the team you are
-writing for. The steps below are what goes in that form, not the form itself.
-
-For directorate reviews, see the wiki page of the review directorate for details (and possibly a format). Directorates are listed at <https://datatracker.ietf.org/review/> and their wiki pages are (usually) listed in their datatracker 'about' page.
-
-## 1. Establish the question before reading
+## 1. Establish the review question and form
 
 A review answers the question in front of the audience:
 
@@ -27,13 +22,19 @@ A review answers the question in front of the audience:
 | WGLC | Does this document have a coherent and complete design that addresses the stated need? |
 | IETF Last Call / directorate | Is there a blocking problem? |
 
+Most review types have a conventional form. Get it from a recent similar review -- if reviewing for
+a directorate, use one by the team you are writing for. The steps below are what goes in that form,
+not the form itself.
+
+For directorate reviews, see the wiki page of the review directorate for review guidelines, requirements, resources, and possibly a form. Directorates are listed at <https://datatracker.ietf.org/review/> and their wiki pages are (usually) listed in their datatracker 'about' page.
+
 Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is different: they are requested for in-progress WG documents, and focus on whether any blocking problems are anticipated.
 
 Write the question down before reading. The review's opening sentence should answer it. If the
 review request carried a note from the AD or chair, read it first -- it usually says what they
 actually want looked at.
 
-## 2. Read it cold
+## 2. Read the draft cold
 
 Read the entire draft without consulting anything else. Keep your own list of concerns; it is the
 control against which everything later gets filtered.
