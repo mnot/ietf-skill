@@ -22,6 +22,8 @@ A review answers the question in front of the audience:
 | WGLC | Does this document have a coherent and complete design that addresses the stated need? |
 | IETF Last Call / directorate | Is there a blocking problem? |
 
+The table is about the document's stage. The review type is a separate axis: an early directorate review asks "what has to change" whatever the stage, and the stage decides how much weight the answer carries.
+
 Most review types have a conventional form. Get it from a recent similar review -- if reviewing for
 a directorate, use one by the team you are writing for. The steps below are what goes in that form,
 not the form itself.
