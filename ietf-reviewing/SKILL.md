@@ -50,7 +50,8 @@ Read the entire draft without consulting anything else. Keep your own list of co
 control against which everything later gets filtered.
 
 **Quote before you claim.** Every concern should contain its basis in the document's own words.
-Never build an objection on your paraphrase -- that is where fabricated findings come from.
+Never build an objection on your paraphrase -- that is where fabricated findings come from. For an
+absence, quote what stands in its place and show the search you ran.
 
 **Never rule a concern out on a source you could not read.** If a document you would need to
 confirm or refute a point is unavailable -- an RFC body, a registration template, a referenced
@@ -115,8 +116,9 @@ guarding against. This is Step 2's *quote before you claim*, applied to the refe
 
 They are long, so navigate rather than read end to end. Each has a table of contents near the top,
 and a section heading starts a line with its number, so grepping for `^3\.1\.` finds where to read
-from. All but RFC 8890, RFC 9170 and RFC 9614 are the older paginated renderings, so expect form
-feeds and running headers mid-section.
+from -- match the number only, since the spacing after it varies between renderings. All but
+RFC 8890, RFC 9170 and RFC 9614 are the older paginated renderings, so expect form feeds and running
+headers mid-section.
 
 ## 6. Institutional questions
 
@@ -197,20 +199,25 @@ were asked to check, it holds up, here are two requests for clarification". If t
 answer, give it and stop. Under-reviewing a bad document and over-reviewing a good one are the same
 failure, and the second goes unnoticed.
 
-Then rank -- but primary concerns and spot comments have different economies:
+Then rank each concern into **Issues**, **Comments** or **Nits** -- the three headings most IETF
+reviews use. They have different economies, so do not apply one's test to another.
 
-**Primaries.** Usually two or three, sometimes none. The test: *would this remain regardless of
-editorial work?* The test is about the question, not the sentence. An ambiguity that leaves two
-implementers building different things is primary even though a sentence fixes it, because the
-authors have to decide something first. A concern where the decision is already made and only the
-wording is missing is not.
+**Issues.** The test: *would this remain regardless of editorial work?* The test is about the
+question, not the sentence. An ambiguity that leaves two implementers building different things is
+an issue even though a sentence fixes it, because the authors have to decide something first. A
+concern where the decision is already made and only the wording is missing is not.
 
-**Spot comments.** The survivability test does **not** apply -- being trivially fixable
-is what they are for. Keep every concrete, checkable, quotable one.
+Rank on the test alone; there is no target number. The findings are a superset the reviewer picks
+from.
 
-Keep each spot comment to a line or two: if one needs a paragraph of setup, it is a primary in
-disguise or you are not ready to say it yet. And never fold or delete a primary to make room for a
-spot comment.
+**Comments.** The survivability test does **not** apply -- being trivially fixable is what they are
+for. Keep every concrete, checkable, quotable one.
+
+Keep each comment to a line or two: if one needs a paragraph of setup, it is an issue in disguise or
+you are not ready to say it yet. And never fold or delete an issue to make room for a comment.
+
+**Nits.** Typos, stale references, wrong section numbers -- anything an editor fixes without asking
+anyone a question.
 
 Form: quoted text, then one short question or one flat statement. No severity ratings, no
 numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
@@ -219,33 +226,53 @@ correctly is both more accurate and harder to dismiss than asserting a defect.
 ## 10. Assemble the findings
 
 This is the output. It is not a review: it is what a reviewer needs in order to decide what to
-raise, and to defend it once raised. They form the position; your job is to put everything they
-need in front of them and nothing else.
+raise, and to defend it once raised.
 
-For each primary concern:
+Lists, not tables -- this gets read in a text editor as often as anywhere that renders markdown.
+Headings in this order; levels shift with context. Drop the qualifiers when the review is written,
+and then only for what the reviewer chose.
 
-- **The concern**, in a sentence.
-- **The document's own words** -- the quotes it rests on, with section numbers.
-- **The argument**, including any RFC section you are relying on and what it says there.
-- **What would resolve it, and what would change your mind.** A concern nobody can act on is not
-  finished.
+```
+## Provisional view
+## Candidate Issues          one-line index, then a subsection each
+### I1. <short title>
+## Potential Comments
+## Observed Nits
+## Checked, not raised
+## Could not obtain
+```
 
-Then:
+**Provisional view** -- what you would call it and why, answering the Step 1 question. Mark it as
+yours. On a directorate review, name the datatracker `Result` you would pick.
 
-- **Spot comments**, compact: quoted text, one line each.
-- **Nits**, compact.
-- **What you considered and dropped, with the reason.** A lens that turned out not to apply, a
-  concern the draft's own text refuses, an objection that is really about the topic -- those are
-  results, and the reviewer should not have to rediscover them. Only what a reader might plausibly
-  expect to see raised earns a line; this is not a log of everything you thought about.
-- **What you could not obtain**, and what it means the analysis cannot say.
-- **Your provisional view**, with its reasoning: what you would call it and why, answering the Step
-  1 question. Mark it as yours. The disposition belongs to the reviewer, and they should be
-  overriding a stated view rather than starting from nothing.
+**Candidate Issues** opens with a one-line index to triage from:
 
-The economy test is not a review's. Ask: *would removing this change what the reviewer decides to
-raise, or how they would defend it?* Restating the draft fails that. The argument behind a concern
-passes it, and so does the reason you dropped one.
+- **I1** (§3.1) Mandates a fixed hostname label in the URI authority -- quoted text + BCP 190 §2.2.
+- **I2** (§5) No trust model: what a client may conclude is never stated -- quoted absence + RFC 3552 §5.
+
+Then a subsection per issue, as labelled fields rather than paragraphs:
+
+- **Concern:** one sentence.
+- **Textual basis:** the quotes it rests on, with section numbers.
+- **Argument:** including any RFC section you rely on and what it says there.
+- **Grounding:** established by the quoted text alone; an inference you are confident in; or
+  stated with declared uncertainty because you could not read a source. Say which, and name the
+  source in the last case.
+- **Can be resolved if:** what would fix it, and what would change your mind.
+
+**Potential Comments**, one bullet each: the section, the quoted text, then one question or one flat
+statement. If one needs more than that, it is an issue in disguise.
+
+**Observed Nits**, one line each.
+
+**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a lens
+that supports the design, a concern the draft's own text refuses, an objection that is about the
+topic. Only what a reader might expect to see raised; not a log of everything you thought about.
+
+**Could not obtain** -- what, and what it means the analysis cannot say.
+
+The economy test: *would removing this change what the reviewer decides to raise, or how they would
+defend it?*
 
 ---
 
@@ -254,6 +281,9 @@ passes it, and so does the reason you dropped one.
 **Optional, and second.** Do this only when the reviewer asks for the finished text, only after
 they have chosen what to raise, and only on what they chose. Everything below is about
 composition; nothing in it should reach back and change a finding.
+
+The review is a selection from the findings, not a rendering of them: usually two or three issues,
+sometimes none. Plain headings -- `Issues`, `Comments`, `Nits` -- carrying only what was chosen.
 
 ## Open with the verdict
 
@@ -301,7 +331,7 @@ prose around it goes.
 
 ## Final pass
 
-Double check the review for these issues:
+Double check the review for each of these:
 
 - Is each claim about the **document** or about the **topic**? Cut comments on the topic.
 - Does the quoted text actually support the claim made about it?

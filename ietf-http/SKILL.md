@@ -18,7 +18,7 @@ First, confirm that HTTP is being used by the specification in question; see "Is
 
 From there:
 * If you are creating or modifying a specification that uses HTTP, follow the steps in "Creating HTTP Specifications".
-* If you are reviewing a specification that uses HTTP, follow the steps in "Review Process". That covers the HTTP substance; for how to conduct the review itself — which question it answers at this document's stage, how to weigh what you find, and how to land a verdict — see the `ietf-reviewing` skill.
+* If you are reviewing a specification that uses HTTP, follow the steps in "Review Process". That covers the HTTP substance; for how to conduct the review itself — which question it answers at this document's stage, how to weigh what you find, and how to present it — see the `ietf-reviewing` skill.
 
 
 ## Reference Texts
@@ -93,13 +93,13 @@ To review a specification that uses HTTP, go through the following steps.
 1. Identify the section(s) of the specification that use or extend HTTP.
 2. Evaluate them according to the criteria in this skill.
 3. Double check the document's references for currency and correctness (see "References").
-4. Fill out the Review Template below.
+4. Produce findings per the `ietf-reviewing` skill. The template below is for the review text, if one is asked for.
 
 If the specification is a revision, check for prior HTTP reviews (from this reviewer or others, e.g. HTTPDIR) and reconcile against them: note which points were addressed and which recur unchanged.
 
 ### Review Template
 
-The following template can serve as the basis for a specification review. Empty sections should be omitted, and if other kinds of information are relevant, new sections should be created as appropriate.
+Use this when writing the review itself -- see `ietf-reviewing` for when that happens. Empty sections should be omitted, and if other kinds of information are relevant, new sections should be created as appropriate.
 
 ~~~markdown
 # HTTP Review for [document identifier]
