@@ -219,9 +219,9 @@ you are not ready to say it yet. And never fold or delete an issue to make room 
 **Nits.** Typos, stale references, wrong section numbers -- anything an editor fixes without asking
 anyone a question.
 
-Form: quoted text, then one short question or one flat statement. No severity ratings, no
-numbering, no interleaved thanks. Prefer the question -- asking whether you have read it
-correctly is both more accurate and harder to dismiss than asserting a defect.
+Form: quoted text, then one short question or one flat statement. No numbering, no interleaved
+thanks. Prefer the question -- asking whether you have read it correctly is both more accurate and
+harder to dismiss than asserting a defect.
 
 ## 10. Assemble the findings
 
@@ -234,8 +234,12 @@ and then only for what the reviewer chose.
 
 ```
 ## Provisional view
-## Candidate Issues          one-line index, then a subsection each
+## Candidate Issues
+
+_one-line index, then a subsection each_
+
 ### I1. <short title>
+  
 ## Potential Comments
 ## Observed Nits
 ## Checked, not raised
@@ -254,10 +258,12 @@ Then a subsection per issue, as labelled fields rather than paragraphs:
 
 - **Concern:** one sentence.
 - **Textual basis:** the quotes it rests on, with section numbers.
-- **Argument:** including any RFC section you rely on and what it says there.
-- **Grounding:** established by the quoted text alone; an inference you are confident in; or
-  stated with declared uncertainty because you could not read a source. Say which, and name the
-  source in the last case.
+- **Argument:** engage the strongest thing the authors would say back. 
+- **Severity:** how significant the issue is / how strong its impact is; scale of one to five ⭐️
+- **Confidence:** how confident you are in the issue; scale of one to five ⭐️
+- **Grounding:** the stated reason behind the confidence score: established by the quoted text
+  alone; an inference you are confident in; or stated with declared uncertainty because you could
+  not read a source. Say which, and name the source in the last case.
 - **Can be resolved if:** what would fix it, and what would change your mind.
 
 **Potential Comments**, one bullet each: the section, the quoted text, then one question or one flat
@@ -307,6 +313,8 @@ On a directorate review the disposition also goes in the datatracker `Result` fi
 one of: `Ready`, `Ready with Nits`, `Ready with Issues`, `Almost Ready`, `On the Right Track`, `Not
 Ready`. Pick the result the document earns; the prose verdict should say the same thing the field
 does.
+
+**Do not copy all finding contents** -- keep what's relevant to the review type being created. In particular *severity* and *confidence* are intended for the reviewer, not the review.
 
 **Decline whole categories out loud** rather than skipping silently: "I'll skip editorial issues
 given the state of the text."
