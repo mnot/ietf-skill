@@ -148,14 +148,18 @@ acceptable, stop: the finding is that the draft never says. Ask.
 
 ## 8. Probe the draft context
 
-Your list of concerns is now closed. Form a provisional view of the document too -- not the final
-disposition, but enough that you will notice if reading someone else's review changes it.
+Your list of concerns from the cold read is now closed. Form a provisional view of the document too
+-- not the final disposition, but enough that you will notice if reading someone else's review
+changes it.
 
 Enumerate everything related to the draft -- if it was presented at a meeting there are likely
 slides and a transcript. Gather e-mail list traffic about the draft, check for a repo, and obtain
 the author's introductory mail, prior revisions, related drafts by the same authors, and any
 competing drafts. Record what you could not obtain: a gap is a limit on your review, not an absence
 in the work.
+
+If you are working from a gathered corpus rather than live sources, check when it was gathered
+against the document's current state, and re-gather if the document has moved.
 
 This should be done in an isolated context (e.g., subagent) if possible, so that your context is
 not polluted by other materials. Have the isolated context answer your specific questions about the concerns you already hold, rather than return a summary of everything it found -- a digest pollutes your context as effectively as reading the material yourself. This matters most for list traffic and prior reviews; the charter, the slides and the author's own mail are primary sources and are meant to be read. Read those yourself: a diff of prior revisions, or a slide the draft does not reflect, will hand you a concern you did not know to ask for.
@@ -210,6 +214,12 @@ concern where the decision is already made and only the wording is missing is no
 Rank on the test alone; there is no target number. The findings are a superset the reviewer picks
 from.
 
+Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
+them.
+
+Severity and the survivability test are independent. Survivability decides the category -- does the
+author have to decide something? Severity says how much rides on the decision.
+
 **Comments.** The survivability test does **not** apply -- being trivially fixable is what they are
 for. Keep every concrete, checkable, quotable one.
 
@@ -242,6 +252,7 @@ _one-line index, then a subsection each_
   
 ## Potential Comments
 ## Observed Nits
+## Prior concerns
 ## Checked, not raised
 ## Could not obtain
 ```
@@ -257,8 +268,10 @@ yours. On a directorate review, name the datatracker `Result` you would pick.
 Then a subsection per issue, as labelled fields rather than paragraphs:
 
 - **Concern:** one sentence.
-- **Textual basis:** the quotes it rests on, with section numbers.
-- **Argument:** engage the strongest thing the authors would say back. 
+- **Textual basis:** the quotes it rests on, with section numbers -- no commentary.
+- **Argument:** the case, including any RFC section you rely on and what it says there. Engage the
+  strongest thing the authors would say back -- a pre-emption already in the draft is not an answer.
+  Keep it to what a reader needs in order to check the claim.
 - **Severity:** how significant the issue is / how strong its impact is; scale of one to five ⭐️
 - **Confidence:** how confident you are in the issue; scale of one to five ⭐️
 - **Grounding:** the stated reason behind the confidence score: established by the quoted text
@@ -270,6 +283,9 @@ Then a subsection per issue, as labelled fields rather than paragraphs:
 statement. If one needs more than that, it is an issue in disguise.
 
 **Observed Nits**, one line each.
+
+**Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
+addressed, partly, unaddressed, or answered on the list without a text change.
 
 **Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a lens
 that supports the design, a concern the draft's own text refuses, an objection that is about the
@@ -288,8 +304,16 @@ defend it?*
 they have chosen what to raise, and only on what they chose. Everything below is about
 composition; nothing in it should reach back and change a finding.
 
-The review is a selection from the findings, not a rendering of them: usually two or three issues,
-sometimes none. Plain headings -- `Issues`, `Comments`, `Nits` -- carrying only what was chosen.
+Read `ietf-contributing` first. It governs register, disclosure, and what the sender has to be able
+to defend.
+
+Get the conventional form from a recent real review of the type you are writing -- for a
+directorate, one by that team; for a Last Call comment, one from the last-call list. The headings
+below are the directorate convention and will not always fit.
+
+The review is a selection from the findings, not a rendering of them: it usually carries fewer
+issues than the findings hold. Cut on relevance to the audience and the stage, not to a number.
+Plain headings -- `Issues`, `Comments`, `Nits` -- carrying only what was chosen.
 
 ## Open with the verdict
 
