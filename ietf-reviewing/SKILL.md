@@ -90,6 +90,16 @@ answering reviews is where new text arrives.
 Check what was agreed and did not land. A closed issue or an approved pull request that never merged
 is invisible from the document.
 
+**Then the other direction, which is more common: the repo ahead of the datatracker.** Everything
+merged, nothing published. Diff the published revision against `main` and read the commits since.
+
+**A review is of one document.** Where the two have diverged materially and the request does not say
+which, stop and ask. Do not review both, and do not pick for them -- a review of the wrong revision
+is wasted, and which one they want is not inferable from the draft.
+
+Once the target is settled, note a *substantive* change with no issue, pull request or thread behind
+it as context, not as a process complaint: the WG may not know it moved.
+
 ### Post-IESG approval
 
 **Past IESG approval, sort findings by route rather than by severity.** "Is there a blocking
@@ -224,10 +234,10 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
-If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` and `bcp14.md` then go out a beat
-behind the others, which costs less than abandoning a batched read. Do not assume it is the fast one:
-it has come back after the first lens returns, so dispatch those two when the table arrives rather
-than waiting on a moment that has passed.
+If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` then goes out a beat behind the
+others, which costs less than abandoning a batched read. Do not assume it is the fast one: it has
+come back after the first lens returns, so dispatch `rfc8890.md` when the table arrives rather than
+waiting on a moment that has passed.
 
 #### The lenses
 
@@ -240,17 +250,22 @@ privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and block
 design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
 building protocols with HTTP · `rfc9614.md` partitioning for privacy
 
-Read all thirteen rubrics yourself first -- about 1,100 lines, in one batched pass rather than a call
-per file. Each one's `Firing` section is written to be decidable against the draft text.
+Read all thirteen rubrics yourself first -- about 1,100 lines, in two or three batched calls. All
+thirteen at once overflows the tool output and spills to a file you then have to read anyway. Each
+one's `Firing` section is written to be decidable against the draft text.
 Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
 missed one is not. The one exception: if your reason for being unsure is *another lens probably
 carries this better*, rule it out and record which lens. Where a rubric's own "rarely fires"
 language pulls against that, the rubric wins.
 
-Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Two
-need it -- `rfc8890.md`, whose fire test depends on it outright, and `bcp14.md`, whose first three
-tests ask which party is bound. Hold those back and dispatch the rest without waiting. If the table
-lands while you are still reading the rubrics, which is the usual case, send them with the others.
+Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Only
+`rfc8890.md` needs it -- its fire test depends on the table outright -- so hold that one back and
+dispatch the rest without waiting. If the table lands while you are still reading the rubrics, which
+is the usual case, send it with the others.
+
+**Dispatch `bcp14.md` first, before you finish reading the rubrics.** It always fires, and it is the
+longest by a wide margin -- it sweeps every requirement rather than reading for one concern. Do not
+hold it for the actor table; pass that only if it is already there.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.

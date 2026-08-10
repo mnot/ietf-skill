@@ -23,7 +23,8 @@ documents tend to carry fewer, and what they do carry binds registrants, expert 
 process document is dense with keywords, ask of each whether it binds a party the document can
 actually reach, which is test 10.
 
-Needs the actor table: the first three tests all ask which party, and the table is the party list.
+The first three tests ask which party is bound, so take the actor table if it was passed to you. Do
+not wait for it — the parties are nameable from the draft, and the sweep does not need it at all.
 
 ## The sweep
 
