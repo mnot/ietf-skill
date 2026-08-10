@@ -224,6 +224,10 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
+If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` then goes out a beat behind the
+others, which costs less than abandoning a batched read. Do not assume it is the fast one: it has
+come back after the first lens returns, so dispatch `rfc8890.md` when the table arrives rather than
+waiting on a moment that has passed.
 
 #### The lenses
 
@@ -283,9 +287,13 @@ Then, probe the charter, the slides, prior revisions, related and competing draf
 introductory mail, and the referenced specifications a concern of yours actually turns on — just
 those sections, not the entire reference list.
 
-In particular read the draft's diffs, with `rfcdiff` rather than a raw `diff` (see *Without the
-tooling* if you do not have it): a section deleted two revisions ago, or a slide the draft does not
-reflect, hands you a concern you did not know to ask for. Diff the current revision against the one
+In particular read the draft's diffs. Use `rfcdiff --diff --stdout old new`, which strips page
+headers, footers and form feeds before comparing; the mode matters, because the default writes a
+two-column HTML file and emits nothing. Where a finding needs the before and after text, `--ab-diff
+--stdout` gives labelled OLD/NEW blocks per section instead. (See *Without the tooling* if you do
+not
+have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
+concern you did not know to ask for. Diff the current revision against the one
 before it as a matter of course, and go further back only when a concern turns on *when* something
 changed. This step is on the critical path and every extra revision is another read, so when you do
 go back, grep the revisions for the one string (flattened, per Step 8) rather than diffing them
@@ -363,6 +371,10 @@ Flatten first:
 tr -s ' \n\f' ' ' < FILE | grep -o -F 'the quoted passage'
 ```
 
+A hyphenated compound that wrapped at the hyphen still will not match -- `non-empty` flattens to
+`non- empty`. Where the thing under review is itself hyphenated, as a field name usually is, every
+wrapped quote of it fails, so expect that before you doubt the return.
+
 Use that as written rather than improvising something that also strips page headers and footers:
 the elaborate version is easy to get subtly wrong and the damage is silent.
 
@@ -376,6 +388,10 @@ a fabricated quote, and usually is not.
 
 It locates a string; it does not compare documents. For a diff, strip page furniture line-wise and
 leave the line breaks alone.
+
+Where a case quotes more than one document -- the draft and an RFC it extends, say -- check each
+quote against the right file, not just against some file on disk. Both are present, so a match
+proves the string exists somewhere and not that you attributed it correctly.
 
 This checks that the passage is present, not that it is where you say it is, and the same wrapping
 defeats the obvious attribution check -- `grep -n` on the full quote runs against the raw file and
@@ -413,13 +429,20 @@ question, not the sentence. An ambiguity that leaves two implementers building d
 an issue even though a sentence fixes it, because the authors have to decide something first. A
 concern where the decision is already made and only the wording is missing is not.
 
-Then ask what breaks if it is not fixed. An issue names an implementation that goes wrong, a
-deployment that fails, or a decision the authors must take and have not. Where the consequence is
-only that the document's own argument is unpersuasive, it is a comment -- the authors can accept or
+Then ask what breaks if it is not fixed. An issue names a decision the authors must take and have
+not, an implementation that goes wrong, or a deployment that fails. Any one of the three is enough,
+and the first is the one that gets overlooked -- it is the least vivid, and a document that has
+simply not promised anything either way breaks nothing you can point at. Where the consequence is
+only that the document's own argument is unpersuasive, it is a comment: the authors can accept or
 reject it and nothing else changes. Both tests have to pass; the first alone will keep findings a
 reviewer then drops.
 
 Rank on the tests alone; there is no target number of issues.
+
+Then ask whether it has already been decided, and whether the decision engaged the point. A concern
+the chairs closed with a reason that holds is not an issue however well it passes the two tests
+above. Step 8 worked this out; Step 9 re-ranks from scratch, so carry the disposition forward rather
+than trusting yourself to remember it.
 
 Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
 them.
@@ -489,9 +512,10 @@ _only where the draft has a revision history that matters_
 **Provisional view** -- what you would call it and why, answering the Step 1 question. Mark it as
 yours. Name the datatracker `Result` you would pick whatever the review type; off a directorate
 assignment, flag it as the one you would have picked. The six-value vocabulary says "publish, but
-not this revision" more precisely than a sentence does. Past IESG approval it is the wrong
-instrument -- the IESG has already picked one -- so give it if it helps and lead with the routes
-instead.
+not this revision" more precisely than a sentence does. In IESG Evaluation, give the `Result` and
+then say whether you think it warrants a DISCUSS -- that is the instrument at that stage, and it is
+what the reviewer is deciding. Past approval the `Result` is the wrong instrument entirely, since
+the IESG has already picked one, so give it if it helps and lead with the routes instead.
 
 **Candidate Issues** opens with a one-line index to triage from. Each line: the sections, then the
 claim and what follows from it. Nothing else -- what an issue rests on is *The case*, a few lines
@@ -519,14 +543,22 @@ in another section. The three marked *only where* are conditional; the rest are 
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
   block of its own. Break it into short paragraphs, one move each: what the document says, what that
-  produces, the strongest answer the authors would give. A pre-emption already in the draft is not
-  an answer. Every fact it rests on needs its quote here -- if you cannot quote it, you cannot claim
-  it. Do not propose the fix. Keep it to what a reader needs in order to check the claim, and write
-  it so they can agree or disagree rather than reassemble it.
+  produces, the strongest answer the authors would give. Two moves get added often enough to expect
+  them -- what a *neighbouring* document says, where the argument is about the seam between them;
+  and, where the authors' answer is right rather than merely available, a concession followed by
+  what survives it. A pre-emption already in the draft is not an answer. Do not propose the fix.
+  Keep it to what a reader needs in order to check the claim, and write it so they can agree or
+  disagree rather than reassemble it.
+
+  Every fact it rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then
+  re-read each sentence against the quote beside it and check it claims no more. With the quote
+  inline the sentence flows around it and drifts wider than the fragment supports, and the fragment
+  sitting right there makes the drift hard to see.
 - **Can be resolved if:** what would fix it.
-- **Caused by:** only where a prior concern's fix is what created or sharpened this one -- which
-  concern, whose fix, and which revision. Name it here rather than restating it under *Prior
-  concerns*.
+- **Caused by:** only where a prior change created or sharpened this one -- which change, answering
+  what, and which revision. It is often not a fix for this concern at all: a pull request answering
+  a different issue that broke something in passing, or a review fix placed above text it
+  contradicts. Name it here rather than restating it under *Prior concerns*.
 - **Related:** only where another issue bears on this one without having caused it -- two findings
   on one mechanism that are not one decision, so the merge rule keeps them apart. Name the id and
   the adjacency. If the reviewer raises only one, this is what tells them the other's framing
@@ -557,9 +589,12 @@ section is the context, not a place to keep a finding.
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
 addressed, partly, unaddressed, or answered on the list without a text change.
 
-**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a lens
-that supports the design, a concern the draft's own text refuses, an objection that is about the
-topic. Only what a reader might expect to see raised; not a log of everything you thought about.
+**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a concern
+the draft's own text refuses, an objection that is about the topic. Only what a reader might expect
+to see raised; not a log of everything you thought about.
+
+A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
+run of issues reads as an attack on the approach, and the supporting results are what stops it.
 
 **Could not obtain** -- what, and what it means the analysis cannot say.
 
@@ -576,8 +611,9 @@ Keep it to a few lines. If nothing is genuinely theirs to settle, say that rathe
 a list -- a ritual section trains them to skip it, and this is the one section that is asking them
 for something.
 
-Apply the economy test: *would removing this change what the reviewer decides to raise, or how they
-would defend it?*
+Apply the economy test to *Checked, not raised* and *Your call*: would removing this change what
+the reviewer decides to raise, or how they would defend it? It does not govern Comments and Nits --
+Step 9 says keep every concrete, checkable, quotable one, and that stands.
 
 ---
 
