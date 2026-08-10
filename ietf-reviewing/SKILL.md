@@ -115,7 +115,9 @@ which, stop and ask. Do not review both, and do not pick for them -- a review of
 is wasted, and which one they want is not inferable from the draft.
 
 Once the target is settled, note a *substantive* change with no issue, pull request or thread behind
-it as context, not as a process complaint: the WG may not know it moved.
+it as context, not as a process complaint: the WG may not know it moved. It belongs in the covering
+message, never in a filed issue -- there it reads as a complaint about the editors however it is
+worded.
 
 ### Post-IESG approval
 
@@ -381,6 +383,36 @@ The authors' own statements are the exception -- applicability claims and clarif
 since those often say something the draft does not. Those are about the document, not the record,
 and a concern they hand you is yours.
 
+### Take every concern to the record
+
+The lenses read only the draft, so a finding arrives not knowing whether the point has already been
+raised, decided or ruled elsewhere. Close that here, over **every** concern.
+
+Two questions:
+
+- What introduced or changed this text?
+- Where has this *concept* been discussed -- under its own name, not yours?
+
+Search whatever the effort has:
+
+- **A repo** -- issues and pull requests, open and closed, and the commit history. The walk below
+  turns changed text into the issue that authorised it.
+- **The revision history** -- diff around the text for the revision that introduced it.
+- **The draft's changes section.** Its absence beside a substantive change is a finding.
+- **The mailing list**, always. A repo holds what was filed; the list holds what was argued.
+- **Minutes**, for anything a meeting resolved.
+
+Then the two scope questions from `Out of scope`.
+
+Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
+holds but is about something else now, usually a condition the change was agreed under.
+
+Dispatch it. Hand over the concerns and the sources, and require evidence per verdict: issue number,
+commit, revision, message URL.
+
+How much dies scales with how much record exists -- half on a document past Last Call with years of
+issues, nothing on an individual -00.
+
 ### Text that changed: find the commit, not the keyword
 
 **Any concern about text that was deleted, weakened or retargeted needs the commit that did it.**
@@ -632,6 +664,9 @@ in another section. The three marked *only where* are conditional; the rest are 
   rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then re-read each
   sentence against the quote beside it and check it claims no more.
 
+  That covers facts about anything, not just the draft: what a registry holds, what another RFC
+  says, who wrote what and when. Fetch and read the source; recall is not a basis.
+
   Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
   worth the words. *Severity* carries that, or nothing does.
 - **Can be resolved if:** what would fix it.
@@ -648,7 +683,9 @@ in another section. The three marked *only where* are conditional; the rest are 
   goes out*; one is *worth saying, and the document survives without it*.
 - **Confidence:** how confident you are in the issue; scale of one to five ⭐️. Five is *quoted text,
   and the reading is not open to dispute*; three is *the text supports this and another reading is
-  available*; one is *I think this is true and cannot show it from the document*.
+  available*; one is *I think this is true and cannot show it from the document*. It rates the
+  reading, not the fate -- a finding can be five stars on the text and still be settled, out of
+  scope, or answered elsewhere.
 - **Grounding:** only where confidence is short of full -- the reason it is short, and what would
   change your mind. An inference rather than the quoted text; or a source you could not read, named.
 
