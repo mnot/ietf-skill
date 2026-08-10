@@ -63,6 +63,11 @@ A review answers the question in front of the audience:
 The table is about the document's stage. The review type is a separate axis: an early directorate
 review asks "what has to change" whatever the stage.
 
+Where the group is heading weights the stage. Chairs contemplating a Last Call on a document
+nominally in progress means the stage's question is still the one to answer, and the answer should
+say whether the document is ready for the next one. The minutes and the list carry this; the
+datatracker does not.
+
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
 the review request carried a note from the AD or chair, read it first -- it usually says what they
 actually want looked at.
