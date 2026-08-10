@@ -15,6 +15,23 @@ what each rests on, and what would resolve it. The reviewer decides what to rais
 it adds up to. Writing the review itself is a separate step, below the rule at the end, and
 it comes after those decisions rather than before them.
 
+## Out of scope
+
+**IANA Considerations, as procedure.** Whether the instructions are well-formed, whether the
+template matches the registry, whether IANA will accept them. IANA reviews that itself.
+
+Instructions to IANA are one-shot. A document replacing another does not restate instructions the
+earlier one already executed -- the registry exists. A missing carry-over is not a finding.
+
+Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
+live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
+document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
+handle these entries" is not a finding.
+
+The **policy** is in scope and is a different thing: the registration policy, the criteria, who
+decides, what governs the registry from here. A replacing document that drops those has dropped
+something still doing work.
+
 ## Without the tooling
 
 - **No `ietf-llm`.** Work from the Datatracker and the list archives. Record the gap in
@@ -458,6 +475,13 @@ Then ask whether it has already been decided, and whether the decision engaged t
 the chairs closed with a reason that holds is not an issue however well it passes the two tests
 above. Step 8 worked this out; Step 9 re-ranks from scratch, so carry the disposition forward rather
 than trusting yourself to remember it.
+
+Then ask whose decision it is. Silence is only a gap where the answer was this document's to give --
+not where it belongs to IANA, a Designated Expert, a deployment, or another document. A definition
+deferred to a companion draft in the same WG, a normative reference in progress, or work the charter
+puts elsewhere is not missing. Say where it went and drop the finding, or narrow it to the only
+question left: whether this document can publish before that one does. The draft's own recent
+commits and references are where a deferral shows up first.
 
 Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
 them.

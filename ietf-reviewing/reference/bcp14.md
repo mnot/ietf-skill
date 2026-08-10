@@ -90,6 +90,11 @@ Then sweep the other way for test 8, which the keyword list cannot reach.
 9. **Contradiction and unreachability.** Two requirements that cannot both be satisfied; one whose
    antecedent cannot occur; a MUST some MAY elsewhere overrides.
 
+   Before calling one unreachable, ask whether it is a robustness rule. The document's definitions
+   govern its model, not what people send or register — a prohibition the grammar already makes
+   impossible still tells an implementation what to do when it meets one in the wild. Unreachability
+   is a finding only where nothing outside the model can produce the case either.
+
 10. **A party the protocol cannot bind.** Requirements on operators, content authors, deployments.
     Not wrong in itself — raise it where the document's guarantees rest on it.
 
