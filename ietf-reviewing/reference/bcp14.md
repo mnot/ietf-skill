@@ -74,10 +74,12 @@ Then sweep the other way for test 8, which the keyword list cannot reach.
    option to interoperate across it. Where a MAY changes what a peer sees, is the peer's obligation
    stated?
 
-7. **Keyword in a non-normative context.** A requirement in an example, a note, or an appendix.
-   Security and Privacy Considerations are not that — they carry requirements routinely. The shape to
-   catch is a rule stated *only* in a rationale paragraph, where a reader cannot tell whether it is a
-   requirement or a restatement of one made elsewhere.
+7. **Keyword in a non-normative context.** A requirement in an example, a note, an appendix, or
+   Security or Privacy Considerations. Requirements belong in the specification body. Older RFCs put
+   them elsewhere, so precedent is not a defence.
+
+   Worst where the rule appears *only* in a rationale paragraph: a reader cannot then tell a
+   requirement from a restatement of one made elsewhere.
 
 8. **Declarative doing normative work.** Behavioural statements carrying a requirement with no
    keyword. Look hardest at the sentence the specification exists for — it is often the one written
@@ -96,6 +98,14 @@ Then sweep the other way for test 8, which the keyword list cannot reach.
 
 This fires on every draft and will always return something. Report only where the defect changes
 what an implementer builds, or forces a decision the authors have not taken.
+
+Expect Comments and Nits. Most findings here are defects in how a sentence is written, and rewriting
+the sentence fixes them — which is the survivability test failing.
+
+Two shapes reach Issue, both because the fix is a decision rather than a rewrite. Test 9, where two
+requirements conflict and the authors have to say which gives way. And tests 1, 3 and 8 landing on
+the requirement the specification exists for — no target, no decidable condition, or no keyword at
+all — where the authors have to settle who is bound and to what before anyone can write the sentence.
 
 ## Return
 
