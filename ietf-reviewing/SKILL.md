@@ -248,7 +248,7 @@ carries this better*, rule it out and record which lens. Where a rubric's own "r
 language pulls against that, the rubric wins.
 
 Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Two
-need it -- `rfc8890.md`, whose fire test depends on it outright, and `bcp14.md`, whose first two
+need it -- `rfc8890.md`, whose fire test depends on it outright, and `bcp14.md`, whose first three
 tests ask which party is bound. Hold those back and dispatch the rest without waiting. If the table
 lands while you are still reading the rubrics, which is the usual case, send them with the others.
 
