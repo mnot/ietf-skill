@@ -216,6 +216,14 @@ necessary locus of expertise here? Add concerns as appropriate.
 
 ## 4. Dispatch tasks
 
+**Say what you are about to do, and how long, before you dispatch.** One short message: the revision
+and where it came from, the question you took from the table, which sources exist, and the lenses
+going out. Then the estimate -- fifteen to thirty minutes, longer if a gather has to run first.
+
+This is not courtesy. Step 4 is where the cost is, and everything that makes a run worthless is
+settled before it: the wrong revision, the wrong document, the wrong question. Saying them out loud
+is the last cheap moment to be corrected.
+
 _Do not dispatch A until any gather kicked off in Step 1 has completed. Nothing in B needs the
 gather -- send it regardless._
 
