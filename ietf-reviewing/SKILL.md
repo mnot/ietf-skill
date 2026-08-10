@@ -50,7 +50,7 @@ actually want looked at.
 
 **Establish the live revision and stage before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
-the gather now.
+the gather now. Verify the text you are about to read cold against the authoritative source.
 
 Read what the gather reports when it finishes. A gather can complete with a source missing -- a
 throttled repo discovery, a skipped fetch -- and still report success. Re-gather what is missing
@@ -198,6 +198,8 @@ following guidance:
 - Disposition first (prior reviews, chair and AD statements, author replies, the changelog) since
   that settles whether a concern is live.
 - Argument threads are expensive: go into one only when a concern turns on what was said there.
+- Quote any statement about who controls, decides, benefits from, or is bound by the mechanism,
+  whoever made it. These are seldom in the document.
 - Stop when a source is stale, empty or absent, and to say so. An empty source is an answer.
 
 On an adoption or DISPATCH review, add a question: who has said they will implement and deploy?
@@ -231,6 +233,8 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6 -- because a mismatch between a party's stated role and their actual
 power is the judgement you have to defend, and it is better made with the lens results in view.
 
+Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
+
 #### The lenses
 
 Does existing IETF architectural guidance or policy bear on any aspect of the draft? There is one
@@ -242,16 +246,17 @@ monitoring · `rfc7754.md` filtering and blocking · `rfc8820.md` URI design and
 `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md` building protocols with
 HTTP · `rfc9614.md` partitioning for privacy
 
-Read all twelve rubrics yourself first -- they total around 500 lines, so read them in one go. Each
-one's "Does it fire?" section is written to be decidable against the draft text. Where a rubric
-leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a missed one is not.
-The one exception: if your reason for being unsure is *another lens probably carries this better*,
-rule it out and record which lens. Where a rubric's own "rarely fires" language pulls against that,
-the rubric wins.
+Read all twelve rubrics yourself first -- about 1,000 lines, in one batched pass rather than a call
+per file. Each one's "Does it fire?" section is written to be decidable against the draft text.
+Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
+missed one is not. The one exception: if your reason for being unsure is *another lens probably
+carries this better*, rule it out and record which lens. Where a rubric's own "rarely fires"
+language pulls against that, the rubric wins.
 
-Hand each lens the actor table with the draft text if you have it by then. Only `rfc8890.md` needs
-it -- its fire test depends on the table outright -- so hold that one back and dispatch the rest
-without waiting.
+Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Only
+`rfc8890.md` needs it -- its fire test depends on the table outright -- so hold that one back and
+dispatch the rest without waiting. If the table lands while you are still reading the rubrics, which
+is the usual case, send `rfc8890.md` with the others.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.
@@ -382,10 +387,11 @@ This is a tool for locating a string, not for comparing documents. Flattening co
 one line, which makes it undiffable; for a diff, strip page furniture line-wise and leave the line
 breaks alone.
 
-Two failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
-will not match: `non-empty` flattens to `non- empty`. A quote spanning a page boundary will not
-match either. Re-check both by hand before doubting a return -- a failed match here reads as a
-fabricated quote, and usually is not.
+Three failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
+will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary. Nor
+will anything inside an ASCII-art table, where flattening runs the cell delimiters and the following
+row together -- locate table content by line range instead. Re-check by hand before doubting a
+return: a failed match here reads as a fabricated quote, and usually is not.
 
 This checks that the passage is present, not that it is where you say it is, and the same wrapping
 defeats the obvious attribution check -- `grep -n` on the full quote runs against the raw file and
@@ -447,7 +453,9 @@ harder to dismiss than asserting a defect.
 
 **Finish this step before you write a line of Step 10.**
 
-- **Merge.** Find the concerns that are one decision before writing either up.
+- **Merge.** Find the concerns that are one decision before writing either up. Where one decision
+  fixes only part of two concerns, merge the shared part and leave the residue as its own issue,
+  cross-linked by *Related*.
 - **Chain.** Where several issues trace to one revision change, work that out now and decide which
   carry a *Caused by*.
 - **Calibrate.** Rate the whole set in one pass; severity and confidence are comparative.
