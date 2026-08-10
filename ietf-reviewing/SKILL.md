@@ -162,7 +162,7 @@ Dispatch the items below to subagents -- they are our slowest tasks and independ
 run, perform Steps 5-7.
 
 A and B's actor pass go out immediately; both need only the cold read. B's lenses cannot: reading
-the twelve rubrics, pre-filtering and resolving their paths is their prerequisite, and that is what
+the thirteen rubrics, pre-filtering and resolving their paths is their prerequisite, and that is what
 you do while the first two run. Do not wait on the actor table -- dispatch the lenses when the
 prologue is done, before you start Step 5.
 
@@ -224,33 +224,33 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
-If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` then goes out a beat behind the
-others, which costs less than abandoning a batched read. Do not assume it is the fast one: it has
-come back after the first lens returns, so dispatch `rfc8890.md` when the table arrives rather than
-waiting on a moment that has passed.
+If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` and `bcp14.md` then go out a beat
+behind the others, which costs less than abandoning a batched read. Do not assume it is the fast one:
+it has come back after the first lens returns, so dispatch those two when the table arrives rather
+than waiting on a moment that has passed.
 
 #### The lenses
 
 Does existing IETF architectural guidance or policy bear on any aspect of the draft? There is one
 lens per document in `reference/`, each a short rubric beside the text it covers:
 
-`rfc2804.md` wiretapping · `rfc3552.md` endpoint assumptions · `rfc6709.md` protocol extensions ·
-`rfc6950.md` application features in the DNS · `rfc6973.md` privacy · `rfc7258.md` pervasive
-monitoring · `rfc7754.md` filtering and blocking · `rfc8820.md` URI design and ownership ·
-`rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md` building protocols with
-HTTP · `rfc9614.md` partitioning for privacy
+`bcp14.md` normative language · `rfc2804.md` wiretapping · `rfc3552.md` endpoint assumptions ·
+`rfc6709.md` protocol extensions · `rfc6950.md` application features in the DNS · `rfc6973.md`
+privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and blocking · `rfc8820.md` URI
+design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
+building protocols with HTTP · `rfc9614.md` partitioning for privacy
 
-Read all twelve rubrics yourself first -- about 1,000 lines, in one batched pass rather than a call
-per file. Each one's "Does it fire?" section is written to be decidable against the draft text.
+Read all thirteen rubrics yourself first -- about 1,100 lines, in one batched pass rather than a call
+per file. Each one's `Firing` section is written to be decidable against the draft text.
 Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
 missed one is not. The one exception: if your reason for being unsure is *another lens probably
 carries this better*, rule it out and record which lens. Where a rubric's own "rarely fires"
 language pulls against that, the rubric wins.
 
-Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Only
-`rfc8890.md` needs it -- its fire test depends on the table outright -- so hold that one back and
-dispatch the rest without waiting. If the table lands while you are still reading the rubrics, which
-is the usual case, send `rfc8890.md` with the others.
+Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Two
+need it -- `rfc8890.md`, whose fire test depends on it outright, and `bcp14.md`, whose first two
+tests ask which party is bound. Hold those back and dispatch the rest without waiting. If the table
+lands while you are still reading the rubrics, which is the usual case, send them with the others.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.
@@ -380,7 +380,7 @@ the elaborate version is easy to get subtly wrong and the damage is silent.
 
 Three failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
 will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary --
-seven of the twelve reference texts carry page furniture, and so does every paginated draft, so
+nine of the twelve reference texts carry page furniture, and so does every paginated draft, so
 quote within a paragraph. Nor will anything carrying a line prefix, an ASCII-art table's cell
 delimiters or the `|` of an indented note block, since flattening leaves the prefix inline; locate
 that content by line range. Re-check by hand before doubting a return: a failed match here reads as

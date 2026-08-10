@@ -14,9 +14,11 @@ All are currently only Markdown and plain text, no executables. Two of them also
 bundle the text of the RFCs they point at, under a `reference/` directory, so the
 assistant can consult them directly instead of recalling them: `ietf-http` carries
 the specifications it summarises (BCP 56 / RFC 9205, RFC 9110, RFC 9111, BCP 190 /
-RFC 8820), and `ietf-reviewing` carries the architectural guidance its review step
-applies (RFC 2804, RFC 3552, RFC 6709, RFC 6950, RFC 6973, RFC 7258, RFC 7754,
-RFC 8890, RFC 9170, RFC 9614).
+RFC 8820), and `ietf-reviewing` carries the guidance its review step applies
+(BCP 14 / RFC 2119 and RFC 8174, RFC 2804, RFC 3552, RFC 6709, RFC 6950, RFC 6973,
+RFC 7258, RFC 7754, RFC 8890, RFC 9170, RFC 9614). Two of `ietf-reviewing`'s
+lenses — BCP 190 / RFC 8820 and BCP 56 / RFC 9205 — have a rubric but no bundled
+text, since `ietf-http` already carries both.
 
 ## Querying the record
 
