@@ -37,12 +37,7 @@ A review answers the question in front of the audience:
 | Approved, RFC Editor queue | Must anything be fixed before publication, and can AUTH48 fix it? |
 
 The table is about the document's stage. The review type is a separate axis: an early directorate
-review asks "what has to change" whatever the stage, and the stage decides how much weight the
-answer carries.
-
-**These steps produce findings, not review text** -- see Step 10, and the separate section at the
-end for turning findings into a review once the reviewer has chosen what to raise. The conventional
-form of a review belongs to that step, not this one.
+review asks "what has to change" whatever the stage.
 
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
 the review request carried a note from the AD or chair, read it first -- it usually says what they
@@ -56,8 +51,6 @@ Read what the gather reports when it finishes. A gather can complete with a sour
 throttled repo discovery, a skipped fetch -- and still report success. Re-gather what is missing
 before you dispatch anything; a review run without the issue tracker looks exactly like a review run
 against a group that does not use one.
-
-Stage-specific instructions/context below.
 
 ### Directorate reviews
 
@@ -126,8 +119,7 @@ that check possible.
 
 **Quote before you claim.** Never build an objection on your paraphrase -- that is where fabricated
 findings come from. A concern whose **Basis** you cannot locate is not yet a concern. Locating it is
-what has to be true at creation; transcribing it verbatim can wait for the Step 8 verification
-sweep, and stopping mid-read to do it there and then just slows the cold read.
+what has to be true at creation; transcribing it verbatim can wait for the Step 8 sweep.
 
 **Never rule a concern out on a source you could not read.** If a document you would need to
 confirm or refute a point is unavailable -- an RFC body, a registration template, a referenced
@@ -170,10 +162,9 @@ Dispatch the items below to subagents -- they are our slowest tasks and independ
 run, perform Steps 5-7.
 
 A and B's actor pass go out immediately; both need only the cold read. B's lenses cannot: reading
-the twelve rubrics, pre-filtering and resolving their paths is their prerequisite, and that prologue
-is what you do while the first two run. The prologue and the actor pass take about the same time, so
-do not wait on the table -- dispatch the lenses when the prologue is done. Get them away before you
-start Step 5.
+the twelve rubrics, pre-filtering and resolving their paths is their prerequisite, and that is what
+you do while the first two run. Do not wait on the actor table -- dispatch the lenses when the
+prologue is done, before you start Step 5.
 
 Everything meets at Step 8.
 
@@ -230,8 +221,7 @@ a layer confusion, a party the authors assume benign, or nothing at all.
 
 It returns the table and the absences. On a short draft ask for the absences and one line per party
 -- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
-ranking is yours -- see Step 6 -- because a mismatch between a party's stated role and their actual
-power is the judgement you have to defend, and it is better made with the lens results in view.
+ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
 
@@ -277,8 +267,7 @@ goes in *Could not obtain*, not in *Checked, not raised*.
 
 Each reads its rubric and returns:
 
-- whether it fires on a proper reading, and why -- a lens may still come back saying it does not,
-  and that is a result, not a wasted dispatch;
+- whether it fires on a proper reading, and why;
 - the sections it read;
 - **the passages it relies on, quoted verbatim with section numbers**;
 - what it produces -- a concern, support for one you already hold, a result that the lens does not
@@ -292,18 +281,15 @@ moves it, and can say what moved it.
 
 Then, probe the charter, the slides, prior revisions, related and competing drafts, the author's
 introductory mail, and the referenced specifications a concern of yours actually turns on — just
-those sections, not the entire reference list. A draft's normative references run to thousands of
-pages and this is on the critical path.
+those sections, not the entire reference list.
 
 In particular read the draft's diffs, with `rfcdiff` rather than a raw `diff` (see *Without the
-tooling* if you do not have it): a section deleted two
-revisions ago, or a slide the draft does not reflect, hands you a concern you did not know to ask
-for. Diff the current revision against
-the one before it as a matter of course, and go further back only when a concern turns on *when*
-something changed. Every extra revision is another read on the critical path. When you do go back,
-grep the revisions (flattened, per Step 8 -- it locates a string, it does not diff) for the one
-string rather than diffing them pairwise: locating a clause across eight revisions is seconds, and
-eight diffs is minutes.
+tooling* if you do not have it): a section deleted two revisions ago, or a slide the draft does not
+reflect, hands you a concern you did not know to ask for. Diff the current revision against the one
+before it as a matter of course, and go further back only when a concern turns on *when* something
+changed. This step is on the critical path and every extra revision is another read, so when you do
+go back, grep the revisions for the one string (flattened, per Step 8) rather than diffing them
+pairwise.
 
 If you have reviewed this draft before, your own prior findings are an input — but after the cold
 read, not before it. Anything on that list which did not reappear either gets re-derived or gets
@@ -344,9 +330,8 @@ For each concern found, assess its disposition based upon the answers you receiv
 
 What the research returns is disposition, not findings: what the record did to concerns you already
 have. A point you did not find yourself does not become yours by reading it. Check each returned
-point against your Step 2 list before adopting it. This governs the record, not your own
-instruments. A returned point with no matching record is a new concern or someone else's. Give it a
-record with from naming the lens, or attribute it.
+point against your Step 2 list before adopting it. A returned point with no matching record is a new
+concern or someone else's. Give it a record with **From** naming the lens, or attribute it.
 
 If another reviewer's point is right and unaddressed, support it by attribution -- "I agree with
 X's point about Y" -- rather than restating it as your own; if it moves your disposition, say what
@@ -379,20 +364,18 @@ tr -s ' \n\f' ' ' < FILE | grep -o -F 'the quoted passage'
 ```
 
 Use that as written rather than improvising something that also strips page headers and footers:
-the elaborate version is easy to get subtly wrong and the damage is silent. Seven of the twelve
-reference texts carry page furniture, and so does every paginated draft -- so a quote spanning a
-page boundary will not match even flattened. Quote within a paragraph and it never arises.
-
-This is a tool for locating a string, not for comparing documents. Flattening collapses a file to
-one line, which makes it undiffable; for a diff, strip page furniture line-wise and leave the line
-breaks alone.
+the elaborate version is easy to get subtly wrong and the damage is silent.
 
 Three failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
-will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary. Nor
-will anything carrying a line prefix -- an ASCII-art table's cell delimiters, or the `|` of an
-indented note block -- since flattening leaves the prefix inline. Locate that content by line range
-instead. Re-check by hand before doubting a
-return: a failed match here reads as a fabricated quote, and usually is not.
+will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary --
+seven of the twelve reference texts carry page furniture, and so does every paginated draft, so
+quote within a paragraph. Nor will anything carrying a line prefix, an ASCII-art table's cell
+delimiters or the `|` of an indented note block, since flattening leaves the prefix inline; locate
+that content by line range. Re-check by hand before doubting a return: a failed match here reads as
+a fabricated quote, and usually is not.
+
+It locates a string; it does not compare documents. For a diff, strip page furniture line-wise and
+leave the line breaks alone.
 
 This checks that the passage is present, not that it is where you say it is, and the same wrapping
 defeats the obvious attribution check -- `grep -n` on the full quote runs against the raw file and
@@ -423,7 +406,7 @@ answer, give it and stop. Under-reviewing a bad document and over-reviewing a go
 failures.
 
 Then rank each concern into **Issues**, **Comments** or **Nits** -- the three headings most IETF
-reviews use. They have different economies, so do not apply one's test to another.
+reviews use. They have different economies.
 
 **Issues.** The test: *would this remain regardless of editorial work?* The test is about the
 question, not the sentence. An ambiguity that leaves two implementers building different things is
@@ -436,14 +419,13 @@ only that the document's own argument is unpersuasive, it is a comment -- the au
 reject it and nothing else changes. Both tests have to pass; the first alone will keep findings a
 reviewer then drops.
 
-Rank on the test alone; there is no target number of issues. The findings are a superset that the
-reviewer picks from.
+Rank on the tests alone; there is no target number of issues.
 
 Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
 them.
 
-Severity and the survivability test are independent. Survivability decides the category -- does the
-author have to decide something? Severity says how much rides on the decision.
+Severity is independent of both tests. They decide the category; severity says how much rides on
+the decision.
 
 **Comments.** The survivability test does **not** apply -- being trivially fixable is what they are
 for. Keep every concrete, checkable, quotable one.
@@ -518,9 +500,8 @@ down, and a compressed copy of it here reads as noise while saying less than the
 Without the consequence the line is an observation, and the reader has to open the subsection to
 find out whether they care -- which is what the index exists to save them.
 
-Close each line with the ratings -- 🔥 severity, ⭐️ confidence. Those are the two things that decide
-what a reviewer reads first, and unlike a section list they are the value rather than a paraphrase
-of one. Different glyphs so the pair reads without a legend.
+Close each line with the ratings -- 🔥 severity, ⭐️ confidence, different glyphs so the pair reads
+without a legend. They are what decides which issue a reviewer opens first.
 
 - **I1** (§3.1, §6) Mandates a fixed hostname label, so an operator cannot name their own host.
   🔥4/⭐️5
@@ -532,7 +513,7 @@ of one. Different glyphs so the pair reads without a legend.
 Then a subsection per issue, as labelled fields rather than paragraphs:
 
 The heading is the concern -- one sentence, stated as a claim about the document. Do not restate it
-as a field; the index line above is the compressed version and a third statement of it is padding.
+as a field.
 These fields and no others: an issue that has grown one of its own is telling you something belongs
 in another section. The three marked *only where* are conditional; the rest are always present.
 
@@ -569,8 +550,8 @@ statement. If one needs more than that, it is an issue in disguise.
 **What changed and when** -- where the revision history bears on the findings, and as long as it
 needs to be. Text that was removed, when, and whether anything replaced it; requirements that
 changed strength; whatever the changelog does not record. This is what the *Caused by* fields point
-at, and stating a chain once here is what stops the same fact being restated inside three separate
-issues. Where a change is itself the defect, that is a Candidate Issue like any other -- this
+at.
+Where a change is itself the defect, that is a Candidate Issue like any other -- this
 section is the context, not a place to keep a finding.
 
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
@@ -662,14 +643,11 @@ just outside the scope you declared, say it and mark it out of lane.
 
 ## Cut what does not earn its place
 
-A reviewer who thinks a document is fine says so briefly and stops; long reviews are usually the
-salvageable middle, where the input will change something; and the harshest verdicts are often
-short, because there's no point in enumerating small nits when fundamental issues loom. Use that as
-a sanity check on where your draft review sits, not as a budget.
+A short review means the document is fine or it is hopeless; the long ones are the salvageable
+middle. Use that as a sanity check on where yours sits, not as a budget.
 
 The test is per-sentence: *would removing this change what the recipient does?* If not, cut it.
-Over-length comes from padding the argument -- restating the draft, hedging, explaining findings
-that speak for themselves -- not from having found a lot of things.
+Over-length comes from padding the argument, not from having found a lot of things.
 
 Delete prose. Do not delete defects. A finding the reviewer chose to raise stays in, even if the
 prose around it goes.
