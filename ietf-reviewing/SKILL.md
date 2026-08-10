@@ -413,6 +413,12 @@ Findings on text with a decision behind it are unreliable until you have found t
 reads the document, so it cannot see one, and will report a deliberate removal in the same voice as
 an accidental one.
 
+**The originating issue is not the whole answer.** For text that was *added*, the issue that added
+it is easy to find and often says nothing about your concern -- the question you are raising was
+settled next door. Search the tracker for the *concept*, not your own words for it, and read the
+adjacent issues out. A finding about a stranded contact address was settled in one issue titled
+about an unresponsive change controller and another about whether a mailing list can be a contact.
+
 ### Processing lens returns
 
 A lens you dispatched is working on your behalf: what it returns is yours — including a concern you
