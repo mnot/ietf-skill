@@ -12,8 +12,8 @@ they are accountable for every word of it. See `ietf-contributing`.
 
 So the default output of these steps is **findings**, not a finished review: the concerns,
 what each rests on, and what would resolve it. The reviewer decides what to raise and what
-it adds up to. Writing the review itself is a separate step, below the rule at the end, and
-it comes after those decisions rather than before them.
+it adds up to. Producing the review itself -- as prose or as issues -- is a separate step in
+`delivering.md`, and it comes after those decisions rather than before them.
 
 ## Out of scope
 
@@ -184,16 +184,16 @@ necessary locus of expertise here? Add concerns as appropriate.
 
 ## 4. Dispatch tasks
 
-_Do not dispatch A until any gather kicked off in Step 1 has completed. B reads only the draft and
-the rubrics -- send it regardless._
+_Do not dispatch A until any gather kicked off in Step 1 has completed. Nothing in B needs the
+gather -- send it regardless._
 
 Dispatch the items below to subagents -- they are our slowest tasks and independent. While they
 run, perform Steps 5-7.
 
-A and B's actor pass go out immediately; both need only the cold read. B's lenses cannot: reading
-the thirteen rubrics, pre-filtering and resolving their paths is their prerequisite, and that is what
-you do while the first two run. Do not wait on the actor table -- dispatch the lenses when the
-prologue is done, before you start Step 5.
+Three things go out immediately: **A**, the **actor pass**, and **`bcp14.md`** -- none needs more
+than the cold read, and `bcp14.md` always fires, so there is nothing to pre-filter. The remaining
+lenses wait on the rubric read, which is what you do while those three run. Do not wait on the actor
+table -- dispatch them when the prologue is done, before you start Step 5.
 
 Everything meets at Step 8.
 
@@ -269,7 +269,7 @@ privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and block
 design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
 building protocols with HTTP · `rfc9614.md` partitioning for privacy
 
-Read all thirteen rubrics yourself first -- about 1,100 lines, in two or three batched calls. All
+Read all thirteen rubrics yourself first -- about 1,200 lines, in two or three batched calls. All
 thirteen at once overflows the tool output and spills to a file you then have to read anyway. Each
 one's `Firing` section is written to be decidable against the draft text.
 Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
@@ -282,9 +282,9 @@ Hand each lens the path to the actor table alongside the draft text, if it has l
 dispatch the rest without waiting. If the table lands while you are still reading the rubrics, which
 is the usual case, send it with the others.
 
-**Dispatch `bcp14.md` first, before you finish reading the rubrics.** It always fires, and it is the
-longest by a wide margin -- it sweeps every requirement rather than reading for one concern. Do not
-hold it for the actor table; pass that only if it is already there.
+`bcp14.md` went out at the top of the step. It is the longest -- it sweeps every requirement rather
+than reading for one concern -- so do not hold it for the actor table either; pass that only if it
+is already there.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.
@@ -396,7 +396,9 @@ Two questions:
 Search whatever the effort has:
 
 - **A repo** -- issues and pull requests, open and closed, and the commit history. The walk below
-  turns changed text into the issue that authorised it.
+  turns changed text into the issue that authorised it. Where the repo carries several drafts, a
+  per-draft label narrows it; check how consistently the label is applied before relying on it,
+  since a partly-applied one reads as an empty record.
 - **The revision history** -- diff around the text for the revision that introduced it.
 - **The draft's changes section.** Its absence beside a substantive change is a finding.
 - **The mailing list**, always. A repo holds what was filed; the list holds what was argued.
@@ -734,173 +736,9 @@ Step 9 says keep every concrete, checkable, quotable one, and that stands.
 
 ---
 
-# Writing the review
+# Delivering the review
 
-**Optional, and second.** Do this only when the reviewer asks for the finished text, only after
-they have chosen what to raise, and only on what they chose. Everything below is about
-composition; nothing in it should reach back and change a finding.
-
-Prose is one of two shapes. In a repo-driven group the findings often go to the issue tracker
-instead -- see *Filing issues* at the end.
-
-Rely on the findings. The quotes were verified at Step 8 and re-checking them here buys nothing but
-delay -- the reviewer is waiting, and friction here is what stops them asking next time.
-
-This does not conflict with `ietf-contributing`'s rule against citing what you cannot retrieve. A
-Step 8 quote in the findings *is* retrieved text; that rule is against reconstructing a citation
-from memory. Do not read it as licence to re-verify.
-
-The exception is narrow: if the Step 8 verification was not yours, because the findings came from a
-context you did not audit, say so once and let the reviewer decide. Say it -- do not silently
-re-derive, which spends their time to answer a question they were not asked.
-
-Read `ietf-contributing` first. It governs register, disclosure, and what the sender has to be able
-to defend.
-
-Get the conventional form from a recent real review of the type you are writing -- for a
-directorate, one by that team; for a Last Call comment, one from the last-call list. The headings
-below are the directorate convention and will not always fit.
-
-Do not hard-wrap it. Mail clients and archives reflow, and hard breaks survive into quoted replies
-as ragged fragments. Leave each prose paragraph on one line. Quoted draft or RFC text keeps the
-source's own line breaks and indentation -- it is verbatim, and reflowing it changes it.
-
-The review is a selection from the findings, not a rendering of them: it usually carries fewer
-issues than the findings hold. Cut on relevance to the audience and the stage, not to a number.
-Plain headings -- `Issues`, `Comments`, `Nits` -- carrying only what was chosen.
-
-## Open with the verdict
-
-Open with the disposition, in one or two sentences, answering the Step 1 question. Then
-the concerns.
-
-Do not open with methodology or a summary of the draft. A line of genuine thanks before the verdict
-is often conventional in directorate reviews; what to avoid is praise standing in for a verdict, or
-warmth calibrated to soften one.
-
-State the concession after the verdict, not instead of it. *This should not be picked up in its
-current state, though something of roughly this shape might be* is a verdict. *Here are some
-concerns* is not.
-
-**A favourable verdict is valid.** *This is fine, and here are two things worth clarifying* carries
-the same obligation to say why -- usually by naming what the document is for. Do not bury approval
-under the findings, do not phrase it as the absence of objections, and do not let a run of
-clarifications imply a severity the disposition does not support.
-
-On a directorate review the disposition also goes in the datatracker `Result` field, and that is
-one of: `Ready`, `Ready with Nits`, `Ready with Issues`, `Almost Ready`, `On the Right Track`, `Not
-Ready`. Pick the result the document earns; the prose verdict should say the same thing the field
-does.
-
-**Do not copy all finding contents** -- keep what's relevant to the review type being created. In
-particular *severity* and *confidence* are intended for the reviewer, not the review.
-
-**Decline whole categories out loud** rather than skipping silently: "I'll skip editorial issues
-given the state of the text."
-
-**A declared scope is permeable.** Reviewers announce a lane and then say the important thing
-anyway, flagging it -- "this is for the security directorate, but". If a finding matters and sits
-just outside the scope you declared, say it and mark it out of lane.
-
-## Cut what does not earn its place
-
-A short review means the document is fine or it is hopeless; the long ones are the salvageable
-middle. Use that as a sanity check on where yours sits, not as a budget.
-
-The test is per-sentence: *would removing this change what the recipient does?* If not, cut it.
-Over-length comes from padding the argument, not from having found a lot of things. Three patterns
-produce most of it:
-
-- **Justifying the finding to the reviewer** -- why this is an issue rather than a nit, why it is
-  worth raising. That was the findings' job and it is done.
-- **Pre-empting the authors at length.** A clause where their best objection changes the ask;
-  otherwise nothing.
-- **Quoting past what the argument uses, then restating the quote in prose.** Trim the quote to what
-  the sentence turns on, and let it stand.
-
-Delete prose. Do not delete defects. A finding the reviewer chose to raise stays in, even if the
-prose around it goes.
-
-## Final pass
-
-Double check the review for each of these:
-
-- Is each claim about the **document** or about the **topic**? Cut comments on the topic.
-- Does the quoted text actually support the claim made about it?
-- Does anything read as position-taking without reference to what the document says? Cut it.
-- Have you answered the Step 1 question, in the first two sentences, unambiguously?
-
----
-
-# Filing issues
-
-The other output shape, in a group that runs its draft from a repo. The three rules at the head of
-*Writing the review* apply unchanged: read `ietf-contributing`, rely on the findings rather than
-re-verifying them, and the human files.
-
-**One at a time, confirmed before each.** Show the reviewer the exact text -- title and body -- and
-file it only when they have approved that one. Never file a batch on a single approval, and never
-file ahead while they are still reading. Approval of one is not approval of the next.
-
-## Search the tracker first
-
-Every finding, against open and closed issues both, before drafting any of them. For anything about
-text that changed, Step 8's `git log -S` walk finds the right issue where a keyword search will not.
-
-- **Already open.** Comment there. Do not file again.
-- **Closed, and the reasoning holds.** Drop the finding. Step 9 asked this; the tracker is where the
-  answer is.
-- **Closed, and the change agreed in it never landed in the text.** Reopen it. A new issue loses the
-  thread that agreed the fix.
-- **The position was argued and rejected.** Reframing to a different ask is fair; refiling the same
-  one is not. Say in the issue that you have read the earlier thread.
-
-## What gets filed as what
-
-| | Issue | Pull request |
-|---|---|---|
-| **Issue** | one each | rarely -- see below |
-| **Comment** | always, ganged or not | optional, where the answer is not in doubt |
-| **Nit** | no | yes, chunked into coherent batches |
-
-A nit whose fix requires choosing between two options is a comment. *These two spellings differ* is
-a nit only if you can say which one goes.
-
-Comments stand alone where each names a section and has a determinate answer, and gang where they
-are editorial or cluster on one section. Twenty filed separately bury the issues; that is what to
-weigh it against.
-
-Each issue carries its own context -- the revision, the section, the quotes. There is no covering
-message and no shared thread, so nothing may refer to the findings or to "the review".
-
-## What transfers
-
-*The case* and *Can be resolved if* go over almost verbatim. *Related* and *Caused by* become issue
-links, which is the one thing the tracker does better than prose. *Confidence* and *Grounding* do
-not ship; they were for the reviewer.
-
-**Label the editorial ones.** Repos commonly carry an `editorial` label for issues that need no WG
-discussion; check `gh label list` and apply it where it exists. It is how the chairs keep the
-substantive list readable.
-
-## Pull requests
-
-Only where the fix is not a decision -- the Step 9 survivability test again. If the text follows
-from something already settled, a pull request saves a round trip. If the fix embodies the decision,
-it front-runs the group and belongs in an issue.
-
-**A pull request against an Issue is a signal you misranked it.** An Issue is a finding where the
-authors have to decide something first; if you can write the text yourself, the decision was already
-made, and it was a Comment.
-
-Open the issue first for anything substantive and reference it from the pull request. Substantive
-text arriving as a pull request with nothing behind it is the pattern Step 1 tells you to flag; do
-not create it.
-
-## The verdict has nowhere to go
-
-A tracker has no slot for the Step 1 answer, and a set of issues without one reads as nits whatever
-is in them. It goes in a covering message to the list, the ballot, or the Last Call comment. Say
-which, rather than letting it drop.
-
-
+**Optional, and second.** When the reviewer asks for output -- prose, or issues against the
+draft's repo -- read `delivering.md` beside this file and follow it. Do it only after they have
+chosen what to raise, and only on what they chose. Nothing there should reach back and change a
+finding.
