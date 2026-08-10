@@ -395,24 +395,32 @@ and a concern they hand you is yours.
 The lenses read only the draft, so a finding arrives not knowing whether the point has already been
 raised, decided or ruled elsewhere. Close that here, over **every** concern.
 
-Two questions:
+**Start with the two scope questions from `Out of scope`** -- whose decision was it, and is this
+IANA's own procedure? They need nothing fetched, and they drop concerns before you spend anything
+on them.
+
+Then two questions per surviving concern:
 
 - What introduced or changed this text?
 - Where has this *concept* been discussed -- under its own name, not yours?
 
 Search whatever the effort has:
 
-- **A repo** -- issues and pull requests, open and closed, and the commit history. The walk below
-  turns changed text into the issue that authorised it. Where the repo carries several drafts, a
-  per-draft label narrows it; check how consistently the label is applied before relying on it,
-  since a partly-applied one reads as an empty record.
-- **The revision history** -- diff around the text for the revision that introduced it.
+- **Issues and threads** -- `search_corpus` for the concept, `get_issue` to read one out. These are
+  gathered, so do not re-fetch them from the forge: a gathered issue already carries its closing
+  rationale and each participant's role. Where a repo holds several drafts, a per-draft label
+  narrows the sweep -- check how consistently it is applied before relying on it, since a
+  partly-applied label reads as an empty record.
+- **Commits and pull requests**, which are *not* gathered. Clone once and the walk below is local;
+  reach for the forge API only for the pull request behind a commit that matters.
+- **The revision history** -- diff around the text for the revision that introduced it. This is the
+  whole of the change record when there is no repo.
 - **The draft's changes section.** Its absence beside a substantive change is a finding.
-- **The mailing list**, always. A repo holds what was filed; the list holds what was argued.
-- **Minutes**, for anything a meeting resolved.
+- **Minutes, and the transcript where one exists.** Minutes summarise and drop things; a transcript
+  has carried design questions the minutes of the same session omitted entirely.
 
-Then the two scope questions from `Out of scope`: whose decision was it, and is this IANA's own
-procedure?
+A search returning nothing is ambiguous -- it can mean the point is unraised, or that the index is
+missing or the filter wrong. Confirm the search works before recording silence.
 
 Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
 holds but is about something else now, usually a condition the change was agreed under.
@@ -420,8 +428,11 @@ holds but is about something else now, usually a condition the change was agreed
 Dispatch it. Hand over the concerns and the sources, and require evidence per verdict: issue number,
 commit, revision, message URL.
 
-How much dies scales with how much record exists -- half on a document past Last Call with years of
-issues, nothing on an individual -00.
+What the gate returns changes with how much record exists. Past Last Call, with years of issues, it
+prunes -- half, on the run this came from. On a young document it kills nothing, and the product is
+the opposite: **being able to say a concern has never been raised by anyone, anywhere, under any
+name.** That is what licenses a verdict against the authors' own account of how settled the document
+is. Record the silence as deliberately as you would record a decision.
 
 ### Text that changed: find the commit, not the keyword
 
@@ -483,20 +494,23 @@ Flatten first:
 tr -s ' \n\f' ' ' < FILE | grep -o -F 'the quoted passage'
 ```
 
-A hyphenated compound that wrapped at the hyphen still will not match -- `non-empty` flattens to
-`non- empty`. Where the thing under review is itself hyphenated, as a field name usually is, every
-wrapped quote of it fails, so expect that before you doubt the return.
+Use it as written rather than improvising something that also strips page headers and footers: the
+elaborate version is easy to get subtly wrong and the damage is silent.
 
-Use that as written rather than improvising something that also strips page headers and footers:
-the elaborate version is easy to get subtly wrong and the damage is silent.
+Four failures are the recipe's, not the quote's:
 
-Three failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
-will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary --
-nine of the twelve reference texts carry page furniture, and so does every paginated draft, so
-quote within a paragraph. Nor will anything carrying a line prefix, an ASCII-art table's cell
-delimiters or the `|` of an indented note block, since flattening leaves the prefix inline; locate
-that content by line range. Re-check by hand before doubting a return: a failed match here reads as
-a fabricated quote, and usually is not.
+- **Double spacing.** `-s` squeezes runs, so the two spaces after a full stop collapse to one. A
+  quote copied verbatim from a double-spaced source then fails -- squeeze the quote the same way.
+- **A hyphenated compound wrapped at the hyphen.** `non-empty` flattens to `non- empty`. Where the
+  thing under review is itself hyphenated, as a field name usually is, every wrapped quote of it
+  fails; expect that before doubting the return.
+- **A quote spanning a page boundary.** Nine of the twelve reference texts carry page furniture, as
+  does every paginated draft. Quote within a paragraph.
+- **A line prefix** -- an ASCII table's cell delimiters, the `|` of an indented note block -- which
+  survives the flatten inline. Locate that content by line range instead.
+
+Re-check by hand before doubting a return: a failed match here reads as a fabricated quote, and
+usually is not.
 
 It locates a string; it does not compare documents. For a diff, strip page furniture line-wise and
 leave the line breaks alone.
