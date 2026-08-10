@@ -74,8 +74,10 @@ Then sweep the other way for test 8, which the keyword list cannot reach.
    option to interoperate across it. Where a MAY changes what a peer sees, is the peer's obligation
    stated?
 
-7. **Keyword in a non-normative context.** A requirement in an example, a note, an appendix, or a
-   Security or Privacy Considerations rationale paragraph. Usually means it belongs in the body.
+7. **Keyword in a non-normative context.** A requirement in an example, a note, or an appendix.
+   Security and Privacy Considerations are not that — they carry requirements routinely. The shape to
+   catch is a rule stated *only* in a rationale paragraph, where a reader cannot tell whether it is a
+   requirement or a restatement of one made elsewhere.
 
 8. **Declarative doing normative work.** Behavioural statements carrying a requirement with no
    keyword. Look hardest at the sentence the specification exists for — it is often the one written
