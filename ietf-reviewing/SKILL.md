@@ -17,6 +17,13 @@ it adds up to. Producing the review itself -- as prose or as issues -- is a sepa
 
 ## Out of scope
 
+**Silence that was not this document's to fill.** A gap is only a gap where the answer was this
+document's to give -- not where it belongs to IANA, a Designated Expert, a deployment, or another
+document. A definition deferred to a companion draft, a normative reference in progress, or work the
+charter puts elsewhere is not missing: say where it went, or narrow the finding to whether this
+document can publish before that one does. A deferral shows up first in the draft's own recent
+commits and references.
+
 **IANA Considerations, as procedure.** Whether the instructions are well-formed, whether the
 template matches the registry, whether IANA will accept them. IANA reviews that itself.
 
@@ -404,7 +411,8 @@ Search whatever the effort has:
 - **The mailing list**, always. A repo holds what was filed; the list holds what was argued.
 - **Minutes**, for anything a meeting resolved.
 
-Then the two scope questions from `Out of scope`.
+Then the two scope questions from `Out of scope`: whose decision was it, and is this IANA's own
+procedure?
 
 Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
 holds but is about something else now, usually a condition the change was agreed under.
@@ -543,17 +551,10 @@ reviewer then drops.
 
 Rank on the tests alone; there is no target number of issues.
 
-Then ask whether it has already been decided, and whether the decision engaged the point. A concern
-the chairs closed with a reason that holds is not an issue however well it passes the two tests
-above. Step 8 worked this out; Step 9 re-ranks from scratch, so carry the disposition forward rather
-than trusting yourself to remember it.
-
-Then ask whose decision it is. Silence is only a gap where the answer was this document's to give --
-not where it belongs to IANA, a Designated Expert, a deployment, or another document. A definition
-deferred to a companion draft in the same WG, a normative reference in progress, or work the charter
-puts elsewhere is not missing. Say where it went and drop the finding, or narrow it to the only
-question left: whether this document can publish before that one does. The draft's own recent
-commits and references are where a deferral shows up first.
+Step 8's gate has already dropped what was settled or out of scope, so do not re-adjudicate. Two
+things come back to you. Whether a closing reason genuinely *engaged* the point is a judgement a
+dispatched pass is poor at -- check the ones it called settled. And a concern it reframed ranks on
+its new shape, not the one you started with.
 
 Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
 them.
