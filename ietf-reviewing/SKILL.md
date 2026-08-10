@@ -839,9 +839,14 @@ message and no shared thread, so nothing may refer to the findings or to "the re
 ## What transfers
 
 *The case* and *Can be resolved if* go over almost verbatim. *Related* and *Caused by* become issue
-links, which is the one thing the tracker does better than prose. *Severity* maps to the repo's own
-labels where it has them -- take its vocabulary, do not invent one. *Confidence* and *Grounding* do
+links, which is the one thing the tracker does better than prose. *Confidence* and *Grounding* do
 not ship; they were for the reviewer.
+
+**Read the repo's labels before filing and use its vocabulary, not your own.** `gh label list` takes
+a second. Most have more in it than severity: an `editorial` label for what needs no WG discussion is
+common, and applying it is how the chairs keep the substantive list readable. Others carry the
+group's live concerns -- a "blocking last call" or a "links to <other draft>" -- and an issue that
+belongs under one is easier to act on for being there.
 
 ## Pull requests
 
