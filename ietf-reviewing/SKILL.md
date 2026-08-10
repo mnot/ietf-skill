@@ -381,6 +381,38 @@ The authors' own statements are the exception -- applicability claims and clarif
 since those often say something the draft does not. Those are about the document, not the record,
 and a concern they hand you is yours.
 
+### Text that changed: find the commit, not the keyword
+
+**Any concern about text that was deleted, weakened or retargeted needs the commit that did it.**
+Searching the tracker by the finding's own vocabulary will miss it: the issue that authorised the
+change is titled in the language of the *decision*, not of the text, so a finding about a charset
+requirement never matches an issue called "review the top-level type descriptions".
+
+The reliable path is the repo, and it is three steps:
+
+```
+git log -S "<a distinctive phrase from the removed text>" -- <draft source>
+gh api repos/<org>/<repo>/commits/<sha>/pulls    # the commit's pull request
+```
+
+then the issue the pull request closes. Read the issue, not just the diff -- it carries the
+condition the change was agreed under, and that is usually where the finding actually lives.
+
+What this turns up, in rough order of how often:
+
+- **The change was agreed, and the finding is dead.** Drop it.
+- **The change was agreed under a condition that was not met** -- a check the issue said to do
+  first, a mitigation proposed alongside. Reopen that issue rather than filing a new one; a new
+  issue loses the framing and reads as though nobody had considered it.
+- **The commit message or pull request body flags its own follow-up** -- *omitted X, should discuss
+  whether it is needed*. If no issue tracks it, that is the finding, and it is stronger than
+  anything you would have written yourself.
+- **Nothing behind it at all.** Now you can say so, and mean it.
+
+Findings on text with a decision behind it are unreliable until you have found the decision. A lens
+reads the document, so it cannot see one, and will report a deliberate removal in the same voice as
+an accidental one.
+
 ### Processing lens returns
 
 A lens you dispatched is working on your behalf: what it returns is yours — including a concern you
@@ -665,11 +697,19 @@ Step 9 says keep every concrete, checkable, quotable one, and that stands.
 they have chosen what to raise, and only on what they chose. Everything below is about
 composition; nothing in it should reach back and change a finding.
 
+Prose is one of two shapes. In a repo-driven group the findings often go to the issue tracker
+instead -- see *Filing issues* at the end.
+
 Rely on the findings. The quotes were verified at Step 8 and re-checking them here buys nothing but
-delay -- the reviewer is waiting, and friction here is what stops them asking next time. The
-exception is narrow: if the Step 8 verification was not yours, because the findings came from a
-context you did not audit, say so once and let the reviewer decide, rather than silently
-re-deriving.
+delay -- the reviewer is waiting, and friction here is what stops them asking next time.
+
+This does not conflict with `ietf-contributing`'s rule against citing what you cannot retrieve. A
+Step 8 quote in the findings *is* retrieved text; that rule is against reconstructing a citation
+from memory. Do not read it as licence to re-verify.
+
+The exception is narrow: if the Step 8 verification was not yours, because the findings came from a
+context you did not audit, say so once and let the reviewer decide. Say it -- do not silently
+re-derive, which spends their time to answer a question they were not asked.
 
 Read `ietf-contributing` first. It governs register, disclosure, and what the sender has to be able
 to defend.
@@ -746,5 +786,75 @@ Double check the review for each of these:
 - Does the quoted text actually support the claim made about it?
 - Does anything read as position-taking without reference to what the document says? Cut it.
 - Have you answered the Step 1 question, in the first two sentences, unambiguously?
+
+---
+
+# Filing issues
+
+The other output shape, in a group that runs its draft from a repo. The three rules at the head of
+*Writing the review* apply unchanged: read `ietf-contributing`, rely on the findings rather than
+re-verifying them, and the human files.
+
+**One at a time, confirmed before each.** Show the reviewer the exact text -- title and body -- and
+file it only when they have approved that one. Never file a batch on a single approval, and never
+file ahead while they are still reading. Approval of one is not approval of the next.
+
+## Search the tracker first
+
+Every finding, against open and closed issues both, before drafting any of them. For anything about
+text that changed, Step 8's `git log -S` walk finds the right issue where a keyword search will not.
+
+- **Already open.** Comment there. Do not file again.
+- **Closed, and the reasoning holds.** Drop the finding. Step 9 asked this; the tracker is where the
+  answer is.
+- **Closed, and the change agreed in it never landed in the text.** Reopen it. A new issue loses the
+  thread that agreed the fix.
+- **The position was argued and rejected.** Reframing to a different ask is fair; refiling the same
+  one is not. Say in the issue that you have read the earlier thread.
+
+## What gets filed as what
+
+| | Issue | Pull request |
+|---|---|---|
+| **Issue** | one each | rarely -- see below |
+| **Comment** | always, ganged or not | optional, where the answer is not in doubt |
+| **Nit** | no | yes, chunked into coherent batches |
+
+A nit whose fix requires choosing between two options is a comment. *These two spellings differ* is
+a nit only if you can say which one goes.
+
+Comments stand alone where each names a section and has a determinate answer, and gang where they
+are editorial or cluster on one section. Twenty filed separately bury the issues; that is what to
+weigh it against.
+
+Each issue carries its own context -- the revision, the section, the quotes. There is no covering
+message and no shared thread, so nothing may refer to the findings or to "the review".
+
+## What transfers
+
+*The case* and *Can be resolved if* go over almost verbatim. *Related* and *Caused by* become issue
+links, which is the one thing the tracker does better than prose. *Severity* maps to the repo's own
+labels where it has them -- take its vocabulary, do not invent one. *Confidence* and *Grounding* do
+not ship; they were for the reviewer.
+
+## Pull requests
+
+Only where the fix is not a decision -- the Step 9 survivability test again. If the text follows
+from something already settled, a pull request saves a round trip. If the fix embodies the decision,
+it front-runs the group and belongs in an issue.
+
+**A pull request against an Issue is a signal you misranked it.** An Issue is a finding where the
+authors have to decide something first; if you can write the text yourself, the decision was already
+made, and it was a Comment.
+
+Open the issue first for anything substantive and reference it from the pull request. Substantive
+text arriving as a pull request with nothing behind it is the pattern Step 1 tells you to flag; do
+not create it.
+
+## The verdict has nowhere to go
+
+A tracker has no slot for the Step 1 answer, and a set of issues without one reads as nits whatever
+is in them. It goes in a covering message to the list, the ballot, or the Last Call comment. Say
+which, rather than letting it drop.
 
 
