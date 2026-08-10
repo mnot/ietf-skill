@@ -69,23 +69,43 @@ say whether the document is ready for the next one. The minutes and the list car
 datatracker does not.
 
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
-the review request carried a note from the AD or chair, read it first -- it usually says what they
-actually want looked at.
+the request carried a note from the AD or chair, read it first -- it usually says what they actually
+want looked at.
 
 **Establish the live revision and stage before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-Read what the gather reports when it finishes. A gather can complete with a source missing -- a
-throttled repo discovery, a skipped fetch -- and still report success. Re-gather what is missing
-before you dispatch anything; a review run without the issue tracker looks exactly like a review run
-against a group that does not use one.
+**Check the corpus's source inventory, not the gather's status.** A gather reports `done` while
+saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
+is absent. The inventory will: `list_corpora`'s trailing `(list · issues · drafts · minutes)`, or
+the `Sources:` line from `overview`. Read it before dispatching anything and know which sources you
+have.
+
+A corpus with no gathered issues is common and is not a defect, but it changes where the record
+lives -- a group can run a 400-issue tracker that was never gathered. A review run without the
+tracker looks exactly like a review run against a group that does not use one, so establish which
+you are in.
 
 ### Directorate reviews
 
 Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is
 different: they are requested for in-progress WG documents, and focus on whether any blocking
 problems are anticipated.
+
+**Look the request up rather than waiting to be handed it.** It carries the team, the review type,
+the deadline, whether anyone has claimed it, and usually a note from the AD or chair.
+
+```
+https://datatracker.ietf.org/api/v1/review/reviewrequest/?doc__name=draft-...&format=json
+```
+
+Use `doc__name`. The obvious `?doc=` returns `{"error": "Invalid resource lookup data provided
+(mismatched type)."}`, which reads like an empty result and will convince you there is no request.
+
+What the reviewer asked for still governs: the lookup informs, it does not repick the question.
+Where the request contradicts the brief -- an *early* review filed against a document they described
+as being at Last Call -- say so and ask.
 
 Most directorates specify guidelines, requirements, and sometimes a review form on their wiki page.
 Directorates are listed at <https://datatracker.ietf.org/review/>, and the wiki is usually linked
@@ -281,9 +301,9 @@ privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and block
 design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
 building protocols with HTTP · `rfc9614.md` partitioning for privacy
 
-Read all thirteen rubrics yourself first -- about 1,200 lines, in two or three batched calls. All
-thirteen at once overflows the tool output and spills to a file you then have to read anyway. Each
-one's `Firing` section is written to be decidable against the draft text.
+Read all thirteen rubrics yourself first -- about 1,200 lines, **four to a call**. They average 5 KB
+each; six at a time is around 30 KB, which overflows the tool output and spills to a file you then
+have to read anyway. Each one's `Firing` section is written to be decidable against the draft text.
 Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
 missed one is not. The one exception: if your reason for being unsure is *another lens probably
 carries this better*, rule it out and record which lens. Where a rubric's own "rarely fires"
@@ -411,13 +431,14 @@ Then two questions per surviving concern:
 
 Search whatever the effort has:
 
-- **Issues and threads** -- `search_corpus` for the concept, `get_issue` to read one out. These are
-  gathered, so do not re-fetch them from the forge: a gathered issue already carries its closing
-  rationale and each participant's role. Where a repo holds several drafts, a per-draft label
-  narrows the sweep -- check how consistently it is applied before relying on it, since a
-  partly-applied label reads as an empty record.
+- **Issues and threads** -- `search_corpus` for the concept, `get_issue` to read one out. Where
+  issues *are* gathered, do not re-fetch them over the network: a gathered issue already carries its
+  closing rationale and each participant's role. Where they are not -- check the inventory, Step 1 --
+  the repo's API is the only route and the cost is real, so budget for it. Where a repo holds several
+  drafts, a per-draft label narrows the sweep; check how consistently it is applied before relying
+  on it, since a partly-applied label reads as an empty record.
 - **Commits and pull requests**, which are *not* gathered. Clone once and the walk below is local;
-  reach for the forge API only for the pull request behind a commit that matters.
+  reach for the repo's API only for the pull request behind a commit that matters.
 - **The revision history** -- diff around the text for the revision that introduced it. This is the
   whole of the change record when there is no repo.
 - **The draft's changes section.** Its absence beside a substantive change is a finding.
