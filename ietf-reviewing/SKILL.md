@@ -389,8 +389,9 @@ breaks alone.
 
 Three failures are the recipe's, not the quote's. A hyphenated compound that wrapped at the hyphen
 will not match: `non-empty` flattens to `non- empty`. Nor will a quote spanning a page boundary. Nor
-will anything inside an ASCII-art table, where flattening runs the cell delimiters and the following
-row together -- locate table content by line range instead. Re-check by hand before doubting a
+will anything carrying a line prefix -- an ASCII-art table's cell delimiters, or the `|` of an
+indented note block -- since flattening leaves the prefix inline. Locate that content by line range
+instead. Re-check by hand before doubting a
 return: a failed match here reads as a fabricated quote, and usually is not.
 
 This checks that the passage is present, not that it is where you say it is, and the same wrapping
@@ -428,6 +429,12 @@ reviews use. They have different economies, so do not apply one's test to anothe
 question, not the sentence. An ambiguity that leaves two implementers building different things is
 an issue even though a sentence fixes it, because the authors have to decide something first. A
 concern where the decision is already made and only the wording is missing is not.
+
+Then ask what breaks if it is not fixed. An issue names an implementation that goes wrong, a
+deployment that fails, or a decision the authors must take and have not. Where the consequence is
+only that the document's own argument is unpersuasive, it is a comment -- the authors can accept or
+reject it and nothing else changes. Both tests have to pass; the first alone will keep findings a
+reviewer then drops.
 
 Rank on the test alone; there is no target number of issues. The findings are a superset that the
 reviewer picks from.
@@ -494,6 +501,7 @@ _only where the draft has a revision history that matters_
 ## Prior concerns
 ## Checked, not raised
 ## Could not obtain
+## Your call
 ```
 
 **Provisional view** -- what you would call it and why, answering the Step 1 question. Mark it as
@@ -504,8 +512,8 @@ instrument -- the IESG has already picked one -- so give it if it helps and lead
 instead.
 
 **Candidate Issues** opens with a one-line index to triage from. Each line: the sections, then the
-claim and what follows from it. Nothing else -- what an issue rests on is *Textual basis*, a few
-lines down, and a compressed copy of it here reads as noise while saying less than the field does.
+claim and what follows from it. Nothing else -- what an issue rests on is *The case*, a few lines
+down, and a compressed copy of it here reads as noise while saying less than the field does.
 
 Without the consequence the line is an observation, and the reader has to open the subsection to
 find out whether they care -- which is what the index exists to save them.
@@ -528,11 +536,12 @@ as a field; the index line above is the compressed version and a third statement
 These fields and no others: an issue that has grown one of its own is telling you something belongs
 in another section. The three marked *only where* are conditional; the rest are always present.
 
-- **Textual basis:** the quotes it rests on, with section numbers -- no commentary.
-- **Argument:** how the quoted text produces the concern, and the strongest answer the authors would
-  give -- a pre-emption already in the draft is not an answer. If the argument needs a fact, that
-  fact needs a quote in *Textual basis*; the argument is not a second evidence base. Do not propose
-  the fix here. Keep it to what a reader needs in order to check the claim.
+- **The case:** the argument, with each quote set off where it is used rather than gathered into a
+  block of its own. Break it into short paragraphs, one move each: what the document says, what that
+  produces, the strongest answer the authors would give. A pre-emption already in the draft is not
+  an answer. Every fact it rests on needs its quote here -- if you cannot quote it, you cannot claim
+  it. Do not propose the fix. Keep it to what a reader needs in order to check the claim, and write
+  it so they can agree or disagree rather than reassemble it.
 - **Can be resolved if:** what would fix it.
 - **Caused by:** only where a prior concern's fix is what created or sharpened this one -- which
   concern, whose fix, and which revision. Name it here rather than restating it under *Prior
@@ -573,6 +582,19 @@ topic. Only what a reader might expect to see raised; not a log of everything yo
 
 **Could not obtain** -- what, and what it means the analysis cannot say.
 
+**Your call** -- the forks only the reviewer can settle. Not a summary: each one is a question with
+a consequence attached.
+
+- A finding resting on an inference rather than on quoted text, and what turns on it.
+- A finding where they have standing you do not -- they closed the issue, edited the RFC, chaired
+  the thread. Say so; do not quietly raise their own point back at them.
+- A finding whose framing commits them to a position they may not want to hold.
+- Anything you could not verify, and what it would change.
+
+Keep it to a few lines. If nothing is genuinely theirs to settle, say that rather than manufacturing
+a list -- a ritual section trains them to skip it, and this is the one section that is asking them
+for something.
+
 Apply the economy test: *would removing this change what the reviewer decides to raise, or how they
 would defend it?*
 
@@ -584,12 +606,22 @@ would defend it?*
 they have chosen what to raise, and only on what they chose. Everything below is about
 composition; nothing in it should reach back and change a finding.
 
+Rely on the findings. The quotes were verified at Step 8 and re-checking them here buys nothing but
+delay -- the reviewer is waiting, and friction here is what stops them asking next time. The
+exception is narrow: if the Step 8 verification was not yours, because the findings came from a
+context you did not audit, say so once and let the reviewer decide, rather than silently
+re-deriving.
+
 Read `ietf-contributing` first. It governs register, disclosure, and what the sender has to be able
 to defend.
 
 Get the conventional form from a recent real review of the type you are writing -- for a
 directorate, one by that team; for a Last Call comment, one from the last-call list. The headings
 below are the directorate convention and will not always fit.
+
+Do not hard-wrap it. Mail clients and archives reflow, and hard breaks survive into quoted replies
+as ragged fragments. Leave each prose paragraph on one line. Quoted draft or RFC text keeps the
+source's own line breaks and indentation -- it is verbatim, and reflowing it changes it.
 
 The review is a selection from the findings, not a rendering of them: it usually carries fewer
 issues than the findings hold. Cut on relevance to the audience and the stage, not to a number.
