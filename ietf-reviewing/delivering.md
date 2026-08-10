@@ -54,10 +54,13 @@ the same obligation to say why -- usually by naming what the document is for. Do
 under the findings, do not phrase it as the absence of objections, and do not let a run of
 clarifications imply a severity the disposition does not support.
 
-On a directorate review the disposition also goes in the datatracker `Result` field, and that is
-one of: `Ready`, `Ready with Nits`, `Ready with Issues`, `Almost Ready`, `On the Right Track`, `Not
-Ready`. Pick the result the document earns; the prose verdict should say the same thing the field
-does.
+On a directorate review the disposition also goes in the datatracker `Result` field. **The values
+are per-team**, so take them from the same recent review you took the form from. Most teams --
+httpdir, artart, tsvart, intdir, dnsdir -- offer `Ready`, `Ready with Nits`, `Ready with Issues`,
+`Almost Ready`, `On the Right Track`, `Not Ready`. secdir and opsdir offer a different set, `Ready`,
+`Has Nits`, `Has Issues`, `Serious Issues`, `Not Ready`, and there are ten values across the series.
+Pick the result the document earns from the set that team actually uses; the prose verdict should
+say the same thing the field does.
 
 **Do not copy all finding contents** -- keep what's relevant to the review type being created. In
 particular *severity* and *confidence* are intended for the reviewer, not the review.

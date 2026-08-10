@@ -28,7 +28,12 @@ commits and references.
 template matches the registry, whether IANA will accept them. IANA reviews that itself.
 
 Instructions to IANA are one-shot. A document replacing another does not restate instructions the
-earlier one already executed -- the registry exists. A missing carry-over is not a finding.
+earlier one already executed -- the registry exists, and not re-creating it is not a finding.
+
+**Reference updates are the exception.** A bis has to ask IANA to repoint the entries it inherits at
+itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and that is a
+real finding -- reviewers do raise it. The rule above is about instructions already *carried out*,
+not about the ones publication newly requires.
 
 Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
 live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
@@ -46,6 +51,9 @@ something still doing work.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
+- **No subagents.** Step 4 is written around dispatch. Without it, run the passes serially in the
+  order they are listed and expect several times the wall-clock. Nothing in the method depends on
+  concurrency -- only the cost does.
 
 ## 1. Establish the review question
 
@@ -365,8 +373,7 @@ In particular read the draft's diffs. Use `rfcdiff --diff --stdout old new`, whi
 headers, footers and form feeds before comparing; the mode matters, because the default writes a
 two-column HTML file and emits nothing. Where a finding needs the before and after text, `--ab-diff
 --stdout` gives labelled OLD/NEW blocks per section instead. (See *Without the tooling* if you do
-not
-have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
+not have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
 concern you did not know to ask for. Diff the current revision against the one
 before it as a matter of course, and go further back only when a concern turns on *when* something
 changed. This step is on the critical path and every extra revision is another read, so when you do
@@ -558,8 +565,7 @@ defeats the obvious attribution check -- `grep -n` on the full quote runs agains
 returns nothing, which reads identically to "wrong section". Bound the section by its heading
 (`grep -n '^4\.1\.'`), then locate the quote inside that range by four to six words taken from the
 middle of a line. A quote that is verbatim and mis-attributed is one a reader cannot follow up, and
-a lens
-return is exactly where that arrives.
+a lens return is exactly where that arrives.
 
 Record the lenses you ruled out without dispatching, with what you checked, and the ones that came
 back not applying or supporting the design. Carry both to the findings so the next reviewer does
@@ -671,8 +677,9 @@ _only where the draft has a revision history that matters_
 
 **Provisional view** -- what you would call it and why, answering the Step 1 question. Mark it as
 yours. Name the datatracker `Result` you would pick whatever the review type; off a directorate
-assignment, flag it as the one you would have picked. The six-value vocabulary says "publish, but
-not this revision" more precisely than a sentence does. In IESG Evaluation, give the `Result` and
+assignment, flag it as the one you would have picked. That vocabulary says "publish, but not this
+revision" more precisely than a sentence does; the values differ per team, so see `delivering.md`
+before naming one. In IESG Evaluation, give the `Result` and
 then say whether you think it warrants a DISCUSS -- that is the instrument at that stage, and it is
 what the reviewer is deciding. Past approval the `Result` is the wrong instrument entirely, since
 the IESG has already picked one, so give it if it helps and lead with the routes instead.
@@ -730,8 +737,9 @@ in another section. The three marked *only where* are conditional; the rest are 
   the adjacency. If the reviewer raises only one, this is what tells them the other's framing
   changes.
 - **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
-  Five is *the document cannot be published like this*; three is *this has to be fixed before it
-  goes out*; one is *worth saying, and the document survives without it*.
+  Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
+  *the authors should fix this before publication, and a reviewer would expect them to*; one is
+  *worth saying, and the document survives without it*.
 - **Confidence:** how confident you are in the issue; scale of one to five ⭐️. Five is *quoted text,
   and the reading is not open to dispute*; three is *the text supports this and another reading is
   available*; one is *I think this is true and cannot show it from the document*. It rates the
@@ -750,8 +758,7 @@ statement. If one needs more than that, it is an issue in disguise.
 **What changed and when** -- where the revision history bears on the findings, and as long as it
 needs to be. Text that was removed, when, and whether anything replaced it; requirements that
 changed strength; whatever the changelog does not record. This is what the *Caused by* fields point
-at.
-Where a change is itself the defect, that is a Candidate Issue like any other -- this
+at. Where a change is itself the defect, that is a Candidate Issue like any other -- this
 section is the context, not a place to keep a finding.
 
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --

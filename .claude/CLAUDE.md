@@ -7,7 +7,7 @@ Be imperative -- don't explain why, stay succint.
 
 Structure: `Scope`, `Firing` (subsections as needed), then lens-specific sections.
 
-`Scope` and `Firing` are the pre-filter's read, across all twelve rubrics at once. Everything below
+`Scope` and `Firing` are the pre-filter's read, across all thirteen rubrics at once. Everything below
 is the dispatched lens's, for one rubric. Put nothing in the first two that only matters after the
 lens fires, and nothing below them that the pre-filter needs.
 
