@@ -542,18 +542,21 @@ These fields and no others: an issue that has grown one of its own is telling yo
 in another section. The three marked *only where* are conditional; the rest are always present.
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
-  block of its own. Break it into short paragraphs, one move each: what the document says, what that
-  produces, the strongest answer the authors would give. Two moves get added often enough to expect
-  them -- what a *neighbouring* document says, where the argument is about the seam between them;
-  and, where the authors' answer is right rather than merely available, a concession followed by
-  what survives it. A pre-emption already in the draft is not an answer. Do not propose the fix.
-  Keep it to what a reader needs in order to check the claim, and write it so they can agree or
-  disagree rather than reassemble it.
+  block of its own. Break it into short paragraphs, one point each: what the document says, what that
+  produces. Where the argument turns on how this document and another fit together, a third -- what
+  the *other* document says. Do not propose the fix. Keep it to what a reader
+  needs in order to check the claim, and write it so they can agree or disagree rather than
+  reassemble it.
 
-  Every fact it rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then
-  re-read each sentence against the quote beside it and check it claims no more. With the quote
-  inline the sentence flows around it and drifts wider than the fragment supports, and the fragment
-  sitting right there makes the drift hard to see.
+  Answer the authors' best objection only where it changes the ask, and in a clause rather than a
+  paragraph. A pre-emption already in the draft is not an answer.
+
+  Quote only what the argument uses, and do not restate a quote in prose beside it. Every fact it
+  rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then re-read each
+  sentence against the quote beside it and check it claims no more.
+
+  Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
+  worth the words. *Severity* carries that, or nothing does.
 - **Can be resolved if:** what would fix it.
 - **Caused by:** only where a prior change created or sharpened this one -- which change, answering
   what, and which revision. It is often not a fix for this concern at all: a pull request answering
@@ -683,7 +686,15 @@ A short review means the document is fine or it is hopeless; the long ones are t
 middle. Use that as a sanity check on where yours sits, not as a budget.
 
 The test is per-sentence: *would removing this change what the recipient does?* If not, cut it.
-Over-length comes from padding the argument, not from having found a lot of things.
+Over-length comes from padding the argument, not from having found a lot of things. Three patterns
+produce most of it:
+
+- **Justifying the finding to the reviewer** -- why this is an issue rather than a nit, why it is
+  worth raising. That was the findings' job and it is done.
+- **Pre-empting the authors at length.** A clause where their best objection changes the ask;
+  otherwise nothing.
+- **Quoting past what the argument uses, then restating the quote in prose.** Trim the quote to what
+  the sentence turns on, and let it stand.
 
 Delete prose. Do not delete defects. A finding the reviewer chose to raise stays in, even if the
 prose around it goes.
