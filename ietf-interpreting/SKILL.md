@@ -64,8 +64,7 @@ scrutiny.
 Semantic search answers "what was said about X"; it is structurally bad at
 "was X ever said". Retrieval ranks by similarity, so a query coming back
 empty means nothing scored close — not that the words are absent from the
-record. A claim that something was never said, never raised, or never
-objected to cannot rest on a semantic search returning nothing.
+record. A claim cannot rest on a semantic search returning nothing.
 
 The negative needs an exact-string sweep — `grep_corpus` where the tooling
 provides one, otherwise whatever literal search is available — and the claim
