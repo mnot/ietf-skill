@@ -57,10 +57,10 @@ clarifications imply a severity the disposition does not support.
 On a directorate review the disposition also goes in the datatracker `Result` field. **The values
 are per-team**, so take them from the same recent review you took the form from. Most teams --
 httpdir, artart, tsvart, intdir, dnsdir -- offer `Ready`, `Ready with Nits`, `Ready with Issues`,
-`Almost Ready`, `On the Right Track`, `Not Ready`. secdir and opsdir offer a different set, `Ready`,
-`Has Nits`, `Has Issues`, `Serious Issues`, `Not Ready`, and there are ten values across the series.
-Pick the result the document earns from the set that team actually uses; the prose verdict should
-say the same thing the field does.
+`Almost Ready`, `On the Right Track`, `Not Ready`. secdir and opsdir offer a different set: `Ready`,
+`Has Nits`, `Has Issues`, `Serious Issues`, `Not Ready`. Others differ again, so check rather than
+assume. Pick the result the document earns from the set that team actually uses; the prose verdict
+should say the same thing the field does.
 
 **Do not copy all finding contents** -- keep what's relevant to the review type being created. In
 particular *severity* and *confidence* are intended for the reviewer, not the review.
@@ -75,7 +75,7 @@ just outside the scope you declared, say it and mark it out of lane.
 ### Cut what does not earn its place
 
 A short review means the document is fine or it is hopeless; the long ones are the salvageable
-middle. Use that as a sanity check on where yours sits, not as a budget.
+middle. Use it as a sanity check on where yours sits, never as a budget.
 
 The test is per-sentence: *would removing this change what the recipient does?* If not, cut it.
 Over-length comes from padding the argument, not from having found a lot of things. Three patterns
@@ -168,5 +168,3 @@ not create it.
 A tracker has no slot for the Step 1 answer, and a set of issues without one reads as nits whatever
 is in them. It goes in a covering message to the list, the ballot, or the Last Call comment. Say
 which, rather than letting it drop.
-
-

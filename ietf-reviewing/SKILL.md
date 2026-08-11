@@ -13,36 +13,25 @@ they are accountable for every word of it. See `ietf-contributing`.
 So the default output of these steps is **findings**, not a finished review: the concerns,
 what each rests on, and what would resolve it. The reviewer decides what to raise and what
 it adds up to. Producing the review itself -- as prose or as issues -- is a separate step in
-`delivering.md`, and it comes after those decisions rather than before them.
+`delivering.md`, taken after those decisions.
+
+## How the steps run
+
+Ten steps, but not ten in sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7 run while
+those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets at Step 8.
+
+Four files sit beside this one, each read at the point it is called for:
+
+- `stages.md` -- reviews of a particular kind: a directorate assignment, a bis, a revision answering
+  a closed round, a document past IESG approval. Step 1.
+- `quoting.md` -- checking a quote against the text it came from. Step 8.
+- `findings.md` -- the shape of the output. Step 10.
+- `delivering.md` -- writing the review, or filing issues. Optional, and after Step 10.
 
 ## Out of scope
 
-**Silence that was not this document's to fill.** A gap is only a gap where the answer was this
-document's to give -- not where it belongs to IANA, a Designated Expert, a deployment, or another
-document. A definition deferred to a companion draft, a normative reference in progress, or work the
-charter puts elsewhere is not missing: say where it went, or narrow the finding to whether this
-document can publish before that one does. A deferral shows up first in the draft's own recent
-commits and references.
-
-**IANA Considerations, as procedure.** Whether the instructions are well-formed, whether the
-template matches the registry, whether IANA will accept them. IANA reviews that itself.
-
-Instructions to IANA are one-shot. A document replacing another does not restate instructions the
-earlier one already executed -- the registry exists, and not re-creating it is not a finding.
-
-**Reference updates are the exception.** A bis has to ask IANA to repoint the entries it inherits at
-itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and that is a
-real finding -- reviewers do raise it. The rule above is about instructions already *carried out*,
-not about the ones publication newly requires.
-
-Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
-live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
-document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
-handle these entries" is not a finding.
-
-The **policy** is in scope and is a different thing: the registration policy, the criteria, who
-decides, what governs the registry from here. A replacing document that drops those has dropped
-something still doing work.
+Neither of these is a finding: silence that was not this document's to fill, and IANA's own
+procedure. Both are gates at Step 8, stated in full there.
 
 ## Without the tooling
 
@@ -95,90 +84,24 @@ lives -- a group can run a 400-issue tracker that was never gathered. A review r
 tracker looks exactly like a review run against a group that does not use one, so establish which
 you are in.
 
-### Directorate reviews
+### Reviews of a particular kind
 
-Directorate reviews are usually made at the IETF Last Call stage. An *early* directorate review is
-different: they are requested for in-progress WG documents, and focus on whether any blocking
-problems are anticipated.
-
-**Look the request up rather than waiting to be handed it.** It carries the team, the review type,
-the deadline, whether anyone has claimed it, and usually a note from the AD or chair.
-
-```
-https://datatracker.ietf.org/api/v1/review/reviewrequest/?doc__name=draft-...&format=json
-```
-
-Use `doc__name`. The obvious `?doc=` returns `{"error": "Invalid resource lookup data provided
-(mismatched type)."}`, which reads like an empty result and will convince you there is no request.
-
-What the reviewer asked for still governs: the lookup informs, it does not repick the question.
-Where the request contradicts the brief -- an *early* review filed against a document they described
-as being at Last Call -- say so and ask.
-
-Most directorates specify guidelines, requirements, and sometimes a review form on their wiki page.
-Directorates are listed at <https://datatracker.ietf.org/review/>, and the wiki is usually linked
-from the datatracker "about" page. Take the guidelines and requirements here -- they say what that
-team wants looked at. The form is for the writing step, if a review gets written at all.
-
-### Revisions of a published document (bis)
-
-Establish what the document obsoletes or updates. Diff against each of those, not only against the
-previous revision.
-
-Check the standing-document graph. A BCP or STD usually holds several RFCs; obsoleting some leaves
-the rest in place, still referencing what was replaced.
-
-Treat a missing changes section as a finding.
-
-Compare requirement strength keyword by keyword. A MUST restated as a declarative sentence is a
-weakening no prose diff shows.
-
-Ask where every deleted requirement went. Where the document says it now lives elsewhere -- a
-registry, another RFC -- fetch that and confirm it is there.
-
-### Revisions answering a closed review round
-
-Where the current revision was written to answer a round that has closed -- a WGLC, a directorate
-review, an IESG ballot -- do two things before anything else.
-
-Diff it against the revision the round read. New text has been reviewed by nobody, and a document
-answering reviews is where new text arrives.
-
-Check what was agreed and did not land. A closed issue or an approved pull request that never merged
-is invisible from the document.
-
-**Then the other direction, which is more common: the repo ahead of the datatracker.** Everything
-merged, nothing published. Diff the published revision against `main` and read the commits since.
-
-**A review is of one document.** Where the two have diverged materially and the request does not say
-which, stop and ask. Do not review both, and do not pick for them -- a review of the wrong revision
-is wasted, and which one they want is not inferable from the draft.
-
-Once the target is settled, note a *substantive* change with no issue, pull request or thread behind
-it as context, not as a process complaint: the WG may not know it moved. It belongs in the covering
-message, never in a filed issue -- there it reads as a complaint about the editors however it is
-worded.
-
-### Post-IESG approval
-
-**Past IESG approval, sort findings by route rather than by severity.** "Is there a blocking
-problem?" is calibrated to a decision already taken: answer no and the review says nothing, answer
-yes and you are asking for a recall, which is a cost borne by people other than you. The three
-routes are AUTH48 or an RFC Editor note; pulling the document back; and an erratum or the next
-revision. Say which one each finding is for.
+Four kinds carry extra work at this step, in `stages.md`: a directorate assignment, a revision of a
+published document, a revision answering a review round that has closed, and a document already
+approved by the IESG. Read the section that applies before going on.
 
 ## 2. Read the draft cold
 
 Read the entire draft without consulting anything else. Keep each concern found as a record with
 four fields, filled when you create it:
 
-- **ID** — C1, C2, … Keep the id if the concern becomes an issue; the mapping is how you show your
+- **ID** -- C1, C2, … Keep the ID if the concern becomes an issue; the mapping is how you show your
   work.
-- **Claim** — one sentence about the document.
-- **Basis** — the quotes it rests on, with section numbers. For an absence, what stands in its place
+- **Claim** -- one sentence about the document.
+- **Basis** -- the quotes it rests on, with section numbers. For an absence, what stands in its place
   and where you expected the missing thing to be; the search that confirms it belongs to Step 8,
   since the cold read is not consulting anything yet.
-- **From** — where it came from: the cold read, the charter, a named lens, a question of your own.
+- **From** -- where it came from: the cold read, the charter, a named lens, a question of your own.
 
 Fill nothing else yet. Severity is calibrated against the whole set, and a resolution written before
 you understand the problem is one you will defend out of sunk cost.
@@ -197,7 +120,7 @@ the concern anyway. Better still, get the text and cite by section.
 
 ## 3. Verify the draft's fit to the venue
 
-_Fire this and the Step 4 dispatches together. Abandon them if this step ends the review._
+_Abandon the Step 4 dispatches if this step ends the review._
 
 If this is a proposal to or an adopted draft of an active Working Group, that group's charter is a
 primary artefact and the draft should be evaluated within it. If the draft is out of defined scope
@@ -208,8 +131,8 @@ should go.
 
 ### The institutional questions
 
-Ask each of these questions based upon the cold read and the charter, adding concerns as
-appropriate.
+Ask each of these questions against the cold read and the charter. Each one the document does not
+answer is a concern.
 
 - Does something this depends on live in another SDO, and if so, what is its status? Who holds
   change control over the semantics?
@@ -220,7 +143,7 @@ appropriate.
 - What is the incremental deployment story, and what does the first implementer get?
 
 On an adoption or DISPATCH review, consider: is the IETF the right venue for this work, and is the
-necessary locus of expertise here? Add concerns as appropriate.
+necessary locus of expertise here? Add a concern where the answer is not clearly yes.
 
 ## 4. Dispatch tasks
 
@@ -228,9 +151,9 @@ necessary locus of expertise here? Add concerns as appropriate.
 and where it came from, the question you took from the table, which sources exist, and the lenses
 going out. Then the estimate -- fifteen to thirty minutes, longer if a gather has to run first.
 
-This is not courtesy. Step 4 is where the cost is, and everything that makes a run worthless is
-settled before it: the wrong revision, the wrong document, the wrong question. Saying them out loud
-is the last cheap moment to be corrected.
+Step 4 is where the cost is, and everything that makes a run worthless is settled before it: the
+wrong revision, the wrong document, the wrong question. Saying them out loud is the last cheap
+moment to be corrected.
 
 _Do not dispatch A until any gather kicked off in Step 1 has completed. Nothing in B needs the
 gather -- send it regardless._
@@ -240,10 +163,8 @@ run, perform Steps 5-7.
 
 Three things go out immediately: **A**, the **actor pass**, and **`bcp14.md`** -- none needs more
 than the cold read, and `bcp14.md` always fires, so there is nothing to pre-filter. The remaining
-lenses wait on the rubric read, which is what you do while those three run. Do not wait on the actor
-table -- dispatch them when the prologue is done, before you start Step 5.
-
-Everything meets at Step 8.
+lenses wait on the rubric read, which is what you do while those three run; send them as soon as it
+is done, before you start Step 5.
 
 ### A. Research other views
 
@@ -255,7 +176,7 @@ context. Split the work:
 - ballots (none before IESG processing), issues, the repo
 - meeting minutes and transcripts
 
-Tell each what the others have. Without it they will reach for the same artefacts — the ballot file
+Tell each what the others have. Without it they will reach for the same artefacts -- the ballot file
 reads like list traffic, and a Last Call thread reads like a review.
 
 Give each a sentence on what the draft is **and what stage it is at**, then your concerns as
@@ -268,7 +189,7 @@ following guidance:
 - Argument threads are expensive: go into one only when a concern turns on what was said there.
 - Quote any statement about who controls, decides, benefits from, or is bound by the mechanism,
   whoever made it. These are seldom in the document.
-- Stop when a source is stale, empty or absent, and to say so. An empty source is an answer.
+- Stop when a source is stale, empty or absent, and say so -- an empty source is an answer.
 
 On an adoption or DISPATCH review, add a question: who has said they will implement and deploy?
 Whether the parties who would *have* to implement it are among them, and whether that adds up to
@@ -300,11 +221,8 @@ It returns the table and the absences. On a short draft ask for the absences and
 -- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
 ranking is yours -- see Step 6.
 
-Stage the table to a file when it lands. The lenses take it by path, as they take the draft text.
-If it lands mid-prologue, finish the rubrics first -- `rfc8890.md` then goes out a beat behind the
-others, which costs less than abandoning a batched read. Do not assume it is the fast one: it has
-come back after the first lens returns, so dispatch `rfc8890.md` when the table arrives rather than
-waiting on a moment that has passed.
+Stage the table to a file when it lands; the lenses take it by path, as they take the draft text.
+Only one of them waits on it -- see below.
 
 #### The lenses
 
@@ -317,22 +235,20 @@ privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and block
 design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
 building protocols with HTTP · `rfc9614.md` partitioning for privacy
 
-Read all thirteen rubrics yourself first -- about 1,200 lines, **four to a call**. They average 5 KB
-each; six at a time is around 30 KB, which overflows the tool output and spills to a file you then
-have to read anyway. Each one's `Firing` section is written to be decidable against the draft text.
-Where a rubric leaves you unsure, dispatch: the cost of a wasted lens is small, the cost of a
-missed one is not. The one exception: if your reason for being unsure is *another lens probably
-carries this better*, rule it out and record which lens. Where a rubric's own "rarely fires"
-language pulls against that, the rubric wins.
+Read every rubric yourself first, **four to a call** -- batched wider, the output overflows and
+spills to a file you then have to read anyway.
 
-Hand each lens the path to the actor table alongside the draft text, if it has landed by then. Only
-`rfc8890.md` needs it -- its fire test depends on the table outright -- so hold that one back and
-dispatch the rest without waiting. If the table lands while you are still reading the rubrics, which
-is the usual case, send it with the others.
+Each one's `Firing` section is written to be decidable against the draft text. Where a rubric leaves
+you unsure, dispatch it: a wasted lens costs little and a missed one costs a finding. Two things
+override that default. If your reason for being unsure is *another lens probably carries this
+better*, rule it out and record which lens. And where the rubric's own "rarely fires" language says
+this is not its case, follow the rubric.
 
-`bcp14.md` went out at the top of the step. It is the longest -- it sweeps every requirement rather
-than reading for one concern -- so do not hold it for the actor table either; pass that only if it
-is already there.
+**The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
+Hold that one and dispatch the rest; if the table has landed by the time you finish the rubrics,
+which is the usual case, send it with them. It is not reliably the first thing back, so dispatch
+`rfc8890.md` when it arrives rather than holding the batch for it. Every other lens, `bcp14.md`
+included, takes the table only if it is already in hand.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.
@@ -361,12 +277,12 @@ Each reads its rubric and returns:
 
 ## 5. Review related material
 
-Write down what you currently expect the answer to the Step 1 question to be. This is not the
-verdict — that is Step 9, and it has a specification. It is here only so you notice when something
-moves it, and can say what moved it.
+Write down what you currently expect the answer to the Step 1 question to be. The verdict is Step 9
+and has a specification; this is here only so you notice when something moves your expectation, and
+can say what moved it.
 
 Then, probe the charter, the slides, prior revisions, related and competing drafts, the author's
-introductory mail, and the referenced specifications a concern of yours actually turns on — just
+introductory mail, and the referenced specifications a concern of yours actually turns on -- just
 those sections, not the entire reference list.
 
 In particular read the draft's diffs. Use `rfcdiff --diff --stdout old new`, which strips page
@@ -377,14 +293,14 @@ not have it.) A section deleted two revisions ago, or a slide the draft does not
 concern you did not know to ask for. Diff the current revision against the one
 before it as a matter of course, and go further back only when a concern turns on *when* something
 changed. This step is on the critical path and every extra revision is another read, so when you do
-go back, grep the revisions for the one string (flattened, per Step 8) rather than diffing them
+go back, grep the revisions for the one string (flattened, per `quoting.md`) rather than diffing them
 pairwise.
 
-If you have reviewed this draft before, your own prior findings are an input — but after the cold
+If you have reviewed this draft before, your own prior findings are an input -- but after the cold
 read, not before it. Anything on that list which did not reappear either gets re-derived or gets
 dropped with a reason. A concern does not survive on the strength of having been raised once.
 
-Record what you could not obtain. A gap is a limit on your review, not an absence in the work.
+Record what you could not obtain, and what it stops the review from concluding.
 
 ## 6. Rank the actors
 
@@ -410,7 +326,7 @@ Each question you are left with is a new concern. Add it as the question rather 
 
 ## 8. Assess disposition
 
-For each concern found, assess its disposition based upon the answers you receive:
+For each concern, assess its disposition from the answers you receive:
 
 - Already raised elsewhere: note that.
 - Answered by the author: evaluate their answer.
@@ -435,9 +351,34 @@ and a concern they hand you is yours.
 The lenses read only the draft, so a finding arrives not knowing whether the point has already been
 raised, decided or ruled elsewhere. Close that here, over **every** concern.
 
-**Start with the two scope questions from `Out of scope`** -- whose decision was it, and is this
-IANA's own procedure? They need nothing fetched, and they drop concerns before you spend anything
-on them.
+**Start with the two scope questions.** Neither needs anything fetched, and they drop concerns
+before you spend anything on them.
+
+**Was the silence this document's to fill?** A gap is only a gap where the answer was this
+document's to give -- not where it belongs to IANA, a Designated Expert, a deployment, or another
+document. A definition deferred to a companion draft, a normative reference in progress, or work the
+charter puts elsewhere is not missing: say where it went, or narrow the finding to whether this
+document can publish before that one does. A deferral shows up first in the draft's own recent
+commits and references.
+
+**Is this IANA's own procedure?** Whether the instructions are well-formed, whether the template
+matches the registry, whether IANA will accept them -- IANA reviews that itself.
+
+Instructions to IANA are one-shot. A document replacing another does not restate instructions the
+earlier one already executed; the registry exists, and not re-creating it is not a finding.
+
+Reference updates are the exception. A bis has to ask IANA to repoint the entries it inherits at
+itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and reviewers
+do raise it. The rule above covers instructions already *carried out*, not the ones publication
+newly requires.
+
+Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
+live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
+document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
+handle these entries" is not a finding.
+
+The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
+registry from here. A replacing document that drops those has dropped something still doing work.
 
 Then two questions per surviving concern:
 
@@ -470,10 +411,10 @@ Dispatch it. Hand over the concerns and the sources, and require evidence per ve
 commit, revision, message URL.
 
 What the gate returns changes with how much record exists. Past Last Call, with years of issues, it
-prunes -- half, on the run this came from. On a young document it kills nothing, and the product is
-the opposite: **being able to say a concern has never been raised by anyone, anywhere, under any
-name.** That is what licenses a verdict against the authors' own account of how settled the document
-is. Record the silence as deliberately as you would record a decision.
+prunes hard. On a young document it kills nothing, and the product is the opposite: **being able to
+say a concern has never been raised by anyone, anywhere, under any name.** That is what licenses a
+verdict against the authors' own account of how settled the document is. Record the silence as
+deliberately as you would record a decision.
 
 ### Text that changed: find the commit, not the keyword
 
@@ -501,7 +442,7 @@ What this turns up, in rough order of how often:
 - **The commit message or pull request body flags its own follow-up** -- *omitted X, should discuss
   whether it is needed*. If no issue tracks it, that is the finding, and it is stronger than
   anything you would have written yourself.
-- **Nothing behind it at all.** Now you can say so, and mean it.
+- **Nothing behind it at all.** Now you can say so.
 
 Findings on text with a decision behind it are unreliable until you have found the decision. A lens
 reads the document, so it cannot see one, and will report a deliberate removal in the same voice as
@@ -510,62 +451,24 @@ an accidental one.
 **The originating issue is not the whole answer.** For text that was *added*, the issue that added
 it is easy to find and often says nothing about your concern -- the question you are raising was
 settled next door. Search the tracker for the *concept*, not your own words for it, and read the
-adjacent issues out. A finding about a stranded contact address was settled in one issue titled
-about an unresponsive change controller and another about whether a mailing list can be a contact.
+adjacent issues out. A finding about a stranded contact address can be settled in an issue titled
+about an unresponsive change controller, and in another about whether a mailing list can be a
+contact -- neither of which matches the words of the finding.
 
 ### Processing lens returns
 
-A lens you dispatched is working on your behalf: what it returns is yours — including a concern you
-did not have before — and you carry it under your own name.
+A lens you dispatched is working on your behalf: what it returns is yours -- including a concern you
+did not have before -- and you carry it under your own name.
 
 **Never cite a lens you did not read.** Anything you want to cite that no lens returned, open
 yourself. A passage returned by the lens that read it is citable. A passage *described* by a lens
-that did not read it is not -- lenses cross-refer each other, and second-hand is second-hand. A
-rubric is a citable source about itself: recording that a lens does not fire because its rubric
+that did not read it is not: lenses cross-refer each other, and a description is not the source. A
+rubric is a citable source about itself -- recording that a lens does not fire because its rubric
 names this as a non-case needs no reading of the RFC. The RFC's own words do.
 
-Spot-check the quotes your findings rest on against the files before anything goes out. This
-applies to the draft text you hand the lenses: copy it and you are the extraction bug, so check
-what comes back against the authoritative fetch.
-
-A wrapped quote will not match a raw grep -- the text is there, the newline is not in your quote.
-Flatten first:
-
-```
-tr -s ' \n\f' ' ' < FILE | grep -o -F 'the quoted passage'
-```
-
-Use it as written rather than improvising something that also strips page headers and footers: the
-elaborate version is easy to get subtly wrong and the damage is silent.
-
-Four failures are the recipe's, not the quote's:
-
-- **Double spacing.** `-s` squeezes runs, so the two spaces after a full stop collapse to one. A
-  quote copied verbatim from a double-spaced source then fails -- squeeze the quote the same way.
-- **A hyphenated compound wrapped at the hyphen.** `non-empty` flattens to `non- empty`. Where the
-  thing under review is itself hyphenated, as a field name usually is, every wrapped quote of it
-  fails; expect that before doubting the return.
-- **A quote spanning a page boundary.** Nine of the twelve reference texts carry page furniture, as
-  does every paginated draft. Quote within a paragraph.
-- **A line prefix** -- an ASCII table's cell delimiters, the `|` of an indented note block -- which
-  survives the flatten inline. Locate that content by line range instead.
-
-Re-check by hand before doubting a return: a failed match here reads as a fabricated quote, and
-usually is not.
-
-It locates a string; it does not compare documents. For a diff, strip page furniture line-wise and
-leave the line breaks alone.
-
-Where a case quotes more than one document -- the draft and an RFC it extends, say -- check each
-quote against the right file, not just against some file on disk. Both are present, so a match
-proves the string exists somewhere and not that you attributed it correctly.
-
-This checks that the passage is present, not that it is where you say it is, and the same wrapping
-defeats the obvious attribution check -- `grep -n` on the full quote runs against the raw file and
-returns nothing, which reads identically to "wrong section". Bound the section by its heading
-(`grep -n '^4\.1\.'`), then locate the quote inside that range by four to six words taken from the
-middle of a line. A quote that is verbatim and mis-attributed is one a reader cannot follow up, and
-a lens return is exactly where that arrives.
+Spot-check the quotes your findings rest on against the files before anything goes out, following
+`quoting.md`. This applies to the draft text you hand the lenses: copy it and you are the extraction
+bug, so check what comes back against the authoritative fetch.
 
 Record the lenses you ruled out without dispatching, with what you checked, and the ones that came
 back not applying or supporting the design. Carry both to the findings so the next reviewer does
@@ -595,13 +498,17 @@ question, not the sentence. An ambiguity that leaves two implementers building d
 an issue even though a sentence fixes it, because the authors have to decide something first. A
 concern where the decision is already made and only the wording is missing is not.
 
-Then ask what breaks if it is not fixed. An issue names a decision the authors must take and have
-not, an implementation that goes wrong, or a deployment that fails. Any one of the three is enough,
-and the first is the one that gets overlooked -- it is the least vivid, and a document that has
-simply not promised anything either way breaks nothing you can point at. Where the consequence is
-only that the document's own argument is unpersuasive, it is a comment: the authors can accept or
-reject it and nothing else changes. Both tests have to pass; the first alone will keep findings a
-reviewer then drops.
+Then ask what breaks if it is not fixed. An issue names one of three things: a decision the authors
+must take and have not, an implementation that goes wrong, or a deployment that fails. Any one is
+enough.
+
+Watch for the first. A document that has simply not promised anything either way breaks nothing you
+can point at, so an undecided question is the easiest of the three to talk yourself out of.
+
+Where the consequence is only that the document's own argument is unpersuasive, it is a comment: the
+authors can accept or reject it and nothing else changes.
+
+Both tests have to pass. The survivability test alone will keep findings a reviewer then drops.
 
 Rank on the tests alone; there is no target number of issues.
 
@@ -644,155 +551,11 @@ Expect one or two at Step 10, and count them as findings rather than rework.
 
 ## 10. Assemble the findings
 
-This is the output. It is not a review: it is what a reviewer needs in order to decide what to
-raise, and to defend it once raised.
+The output. Its shape is specified in `findings.md` -- follow it. Each issue is a record you already
+have, merged, chained and calibrated at Step 9; assembling is rendering, and fresh thinking here
+means Step 9 is unfinished.
 
-Each issue is a record you already have, merged, chained and calibrated at Step 9. Assembling is
-rendering; fresh thinking here means Step 9 is unfinished.
-
-Lists, not tables -- this gets read in a text editor as often as anywhere that renders markdown.
-Use a table only where the content is genuinely a matrix.
-Headings in this order; levels shift with context. Drop the qualifiers when the review is written,
-and then only for what the reviewer chose.
-
-```
-## Provisional view
-## Candidate Issues
-
-_one-line index, then a subsection each_
-
-### I1. <the concern, in one sentence>
-
-## Potential Comments
-## Observed Nits
-## What changed and when
-
-_only where the draft has a revision history that matters_
-
-## Prior concerns
-## Checked, not raised
-## Could not obtain
-## Your call
-```
-
-**Provisional view** -- what you would call it and why, answering the Step 1 question. Mark it as
-yours. Name the datatracker `Result` you would pick whatever the review type; off a directorate
-assignment, flag it as the one you would have picked. That vocabulary says "publish, but not this
-revision" more precisely than a sentence does; the values differ per team, so see `delivering.md`
-before naming one. In IESG Evaluation, give the `Result` and
-then say whether you think it warrants a DISCUSS -- that is the instrument at that stage, and it is
-what the reviewer is deciding. Past approval the `Result` is the wrong instrument entirely, since
-the IESG has already picked one, so give it if it helps and lead with the routes instead.
-
-**Candidate Issues** opens with a one-line index to triage from. Each line: the sections, then the
-claim and what follows from it. Nothing else -- what an issue rests on is *The case*, a few lines
-down, and a compressed copy of it here reads as noise while saying less than the field does.
-
-Without the consequence the line is an observation, and the reader has to open the subsection to
-find out whether they care -- which is what the index exists to save them.
-
-Close each line with the ratings -- 🔥 severity, ⭐️ confidence, different glyphs so the pair reads
-without a legend. They are what decides which issue a reviewer opens first.
-
-- **I1** (§3.1, §6) Mandates a fixed hostname label, so an operator cannot name their own host.
-  🔥4/⭐️5
-- **I2** (§5) What a client may conclude from a failure is never stated, so two implementations
-  diverge. 🔥3/⭐️4
-- **I3** (§4.2) The retry bound went in -06 and nothing replaced it, so the limit is now unstated.
-  🔥2/⭐️5
-
-Then a subsection per issue, as labelled fields rather than paragraphs:
-
-The heading is the concern -- one sentence, stated as a claim about the document. Do not restate it
-as a field.
-These fields and no others: an issue that has grown one of its own is telling you something belongs
-in another section. The three marked *only where* are conditional; the rest are always present.
-
-- **The case:** the argument, with each quote set off where it is used rather than gathered into a
-  block of its own. Break it into short paragraphs, one point each: what the document says, what that
-  produces. Where the argument turns on how this document and another fit together, a third -- what
-  the *other* document says. Do not propose the fix. Keep it to what a reader
-  needs in order to check the claim, and write it so they can agree or disagree rather than
-  reassemble it.
-
-  Answer the authors' best objection only where it changes the ask, and in a clause rather than a
-  paragraph. A pre-emption already in the draft is not an answer.
-
-  Quote only what the argument uses, and do not restate a quote in prose beside it. Every fact it
-  rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then re-read each
-  sentence against the quote beside it and check it claims no more.
-
-  That covers facts about anything, not just the draft: what a registry holds, what another RFC
-  says, who wrote what and when. Fetch and read the source; recall is not a basis.
-
-  Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
-  worth the words. *Severity* carries that, or nothing does.
-- **Can be resolved if:** what would fix it.
-- **Caused by:** only where a prior change created or sharpened this one -- which change, answering
-  what, and which revision. It is often not a fix for this concern at all: a pull request answering
-  a different issue that broke something in passing, or a review fix placed above text it
-  contradicts. Name it here rather than restating it under *Prior concerns*.
-- **Related:** only where another issue bears on this one without having caused it -- two findings
-  on one mechanism that are not one decision, so the merge rule keeps them apart. Name the id and
-  the adjacency. If the reviewer raises only one, this is what tells them the other's framing
-  changes.
-- **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
-  Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
-  *the authors should fix this before publication, and a reviewer would expect them to*; one is
-  *worth saying, and the document survives without it*.
-- **Confidence:** how confident you are in the issue; scale of one to five ⭐️. Five is *quoted text,
-  and the reading is not open to dispute*; three is *the text supports this and another reading is
-  available*; one is *I think this is true and cannot show it from the document*. It rates the
-  reading, not the fate -- a finding can be five stars on the text and still be settled, out of
-  scope, or answered elsewhere.
-- **Grounding:** only where confidence is short of full -- the reason it is short, and what would
-  change your mind. An inference rather than the quoted text; or a source you could not read, named.
-
-Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving early.
-
-**Potential Comments**, one bullet each: the section, the quoted text, then one question or one flat
-statement. If one needs more than that, it is an issue in disguise.
-
-**Observed Nits**, one line each.
-
-**What changed and when** -- where the revision history bears on the findings, and as long as it
-needs to be. Text that was removed, when, and whether anything replaced it; requirements that
-changed strength; whatever the changelog does not record. This is what the *Caused by* fields point
-at. Where a change is itself the defect, that is a Candidate Issue like any other -- this
-section is the context, not a place to keep a finding.
-
-**Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
-addressed, partly, unaddressed, or answered on the list without a text change.
-
-**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a concern
-the draft's own text refuses, an objection that is about the topic. Only what a reader might expect
-to see raised; not a log of everything you thought about.
-
-A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
-run of issues reads as an attack on the approach, and the supporting results are what stops it.
-
-**Could not obtain** -- what, and what it means the analysis cannot say.
-
-**Your call** -- the forks only the reviewer can settle. Not a summary: each one is a question with
-a consequence attached.
-
-- A finding resting on an inference rather than on quoted text, and what turns on it.
-- A finding where they have standing you do not -- they closed the issue, edited the RFC, chaired
-  the thread. Say so; do not quietly raise their own point back at them.
-- A finding whose framing commits them to a position they may not want to hold.
-- Anything you could not verify, and what it would change.
-
-Keep it to a few lines. If nothing is genuinely theirs to settle, say that rather than manufacturing
-a list -- a ritual section trains them to skip it, and this is the one section that is asking them
-for something.
-
-Apply the economy test to *Checked, not raised* and *Your call*: would removing this change what
-the reviewer decides to raise, or how they would defend it? It does not govern Comments and Nits --
-Step 9 says keep every concrete, checkable, quotable one, and that stands.
-
----
-
-# Delivering the review
+## Delivering the review
 
 **Optional, and second.** When the reviewer asks for output -- prose, or issues against the
 draft's repo -- read `delivering.md` beside this file and follow it. Do it only after they have
