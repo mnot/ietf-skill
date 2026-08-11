@@ -47,6 +47,16 @@ procedure. Both are gates at Step 8, stated in full there.
   order they are listed and expect several times the wall-clock. Nothing in the method depends on
   concurrency -- only the cost does.
 
+## RFC text
+
+Wherever a step says to fetch, open, or read an RFC: `get_rfc_section` returns a section by
+number, and `search_rfc_text` finds the section when the number is unknown. The lens RFCs are
+also shipped beside their rubrics -- each rubric's **Text:** line names its copy -- and are the
+fallback without `ietf-llm`. For any other RFC without `ietf-llm`, use the plain-text file at
+`https://www.rfc-editor.org/rfc/rfcNNNN.txt`.
+
+Name this route in every dispatch that may need RFC words; a fresh context does not know it.
+
 ## 1. Establish the review question
 
 A review answers the question in front of the audience:
@@ -260,7 +270,8 @@ held back for the actor table is on the list, not off it.
 Send them all at once, and **give each the draft text in the dispatch** rather than making it fetch
 its own. Staging it once to a file and passing the path counts, provided you verified that copy
 against the authoritative source first. Either way, name the authoritative source alongside it so
-the lens can verify anything it means to quote, and spot-check the returns yourself.
+the lens can verify anything it means to quote, and spot-check the returns yourself. Name the *RFC
+text* route in the same dispatch.
 
 Where the cache is behind the live revision, the live text is the authoritative one -- fetch it and
 hand the lenses that, whatever the corpus tool returns.
