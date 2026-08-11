@@ -28,6 +28,10 @@ team wants looked at. Directorates are listed at <https://datatracker.ietf.org/r
 datatracker "about" page for a team links its wiki. Any review form there is for the writing step,
 if a review gets written at all.
 
+**The lane is declared, so narrow to it.** Step 4's default -- when unsure, dispatch, because a
+wasted lens costs little -- is for an open-ended review. Here it is wrong: cut the lens set to the
+team's lane and scope each dispatch to it. The adjacent lanes have their own reviewers.
+
 ## Revisions of a published document (bis)
 
 Establish what the document obsoletes or updates. Diff against each of those, not only against the

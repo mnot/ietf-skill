@@ -258,6 +258,8 @@ override that default. If your reason for being unsure is *another lens probably
 better*, rule it out and record which lens. And where the rubric's own "rarely fires" language says
 this is not its case, follow the rubric.
 
+Off a directorate assignment the default is replaced outright -- `stages.md`, at Step 1.
+
 **The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
 Hold that one and dispatch the rest; if the table has landed by the time you finish the rubrics,
 which is the usual case, send it with them. It is not reliably the first thing back, so dispatch
@@ -498,8 +500,8 @@ Spot-check the quotes your findings rest on against the files before anything go
 bug, so check what comes back against the authoritative fetch.
 
 Record the lenses you ruled out without dispatching, with what you checked, and the ones that came
-back not applying or supporting the design. Carry both to the findings so the next reviewer does
-not rediscover them.
+back not applying or supporting the design. Keep both so the next reviewer does not rediscover them;
+`findings.md` writes them up on request rather than by default.
 
 ## 9. Rank the concerns, and form a provisional view
 
