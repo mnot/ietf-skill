@@ -73,6 +73,8 @@ cp -R ietf-contributing ietf-interpreting ietf-reviewing ietf-http ~/.claude/ski
 
 The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill**. `ietf-contributing` and `ietf-interpreting` are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed). `ietf-reviewing` and `ietf-http` each carry a `reference/` directory, so zip the whole directory first (`zip -r ietf-reviewing.zip ietf-reviewing`) and upload that.
 
+**Note**: Chat in Claude Desktop does _not_ have subagents; the ietf-review still will run very slowly there.
+
 ### Updating
 
 ```sh
