@@ -59,6 +59,25 @@ the work reshaped or blocked from outside. "The WG agreed" is not "the IETF
 agreed"; a document past WGLC but not yet an RFC is still open to wider
 scrutiny.
 
+## "Never raised" needs more than an empty search
+
+Semantic search answers "what was said about X"; it is structurally bad at
+"was X ever said". Retrieval ranks by similarity, so a query coming back
+empty means nothing scored close — not that the words are absent from the
+record. A claim cannot rest on a semantic search returning nothing.
+
+The negative needs an exact-string sweep — `grep_corpus` where the tooling
+provides one, otherwise whatever literal search is available — and the claim
+should state the sweep's scope: "no matches for `8890` in the gathered
+httpbis archive" is checkable; "no one ever cited RFC 8890" is not. Search
+the shortest distinctive token rather than a phrase — a phrase split across
+a wrapped mail line won't match.
+
+Even a clean sweep bounds the claim rather than proving absence: it covers
+what was gathered (a window in time) and one corpus (the point may have been
+raised on another list, in a meeting, or in a hallway). The earned form of
+"never raised" is "not found in <stated scope>" — report it that way.
+
 ## Affiliation: aggregate, don't attribute
 
 Don't pin a position on a company ("Cloudflare opposes X") from an author's
