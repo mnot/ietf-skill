@@ -71,7 +71,7 @@ When you draft a technical argument, anchor it in the record: the specific draft
 
 You can't verify the record from memory. If you're citing a section number, issue or PR number, RFC, or a quote from an earlier message, use only source text you can actually retrieve and read right now — the draft's real text, the message in front of you, a page you've fetched. Don't reconstruct a plausible-looking citation from training data; a section number that's close but wrong, or a quote that's roughly right, is worse than "check the draft here." When you can't get to the source, say so and leave the human to fill it in.
 
-Retrieved text can also be stale. An obsoleted RFC reads as authoritatively as its replacement — a search about HTTP caching can surface RFC 2616 as easily as RFC 9111 — but citing it as current is wrong, and will be noticed. Check an RFC's status before citing it; if it has been obsoleted, work from the successor unless the point is about the old document itself.
+An obsoleted RFC reads as authoritatively as its replacement, but citing it as current is wrong. Check an RFC's status before citing it; if it has been obsoleted, work from the successor unless the point is about the old document itself. If it has been updated, check the updating documents for overrides.
 
 ## Engage with the group's existing work
 
