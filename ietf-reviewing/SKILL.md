@@ -1,7 +1,7 @@
 ---
 name: ietf-reviewing
 description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Produces findings for a human reviewer to consider -- each concern, what it rests on, and what would resolve it -- rather than finished review text; writing the review is a separate, optional step.
-compatibility: Requires the ietf-llm MCP server for the gathered IETF record and live Datatracker state. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully, see the skill body.
+compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully.
 license: CC-BY-4.0
 ---
 
@@ -35,8 +35,11 @@ procedure. Both are gates at Step 8, stated in full there.
 
 ## Without the tooling
 
-- **No `ietf-llm`.** Work from the Datatracker and the list archives. Record the gap in
-  *Could not obtain*.
+- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The web archives and the
+  GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
+  On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
+  "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
+  obtain*.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
@@ -62,8 +65,9 @@ review asks "what has to change" whatever the stage.
 
 Where the group is heading weights the stage. Chairs contemplating a Last Call on a document
 nominally in progress means the stage's question is still the one to answer, and the answer should
-say whether the document is ready for the next one. The minutes and the list carry this; the
-datatracker does not.
+say whether the document is ready for the next one. A Last Call already declared is visible:
+`draft_status` reports the WG stream state, so a running WGLC shows as the WG state line. Intent
+short of a declaration is not; the minutes and the list carry it.
 
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
 the request carried a note from the AD or chair, read it first -- it usually says what they actually
@@ -391,10 +395,15 @@ Search whatever the effort has:
   issues *are* gathered, do not re-fetch them over the network: a gathered issue already carries its
   closing rationale and each participant's role. Where they are not -- check the inventory, Step 1 --
   the repo's API is the only route and the cost is real, so budget for it. Where a repo holds several
-  drafts, a per-draft label narrows the sweep; check how consistently it is applied before relying
-  on it, since a partly-applied label reads as an empty record.
-- **Commits and pull requests**, which are *not* gathered. Clone once and the walk below is local;
-  reach for the repo's API only for the pull request behind a commit that matters.
+  drafts, a per-draft label narrows the sweep; `list_labels` carries each label's description where
+  the repo wrote one, and check how consistently the label is applied before relying on it, since a
+  partly-applied label reads as an empty record.
+- **Pull requests**, gathered beside the issues -- on a cache gathered since they were added, so
+  confirm with `list_files` on `pulls/` rather than assuming. A gathered pull request carries its
+  reviews, its disposition and its merge commit, and `get_issue` reads one out by number. The pull
+  request is where the reasoning behind a change lives; the issue records the complaint.
+- **Commits**, which are *not* gathered. Clone once and the walk below is local; reach for the
+  repo's API only where the pull requests are not gathered either.
 - **The revision history** -- diff around the text for the revision that introduced it. This is the
   whole of the change record when there is no repo.
 - **The draft's changes section.** Its absence beside a substantive change is a finding.
@@ -402,7 +411,11 @@ Search whatever the effort has:
   has carried design questions the minutes of the same session omitted entirely.
 
 A search returning nothing is ambiguous -- it can mean the point is unraised, or that the index is
-missing or the filter wrong. Confirm the search works before recording silence.
+missing or the filter wrong. Confirm the search works before recording silence. And `search_corpus`
+is semantic, so a miss there is not evidence of absence: confirm a negative with `grep_corpus` on a
+distinctive string, which scans every gathered file, embedded or not, and states what it scanned.
+Match within a line -- search `8890`, not `RFC 8890` -- since a phrase split across a mail wrap
+misses.
 
 Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
 holds but is about something else now, usually a condition the change was agreed under.
@@ -412,9 +425,10 @@ commit, revision, message URL.
 
 What the gate returns changes with how much record exists. Past Last Call, with years of issues, it
 prunes hard. On a young document it kills nothing, and the product is the opposite: **being able to
-say a concern has never been raised by anyone, anywhere, under any name.** That is what licenses a
-verdict against the authors' own account of how settled the document is. Record the silence as
-deliberately as you would record a decision.
+say a concern has never been raised by anyone, anywhere, under any name.** A claim of that shape
+rests on `grep_corpus`, not on a semantic miss. That is what licenses a verdict against the
+authors' own account of how settled the document is. Record the silence as deliberately as you
+would record a decision.
 
 ### Text that changed: find the commit, not the keyword
 
@@ -423,15 +437,17 @@ Searching the tracker by the finding's own vocabulary will miss it: the issue th
 change is titled in the language of the *decision*, not of the text, so a finding about a charset
 requirement never matches an issue called "review the top-level type descriptions".
 
-The reliable path is the repo, and it is three steps:
+The reliable path is the repo, and it is three steps: the commit, its pull request, the issue that
+pull request closes.
 
 ```
 git log -S "<a distinctive phrase from the removed text>" -- <draft source>
-gh api repos/<org>/<repo>/commits/<sha>/pulls    # the commit's pull request
 ```
 
-then the issue the pull request closes. Read the issue, not just the diff -- it carries the
-condition the change was agreed under, and that is usually where the finding actually lives.
+For the second step, `grep_corpus` the sha -- `digests/pulls.md` carries each pull request's merge
+commit, so one grep finds it -- falling back to `gh api repos/<org>/<repo>/commits/<sha>/pulls`
+where the pulls are not gathered. Read the issue, not just the diff -- it carries the condition the
+change was agreed under, and that is usually where the finding actually lives.
 
 What this turns up, in rough order of how often:
 

@@ -135,7 +135,9 @@ to see raised; not a log of everything you thought about.
 A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
 run of issues reads as an attack on the approach, and the supporting results are what stops it.
 
-**Could not obtain** -- what, and what it means the analysis cannot say.
+**Could not obtain** -- what, and what it means the analysis cannot say. A run without the gathered
+record says so here *and* beside the provisional view: the reader weighs every "never raised"
+differently.
 
 **Your call** -- the forks only the reviewer can settle. Not a summary: each one is a question with
 a consequence attached.
