@@ -71,6 +71,8 @@ When you draft a technical argument, anchor it in the record: the specific draft
 
 You can't verify the record from memory. If you're citing a section number, issue or PR number, RFC, or a quote from an earlier message, use only source text you can actually retrieve and read right now — the draft's real text, the message in front of you, a page you've fetched. Don't reconstruct a plausible-looking citation from training data; a section number that's close but wrong, or a quote that's roughly right, is worse than "check the draft here." When you can't get to the source, say so and leave the human to fill it in.
 
+An obsoleted RFC reads as authoritatively as its replacement, but citing it as current is wrong. Check an RFC's status before citing it; if it has been obsoleted, work from the successor unless the point is about the old document itself. If it has been updated, check the updating documents for overrides.
+
 ## Engage with the group's existing work
 
 A fully-formed new idea dropped cold onto the list rarely goes anywhere. Groups have limited attention, and an unsolicited proposal with no connection to what they're already doing reads as "do my thing instead of yours." Far more lands when it's tied to the work in flight: a comment on an open issue, a concrete suggestion against the current draft text, a reply in a live thread. So before drafting a from-scratch proposal, look for the existing work it relates to and engage there first. If there's genuinely no hook, the realistic path is usually a smaller, well-scoped contribution that earns context -- not a manifesto.
