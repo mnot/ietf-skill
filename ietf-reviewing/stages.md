@@ -68,6 +68,10 @@ review, an IESG ballot -- do two things before anything else.
 Diff it against the revision the round read. New text has been reviewed by nobody, and a document
 answering reviews is where new text arrives.
 
+Which revision that is comes from Step 1's review record, and there is usually more than one:
+reviews and ballot positions in a single round are cast against different revisions, and the earliest
+of them bounds what "reviewed" covers. Diff against that one, not against the round's closing date.
+
 Check what was agreed and did not land. A closed issue or an approved pull request that never merged
 is invisible from the document.
 
