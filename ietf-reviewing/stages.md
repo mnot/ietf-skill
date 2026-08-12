@@ -35,8 +35,7 @@ volume and your own synthesis, not wall clock. Scope each dispatch to the team's
 to *route* what falls outside rather than develop it.
 
 **Do not cut the lens set to the lane.** The lens that fires outside it is often where the in-lane
-finding hides -- a BCP 72 pass over an HTTP retrieval mechanism is what turns up that controlling a
-web origin is equivalent to controlling the Issuer's signing key. Rule a lens out on its own
+finding hides. Rule a lens out on its own
 `Firing` section, as always; never on the team's remit. `delivering.md`'s *A declared scope is
 permeable* depends on this: you cannot flag the out-of-lane point at delivery if you never ran the
 lens that found it.
