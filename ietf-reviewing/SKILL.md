@@ -235,8 +235,10 @@ It returns the table and the absences. On a short draft ask for the absences and
 -- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
 ranking is yours -- see Step 6.
 
-Stage the table to a file when it lands; the lenses take it by path, as they take the draft text.
-Only one of them waits on it -- see below.
+Stage the table to a file when it lands, whether or not any lens ends up taking it that way. The
+draft text may be passed inline or by path; the table may not, because Step 10 hands the file itself
+over on request, and a table passed only inline leaves you re-rendering it from context. The lenses
+take it by path. Only one of them waits on it -- see below.
 
 #### The lenses
 
@@ -258,7 +260,8 @@ override that default. If your reason for being unsure is *another lens probably
 better*, rule it out and record which lens. And where the rubric's own "rarely fires" language says
 this is not its case, follow the rubric.
 
-Off a directorate assignment the default is replaced outright -- `stages.md`, at Step 1.
+Off a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
+lens set itself is not cut to the lane.
 
 **The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
 Hold that one and dispatch the rest; if the table has landed by the time you finish the rubrics,

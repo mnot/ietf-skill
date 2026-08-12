@@ -64,7 +64,7 @@ Then a subsection per issue, as labelled fields rather than paragraphs. The head
 one sentence, stated as a claim about the document. Do not restate it as a field.
 
 These fields and no others: an issue that has grown one of its own is telling you something belongs
-in another section. The three marked *only where* are conditional; the rest are always present.
+in another section. The four marked *only where* are conditional; the rest are always present.
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
   block of its own. Break it into short paragraphs, one point each: what the document says, what that
@@ -84,7 +84,8 @@ in another section. The three marked *only where* are conditional; the rest are 
   says, who wrote what and when. Fetch and read the source; recall is not a basis.
 
   Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
-  worth the words. *Severity* carries that, or nothing does.
+  worth the words. *Severity* carries that, or nothing does. Keep what the record already did with
+  it out too; that is *Disposition*.
 - **Can be resolved if:** what would fix it.
 - **Caused by:** only where a prior change created or sharpened this one -- which change, answering
   what, and which revision. It is often not a fix for this concern at all: a pull request answering
@@ -94,6 +95,10 @@ in another section. The three marked *only where* are conditional; the rest are 
   on one mechanism that are not one decision, so the merge rule keeps them apart. Name the ID and
   the adjacency. If the reviewer raises only one, this is what tells them the other's framing
   changes.
+- **Disposition:** only where the record has already answered this -- what was raised, by whom, what
+  the closing reason was, and whether it engaged the point. A concern the authors have declined is
+  raised differently from one they have never seen, and this is what carries that when *Prior
+  concerns* is not written.
 - **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
   Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
   *the authors should fix this before publication, and a reviewer would expect them to*; one is
@@ -159,8 +164,12 @@ the draft's own text refuses, an objection that is about the topic. Only what a 
 to see raised; not a log of everything you thought about.
 
 A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
-run of issues reads as an attack on the approach, and the supporting results are what stops it. Say
-so in the offer where any lens came back supporting.
+run of issues reads as an attack on the approach, and the supporting results are what stops it.
+
+Two things in here the reviewer cannot know to ask for, so name them in the offer: a lens that came
+back supporting the design, and a concern you killed that a reader would expect to see raised. The
+second is the one that gets rediscovered -- a concern the draft's own text refuses still looks wrong
+on its face, and the reviewer will arrive at it again unless told it is answered.
 
 **The actor table** -- as Step 4 returned it, ranked at Step 6. Hand over the staged file; do not
-re-render it.
+re-render it. Stage it now if Step 4 did not.

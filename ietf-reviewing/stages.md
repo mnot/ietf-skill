@@ -28,9 +28,22 @@ team wants looked at. Directorates are listed at <https://datatracker.ietf.org/r
 datatracker "about" page for a team links its wiki. Any review form there is for the writing step,
 if a review gets written at all.
 
-**The lane is declared, so narrow to it.** Step 4's default -- when unsure, dispatch, because a
-wasted lens costs little -- is for an open-ended review. Here it is wrong: cut the lens set to the
-team's lane and scope each dispatch to it. The adjacent lanes have their own reviewers.
+**The lane is declared, so scope to it.** Step 4's default -- when unsure, dispatch, because a
+wasted lens costs little -- was written for an open-ended review. On a directorate assignment the
+cost has moved rather than grown: the lenses still run in parallel, so what you spend is output
+volume and your own synthesis, not wall clock. Scope each dispatch to the team's lane and require it
+to *route* what falls outside rather than develop it.
+
+**Do not cut the lens set to the lane.** The lens that fires outside it is often where the in-lane
+finding hides -- a BCP 72 pass over an HTTP retrieval mechanism is what turns up that controlling a
+web origin is equivalent to controlling the Issuer's signing key. Rule a lens out on its own
+`Firing` section, as always; never on the team's remit. `delivering.md`'s *A declared scope is
+permeable* depends on this: you cannot flag the out-of-lane point at delivery if you never ran the
+lens that found it.
+
+Whether the adjacent lanes are covered is checkable rather than assumable. Grep the group's other
+documents for `secdir|genart|artart|opsdir` -- a WG that routinely gets the full set is a different
+situation from one where this is the only review the document will see before Last Call.
 
 ## Revisions of a published document (bis)
 
