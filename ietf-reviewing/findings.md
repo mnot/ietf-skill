@@ -109,11 +109,9 @@ in another section. The four marked *only where* are conditional; the rest are a
   the adjacency. If the reviewer raises only one, this is what tells them the other's framing
   changes.
 - **Disposition:** only where this has been raised before -- what was raised, by whom, what the
-  closing reason was, and whether it engaged the point. A concern the authors have declined is
-  raised differently from one they have never seen, and this is what carries that when *Prior
-  concerns* is not written. The reviewer's own earlier review counts, and is the one that gets
-  dropped: name the revision even where nobody answered it and there is no closing reason. A concern
-  re-raised is not a concern corroborated.
+  closing reason was if there is one, and whether it engaged the point. A concern the authors have
+  declined is raised differently from one they have never seen, and this is what carries that when
+  *Prior concerns* is not written.
 - **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
   Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
   *the authors should fix this before publication, and a reviewer would expect them to*; one is
