@@ -235,8 +235,8 @@ It returns the table and the absences. On a short draft ask for the absences and
 -- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
 ranking is yours -- see Step 6.
 
-Stage the table to a file when it lands; the lenses take it by path, as they take the draft text.
-Only one of them waits on it -- see below.
+Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
+count -- Step 10 hands the file over. Only one lens waits on it -- see below.
 
 #### The lenses
 
@@ -257,6 +257,9 @@ you unsure, dispatch it: a wasted lens costs little and a missed one costs a fin
 override that default. If your reason for being unsure is *another lens probably carries this
 better*, rule it out and record which lens. And where the rubric's own "rarely fires" language says
 this is not its case, follow the rubric.
+
+Off a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
+lens set itself is not cut to the lane.
 
 **The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
 Hold that one and dispatch the rest; if the table has landed by the time you finish the rubrics,
@@ -498,8 +501,8 @@ Spot-check the quotes your findings rest on against the files before anything go
 bug, so check what comes back against the authoritative fetch.
 
 Record the lenses you ruled out without dispatching, with what you checked, and the ones that came
-back not applying or supporting the design. Carry both to the findings so the next reviewer does
-not rediscover them.
+back not applying or supporting the design. Keep both so the next reviewer does not rediscover them;
+`findings.md` writes them up on request rather than by default.
 
 ## 9. Rank the concerns, and form a provisional view
 
