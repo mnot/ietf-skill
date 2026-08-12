@@ -24,6 +24,9 @@ re-derive, which spends their time to answer a question they were not asked.
 Read `ietf-contributing` first. It governs register, disclosure, and what the sender has to be able
 to defend.
 
+**Terseness is appreciated, not rude.** The audience is expert and short of time. Do not pad a
+finding to soften it, and do not add warmth to carry it.
+
 Get the conventional form from a recent real review of the type you are writing -- for a
 directorate, one by that team; for a Last Call comment, one from the last-call list. The headings
 below are the directorate convention and will not always fit.
@@ -91,6 +94,18 @@ produce most of it:
 Delete prose. Do not delete defects. A finding the reviewer chose to raise stays in, even if the
 prose around it goes.
 
+**A finding short of its support goes back to the reviewer**, not into the review. Six fully
+supported beat seven with one soft; the soft one is what the reply argues with.
+
+### Wording
+
+- **Drop the first person where the point stands without it.** *I'd note that X* is *X*; *I'd have
+  preferred X* is *X would have been nice*, or nothing. Keep it where the sentence is a position.
+- **Replace a pronoun with its referent on the second mention.** Not *scopes it to*, but *scopes the
+  SSRF requirement to* -- a reply quotes the paragraph, not the antecedent.
+- **Do not announce structure.** *Section 6.1 is the example: it specifies* is *Section 6.1
+  specifies*.
+
 ### Final pass
 
 Double check the review for each of these:
@@ -98,6 +113,8 @@ Double check the review for each of these:
 - Is each claim about the **document** or about the **topic**? Cut comments on the topic.
 - Does the quoted text actually support the claim made about it?
 - Does anything read as position-taking without reference to what the document says? Cut it.
+- Does a sentence score off the authors or an earlier group? Name the prior work; cut the moral
+  drawn from it.
 - Have you answered the Step 1 question, in the first two sentences, unambiguously?
 
 ## Filing issues

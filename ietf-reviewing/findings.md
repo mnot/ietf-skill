@@ -80,13 +80,23 @@ in another section. The four marked *only where* are conditional; the rest are a
   rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then re-read each
   sentence against the quote beside it and check it claims no more.
 
+  Where a weaker form is still true, write the weaker one -- *reasonable* not *sound*, *very little
+  specified behaviour* not *none at all*. Cut a consequence you cannot show from the text; do not
+  hedge it into the case.
+
   That covers facts about anything, not just the draft: what a registry holds, what another RFC
-  says, who wrote what and when. Fetch and read the source; recall is not a basis.
+  says, who wrote what and when. Fetch and read the source; recall is not a basis. Where such a fact
+  carries the finding -- a registration, its date, its assignee -- ask whether the text is staying
+  rather than building the case on it.
 
   Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
-  worth the words. *Severity* carries that, or nothing does. Keep what the record already did with
-  it out too; that is *Disposition*.
-- **Can be resolved if:** what would fix it.
+  worth the words. *Severity* carries that, or nothing does. Keep the significance out too: *there is
+  a lowercase "should" in Section 2.2.1*, not *and that matters here*. Keep what the record already
+  did with it out as well; that is *Disposition*.
+- **Can be resolved if:** what would fix it. Imperative for specification craft -- *Describe the
+  semantics*, *Point at RFC 9111 instead*; hedged where the fix is a structural judgement -- *the
+  document needs to say (probably globally) whether ...*. Where the answer is the authors' intent,
+  ask instead, on its own line: *Are these omissions intentional?*
 - **Caused by:** only where a prior change created or sharpened this one -- which change, answering
   what, and which revision. It is often not a fix for this concern at all: a pull request answering
   a different issue that broke something in passing, or a review fix placed above text it
@@ -113,12 +123,15 @@ in another section. The four marked *only where* are conditional; the rest are a
 
 Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving early.
 
+Across the fields: weaker in the claims than reads natural, no weaker in the asks. The default runs
+the other way.
+
 ## The remaining sections
 
 **Potential Comments**, one bullet each: the section, the quoted text, then one question or one flat
 statement. If one needs more than that, it is an issue in disguise.
 
-**Observed Nits**, one line each.
+**Observed Nits**, one line each, and only ones quoted from the document verbatim and checked.
 
 **Could not obtain** -- what, and what it means the analysis cannot say. A run without the gathered
 record says so here *and* beside the provisional view: the reader weighs every "never raised"
