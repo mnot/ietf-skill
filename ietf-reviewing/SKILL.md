@@ -88,11 +88,10 @@ gathered corpus, compare it against the live state now. If the corpus is behind 
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
 **At or past WGLC, build the review record before you read.** Every completed review and every
-ballot position, each with **the revision it was cast against**, its result and its date; then the
-assignments that produced nothing, which are informative and invisible if you filter to completed;
-then the current revision. Where the newest substantive revision post-dates all of them, say so
-first. It frames every finding: a concern in text no reviewer has seen is a different concern from
-one in text four people cleared.
+ballot position with **the revision it was cast against**, its result and its date; the assignments
+that produced nothing, which a filter to completed drops; then the current revision. Where the
+current revision post-dates all of them, say so first -- a concern in text no reviewer has seen is a
+different concern.
 
 Two Datatracker endpoints carry it, and the revision field is the whole value of the join:
 
@@ -103,7 +102,7 @@ Two Datatracker endpoints carry it, and the revision field is the whole value of
 
 They take different filters, and neither takes the obvious `?doc=`. On the ballot endpoint that
 errors; on the assignment endpoint it is *ignored*, returning every assignment in the datatracker in
-a well-formed response that reads like a result.
+a well-formed response.
 
 **Check the corpus's source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
@@ -116,9 +115,8 @@ lives -- a group can run a 400-issue tracker that was never gathered. A review r
 tracker looks exactly like a review run against a group that does not use one, so establish which
 you are in.
 
-**Then ask which corpora the stage needs**, which is a different question from what this one holds.
-Step 8 licenses claims that a point was never raised anywhere, and a comment made where you did not
-look is invisible:
+**Then ask which corpora the stage needs**, which is not the same as what this one holds. Step 8
+licenses claims that a point was never raised anywhere:
 
 | Stage | A "never raised" has to have scanned |
 |---|---|
@@ -126,20 +124,16 @@ look is invisible:
 | IETF Last Call, and after | the above, plus `last-call` -- Last Call comments go to `last-call@ietf.org`, gathered as a list corpus of its own |
 | IESG evaluation | the above, plus the ballot record |
 
-Gather what is missing now, with the Step 1 gather. What you cannot gather bounds every negative the
-review makes -- Step 8 says how to carry that.
+Gather what is missing now. What you cannot gather bounds every negative the review makes -- Step 8.
 
 ### The reviewer's own standing
 
-The review goes out under a person's name, and two things about that person change what the findings
-have to say. What is their role in this group -- chair, AD, author or editor of this document? And
-did they write or edit anything the draft normatively references? Ask rather than infer; the
-reference list and the RFCs' own author lines settle the second.
+Two things about the person whose name this goes out under change what the findings have to say.
+What is their role in this group -- chair, AD, author or editor of this document? And did they write
+or edit anything the draft normatively references? Ask rather than infer; the reference list and the
+RFCs' own author lines settle the second.
 
-Where either holds, it goes in *Your call* at Step 10. A finding that the draft misuses the
-reviewer's own specification is the one they are least likely to doubt, and a point pressed from a
-chair's seat does something a Last Call reviewer's does not. Neither is a reason to soften a finding
-or drop it; both are theirs to weigh.
+Where either holds it goes in *Your call* at Step 10. Neither softens a finding.
 
 ### Reviews of a particular kind
 
@@ -302,11 +296,9 @@ better*, rule it out and record which lens. And where the rubric's own "rarely f
 this is not its case, follow the rubric.
 
 **A rule-out quotes the criterion it fails.** Name the rubric, quote the sentence from its `Firing`
-section that excludes this draft, and say why it excludes it. One line each. *This is a caching
-header, not DNS* is not a rule-out -- it is a guess from the filename, it is unfalsifiable, and it is
-how a lens that would have fired gets skipped. The topic of a rubric is a poor predictor of whether
-its concern applies, which is what the `Firing` sections are for. The exception is the rule-out on
-another lens: name that lens instead.
+section that excludes this draft, and say why. One line each. *This is a caching header, not DNS* is
+not a rule-out: a rubric's topic does not predict whether its concern applies, which is what the
+`Firing` sections are for. Ruling out on another lens is the exception -- name that lens instead.
 
 Off a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
 lens set itself is not cut to the lane.
@@ -481,10 +473,10 @@ distinctive string, which scans every gathered file, embedded or not, and states
 Match within a line -- search `8890`, not `RFC 8890` -- since a phrase split across a mail wrap
 misses.
 
-**A negative names the corpora it scanned**, from the stage's list at Step 1. Method-perfect grep
-over the wrong corpus is a false negative delivered with the confidence of a checked one, and the
-confidence is the damage. A stage-required corpus you could not gather goes in *Could not obtain*
-and beside the provisional view, and every negative resting on it is stated as bounded by it.
+**A negative names the corpora it scanned**, from the stage's list at Step 1: grep over the wrong
+corpus is a false negative carrying the confidence of a checked one. A stage-required corpus you
+could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
+negative resting on it.
 
 Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
 holds but is about something else now, usually a condition the change was agreed under.
@@ -641,11 +633,9 @@ The output. Its shape is specified in `findings.md` -- follow it. Each issue is 
 have, merged, chained and calibrated at Step 9; assembling is rendering, and fresh thinking here
 means Step 9 is unfinished.
 
-That governs *analysis*, not sources. **Every record fact is re-printed from the tool here** --
-revision numbers, dates, reviewer and balloter names, review results, ballot positions, issue and
-pull request numbers -- rather than copied from your notes. A summary of a tool return is recall,
-and by this step it is hours old: the record moves, and a compressed note is where three reviews
-become one.
+That governs *analysis*, not sources. **Re-print every record fact from the tool here** -- revision
+numbers, dates, reviewer and balloter names, review results, ballot positions, issue and pull
+request numbers -- rather than copying it from your notes. A summary of a tool return is recall.
 
 ## Delivering the review
 

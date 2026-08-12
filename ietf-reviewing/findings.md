@@ -7,10 +7,8 @@ optional.
 Each issue is a record you already have, merged, chained and calibrated at Step 9. Assembling is
 rendering; fresh thinking here means Step 9 is unfinished.
 
-Rendering is not recall. Every **record fact** -- revision numbers, dates, reviewer and balloter
-names, review results, ballot positions, issue and pull request numbers -- is re-printed from the
-tool as you write it, not copied from a note that summarised the tool. Those two are the same thing
-here, and the compressed one is where three reviews of two revisions become one review of one.
+Rendering is not recall: re-print every record fact -- revisions, dates, reviewer and balloter
+names, results, ballot positions, issue and pull request numbers -- from the tool as you write it.
 
 Lists, not tables -- this gets read in a text editor as often as anywhere that renders markdown.
 Use a table only where the content is genuinely a matrix.
@@ -113,13 +111,9 @@ in another section. The four marked *only where* are conditional; the rest are a
 - **Disposition:** only where this has been raised before -- what was raised, by whom, what the
   closing reason was, and whether it engaged the point. A concern the authors have declined is
   raised differently from one they have never seen, and this is what carries that when *Prior
-  concerns* is not written.
-
-  **The reviewer's own earlier review counts, and is the one that gets dropped.** Where a concern
-  came from their last round rather than from this cold read, say so and name the revision, even
-  though nobody answered it and there is no closing reason to report. A concern re-raised is not a
-  concern corroborated, and rendered without this it reads as an independent second finding of the
-  same thing.
+  concerns* is not written. The reviewer's own earlier review counts, and is the one that gets
+  dropped: name the revision even where nobody answered it and there is no closing reason. A concern
+  re-raised is not a concern corroborated.
 - **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
   Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
   *the authors should fix this before publication, and a reviewer would expect them to*; one is
@@ -154,10 +148,9 @@ a consequence attached.
 - A finding resting on an inference rather than on quoted text, and what turns on it.
 - A finding where they have standing you do not -- they closed the issue, edited the RFC, chaired
   the thread. Say so; do not quietly raise their own point back at them.
-- A finding that turns on the reviewer's *own* work, or that they would be raising from a chair's or
-  AD's seat -- Step 1 established both. Name it and say what it bears on: a finding that the draft
-  misuses their specification is the one they will doubt least, and a point pressed by a chair is
-  read as more than one reviewer's view whatever it says. What to do about it is theirs.
+- A finding that turns on the reviewer's *own* work, or that they would raise from a chair's or AD's
+  seat -- Step 1 established both. A finding that the draft misuses their specification is the one
+  they will doubt least; a point pressed by a chair is read as more than one reviewer's view.
 - A finding whose framing commits them to a position they may not want to hold.
 - Anything you could not verify, and what it would change.
 
