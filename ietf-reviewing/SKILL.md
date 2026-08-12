@@ -235,10 +235,8 @@ It returns the table and the absences. On a short draft ask for the absences and
 -- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
 ranking is yours -- see Step 6.
 
-Stage the table to a file when it lands, whether or not any lens ends up taking it that way. The
-draft text may be passed inline or by path; the table may not, because Step 10 hands the file itself
-over on request, and a table passed only inline leaves you re-rendering it from context. The lenses
-take it by path. Only one of them waits on it -- see below.
+Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
+count -- Step 10 hands the file over. Only one lens waits on it -- see below.
 
 #### The lenses
 
