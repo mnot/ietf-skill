@@ -40,6 +40,17 @@ procedure. Both are gates at Step 8, stated in full there.
   On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
   "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
   obtain*.
+- **No `review_record`.** It reaches the network, so it is absent wherever gathering is off. Two
+  Datatracker endpoints carry the same join by hand:
+
+  ```
+  /api/v1/review/reviewassignment/?review_request__doc__name=draft-...&format=json   # reviewed_rev, result, reviewer, state
+  /api/v1/doc/ballotpositiondocevent/?doc__name=draft-...&format=json                # rev, pos, balloter, time
+  ```
+
+  They take different filters, and neither takes the obvious `?doc=`. On the ballot endpoint that
+  errors; on the assignment endpoint it is *ignored*, returning every assignment in the datatracker
+  in a well-formed response. Keep the revision field on both -- it is the whole value of the join.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
@@ -87,28 +98,23 @@ want looked at.
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-**At or past WGLC, build the review record before you read.** Every completed review and every
-ballot position with **the revision it was cast against**, its result and its date; the assignments
-that produced nothing, which a filter to completed drops; then the current revision. Where the
-current revision post-dates all of them, say so first -- a concern in text no reviewer has seen is a
-different concern.
+**At or past WGLC, read the review record before you read the draft.** `review_record(name)` gives
+every review and ballot position with the revision it was cast against, and leads with whether
+anything has examined the current one.
 
-Two Datatracker endpoints carry it, and the revision field is the whole value of the join:
+Read the two halves separately, as it reports them. Reviews and ballot routinely disagree -- an AD
+who has re-balloted on the current text while the directorate reviews stop two revisions back is not
+a document anyone has re-read. Where a half has examined nothing current, say so first: a concern in
+text no reviewer has seen is a different concern.
 
-```
-/api/v1/review/reviewassignment/?review_request__doc__name=draft-...&format=json   # reviewed_rev, result, reviewer, state
-/api/v1/doc/ballotpositiondocevent/?doc__name=draft-...&format=json                # rev, pos, balloter, time
-```
-
-They take different filters, and neither takes the obvious `?doc=`. On the ballot endpoint that
-errors; on the assignment endpoint it is *ignored*, returning every assignment in the datatracker in
-a well-formed response.
+Read the rows that produced nothing, too. A rejected assignment and a directorate that never
+returned are facts about the coverage, and they are the rows the eye skips.
 
 **Check the corpus's source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
 is absent. The inventory will: `list_corpora`'s trailing `(list · issues · drafts · minutes)`, or
 the `Sources:` line from `overview`. Read it before dispatching anything and know which sources you
-have.
+have, and from `overview`'s Coverage, where each one stops.
 
 A corpus with no gathered issues is common and is not a defect, but it changes where the record
 lives -- a group can run a 400-issue tracker that was never gathered. A review run without the
@@ -356,6 +362,13 @@ changed. This step is on the critical path and every extra revision is another r
 go back, grep the revisions for the one string (flattened, per `quoting.md`) rather than diffing them
 pairwise.
 
+**Fetch both sides rather than assuming either is on disk.** A gather stores the revision that was
+current when it ran, so most corpora hold exactly one per draft -- a long back-catalogue is the
+exception, not the rule, and the *current* revision is missing whenever the draft moved since the
+gather. Older revisions are at `https://www.ietf.org/archive/id/draft-...-NN.txt`. `get_draft`
+returns what was gathered, which is neither reliably the old side nor reliably the new one, so check
+which revision it gave you before diffing it.
+
 If you have reviewed this draft before, your own prior findings are an input -- but after the cold
 read, not before it. Anything on that list which did not reappear either gets re-derived or gets
 dropped with a reason. A concern does not survive on the strength of having been raised once.
@@ -477,6 +490,12 @@ misses.
 corpus is a false negative carrying the confidence of a checked one. A stage-required corpus you
 could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
 negative resting on it.
+
+**And it carries the ceiling `grep_corpus` printed**, quoted rather than paraphrased. A zero over
+`issues/` or `pulls/` states where the GitHub record ends -- `owner/repo through #N (archive built
+<date>)` -- and anything above that number was never fetched, so the zero is silent about it. Two
+details are easy to restate wrongly: that date is the archive's, not the gather's, and issues and
+pull requests share one number sequence, so the ceiling is not per-kind.
 
 Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
 holds but is about something else now, usually a condition the change was agreed under.
