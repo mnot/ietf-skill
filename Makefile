@@ -14,6 +14,18 @@ SKILLS := ietf-contributing ietf-interpreting ietf-reviewing ietf-http
 
 VERSION    := $(shell cat VERSION 2>/dev/null)
 
+# The Register is authored once, in the fenced section of ietf-contributing, and
+# copied into every other skill that depends on it. ietf-reviewing's output steps
+# tell the agent to open it and work through its check, so pointing across a skill
+# boundary would break whenever that skill is installed on its own.
+REGISTER_SRC := ietf-contributing/SKILL.md
+REGISTER_DSTS := ietf-reviewing/register.md
+REGISTER_GEN = { printf '%s\n%s\n%s\n\n' \
+	'<!-- Generated from the Register section of ietf-contributing/SKILL.md.' \
+	'     Do not edit this copy; edit the source and run: make register' \
+	'     make check fails when it is stale. -->'; \
+	awk '/<!-- register:start -->/{f=1;next} /<!-- register:end -->/{f=0} f' $(REGISTER_SRC); }
+
 # Per-tool skills dirs, installed where present. ~/.agents is Codex's personal
 # dir (and a vendor-neutral location some other tools also read).
 TOOL_DIRS := \
@@ -27,7 +39,7 @@ TOOL_DIRS := \
 PRESENT := $(foreach d,$(TOOL_DIRS),$(wildcard $(d)))
 
 .DEFAULT_GOAL := list
-.PHONY: list help install update uninstall \
+.PHONY: list help install update uninstall register \
 	check version version-major version-minor version-patch changelog release
 
 help: list
@@ -54,8 +66,11 @@ list:
 	@echo "  make update           git pull, then refresh whatever is already installed in each dir"
 	@echo "  make uninstall        remove the skills from every detected dir"
 	@echo
+	@echo "Authoring targets:"
+	@echo "  make register         re-copy the Register section into the skills that depend on it"
+	@echo
 	@echo "Release targets:"
-	@echo "  make check            validate every SKILL.md (name matches dir, description <= 1024 chars)"
+	@echo "  make check            validate every SKILL.md, and that the Register copies are current"
 	@echo "  make version-*        bump VERSION and commit — * is patch / minor / major"
 	@echo "  make changelog        list commit subjects since the last tag"
 	@echo "  make release          tag v$(VERSION) from the changelog and push the tag"
@@ -93,6 +108,15 @@ uninstall:
 		done; \
 	done
 
+# ---- Author ----
+
+register:
+	@grep -q '<!-- register:start -->' $(REGISTER_SRC) || { echo "$(REGISTER_SRC): no register:start marker"; exit 1; }
+	@for f in $(REGISTER_DSTS); do \
+		$(REGISTER_GEN) > "$$f"; \
+		echo "regenerated $$f from $(REGISTER_SRC)"; \
+	done
+
 # ---- Validate, version, release ----
 
 # The no-Python gate: check each SKILL.md's name matches its directory, is
@@ -109,6 +133,14 @@ check:
 		dlen=$$(awk '/^description:/{sub(/^description: /,""); print length($$0); exit}' "$$f"); \
 		[ "$$dlen" -le 1024 ] || { echo "$$f: description $$dlen > 1024"; ok=0; }; \
 	done; \
+	grep -q '<!-- register:start -->' $(REGISTER_SRC) || { echo "$(REGISTER_SRC): no register:start marker"; ok=0; }; \
+	tmp=$$(mktemp); \
+	$(REGISTER_GEN) > "$$tmp"; \
+	for f in $(REGISTER_DSTS); do \
+		if [ ! -f "$$f" ]; then echo "$$f: missing -- run make register"; ok=0; \
+		elif ! cmp -s "$$tmp" "$$f"; then echo "$$f: stale -- run make register"; ok=0; fi; \
+	done; \
+	rm -f "$$tmp"; \
 	if [ "$$ok" = 1 ]; then echo "skills valid (version $(VERSION))"; else echo "check FAILED"; exit 1; fi
 
 version-major version-minor version-patch: version-%: check

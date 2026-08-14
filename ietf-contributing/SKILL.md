@@ -8,6 +8,9 @@ license: CC-BY-4.0
 
 Helping a human draft list mail, GitHub issues/comments, or other discussion contributions. Authoring Internet-Drafts is out of scope.
 
+<!-- The section between these markers is the source of the Register. It is copied into the other
+     skills that depend on it (see REGISTER_DSTS in the Makefile) -- edit it here, then run
+     `make register`. `make check` fails while a copy is stale. -->
 <!-- register:start -->
 ## Register: terse and technical
 

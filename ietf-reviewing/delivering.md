@@ -5,17 +5,18 @@ have chosen what to raise, and only on what they chose. Nothing here should reac
 finding.
 
 Two shapes -- prose, or issues against the draft's repo. Both are record text, so both open by
-reading the Register section of `ietf-contributing`; both rely on the findings rather than
-re-verifying them; and in both the human sends.
+reading `register.md` beside this file; both rely on the findings rather than re-verifying them; and
+in both the human sends.
 
 
 ## Writing the review
 
-**Before the first sentence, read the Register section of `ietf-contributing`.** The trigger is the
-moment, not a judgement that you need it -- a review is record text under a participant's name, so
-the Register governs it exactly as it governs list mail. Knowing what it says is not having read it,
-and the final pass below checks against that section rather than against your memory of it. The rest
-of that skill governs disclosure and what the sender has to be able to defend.
+**Before the first sentence, read `register.md` beside this file.** The trigger is the moment, not a
+judgement that you need it -- a review is record text under a participant's name, so the Register
+governs it exactly as it governs list mail. Knowing what it says is not having read it, and the
+final pass below checks against that file rather than against your memory of it. It is a generated
+copy of the section in `ietf-contributing`, whose other sections govern disclosure and what the
+sender has to be able to defend.
 
 The short form, which is not a substitute for reading it:
 
@@ -100,7 +101,7 @@ supported beat seven with one soft; the soft one is what the reply argues with.
 
 Double check the review for each of these:
 
-- **Every numbered item in the Register's own check, in order** -- open the section and read them
+- **Every numbered item in the Register's own check, in order** -- open `register.md` and read them
   off it. A pass done from memory is the failure this list exists to catch.
 - Is each claim about the **document** or about the **topic**? Cut comments on the topic.
 - Does the quoted text actually support the claim made about it?
@@ -112,7 +113,7 @@ Double check the review for each of these:
 ## Filing issues
 
 The other output shape, in a group that runs its draft from a repo. An issue body is record text too,
-and a run that files issues skips the section the Register gate sits in -- so read the Register
+and a run that files issues skips the section the Register gate sits in -- so read `register.md`
 before the first issue, and run its check over each body before showing it to the reviewer.
 
 **One at a time, confirmed before each.** Show the reviewer the exact text -- title and body -- and
