@@ -5,10 +5,16 @@ as [Agent Skills](https://agentskills.io/).
 
 | Skill | What it does |
 | --- | --- |
-| [`ietf-contributing`](ietf-contributing/SKILL.md) | Drafting text that goes into the record under your name — list mail, replies, GitHub issues/comments, reviews. |
+| [`ietf-contributing`](ietf-contributing/SKILL.md) | Drafting text that goes into the record under your name -- list mail, replies, GitHub issues/comments, reviews. |
 | [`ietf-interpreting`](ietf-interpreting/SKILL.md) | Understanding how the IETF works; e.g., consensus, positions, draft/RFC status. |
-| [`ietf-reviewing`](ietf-reviewing/SKILL.md) | Reviewing an Internet-Draft — which question the review answers, what to look for, and why the output is findings rather than a finished review. |
+| [`ietf-reviewing`](ietf-reviewing/SKILL.md) | Reviewing an Internet-Draft -- which question the review answers, what to look for, and why the output is findings rather than a finished review. |
 | [`ietf-http`](ietf-http/SKILL.md) | Best practices for writing IETF specifications that use or extend HTTP. |
+
+The **Register** -- how text going into the record should read -- is authored once, in a fenced
+section of [`ietf-contributing/SKILL.md`](ietf-contributing/SKILL.md), and copied from there into
+every skill that depends on it: `make register` regenerates the copies, and `make check` fails when
+one is stale. `ietf-reviewing/register.md` is such a copy, so each skill stays self-contained and
+none has to reach across an install boundary to find it. Edit the source section, never a copy.
 
 All are currently only Markdown and plain text, no executables. Two of them also
 bundle the text of the RFCs they point at, under a `reference/` directory, so the
@@ -17,12 +23,12 @@ the specifications it summarises (BCP 56 / RFC 9205, RFC 9110, RFC 9111, BCP 190
 RFC 8820), and `ietf-reviewing` carries the guidance its review step applies
 (BCP 14 / RFC 2119 and RFC 8174, RFC 2804, RFC 3552, RFC 6709, RFC 6950, RFC 6973,
 RFC 7258, RFC 7754, RFC 8890, RFC 9170, RFC 9614). Two of `ietf-reviewing`'s
-lenses — BCP 190 / RFC 8820 and BCP 56 / RFC 9205 — have a rubric but no bundled
+lenses -- BCP 190 / RFC 8820 and BCP 56 / RFC 9205 -- have a rubric but no bundled
 text, since `ietf-http` already carries both.
 
 ## Querying the record
 
-These skills are about *how to participate*. To actually read the public record of an effort — mailing list, drafts, RFCs, GitHub issues, minutes — install the [ietf-llm](https://pypi.org/project/ietf-llm/) MCP server.
+These skills are about *how to participate*. To actually read the public record of an effort -- mailing list, drafts, RFCs, GitHub issues, minutes -- install the [ietf-llm](https://pypi.org/project/ietf-llm/) MCP server.
 
 The MCP server also serves these norms (as tools), but installing both does no harm.
 
@@ -35,11 +41,11 @@ git clone https://github.com/mnot/ietf-skill.git
 cd ietf-skill
 ```
 
-Then install from the clone — with `make` (simplest; macOS / Linux) or a manual copy (any OS).
+Then install from the clone -- with `make` (simplest; macOS / Linux) or a manual copy (any OS).
 
 ### Using `make` (macOS / Linux)
 
-A Makefile installs into every assistant config dir you already have and keeps them in sync. It only ever copies the Markdown skill directories — it installs no software and runs nothing else:
+A Makefile installs into every assistant config dir you already have and keeps them in sync. It only ever copies the Markdown skill directories -- it installs no software and runs nothing else:
 
 ```sh
 make            # list detected config dirs and what's installed
@@ -82,15 +88,15 @@ cd ietf-skill
 git pull
 ```
 
-Then re-run the copy command for your tool to overwrite the installed copies — or, on macOS / Linux, `make update` does both.
+Then re-run the copy command for your tool to overwrite the installed copies -- or, on macOS / Linux, `make update` does both.
 
 ## How they activate
 
-You don't invoke these manually. Your assistant reads each skill's short description at startup and loads the full guidance on its own when your task matches — `ietf-contributing` when you ask it to help draft a message, comment, or review that goes out under your name; `ietf-interpreting` when you ask what a group decided or whether there's consensus; `ietf-reviewing` when you ask it to review or assess a draft.
+You don't invoke these manually. Your assistant reads each skill's short description at startup and loads the full guidance on its own when your task matches -- `ietf-contributing` when you ask it to help draft a message, comment, or review that goes out under your name; `ietf-interpreting` when you ask what a group decided or whether there's consensus; `ietf-reviewing` when you ask it to review or assess a draft.
 
 ## License
 
-Released under [CC BY 4.0](LICENSE) — share or adapt freely, with attribution.
+Released under [CC BY 4.0](LICENSE) -- share or adapt freely, with attribution.
 
 The RFC texts under `ietf-http/reference/` and `ietf-reviewing/reference/` are
 excluded from that; they are Copyright (c) the IETF Trust or the Internet
