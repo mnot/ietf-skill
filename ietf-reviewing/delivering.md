@@ -23,7 +23,7 @@ The short form, which is not a substitute for reading it:
 - Per sentence: would removing this change what the recipient does? If not, cut it.
 - No hard wrap. Quoted text keeps the source's line breaks.
 - Drop the first person where the point stands without it.
-- Replace a pronoun with its referent on the second mention.
+- Replace a pronoun with its referent on the second mention; attach a noun to a bare *this*.
 - Do not announce structure.
 - Quote only what the argument uses; do not restate a quote in prose beside it.
 

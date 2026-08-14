@@ -25,18 +25,21 @@ Brevity is not a licence to write badly. Terse means every sentence does work, n
 
 The uniform-polish, fixed-template, self-summarising pattern is itself a tell. Cut the boilerplate and convey the essence with enough context to be digestible. Examples are encouraged when they add legibility, and especially when they help compact the message. Likewise, concrete proposals are encouraged, so long as they can help the group move towards agreement.
 
+Individual words are tells too — *genuinely*, *honestly*, *seam*, *load-bearing*, *a sharper version of*. What they share is doing emphasis rather than carrying meaning, which is also the test: drop the word and see whether the sentence changed. None of them is wrong once; several in one message is a fingerprint. Sweep for them before it goes, and add to the list as you notice others.
+
 ### What the message is for
 
 Before drafting, ask what this particular message has to do, and write only that. Most of what wants to come out has a different home: material for a document you're about to write belongs in the document, not in the reply announcing it. A reply that previews a forthcoming draft spends the group's attention on it twice, and invites the list to argue a scope that doesn't exist yet — so the message says what's coming and by when, and stops.
 
 The common failure is a small job answered at length. *Acknowledged; I'll withdraw the request and bring a problem statement before IETF 127* is the whole of some replies, and a fuller version of it is worse, not more diligent. Pre-emptive completeness — answering questions nobody has asked, covering every branch, delivering the document in the message that promises it — is among the clearest signs a machine wrote it, and it reads as not knowing what the message was for.
 
-This is a question about where content belongs, not a licence to compress. Where the message *is* the artifact — a review, a technical argument in a live thread, an issue that has to carry its own context — the content has nowhere else to go, and it takes the length it takes. The test is *does this belong here*, never *is this long*.
+This test asks where content belongs; it is not a licence to compress. Where the message *is* the artifact — a review, a technical argument in a live thread, an issue that has to carry its own context — the content has nowhere else to go, and it takes the length it takes. The test is *does this belong here*, never *is this long*.
 
 ### Wording
 
 * **Drop the first person where the point stands without it.** *I'd note that X* is *X*; *I'd have preferred X* is *X would have been nice*, or nothing. Keep it where the sentence is a position.
 * **Replace a pronoun with its referent on the second mention.** Not *scopes it to*, but *scopes the SSRF requirement to* — a reply quotes the paragraph, not the antecedent.
+* **Attach a noun to a bare demonstrative.** Not *This is wrong*, but *This requirement is wrong*; *that*, *these* and *those* the same. Same reason as the pronoun above, and it fails harder — quoted into a reply, a bare *this* points at nothing at all.
 * **Don't announce structure.** *Section 6.1 is the example: it specifies* is *Section 6.1 specifies*.
 * **Quote only what the argument uses, and don't restate a quote in prose beside it.** Trim the quote to what the sentence turns on, and let it stand.
 
@@ -52,9 +55,10 @@ Before it goes out, against this section rather than from memory:
 2. Does every sentence change what the recipient does?
 3. Any warmth, padding, or restatement of the thread left — beyond the one line doing relational work, if there is one?
 4. First person where the point stands without it? Structure announced instead of stated?
-5. A pronoun on its second mention, where a reply would quote the paragraph without the antecedent?
-6. A quote longer than the argument uses, or restated in prose beside it?
-7. Prose hard-wrapped, or quoted text reflowed?
+5. A pronoun or a bare *this* on second mention, where a reply would quote the paragraph without the antecedent?
+6. Any word doing emphasis rather than work — the tic list, and whatever else drops without changing the sentence?
+7. A quote longer than the argument uses, or restated in prose beside it?
+8. Prose hard-wrapped, or quoted text reflowed?
 <!-- register:end -->
 
 
@@ -110,7 +114,7 @@ When you draft a technical argument, anchor it in the record: the specific draft
 
 You can't verify the record from memory. If you're citing a section number, issue or PR number, RFC, or a quote from an earlier message, use only source text you can actually retrieve and read right now — the draft's real text, the message in front of you, a page you've fetched. Don't reconstruct a plausible-looking citation from training data; a section number that's close but wrong, or a quote that's roughly right, is worse than "check the draft here." When you can't get to the source, say so and leave the human to fill it in.
 
-That is a rule against reconstructing a citation, not against reusing one. Text you retrieved and checked earlier in the same piece of work stays checked; don't re-verify to be safe, which spends the human's time answering a question they didn't ask. What does need saying is when the checking wasn't yours — say so once, and let them decide.
+That rule forbids reconstructing a citation, not reusing one. Text you retrieved and checked earlier in the same piece of work stays checked; don't re-verify to be safe, which spends the human's time answering a question they didn't ask. What does need saying is when the checking wasn't yours — say so once, and let them decide.
 
 Where a weaker form of a claim is still true, write the weaker one — *reasonable* not *sound*, *very little specified behaviour* not *none at all*. Drop a consequence you can't show from the text rather than hedging it into the argument. Weaker in the claims than reads natural, no weaker in the asks; the default runs the other way.
 
