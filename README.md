@@ -10,6 +10,11 @@ as [Agent Skills](https://agentskills.io/).
 | [`ietf-reviewing`](ietf-reviewing/SKILL.md) | Reviewing an Internet-Draft — which question the review answers, what to look for, and why the output is findings rather than a finished review. |
 | [`ietf-http`](ietf-http/SKILL.md) | Best practices for writing IETF specifications that use or extend HTTP. |
 
+`ietf-contributing` carries the **Register** — how text going into the record should read — in one
+place, and `ietf-reviewing` points at it when writing a review or filing issues rather than
+restating it. Installing `ietf-reviewing` alone still works, but its output steps lose that section;
+the install targets below copy all four together.
+
 All are currently only Markdown and plain text, no executables. Two of them also
 bundle the text of the RFCs they point at, under a `reference/` directory, so the
 assistant can consult them directly instead of recalling them: `ietf-http` carries
