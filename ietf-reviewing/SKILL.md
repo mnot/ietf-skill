@@ -40,6 +40,11 @@ procedure. Both are gates at Step 8, stated in full there.
   On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
   "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
   obtain*.
+
+  Installing it mid-review does not make it available: MCP servers are connected when the session
+  starts, so the tools stay absent until the reviewer restarts. Say that, rather than reaching for
+  a manual fallback and mentioning it afterwards -- the reviewer has to decide whether to restart
+  and re-run, and they can only decide it before the findings are in front of them.
 - **No `review_record`.** It reaches the network, so it is absent wherever gathering is off. Two
   Datatracker endpoints carry the same join by hand:
 
@@ -205,8 +210,9 @@ necessary locus of expertise here? Add a concern where the answer is not clearly
 ## 4. Dispatch tasks
 
 **Say what you are about to do, and how long, before you dispatch.** One short message: the revision
-and where it came from, the question you took from the table, which sources exist, and the lenses
-going out. Then the estimate -- fifteen to thirty minutes, longer if a gather has to run first.
+and where it came from, the question you took from the table, which sources exist, which tooling is
+missing and what you are doing instead, and the lenses going out. Then the estimate -- fifteen to
+thirty minutes, longer if a gather has to run first.
 
 Step 4 is where the cost is, and everything that makes a run worthless is settled before it: the
 wrong revision, the wrong document, the wrong question. Saying them out loud is the last cheap
