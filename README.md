@@ -79,7 +79,7 @@ cp -R ietf-contributing ietf-interpreting ietf-reviewing ietf-http ~/.claude/ski
 
 The **Code** tab shares `~/.claude/skills`, so the steps above cover it. For **Chat**/**Cowork** (and claude.ai), upload each skill under **Customize → Skills → + → Upload a skill**. `ietf-contributing` and `ietf-interpreting` are single files, so upload `ietf-contributing/SKILL.md` and `ietf-interpreting/SKILL.md` directly (no zip needed). `ietf-reviewing` and `ietf-http` each carry a `reference/` directory, so zip the whole directory first (`zip -r ietf-reviewing.zip ietf-reviewing`) and upload that.
 
-**Note**: Chat in Claude Desktop does _not_ have subagents; the ietf-review still will run very slowly there.
+**Note**: Chat in Claude Desktop does _not_ have subagents; `ietf-reviewing` will still run there, but very slowly.
 
 ### Updating
 
@@ -92,7 +92,7 @@ Then re-run the copy command for your tool to overwrite the installed copies -- 
 
 ## How they activate
 
-You don't invoke these manually. Your assistant reads each skill's short description at startup and loads the full guidance on its own when your task matches -- `ietf-contributing` when you ask it to help draft a message, comment, or review that goes out under your name; `ietf-interpreting` when you ask what a group decided or whether there's consensus; `ietf-reviewing` when you ask it to review or assess a draft.
+You don't invoke these manually. Your assistant reads each skill's short description at startup and loads the full guidance on its own when your task matches -- `ietf-contributing` when you ask it to help draft a message, comment, or review that goes out under your name; `ietf-interpreting` when you ask what a group decided or whether there's consensus; `ietf-reviewing` when you ask it to review or assess a draft; `ietf-http` when the draft in front of it defines a protocol or API over HTTP.
 
 ## License
 

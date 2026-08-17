@@ -14,7 +14,7 @@ Many of its recommendations are just that -- their application depends upon the 
 
 To use this skill:
 
-First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?" If it is not, stop and advise the user that this skill isn't applicable. 
+First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?" If it is not, stop and advise the user that this skill isn't applicable.
 
 From there:
 * If you are creating or modifying a specification that uses HTTP, follow the steps in "Creating HTTP Specifications".
@@ -75,9 +75,9 @@ Generally, a protocol that uses HTTP well will define a number of specific forma
 
 ### 2. Define Client Constraints
 
-Next, define the requirements and assumptions for clients accessing those resources. 
+Next, define the requirements and assumptions for clients accessing those resources.
 
-Generally, client behaviour ought to be closely aligned with that of Web browsers, to avoid interoperability problems when browsers are used -- even if they are not the intended client population, it is almost inevitable that browsers will at some point access the resources defined by an application. 
+Generally, client behaviour ought to be closely aligned with that of Web browsers, to avoid interoperability problems when browsers are used -- even if they are not the intended client population, it is almost inevitable that browsers will at some point access the resources defined by an application.
 
 Some client behaviours and extensions aren't required by HTTP but have become common; if the specification doesn't address them explicitly, expect confusion:
 
@@ -88,7 +88,7 @@ Some client behaviours and extensions aren't required by HTTP but have become co
 
 ## Review Process
 
-To review a specification that uses HTTP, go through the following steps. 
+To review a specification that uses HTTP, go through the following steps.
 
 1. Identify the section(s) of the specification that use or extend HTTP.
 2. Evaluate them according to the criteria in this skill.
@@ -110,7 +110,7 @@ Use this when writing the review itself -- see `ietf-reviewing` for when that ha
 
 _assess, at a high level, how likely the specification is to benefit from using HTTP; see "Goals for Using HTTP"_
 
-_assess, at a high level, how web-compatible the specification is; see "Web Compatibility"_
+_assess, at a high level, how Web-compatible the specification is; see "Web Compatibility"_
 
 ## Technical Recommendations
 
@@ -124,9 +124,9 @@ _Review "Editorial Style" and enumerate the issues found, as a numbered list wit
 
 ## Goals for Using HTTP
 
-When deciding to use HTTP, as well as how to use the protocol, it is helpful to have a solid grasp of the benefits of doing so. 
+When deciding to use HTTP, as well as how to use the protocol, it is helpful to have a solid grasp of the benefits of doing so.
 
-The primary benefit of using HTTP as the basis of a protocol is _reuse_ -- of deployed infrastructure, available implementations and tools, and knowledge / familiarity by humans. HTTP offers intuitive, higher-level abstractions that -- when properly used -- can handle problems without significant effort. 
+The primary benefit of using HTTP as the basis of a protocol is _reuse_ -- of deployed infrastructure, available implementations and tools, and knowledge / familiarity by humans. HTTP offers intuitive, higher-level abstractions that -- when properly used -- can handle problems without significant effort.
 
 For example, it can provide:
 
@@ -139,18 +139,18 @@ For example, it can provide:
 * Browsers as a powerful user interface
 * Protocol evolution mechanisms
 * Flexibility in deployment (e.g., alongside other Web applications, and integrated into them)
-* Separation of interface and implementation 
+* Separation of interface and implementation
 
 Often, protocol designers may not appreciate or anticipate these benefits immediately. For example, it may not be apparent that caching is necessary in the early deployments of a protocol, but at scale it is often a critical capability. Designing to enable use of as many of HTTP's capabilities as is reasonably possible enables these unforeseen future requirements to be met more easily.
 
 
 ## Web Compatibility
 
-The Web is a rich, interlinked ecosystem with many actors. Applications that use HTTP need to co-exist well with other parts of this ecosystem, even when there is no intended overlap. 
+The Web is a rich, interlinked ecosystem with many actors. Applications that use HTTP need to co-exist well with other parts of this ecosystem, even when there is no intended overlap.
 
 This has many implications:
 
-* Because the most widespread client for HTTP is the Web browser, applications MUST consider the implications of browser access even if it is not a target client; see "Security" for details. 
+* Because the most widespread client for HTTP is the Web browser, applications MUST consider the implications of browser access even if it is not a target client; see "Security" for details.
 * Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often have no application-specific knowledge, and are difficult to modify. Therefore, applications need to be designed with it in mind; see especially "Caching", "Stateful Connections", and "Subsuming Generic Semantics".
 * Some applications can benefit from flexible deployment on servers, "mixing and matching" with other applications, as well as cross-linking between them. See "Linking".
 
@@ -158,13 +158,13 @@ This has many implications:
 
 Specifications MUST NOT require a minimum version of HTTP; because HTTP is hop-by-hop, connections can be handled by implementations the application doesn't control (proxies, CDNs, firewalls). If there are particular benefits from a particular version (e.g., HTTP/2's multiplexing), note that instead. Likewise, specifications MUST NOT specify a maximum version, to preserve the protocol's ability to evolve.
 
-HTTP/2 and HTTP/3 define server push.  Use of this feature is generally inadvisable; it is not widely available.
+HTTP/2 and HTTP/3 define server push. Use of this feature is generally inadvisable; it is not widely available.
 
 ## Resources and URIs
 
-Resources are identified by URIs (also called URLs, but most IETF specifications use URI). They consume and produce representations -- bundles of content with header (and possibly trailer) fields. Requests contain a method that operate upon the resource; responses contain a status code that indicates the outcome of the operation. 
+Resources are identified by URIs (also called URLs, but most IETF specifications use URI). They consume and produce representations -- bundles of content with header (and possibly trailer) fields. Requests contain a method that operate upon the resource; responses contain a status code that indicates the outcome of the operation.
 
-Applications will typically use the "http" and/or "https" URI schemes; "https" is strongly RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and web-related features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
+Applications will typically use the "http" and/or "https" URI schemes; "https" is strongly RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and Web-related features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
 
 Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. Using a non-default port has privacy implications (the protocol can now be distinguished from other traffic) that should be documented in Security Considerations, as well as operability concerns, since some networks might block or interfere with it.
 
@@ -172,15 +172,15 @@ Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deploye
 
 Assuming that a server's namespace (or a portion of it) is exclusively for one application's use overlays application-specific semantics onto that space and precludes others from using it. Such "squatting" usurps the server's authority over its own resources and is bad practice in standards.
 
-Specifications that use HTTP MUST NOT specify fixed paths for their resources. For example, specifying that `/app/widget.xml` is the path for a particular resources in the protocol is not allowed. See [BCP 190 / RFC 8820](https://www.rfc-editor.org/rfc/rfc8820) for details.
+Specifications that use HTTP MUST NOT specify fixed paths for their resources. For example, specifying that `/app/widget.xml` is the path for a particular resource in the protocol is not allowed. See [BCP 190 / RFC 8820](https://www.rfc-editor.org/rfc/rfc8820) for details.
 
-The one exception to this is a `/.well-known` URI - see "Discovery".
+The one exception to this is a `/.well-known` URI -- see "Discovery".
 
 Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links. This can be done by adding URIs with specific semantics to application-specific representation formats or by using the generically-typed linked relations defined in [RFC 8288](https://www.rfc-editor.org/info/rfc8288/). Doing so has significant operational advantages: servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking also offers a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
 
 Applications can also use [URI Templates](https://www.rfc-editor.org/info/rfc6570/) to let clients generate URLs from runtime data.
 
-A resource type can specify the semantics and syntax of the query components of its URIs. While many use the `foo=bar&baz=bam` format from HTML forms due to its widespread use, this is not required. 
+A resource type can specify the semantics and syntax of the query components of its URIs. While many use the `foo=bar&baz=bam` format from HTML forms due to its widespread use, this is not required.
 
 ### Discovery
 
@@ -218,7 +218,7 @@ Applications should register a distinct media type for each format they define, 
 
 ## Methods
 
-Protocols that use HTTP must only use methods that are registered in the IANA HTTP method registry, and will typically confine themselves to the following methods: GET HEAD POST PUT DELETE PATCH QUERY
+Protocols that use HTTP must only use methods that are registered in the IANA HTTP method registry, and will typically confine themselves to the following methods: GET, HEAD, POST, PUT, DELETE, PATCH, and QUERY.
 
 Two properties carry most of the weight, because generic software acts on them without knowing anything about the application:
 
@@ -331,7 +331,7 @@ Request header fields used to select ("vary") a response have consequences for c
 
 New fields MUST be registered.
 
-HTTP fields defined in the IETF should be [Structured Fields](https://httpwg.org/specs/rfc9651.html). This isn’t an official policy, but many participants will argue that their interoperability and security benefits override most other concerns, so failing to use them may cause issues during Last Call.
+HTTP fields defined in the IETF should be [Structured Fields](https://httpwg.org/specs/rfc9651.html). This isn't an official policy, but many participants will argue that their interoperability and security benefits override most other concerns, so failing to use them may cause issues during Last Call.
 
 Field names should be short -- there is overhead even when field compression is used -- but appropriately specific. A field that is specific to an application can use an identifier for that application as a prefix, separated by a hyphen; e.g., the "example" application might define "example-foo", "example-bar", and "example-baz". The motivation is to avoid consuming more generic field names, not to reserve a portion of the namespace for the application.
 
@@ -452,7 +452,7 @@ The following anti-patterns should be called out and warned against (with explan
 
 "Tunnelling" is treating HTTP as a transport protocol. Typically, this is seen as overuse of POST -- in extreme cases, putting all traffic through POSTs to a single resource. Sometimes, tunnelling is indicated when a protocol creates a "HTTP binding" to existing semantics, since those semantics rarely map directly onto HTTP resources and representations.
 
-Tunnelling indicates that the application is unlikely to realise most of the benefits of using HTTP (see "Goals for Using HTTP"). 
+Tunnelling indicates that the application is unlikely to realise most of the benefits of using HTTP (see "Goals for Using HTTP").
 
 Tunnelling is not forbidden in specifications, but careful attention needs to be paid to how HTTP is used, because authors that do not engage deeply with the protocol often make invalid assumptions about how the protocol is deployed -- for example, assuming that connections are stateful.
 
@@ -460,7 +460,7 @@ Tunnelling is not forbidden in specifications, but careful attention needs to be
 
 HTTP's use of the underlying transport protocol is stateless. Just because two messages occurred on the same connection does not guarantee that they will remain on the same connection when forwarded to a downstream recipient.
 
-Therefore, specifications MUST NOT assume that two messages have any non-explicit relationship. If statefulness is required, consider using HTTP Cookies or other mechanisms. 
+Therefore, specifications MUST NOT assume that two messages have any non-explicit relationship. If statefulness is required, consider using HTTP Cookies or other mechanisms.
 
 Cookies re-establish the association between messages, but a cookie only identifies a session -- it does not route the request to a server holding that session's state. "Sticky" routing can pin a client to one backend, but only across infrastructure the operator controls; an intermediary they don't control (a CDN, a forward proxy) may spread a client's requests across backends anyway. So a specification whose correctness depends on session state MUST NOT treat connection affinity and shared session storage as interchangeable -- only shared storage stays correct when requests are spread across servers.
 
@@ -505,7 +505,7 @@ When referring to a field defined in a different document, the first instance sh
 
 > Add the Foo-Example header field (see {{RFCxxxx}}) to the response.
 
-Subsequent occurrences should be unquoted, but always be followed by “field”, “header field”, or “trailer field” as appropriate.
+Subsequent occurrences should be unquoted, but always be followed by "field", "header field", or "trailer field" as appropriate.
 
 Field names are case-insensitive on the wire, but spell each one as the HTTP Field Name Registry does -- ETag, not Etag; Retry-After, not Retry-after. Examples get copied.
 
@@ -513,14 +513,14 @@ See also [Considerations for New Fields](https://httpwg.org/specs/rfc9110.html#c
 
 ### Structured Fields
 
-When specifying a Structured Field in prose, preferred practice is to add the following to your “Notational Conventions” section:
+When specifying a Structured Field in prose, preferred practice is to add the following to your "Notational Conventions" section:
 
 > This document uses the following terminology from {{Section 3 of STRUCTURED-FIELDS}}
 > to specify syntax and parsing: List, Dictionary, and Integer.
 
 adjusting the terms listed as appropriate. Then, when using one of the terms, just use the bare, capitalised term; e.g.,
 
-> The Foo header field’s value is a List of Integers.
+> The Foo header field's value is a List of Integers.
 
 All references to structured types should be made to Section 3 of the Structured Fields specification, not Section 4.
 
@@ -528,7 +528,7 @@ Although ABNF is defined for structured types, we do not recommend its use. The 
 
 ### Content
 
-Use ‘content’, not ‘body’ or ‘payload’.
+Use 'content', not 'body' or 'payload'.
 
 ### Methods
 
@@ -550,17 +550,17 @@ When referring to multiple individual status codes, the reason phrase can be omi
 
 > If the status code is 200, 202, or 204, proceed.
 
-To refer to a range of status codes, use “xx” notation:
+To refer to a range of status codes, use "xx" notation:
 
 > The 4xx range of status codes.
 
-When discussing status codes in general, the correct reference is Section 15 of HTTP. Use ‘status code’, not ‘Status Code’.
+When discussing status codes in general, the correct reference is Section 15 of HTTP. Use 'status code', not 'Status Code'.
 
 ### Example Messages
 
 If your specification has examples of HTTP messages (and it probably should), they should give enough context for readers to understand. Generally, this means showing a substantial portion of the message; e.g., not just a header field in isolation, but an entire request or response message (with a truncated body if applicable). Where appropriate, an entire exchange (request and response) can be illustrated using two subsequent example sections.
 
-Examples should be in HTTP/1.1 format unless they are specific to another version of the protocol. HTTP/1.1 examples should be labeled with the `http-message` type so that the validator can check them.
+Examples should be in HTTP/1.1 format unless they are specific to another version of the protocol. HTTP/1.1 examples should be labelled with the `http-message` type so that the validator can check them.
 
 For example (in Markdown):
 
@@ -602,7 +602,7 @@ Note that the notice header has to occur on each section that uses this encoding
 
 ### References
 
-Generally, named references are preferred for “core” specifications like HTTP and TLS. In addition to giving readers a cue about the purpose of the reference, this is a small hint that the RFC number is not the identifier they should be remembering. For example:
+Generally, named references are preferred for "core" specifications like HTTP and TLS. In addition to giving readers a cue about the purpose of the reference, this is a small hint that the RFC number is not the identifier they should be remembering. For example:
 
 > This document defines a HTTP {{HTTP}} header field that uses the conventions
 > in {{STRUCTURED-FIELDS}} to convey information about the TLS ({{TLS}}) session.

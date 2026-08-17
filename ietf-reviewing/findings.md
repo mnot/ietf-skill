@@ -21,7 +21,7 @@ because a finding is analysis rather than a contribution:
   grounding are your judgement rather than the document's.
 - **Hard-wrap, and prefer lists to tables.** This gets read in a text editor as often as anywhere
   that renders markdown, and nothing here is quoted back in a reply. Use a table only where the
-  content is genuinely a matrix.
+  content is a matrix.
 
 Rendering is not recall: re-print every record fact -- revisions, dates, reviewer and balloter
 names, results, ballot positions, issue and pull request numbers -- from the tool as you write it.
@@ -164,7 +164,7 @@ a consequence attached.
 - A finding whose framing commits them to a position they may not want to hold.
 - Anything you could not verify, and what it would change.
 
-Keep it to a few lines. If nothing is genuinely theirs to settle, say that rather than manufacturing
+Keep it to a few lines. If nothing is theirs to settle, say that rather than manufacturing
 a list -- a ritual section trains them to skip it, and this is the one section that is asking them
 for something.
 

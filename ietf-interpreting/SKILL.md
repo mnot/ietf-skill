@@ -11,7 +11,7 @@ sentence asserting a collective outcome** -- settled, decided, agreed,
 rejected, "there is consensus," or "the WG thinks/wants" -- you should have read
 these norms. Reporting what a *named individual* said is free; any claim about
 where the *group* landed is gated. Not enforced -- the point is to make skipping
-the check something you notice choosing, not ordinary efficient judgment. For
+the check something you notice choosing, not ordinary efficient judgement. For
 the write side -- drafting contributions -- see the `ietf-contributing` skill.
 
 ## The trap is what you already know
@@ -37,8 +37,8 @@ procedural message -- chair characterisations get disputed on-list too. Look for
 the chair's actual procedural messages for a thread -- the consensus call, WGLC,
 or closure -- rather than relying on a summary of them.
 
-Another signal worth paying attention to is when a draft is updated to address 
-feedback received. Although lack of further pushback is not hard evidence of 
+Another signal worth paying attention to is when a draft is updated to address
+feedback received. Although lack of further pushback is not hard evidence of
 consensus, it is persuasive that the group accepts the edits made.
 
 ## Not every decision is called, and none is final until Last Call

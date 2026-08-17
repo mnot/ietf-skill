@@ -28,7 +28,7 @@ Before drafting, ask what this particular message has to do, and write only that
 
 The common failure is a small job answered at length. *Acknowledged; I'll withdraw the request and bring a problem statement before IETF 127* is the whole of some replies, and a fuller version of it is worse, not more diligent. Pre-emptive completeness -- answering questions nobody has asked, covering every branch, delivering the document in the message that promises it -- is among the clearest signs a machine wrote it, and it reads as not knowing what the message was for.
 
-This test asks where content belongs; it is not a licence to compress. Where the message *is* the artifact -- a review, a technical argument in a live thread, an issue that has to carry its own context -- the content has nowhere else to go, and it takes the length it takes. The test is *does this belong here*, never *is this long*.
+This test asks where content belongs; it is not a licence to compress. Where the message *is* the artefact -- a review, a technical argument in a live thread, an issue that has to carry its own context -- the content has nowhere else to go, and it takes the length it takes. The test is *does this belong here*, never *is this long*.
 
 ### Wording
 
