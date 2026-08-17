@@ -92,8 +92,10 @@ To review a specification that uses HTTP, go through the following steps.
 
 1. Identify the section(s) of the specification that use or extend HTTP.
 2. Evaluate them according to the criteria in this skill.
-3. Double check the document's references for currency and correctness (see "References").
-4. Produce findings per the `ietf-reviewing` skill. The template below is for the review text, if one is asked for.
+3. Check every protocol element the document names -- each method, status code, field, cache directive and validator -- against its definition in RFC 9110 or RFC 9111, not against what the name suggests. This is a separate pass from step 2, and the one that gets skipped: a design-level read finds the wrong shape, and finds nothing when the shape is right and the directive is wrong.
+4. Read every example message as though implementing from it, because someone will. Check each field against its definition, each status code against the situation it illustrates, and any intermediary's behaviour against what a cache actually does.
+5. Double check the document's references for currency and correctness (see "References").
+6. Produce findings per the `ietf-reviewing` skill. The template below is for the review text, if one is asked for.
 
 If the specification is a revision, check for prior HTTP reviews (from this reviewer or others, e.g. HTTPDIR) and reconcile against them: note which points were addressed and which recur unchanged.
 
@@ -216,7 +218,16 @@ Applications should register a distinct media type for each format they define, 
 
 ## Methods
 
-Protocols that use HTTP must only use methods that are registered in the IANA HTTP method registry, and will typically confine themselves to the following methods: GET POST PUT DELETE PATCH QUERY
+Protocols that use HTTP must only use methods that are registered in the IANA HTTP method registry, and will typically confine themselves to the following methods: GET HEAD POST PUT DELETE PATCH QUERY
+
+Two properties carry most of the weight, because generic software acts on them without knowing anything about the application:
+
+* **Safe** (Section 9.2.1 of HTTP): the client does not request, and does not expect, any state change. Safe requests get prefetched, retried, replayed from TLS early data, and -- for GET and HEAD -- cached. GET, HEAD, OPTIONS and TRACE are safe; QUERY is defined as safe by its own specification.
+* **Idempotent** (Section 9.2.2 of HTTP): repeating the request has the same intended effect as making it once. Clients retry idempotent requests automatically when a connection fails before a response arrives, and a proxy MUST NOT do so for a non-idempotent one. PUT, DELETE and the safe methods are idempotent; POST and PATCH are not.
+
+Asserting a property does not establish it. A specification that calls its operations read-only, then has one mint a session, allocate an identifier, or consume a quota the client can observe, has an unsafe operation described as a safe one -- and the caching, prefetch and retry behaviour that follows from the claim is now wrong. Check each operation against the definition, not the method name.
+
+Caching is defined for GET, HEAD and POST (Section 9.2.3 of HTTP), but the overwhelming majority of cache implementations support only GET and HEAD. Treat "cacheable" as meaning GET and HEAD unless there is a specific reason to say otherwise.
 
 See below for advice about using specific methods.
 
@@ -229,6 +240,17 @@ Queries can be performed with GET, usually using the query component of the URL 
 Processing of a GET should not change application state or have other side effects significant to the client, since implementations do retry failed GETs, and GETs protected by TLS early data may be vulnerable to replay. Side effects do not include logging and similar functions.
 
 A particular thing to watch for: a GET whose purpose is to create server state -- minting a session, token, or resource. Because GET is safe, such a request can be prefetched, retried by intermediaries, or replayed from TLS early data; the creating request should use POST.
+
+### HEAD
+
+HEAD is GET without the content. All general-purpose servers MUST support GET and HEAD (Section 9.1 of HTTP), so a resource that answers GET answers HEAD as well; a specification does not need to define it separately, and MUST NOT prohibit it.
+
+Two consequences:
+
+* Enumerating the methods a resource accepts is usually a mistake, because the list omits HEAD (and OPTIONS). Describe what GET does and leave the rest to HTTP.
+* A server SHOULD send the same header fields for HEAD as it would for GET (Section 9.3.2 of HTTP). Where the application puts something in a response header field that a client might want without the content -- a validator, a Link, an expiry -- HEAD is how it gets it cheaply, and the document should say so.
+
+Content in a HEAD request has no defined semantics and may get the request rejected.
 
 ### POST
 
@@ -317,6 +339,8 @@ Field names should be short -- there is overhead even when field compression is 
 
 Caching is one of the primary benefits of using HTTP: it provides scalability, reduces latency, and improves reliability, and caches are readily available in browsers and other clients, in networks as forward and reverse proxies, in CDNs, and in server software. Even an application that isn't designed to take advantage of caching needs to consider how caches will handle its responses, so that behaviour stays correct when one is interposed.
 
+**The caching model is not the application's to change.** RFC 9111 is implemented by generic software -- browsers, proxies, CDNs -- that knows nothing about the application. A specification chooses which directives it sends; it MUST NOT redefine one, attach conditions to one, or specify caching behaviour of its own ("caches MUST revalidate this resource hourly", "intermediaries MUST purge on revocation"). Deployed caches follow RFC 9111 regardless, so a profile of the caching model buys nothing and misleads implementers. Where the application needs something HTTP caching doesn't provide, express it in the content and relate it to freshness -- see below, and "Subsuming Generic Semantics".
+
 Assigning even a short freshness lifetime -- e.g., 5 seconds -- allows a response to be reused across multiple clients, or by one client repeating a request. In general, if it is safe to reuse something, consider assigning a freshness lifetime. Notes on doing so:
 
 * The most common method is the max-age response directive. Expires also works, but isn't necessary; all modern caches support Cache-Control, and a delta is more convenient and less error-prone.
@@ -329,6 +353,56 @@ Stale responses (e.g., with `Cache-Control: max-age=0`) can be reused by caches 
 When an application needs to express a lifetime separate from the freshness lifetime, convey it separately -- in the response's content, or a separate header field -- and consider the relationship between the two carefully, since the response will be used for as long as it is considered fresh. In particular, consider how responses that aren't freshly obtained from the origin should be handled: a concept like a validity period will need to account for the age of the response. One way to address this is to specify explicitly that responses need to be fresh upon use.
 
 If a request header field changes the response's header fields or content, point out that this has caching implications: such resources need either to make their responses uncacheable, or to send Vary on all responses from that resource -- including the "default" response.
+
+### Cache Directives
+
+A document can get the caching design right and still name the wrong directive. Check each one the document uses -- in prose and in every example -- against Section 5.2 of HTTP Caching, because several do not mean what their names suggest.
+
+| Directive | The trap |
+| --- | --- |
+| max-age | The request and response forms are different directives (Sections 5.2.1.1 and 5.2.2.1 of HTTP Caching). A request `max-age=0` asks for revalidation; it does not make anything uncacheable. |
+| s-maxage | Applies to shared caches only, overrides max-age for them, and carries proxy-revalidate with it -- a shared cache MUST NOT serve it stale. A design that sets s-maxage and then relies on intermediaries serving stale on disconnect contradicts itself. |
+| private | Controls only where the response may be stored. It is not confidentiality, and it is not no-store. |
+| public | Rarely needed; it marks cacheable a response that otherwise would not be -- an authenticated one, or one with no freshness information whose status code the cache doesn't recognise. |
+| no-cache | Permits storage and forces revalidation. As a request directive it states a client preference (Section 5.2.1.4), not a requirement on anything upstream. |
+| no-store | The one that prevents storage. Not reliable against a malicious or broken cache. |
+| must-revalidate | Bites only once the response is already stale; it does not shorten the freshness lifetime. |
+| immutable, stale-while-revalidate, stale-if-error | Extensions (RFC 8246, RFC 5861), not in RFC 9111. Cite them where the document actually needs them. |
+
+**Caches do not rewrite freshness directives.** A cache serving a stored response forwards the origin's Cache-Control unchanged and adds an Age header field giving the seconds since the origin generated or validated it (Sections 4.2.3 and 5.1 of HTTP Caching); the recipient computes remaining freshness by subtracting Age. An example showing max-age shrinking as the response sits in a cache describes something no cache does.
+
+**Say which kind of cache.** Browser caches, forward proxies, reverse proxies and CDNs are all "caches", and private, s-maxage and proxy-revalidate are how a response distinguishes them. A requirement addressed to "the cache" without saying which is not implementable.
+
+**A stored response is not a response to this client.** Anything the application derives from a response -- a validity window, a nonce, an authorisation decision -- has to hold for a copy that is up to max-age seconds old and was computed for someone else's request. Where it cannot, the response is not cacheable: say so with no-store or private.
+
+### Validators and Conditional Requests
+
+A validator -- an ETag, or a Last-Modified date (Section 8.8 of HTTP) -- lets a stale stored response be refreshed with a 304 instead of a full transfer, and lets a state-changing request be made conditional. Origin servers SHOULD send one on 200 responses to GET and HEAD (Section 15.3.1 of HTTP). Both uses go wrong in characteristic ways:
+
+* **ETags are opaque.** The value means something only to the origin server that generated it; a client compares it for equality and does nothing else with it (Section 8.8.3.1 of HTTP). A specification MUST NOT define ETag content that clients are expected to parse -- a version number, a content hash, a timestamp -- or require them to order, decompose, or derive anything from it. Where the application needs a version identifier, put it in the content or in a field of its own.
+* **Strength is not optional.** An entity tag that does not change on every change to the representation data is weak, and the origin server MUST prefix it with `W/` (Section 8.8.3 of HTTP). Weak tags cannot be used with If-Match or with ranges. A tag derived from the application's own notion of "the same content" is usually a weak validator, whatever the document calls it.
+* **Only the origin server mints one.** A cache stores and returns the validator it was given; it never generates one. A validator that first appears on a response served from an intermediary is an error in the example.
+* **A 304 carries fields.** It MUST include any of Content-Location, Date, ETag, Vary, Cache-Control and Expires that the 200 would have carried (Section 15.4.5 of HTTP); the cache uses them to update what it stored. A 304 without the ETag, or with a Cache-Control that leaves the refreshed entry immediately stale, defeats the revalidation it is meant to illustrate.
+* **Conditional state change.** Where If-Match is used for optimistic concurrency, say so explicitly, say that the failure is 412 (Precondition Failed), and don't invent a field for the purpose.
+* **ETags are client-side storage.** They persist in the client's cache and can be used to track it; see "Security".
+
+## Retries and Overload
+
+Clients retry: on a 429, a 503, a 5xx, a timeout, a dropped connection. Specifying what they do next is usually a good idea -- left open, each client picks its own behaviour, and the common default of retrying straight away makes an overloaded resource worse. It is a suggestion rather than a defect; authors may have considered it and left it to deployment. Ask whether they did.
+
+Where the specification does address it:
+
+* Which responses the client retries, and which it must not.
+* What it does when Retry-After is absent, since it usually is: an initial delay, a backoff, a cap.
+* Randomised jitter. Clients that back off by the same amount return together.
+* Whether retrying is safe at all. Only an idempotent request can be retried automatically after a failure with no response (Section 9.2.2 of HTTP).
+
+On the server side:
+
+* Retry-After is defined for 503 and for 3xx (Section 10.2.3 of HTTP); RFC 6585 allows it on 429. It takes a delta in seconds or an HTTP-date, not prose.
+* 429 is about this client's quota; 503 says the server as a whole is unavailable.
+* Quota state -- limit, remaining, reset -- belongs in fields. The RateLimit header fields work in httpapi (draft-ietf-httpapi-ratelimit-headers) is in progress.
+* A 429 MUST NOT be stored by a cache (Section 4 of RFC 6585). Other error responses can be stored given explicit freshness, and are then served to every client behind the same shared cache.
 
 ## Security
 
@@ -406,7 +480,7 @@ Similarly, don't require a minimum or maximum version of HTTP; see "HTTP Version
 
 Much of the value of HTTP is in its generic semantics: the protocol elements HTTP defines are potentially applicable to every resource, and aren't specific to a particular context. That split lets a message be handled by common software -- servers, intermediaries, client implementations, caches -- without those implementations understanding the application, and lets people apply their knowledge of HTTP without specialised knowledge of the application.
 
-Therefore, specifications MUST NOT redefine, refine, or overlay the semantics of generic protocol elements such as methods, status codes, or existing header fields. Application-specific semantics belong in message content and in fields the application defines -- and specifications should focus on the protocol elements that are specific to the application, namely its resources.
+Therefore, specifications MUST NOT redefine, refine, or overlay the semantics of generic protocol elements such as methods, status codes, existing header fields, or the caching model (see "Caching"). Application-specific semantics belong in message content and in fields the application defines -- and specifications should focus on the protocol elements that are specific to the application, namely its resources.
 
 A related trap is specifying exactly how HTTP is to be implemented and used, which easily produces an unintended profile of HTTP behaviour. For example:
 
@@ -432,6 +506,8 @@ When referring to a field defined in a different document, the first instance sh
 > Add the Foo-Example header field (see {{RFCxxxx}}) to the response.
 
 Subsequent occurrences should be unquoted, but always be followed by “field”, “header field”, or “trailer field” as appropriate.
+
+Field names are case-insensitive on the wire, but spell each one as the HTTP Field Name Registry does -- ETag, not Etag; Retry-After, not Retry-after. Examples get copied.
 
 See also [Considerations for New Fields](https://httpwg.org/specs/rfc9110.html#considerations.for.new.fields).
 
