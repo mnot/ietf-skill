@@ -6,19 +6,16 @@ license: CC-BY-4.0
 
 # HTTP Specification Skill
 
-Drafting, reviewing, or modifying IETF Internet-Drafts and similar specifications that use the HTTP protocol. Covers editorial style, best practices, and common pitfalls. The content of this skill mirrors much of the content of BCP 56 / RFC 9205.
+Drafting, reviewing, or modifying IETF Internet-Drafts and similar specifications that use HTTP: editorial style, best practices, and common pitfalls. This skill mirrors much of BCP 56 / RFC 9205.
 
-This skill is designed to give initial advice to draft authors. It is not definitive; there are aspects of HTTP design that require expert advice and intervention. Draft authors are encouraged to run it and consider the provided advice. If they disagree with the recommendations, have further questions, or need further advice, encourage them to engage with HTTP experts (e.g., the HTTP Directorate, for IETF specifications).
+Treat it as initial advice rather than the last word. Some HTTP design needs an expert. Where the author disagrees with a recommendation, has further questions, or has hit one of those cases, point them at the HTTP community -- the HTTP Directorate, for IETF specifications.
 
-Many of its recommendations are just that -- their application depends upon the specific circumstances and goals of the use of HTTP in question. When a particular behaviour is required or prohibited in IETF specifications, MUST / MUST NOT will be used.
+Most of what follows is advisory: whether a recommendation applies turns on the circumstances and goals of the particular use of HTTP. MUST and MUST NOT mark what holds regardless.
 
-To use this skill:
+Confirm first that the specification is using HTTP; see "Is HTTP Being Used?" If it isn't, say so and stop. From there:
 
-First, confirm that HTTP is being used by the specification in question; see "Is HTTP Being Used?" If it is not, stop and advise the user that this skill isn't applicable.
-
-From there:
-* If you are creating or modifying a specification that uses HTTP, follow the steps in "Creating HTTP Specifications".
-* If you are reviewing a specification that uses HTTP, follow the steps in "Review Process". That covers the HTTP substance; for how to conduct the review itself -- which question it answers at this document's stage, how to weigh what you find, and how to present it -- see the `ietf-reviewing` skill.
+* Creating or modifying a specification -- follow "Creating HTTP Specifications".
+* Reviewing one -- follow "Review Process". That covers the HTTP substance; for how to conduct the review itself -- which question it answers at this document's stage, how to weigh what you find, and how to present it -- see the `ietf-reviewing` skill.
 
 
 ## Reference Texts
@@ -57,7 +54,7 @@ Follow these steps when the user wishes to create a new specification that uses 
 
 ### 0. Understand the Relationship with HTTP
 
-Talk to the user about why they are using HTTP for their protocol. While most authors will have broad familiarity with the protocol, they may not appreciate everything it provides (see in particular "Goals for Using HTTP"), or all of the constraints that will be placed upon them (see "Web Compatibility"). A discussion about these aspects with the user will assure that HTTP is a good fit for their application.
+Talk to the user about why they are using HTTP for their protocol. Most authors know the protocol broadly, but not everything it provides (see "Goals for Using HTTP") or every constraint it places on them (see "Web Compatibility"). The discussion is how you find out whether HTTP is a good fit for the application.
 
 ### 1. Define Your Resources and Representations
 
@@ -124,8 +121,6 @@ _Review "Editorial Style" and enumerate the issues found, as a numbered list wit
 
 ## Goals for Using HTTP
 
-When deciding to use HTTP, as well as how to use the protocol, it is helpful to have a solid grasp of the benefits of doing so.
-
 The primary benefit of using HTTP as the basis of a protocol is _reuse_ -- of deployed infrastructure, available implementations and tools, and knowledge / familiarity by humans. HTTP offers intuitive, higher-level abstractions that -- when properly used -- can handle problems without significant effort.
 
 For example, it can provide:
@@ -146,12 +141,10 @@ Often, protocol designers may not appreciate or anticipate these benefits immedi
 
 ## Web Compatibility
 
-The Web is a rich, interlinked ecosystem with many actors. Applications that use HTTP need to co-exist well with other parts of this ecosystem, even when there is no intended overlap.
-
-This has many implications:
+The Web is a rich, interlinked ecosystem with many actors. Applications that use HTTP need to co-exist well with other parts of this ecosystem, even when there is no intended overlap:
 
 * Because the most widespread client for HTTP is the Web browser, applications MUST consider the implications of browser access even if it is not a target client; see "Security" for details.
-* Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often have no application-specific knowledge, and are difficult to modify. Therefore, applications need to be designed with it in mind; see especially "Caching", "Stateful Connections", and "Subsuming Generic Semantics".
+* Infrastructure deployed for HTTP (such as CDNs, WAFs, caches, and servers) often has no application-specific knowledge, and is difficult to modify. Design for it; see especially "Caching", "Stateful Connections", and "Subsuming Generic Semantics".
 * Some applications can benefit from flexible deployment on servers, "mixing and matching" with other applications, as well as cross-linking between them. See "Linking".
 
 ### HTTP Versions
@@ -164,9 +157,16 @@ HTTP/2 and HTTP/3 define server push. Use of this feature is generally inadvisab
 
 Resources are identified by URIs (also called URLs, but most IETF specifications use URI). They consume and produce representations -- bundles of content with header (and possibly trailer) fields. Requests contain a method that operate upon the resource; responses contain a status code that indicates the outcome of the operation.
 
-Applications will typically use the "http" and/or "https" URI schemes; "https" is strongly RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring. An application-specific scheme can be defined, but the trade-offs are severe: browsers and existing clients, intermediaries, and servers won't recognise it; URLs are often generated automatically, so consistent use is hard to guarantee; the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and Web-related features (same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts) may not work as expected, because they generally assume the scheme is "http" or "https".
+Applications will typically use the "http" and/or "https" URI schemes; "https" is strongly RECOMMENDED, to provide authentication, integrity, and confidentiality and to mitigate pervasive monitoring.
 
-Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. Using a non-default port has privacy implications (the protocol can now be distinguished from other traffic) that should be documented in Security Considerations, as well as operability concerns, since some networks might block or interfere with it.
+An application-specific scheme can be defined, but the trade-offs are severe:
+
+* browsers and existing clients, intermediaries, and servers won't recognise it;
+* URLs are often generated automatically, so consistent use is hard to guarantee;
+* the resources remain available over "http" and/or "https" anyway, so those URLs can leak; and
+* Web features that assume the scheme is "http" or "https" -- same-origin policy, cookies, authentication, caching, HSTS, CORS, secure contexts -- may not work as expected.
+
+Applications can use the default port (80 for HTTP, 443 for HTTPS) or be deployed on another; this is usually a deployment-time decision. A non-default port has to be reflected in the authority of every URL for the resource -- the only way to change a default port is to change the URI scheme. A non-default port also has privacy implications, since the protocol can now be distinguished from other traffic; document those in Security Considerations. Some networks block or interfere with such ports, which is an operability concern as well.
 
 ### Linking
 
@@ -176,7 +176,9 @@ Specifications that use HTTP MUST NOT specify fixed paths for their resources. F
 
 The one exception to this is a `/.well-known` URI -- see "Discovery".
 
-Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links. This can be done by adding URIs with specific semantics to application-specific representation formats or by using the generically-typed linked relations defined in [RFC 8288](https://www.rfc-editor.org/info/rfc8288/). Doing so has significant operational advantages: servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking also offers a natural mechanism for extensibility and capability management (since the document carrying the links can also describe their targets), and provide a form of cache invalidation -- when a resource's state changes, change the affected links so that a fresh copy is fetched.
+Instead of statically defining URI paths, it is RECOMMENDED that applications define and use typed links -- either by adding URIs with specific semantics to application-specific representation formats, or by using the generically-typed link relations defined in [RFC 8288](https://www.rfc-editor.org/info/rfc8288/).
+
+The operational advantages are significant. Servers can arrange their resources with more flexibility, link between applications more easily, and redirect requests to different servers. Linking is also a natural mechanism for extensibility and capability management, since the document carrying the links can describe their targets. And it provides a form of cache invalidation: when a resource's state changes, change the affected links so that a fresh copy is fetched.
 
 Applications can also use [URI Templates](https://www.rfc-editor.org/info/rfc6570/) to let clients generate URLs from runtime data.
 
@@ -350,7 +352,7 @@ Assigning even a short freshness lifetime -- e.g., 5 seconds -- allows a respons
 
 Stale responses (e.g., with `Cache-Control: max-age=0`) can be reused by caches when disconnected from the origin server, which can be useful for handling network issues. If that isn't suitable for a given response, send the must-revalidate directive. Assigning a validator lets stale responses be refreshed, saving both bandwidth and latency for large responses.
 
-When an application needs to express a lifetime separate from the freshness lifetime, convey it separately -- in the response's content, or a separate header field -- and consider the relationship between the two carefully, since the response will be used for as long as it is considered fresh. In particular, consider how responses that aren't freshly obtained from the origin should be handled: a concept like a validity period will need to account for the age of the response. One way to address this is to specify explicitly that responses need to be fresh upon use.
+When an application needs to express a lifetime separate from the freshness lifetime, convey it separately -- in the response's content, or a separate header field. Consider the relationship between the two carefully, since the response will be used for as long as it is considered fresh. In particular, consider how responses that aren't freshly obtained from the origin should be handled: a concept like a validity period will need to account for the age of the response. One way to address this is to specify explicitly that responses need to be fresh upon use.
 
 If a request header field changes the response's header fields or content, point out that this has caching implications: such resources need either to make their responses uncacheable, or to send Vary on all responses from that resource -- including the "default" response.
 
@@ -379,7 +381,7 @@ A document can get the caching design right and still name the wrong directive. 
 
 A validator -- an ETag, or a Last-Modified date (Section 8.8 of HTTP) -- lets a stale stored response be refreshed with a 304 instead of a full transfer, and lets a state-changing request be made conditional. Origin servers SHOULD send one on 200 responses to GET and HEAD (Section 15.3.1 of HTTP). Both uses go wrong in characteristic ways:
 
-* **ETags are opaque.** The value means something only to the origin server that generated it; a client compares it for equality and does nothing else with it (Section 8.8.3.1 of HTTP). A specification MUST NOT define ETag content that clients are expected to parse -- a version number, a content hash, a timestamp -- or require them to order, decompose, or derive anything from it. Where the application needs a version identifier, put it in the content or in a field of its own.
+* **ETags are opaque.** The value means something only to the origin server that generated it; a client compares it for equality and does nothing else with it (Sections 8.8.3.1 and 8.8.3.2 of HTTP). A specification MUST NOT define ETag content that clients are expected to parse -- a version number, a content hash, a timestamp -- or require them to order, decompose, or derive anything from it. Where the application needs a version identifier, put it in the content or in a field of its own.
 * **Strength is not optional.** An entity tag that does not change on every change to the representation data is weak, and the origin server MUST prefix it with `W/` (Section 8.8.3 of HTTP). Weak tags cannot be used with If-Match or with ranges. A tag derived from the application's own notion of "the same content" is usually a weak validator, whatever the document calls it.
 * **Only the origin server mints one.** A cache stores and returns the validator it was given; it never generates one. A validator that first appears on a response served from an intermediary is an error in the example.
 * **A 304 carries fields.** It MUST include any of Content-Location, Date, ETag, Vary, Cache-Control and Expires that the 200 would have carried (Section 15.4.5 of HTTP); the cache uses them to update what it stored. A 304 without the ETag, or with a Cache-Control that leaves the refreshed entry immediately stale, defeats the revalidation it is meant to illustrate.
@@ -388,7 +390,7 @@ A validator -- an ETag, or a Last-Modified date (Section 8.8 of HTTP) -- lets a 
 
 ## Retries and Overload
 
-Clients retry: on a 429, a 503, a 5xx, a timeout, a dropped connection. Specifying what they do next is usually a good idea -- left open, each client picks its own behaviour, and the common default of retrying straight away makes an overloaded resource worse. It is a suggestion rather than a defect; authors may have considered it and left it to deployment. Ask whether they did.
+Clients retry: on a 429, a 503, a 5xx, a timeout, a dropped connection. Specifying what they do next is usually a good idea -- left open, each client picks its own behaviour, and the common default of retrying straight away makes an overloaded resource worse. Raise the omission as a suggestion rather than a defect; authors may have considered it and left it to deployment. Ask whether they did.
 
 Where the specification does address it:
 
@@ -401,7 +403,7 @@ On the server side:
 
 * Retry-After is defined for 503 and for 3xx (Section 10.2.3 of HTTP); RFC 6585 allows it on 429. It takes a delta in seconds or an HTTP-date, not prose.
 * 429 is about this client's quota; 503 says the server as a whole is unavailable.
-* Quota state -- limit, remaining, reset -- belongs in fields. The RateLimit header fields work in httpapi (draft-ietf-httpapi-ratelimit-headers) is in progress.
+* Quota state -- limit, remaining, reset -- belongs in fields. httpapi is working on RateLimit header fields for this; see draft-ietf-httpapi-ratelimit-headers.
 * A 429 MUST NOT be stored by a cache (Section 4 of RFC 6585). Other error responses can be stored given explicit freshness, and are then served to every client behind the same shared cache.
 
 ## Security
@@ -432,9 +434,13 @@ Referrer-Policy: no-referrer
 
 Depending on the intended deployment, a specification might require these mechanisms in specific ways, or merely point them out in Security Considerations.
 
-Applications can use cookies to identify a client or store client-specific data, and HTTP authentication to identify clients. In both cases, specify their scoping and use carefully: if the application exposes sensitive data or capabilities -- e.g., by acting as an ambient authority -- exploits are possible. Mitigations include using a request-specific token to ensure the intent of the client. Note that Basic and Digest are not suitable unless the channel is secure, and that TLS client certificate authentication is scoped to the underlying transport connection, so a client has no way of knowing whether the authenticated status was used in preparing a response.
+Applications can use cookies to identify a client or store client-specific data, and HTTP authentication to identify clients. In both cases, specify their scoping and use carefully: if the application exposes sensitive data or capabilities -- e.g., by acting as an ambient authority -- exploits are possible. Mitigations include using a request-specific token to ensure the intent of the client.
 
-Because many HTTP capabilities are scoped to the origin, consider how a deployment might interact with other applications -- including Web browsing -- on the same origin server. Cookies, for example, are sent with all requests to the origin by default unless scoped by path, so the application might receive cookies from other applications, leading to security issues and name collisions. Requiring a dedicated hostname solves this, but it is often desirable to allow multiple applications on one hostname, since that gives the most deployment flexibility. Applications should therefore strive to allow multiple applications on an origin: when specifying the use of cookies, HTTP authentication realms, or other origin-wide mechanisms, don't mandate a particular name -- let deployments configure it, and consider scoping to part of the origin using the mechanisms specified for doing so. Applications that wish to expose cross-origin data to browsers will need to implement CORS.
+Basic and Digest are not suitable unless the channel is secure. TLS client certificate authentication is scoped to the underlying transport connection, so a client has no way of knowing whether the authenticated status was used in preparing a response.
+
+Because many HTTP capabilities are scoped to the origin, consider how a deployment might interact with other applications -- including Web browsing -- on the same origin server. Cookies, for example, are sent with all requests to the origin by default unless scoped by path, so the application might receive cookies from other applications, leading to security issues and name collisions. Requiring a dedicated hostname solves that, but sharing one is usually what deployments want, since it gives them the most flexibility. So design for sharing: when specifying cookies, HTTP authentication realms, or other origin-wide mechanisms, don't mandate a particular name. Let deployments configure it, and consider scoping to part of the origin using the mechanisms specified for that.
+
+Applications that wish to expose cross-origin data to browsers will need to implement CORS.
 
 Privacy considerations deserve their own attention. Beyond what is sent explicitly and what is visible on the wire (one of the reasons "https" is recommended), information can be gathered by connecting a user's activities over time:
 
@@ -446,7 +452,7 @@ Finally, note that applications that require modification of implementations -- 
 
 ## Anti-Patterns
 
-The following anti-patterns should be called out and warned against (with explanation) when encountered:
+Call these out when you encounter them, and explain why:
 
 ### Tunnelling
 
@@ -524,7 +530,7 @@ adjusting the terms listed as appropriate. Then, when using one of the terms, ju
 
 All references to structured types should be made to Section 3 of the Structured Fields specification, not Section 4.
 
-Although ABNF is defined for structured types, we do not recommend its use. The current reference for Structured Fields is RFC 9651, not RFC 8941.
+ABNF is defined for the structured types, but don't use it. The current reference for Structured Fields is RFC 9651, not RFC 8941.
 
 ### Content
 
