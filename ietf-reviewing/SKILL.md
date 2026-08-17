@@ -35,7 +35,7 @@ procedure. Both are gates at Step 8, stated in full there.
 
 ## Without the tooling
 
-- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The web archives and the
+- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The Web archives and the
   GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
   On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
   "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
@@ -616,7 +616,7 @@ Both tests have to pass. The survivability test alone will keep findings a revie
 Rank on the tests alone; there is no target number of issues.
 
 Step 8's gate has already dropped what was settled or out of scope, so do not re-adjudicate. Two
-things come back to you. Whether a closing reason genuinely *engaged* the point is a judgement a
+things come back to you. Whether a closing reason *engaged* the point is a judgement a
 dispatched pass is poor at -- check the ones it called settled. And a concern it reframed ranks on
 its new shape, not the one you started with.
 
