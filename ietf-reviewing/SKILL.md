@@ -47,19 +47,11 @@ both.
 
 ### Without the tooling
 
-What each absence costs, and what stands in for it. The announcement above needs the cost; the
-step where the absence bites needs the fallback.
-
-- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The Web archives and the
-  GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
-  On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
-  "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
-  obtain*.
-
-  Installing it mid-review does not make it available: MCP servers are connected when the session
-  starts, so the tools stay absent until the reviewer restarts. Say that, rather than reaching for
-  a manual fallback and mentioning it afterwards -- the reviewer has to decide whether to restart
-  and re-run, and they can only decide it before the findings are in front of them.
+- **No `ietf-llm`.** On a directorate, WGLC or Last Call review, treat every "never raised" as
+  unverified, and carry it beside the provisional view as well as in *Could not obtain*. Do not
+  substitute the Web archives or the GitHub API; both miss silently, and silence is what Step 8
+  exists to assert. It is connected at session start, so tell the reviewer the fix is a restart,
+  not an install.
 - **No `review_record`.** It reaches the network, so it is absent wherever gathering is off. Two
   Datatracker endpoints carry the same join by hand:
 
@@ -75,11 +67,15 @@ step where the absence bites needs the fallback.
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
 - **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
-  Step 0 settles which case you are in. Without it, run the passes serially in the order
-  they are listed and expect several times the wall-clock. Nothing in the method depends on
-  concurrency -- only the cost does.
+  Step 0 settles which case you are in. Run the passes serially, in the order they are listed, and
+  expect several times the wall-clock.
 
-### RFC text
+  Concurrency is only cost. Isolation is not: Step 4's research contexts keep other people's
+  material out of yours, and Step 10 tests a claim with something that did not build it. Run in
+  your own context they lose both, so record it in *Could not obtain* and count neither as
+  independent.
+
+### Obtaining RFC text
 
 Wherever a step says to fetch, open, or read an RFC: `get_rfc_section` returns a section by
 number, and `search_rfc_text` finds the section when the number is unknown. The lens RFCs are
@@ -351,8 +347,8 @@ phrase a question so it presupposes its own answer.
 Send them all at once, and **give each the draft text in the dispatch** rather than making it fetch
 its own. Staging it once to a file and passing the path counts, provided you verified that copy
 against the authoritative source first. Either way, name the authoritative source alongside it so
-the lens can verify anything it means to quote, and spot-check the returns yourself. Name the *RFC
-text* route from Step 0 in the same dispatch.
+the lens can verify anything it means to quote, and spot-check the returns yourself. Name Step 0's
+*Obtaining RFC text* route in the same dispatch.
 
 Where the cache is behind the live revision, the live text is the authoritative one -- fetch it and
 hand the lenses that, whatever the corpus tool returns.
