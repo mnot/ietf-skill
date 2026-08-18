@@ -36,39 +36,6 @@ Five files sit beside this one, each read at the point it is called for:
 Neither of these is a finding: silence that was not this document's to fill, and IANA's own
 procedure. Both are gates at Step 8, stated in full there.
 
-## Without the tooling
-
-Step 0 probes for each of these. What an absence costs, and what stands in for it:
-
-- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The Web archives and the
-  GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
-  On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
-  "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
-  obtain*.
-
-  Installing it mid-review does not make it available: MCP servers are connected when the session
-  starts, so the tools stay absent until the reviewer restarts. Say that, rather than reaching for
-  a manual fallback and mentioning it afterwards -- the reviewer has to decide whether to restart
-  and re-run, and they can only decide it before the findings are in front of them.
-- **No `review_record`.** It reaches the network, so it is absent wherever gathering is off. Two
-  Datatracker endpoints carry the same join by hand:
-
-  ```
-  /api/v1/review/reviewassignment/?review_request__doc__name=draft-...&format=json   # reviewed_rev, result, reviewer, state
-  /api/v1/doc/ballotpositiondocevent/?doc__name=draft-...&format=json                # rev, pos, balloter, time
-  ```
-
-  They take different filters, and neither takes the obvious `?doc=`. On the ballot endpoint that
-  errors; on the assignment endpoint it is *ignored*, returning every assignment in the datatracker
-  in a well-formed response. Keep the revision field on both -- it is the whole value of the join.
-- **No `rfcdiff`.** A single script, no install:
-  <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
-  Failing that, strip page headers, footers and form feeds before a raw `diff`.
-- **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
-  Step 0 settles which case you are in. Without it, run the passes serially in the order they are
-  listed and expect several times the wall-clock. Nothing in the method depends on concurrency --
-  only the cost does.
-
 ## RFC text
 
 Wherever a step says to fetch, open, or read an RFC: `get_rfc_section` returns a section by
@@ -95,11 +62,45 @@ is too late: the cold read and the charter check are spent by then, and a refusa
 method for all of it.
 
 **Then say what the run has and has not, in one message, before Step 1.** Name each absence and
-what it costs; *Without the tooling*, above, carries both. An absence the reviewer can fix by
-restarting the session is theirs to decide on, and now is the only point at which they can.
+what it costs, from the list below. An absence the reviewer can fix by restarting the session is
+theirs to decide on, and now is the only point at which they can.
 
 Keep the answers. Step 8's negatives are bounded by what you could scan, Step 10 records its own
 skip, and *Could not obtain* at Step 11 is written from here.
+
+### Without the tooling
+
+What each absence costs, and what stands in for it. The announcement above needs the cost; the
+step where the absence bites needs the fallback.
+
+- **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The Web archives and the
+  GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
+  On a directorate, WGLC or Last Call review, announce the gap before dispatching, treat every
+  "never raised" as unverified, and carry it beside the provisional view as well as in *Could not
+  obtain*.
+
+  Installing it mid-review does not make it available: MCP servers are connected when the session
+  starts, so the tools stay absent until the reviewer restarts. Say that, rather than reaching for
+  a manual fallback and mentioning it afterwards -- the reviewer has to decide whether to restart
+  and re-run, and they can only decide it before the findings are in front of them.
+- **No `review_record`.** It reaches the network, so it is absent wherever gathering is off. Two
+  Datatracker endpoints carry the same join by hand:
+
+  ```
+  /api/v1/review/reviewassignment/?review_request__doc__name=draft-...&format=json   # reviewed_rev, result, reviewer, state
+  /api/v1/doc/ballotpositiondocevent/?doc__name=draft-...&format=json                # rev, pos, balloter, time
+  ```
+
+  They take different filters, and neither takes the obvious `?doc=`. On the ballot endpoint that
+  errors; on the assignment endpoint it is *ignored*, returning every assignment in the datatracker
+  in a well-formed response. Keep the revision field on both -- it is the whole value of the join.
+- **No `rfcdiff`.** A single script, no install:
+  <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
+  Failing that, strip page headers, footers and form feeds before a raw `diff`.
+- **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
+  the probe above settles which case you are in. Without it, run the passes serially in the order they are
+  listed and expect several times the wall-clock. Nothing in the method depends on concurrency --
+  only the cost does.
 
 ## 1. Establish the review question
 
@@ -396,8 +397,8 @@ those sections, not the entire reference list.
 In particular read the draft's diffs. Use `rfcdiff --diff --stdout old new`, which strips page
 headers, footers and form feeds before comparing; the mode matters, because the default writes a
 two-column HTML file and emits nothing. Where a finding needs the before and after text, `--ab-diff
---stdout` gives labelled OLD/NEW blocks per section instead. (See *Without the tooling* if you do
-not have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
+--stdout` gives labelled OLD/NEW blocks per section instead. (See *Without the tooling* at Step 0 if
+you do not have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
 concern you did not know to ask for. Diff the current revision against the one
 before it as a matter of course, and go further back only when a concern turns on *when* something
 changed. This step is on the critical path and every extra revision is another read, so when you do
