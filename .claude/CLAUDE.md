@@ -6,7 +6,8 @@ Be imperative -- don't explain why, stay succinct.
 Every sentence is an instruction, or it goes. What keeps creeping back in: a maxim in place of a
 step (*Probe rather than assume*, where the step is *call `list_corpora`*); rationale for an
 instruction given elsewhere; a bold lead that restates its own paragraph, or defines its subject by
-itself; and commentary on the document's own structure.
+itself; and commentary on the document's own structure. A lead can restate its heading as easily
+as its paragraph.
 
 Say a thing once, in the step that uses it. A front-matter section ending "stated in full there"
 belongs to that step. A forward reference to a rule stated where it applies is a second copy. The
@@ -24,6 +25,20 @@ field changes.
 
 Verify a claim about how the skill works against the skill, as with a section pointer against the
 RFC. *Nothing in the method depends on concurrency* was false, and one grep disproved it.
+
+Order sections in the order they run, and check what each needs from the ones before it. Step 8
+processed lens returns after the gate those returns feed, so a lens concern skipped it -- and that
+was invisible until both halves had names.
+
+Say who acts before saying what to do. A dispatch brief that opens with its questions reads as your
+own next move, and gets performed instead of sent.
+
+An enumeration is a list. Four special cases, thirteen rubrics and a dispatch schedule with a
+condition per item were all sentences to parse.
+
+Cutting can take a distinction with it. Re-read the neighbours: "the revision history" only became
+ambiguous with the draft's own changes section once the clause that distinguished them looked like
+rationale.
 
 # Lens rubrics (`ietf-reviewing/reference/*.md`)
 
