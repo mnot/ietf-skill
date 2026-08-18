@@ -50,7 +50,7 @@ Three more are available on request and are not written unless asked -- see *On 
 
 What you would call it and why, answering the Step 1 question. Mark it as yours.
 
-Name the datatracker `Result` you would pick whatever the review type; off a directorate assignment,
+Name the datatracker `Result` you would pick whatever the review type; on a directorate assignment,
 flag it as the one you would have picked. That vocabulary says "publish, but not this revision" more
 precisely than a sentence does; the values differ per team, so see `delivering.md` before naming one.
 

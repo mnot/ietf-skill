@@ -236,23 +236,20 @@ and where it came from, the question you took from the table, which sources exis
 going out. The tooling was settled at Step 0 and does not need restating. Then the estimate --
 fifteen to thirty minutes, longer if a gather has to run first.
 
-Step 4 is where the cost is, and everything that makes a run worthless is settled before it: the
-wrong revision, the wrong document, the wrong question. Saying them out loud is the last cheap
-moment to be corrected.
+Dispatch to subagents -- these are the slowest tasks and they are independent.
 
-_Do not dispatch A until any gather kicked off in Step 1 has completed. Nothing in B needs the
-gather -- send it regardless._
+Send these first; none needs more than the cold read:
 
-Dispatch the items below to subagents -- they are our slowest tasks and independent. While they
-run, perform Steps 5-7.
+- **A**, the research contexts. Wait for any gather kicked off at Step 1 to finish; nothing else
+  here does.
+- **The actor pass.**
+- **`bcp14.md`**, which always fires.
+- **The nits pass** in `nits.md`. The gate is stage, and it is yours: on an adoption or DISPATCH
+  review do not send it, and record the skip. Otherwise send the stage from Step 1 with it;
+  `nits.md` holds what each stage returns.
 
-Four things go out immediately: **A**, the **actor pass**, **`bcp14.md`** and the **nits pass** in
-`nits.md` -- none needs more than the cold read, so there is nothing to pre-filter on the text.
-`bcp14.md` always fires. The nits pass is gated on stage instead, and the gate is yours: on an
-adoption or DISPATCH review do not dispatch it, and record the skip. Otherwise send it with the
-stage from Step 1, which sets what it returns -- `nits.md` holds the table. The remaining
-lenses wait on the rubric read, which is what you do while the immediate batch runs; send them as
-soon as it is done, before you start Step 5.
+Read the rubrics while those run, and send the surviving lenses as soon as you are done. Then run
+Steps 5 to 7 while everything is out.
 
 ### A. Research other views
 
@@ -317,11 +314,19 @@ count -- Step 11 hands the file over. Only one lens waits on it -- see below.
 Does existing IETF architectural guidance or policy bear on any aspect of the draft? There is one
 lens per document in `reference/`, each a short rubric beside the text it covers:
 
-`bcp14.md` normative language · `rfc2804.md` wiretapping · `rfc3552.md` endpoint assumptions ·
-`rfc6709.md` protocol extensions · `rfc6950.md` application features in the DNS · `rfc6973.md`
-privacy · `rfc7258.md` pervasive monitoring · `rfc7754.md` filtering and blocking · `rfc8820.md` URI
-design and ownership · `rfc8890.md` end users · `rfc9170.md` extension viability · `rfc9205.md`
-building protocols with HTTP · `rfc9614.md` partitioning for privacy
+- `bcp14.md` -- normative language
+- `rfc2804.md` -- wiretapping
+- `rfc3552.md` -- endpoint assumptions
+- `rfc6709.md` -- protocol extensions
+- `rfc6950.md` -- application features in the DNS
+- `rfc6973.md` -- privacy
+- `rfc7258.md` -- pervasive monitoring
+- `rfc7754.md` -- filtering and blocking
+- `rfc8820.md` -- URI design and ownership
+- `rfc8890.md` -- end users
+- `rfc9170.md` -- extension viability
+- `rfc9205.md` -- building protocols with HTTP
+- `rfc9614.md` -- partitioning for privacy
 
 Read every rubric yourself first, **four to a call** -- batched wider, the output overflows and
 spills to a file you then have to read anyway.
@@ -337,7 +342,7 @@ section that excludes this draft, and say why. One line each. *This is a caching
 not a rule-out: a rubric's topic does not predict whether its concern applies, which is what the
 `Firing` sections are for. Ruling out on another lens is the exception -- name that lens instead.
 
-Off a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
+On a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
 lens set itself is not cut to the lane.
 
 **The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
