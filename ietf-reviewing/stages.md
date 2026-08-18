@@ -1,4 +1,4 @@
-# Reviews of a particular kind
+# Special cases
 
 Read the section that applies, at Step 1 of `SKILL.md`. None of this changes the method; it changes
 what Step 1 has to establish before the method starts.

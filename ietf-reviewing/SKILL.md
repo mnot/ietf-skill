@@ -22,8 +22,7 @@ Step 8. Step 10 dispatches again, over what survives Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
-- `stages.md` -- reviews of a particular kind: a directorate assignment, a bis, a revision answering
-  a closed round, a document past IESG approval. Step 1.
+- `stages.md` -- the special cases that add work before the method starts. Step 1.
 - `nits.md` -- running idnits, and the checks it does not reach. Step 4.
 - `quoting.md` -- checking a quote against the text it came from. Step 8.
 - `findings.md` -- the shape of the output. Step 11.
@@ -101,23 +100,32 @@ A review answers the question in front of the audience:
 The table is about the document's stage. The review type is a separate axis: an early directorate
 review asks "what has to change" whatever the stage.
 
-Where the group is heading weights the stage. Chairs contemplating a Last Call on a document
-nominally in progress means the stage's question is still the one to answer, and the answer should
-say whether the document is ready for the next one. A Last Call already declared is visible:
-`draft_status` reports the WG stream state, so a running WGLC shows as the WG state line. Intent
-short of a declaration is not; the minutes and the list carry it.
+Answer the stage's own question even when the group is about to move past it. Chairs contemplating
+a Last Call on a document nominally in progress add a second question -- is it ready for the next
+stage -- rather than replacing the first.
+
+`draft_status` reports the WG stream state, where a declared Last Call shows and an intended one
+does not.
 
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
 the request carried a note from the AD or chair, read it first -- it usually says what they actually
 want looked at.
 
-**Establish the live revision and stage before you read anything.** If you are working from a
+### The revision and the stage
+
+**Establish both before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-**At or past WGLC, read the review record before you read the draft.** `review_record(name)` gives
-every review and ballot position with the revision it was cast against, and leads with whether
-anything has examined the current one.
+### The review coverage
+
+**At or past WGLC, establish it before you read the draft.** `review_record(name)`
+gives every review and ballot position with the revision it was cast against, and leads with
+whether anything has examined the current one.
+
+Coverage, not content. What a reviewer found waits for Step 4A, which dispatches it to a context of
+its own so it stays out of the cold read; the ballot text and the gathered `ballots/` digest belong
+there too, not here.
 
 Read the two halves separately, as it reports them. Reviews and ballot routinely disagree -- an AD
 who has re-balloted on the current text while the directorate reviews stop two revisions back is not
@@ -127,7 +135,9 @@ text no reviewer has seen is a different concern.
 Read the rows that produced nothing, too. A rejected assignment and a directorate that never
 returned are facts about the coverage, and they are the rows the eye skips.
 
-**Check the corpus's source inventory, not the gather's status.** A gather reports `done` while
+### The corpus
+
+**Check its source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
 is absent. The inventory will: `list_corpora`'s trailing `(list · issues · drafts · minutes)`, or
 the `Sources:` line from `overview`. Read it before dispatching anything and know which sources you
@@ -158,11 +168,14 @@ RFCs' own author lines settle the second.
 
 Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
-### Reviews of a particular kind
+### Special cases
 
-Four kinds carry extra work at this step, in `stages.md`: a directorate assignment, a revision of a
-published document, a revision answering a review round that has closed, and a document already
-approved by the IESG. Read the section that applies before going on.
+Read the section that applies in `stages.md` before going on:
+
+- a directorate assignment
+- a revision of a published document
+- a revision answering a review round that has closed
+- a document already approved by the IESG
 
 ## 2. Read the draft cold
 
@@ -522,7 +535,7 @@ distinctive string, which scans every gathered file, embedded or not, and states
 Match within a line -- search `8890`, not `RFC 8890` -- since a phrase split across a mail wrap
 misses.
 
-**A negative names the corpora it scanned**, from the stage's list at Step 1: grep over the wrong
+**A negative names the corpora it scanned**, from *The corpus* at Step 1: grep over the wrong
 corpus is a false negative carrying the confidence of a checked one. A stage-required corpus you
 could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
 negative resting on it.
