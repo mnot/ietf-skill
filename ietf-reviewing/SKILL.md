@@ -67,8 +67,8 @@ both.
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
 - **No subagents, or no permission to use them.** Steps 4, 8 and 10 are written around dispatch,
-  and Step 0 settles which case you are in. Run the passes serially, in the order they are listed, and
-  expect several times the wall-clock.
+  and Step 0 settles which case you are in. Run the passes serially, in the order they are listed,
+  and expect several times the wall-clock.
 
   Concurrency is only cost. Isolation is not: Step 4's research contexts keep other people's
   material out of yours, and Step 10 tests a claim with something that did not build it. Run in
@@ -443,7 +443,9 @@ Each question you are left with is a new concern. Add it as the question rather 
 
 ## 8. Assess disposition
 
-### What the lenses returned
+This step adds to the concern list, annotates it, and filters it against the record.
+
+### Annotate from the lenses
 
 What a lens returns is yours, including a concern you did not have before. Give a new concern a
 record, with **From** naming the lens.
@@ -469,7 +471,7 @@ its rubric's `Firing` section, per Step 4 -- and the ones that came back not app
 the design. Keep both so the next reviewer does not rediscover them; they go to *Checked, not
 raised*.
 
-### What the research returned
+### Annotate from the research
 
 For each concern (including new ones found by lenses), assess its disposition from the answers you
 receive:
@@ -491,7 +493,7 @@ The authors' own statements are the exception -- applicability claims and clarif
 since those often say something the draft does not. Those are about the document, not the record,
 and a concern they hand you is yours.
 
-### Take every concern to the record
+### Filter against the record
 
 Start with the scope questions.
 
@@ -503,7 +505,7 @@ shows up first in the draft's own recent commits and references.
 
 **Is this IANA's own procedure?** Whether the instructions are well-formed, whether the template
 matches the registry, whether IANA will accept them -- IANA reviews that itself, so drop it. An
-IANA concern that is not about procedure is settled by *IANA findings* below.
+IANA concern that is not about procedure is settled by *Filter IANA concerns* below.
 
 **Dispatch the survivors.** Hand over the concerns and the sources, and require evidence per
 verdict: issue number, commit, revision, message URL.
@@ -522,7 +524,8 @@ it; where a source was not gathered, the repo's API is the only route and the co
   `pulls/` with `list_files`, since a cache gathered before they were added will not have them. A
   per-draft label narrows a shared repo, but check how consistently it is applied -- a
   partly-applied label reads as an empty record.
-- **Commits**, which are never gathered. Clone once, and the walk in *Text that changed* is local.
+- **Commits**, which are never gathered. Clone once, and the walk in *Filter changed text* is
+  local.
 - **The published revisions**, diffed around the text to find the one that introduced it -- the
   whole change record where there is no repo.
 - **The draft's changes section**, whose absence beside a substantive change is itself a finding.
@@ -552,44 +555,36 @@ On a document with years of issues the search prunes hard. On a young one it kil
 negative is the product: that a concern has never been raised anywhere, under any name. Record a
 silence as deliberately as you would record a decision.
 
-### IANA findings
+### Filter IANA concerns
 
-Instructions to IANA are one-shot. A document replacing another does not restate instructions the
-earlier one already executed; the registry exists, and not re-creating it is not a finding.
+- **Instructions the earlier document already executed** -- not a finding. A replacing document
+  does not restate them; the registry exists.
+- **Entries a bis inherits and does not repoint** -- a finding. The registry goes on citing an RFC
+  this document obsoletes.
+- **How IANA should handle a moving set** -- not a finding. Setting the registration policy is the
+  document's job; applying it to live registrations and entries in flight is IANA's.
+- **A registration policy the replacing document dropped** -- a finding. The criteria, who decides
+  and what governs the registry from here are still doing work.
 
-Reference updates are the exception. A bis has to ask IANA to repoint the entries it inherits at
-itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and reviewers
-do raise it. The rule above covers instructions already *carried out*, not the ones publication
-newly requires.
+### Filter changed text: find the commit, not the keyword
 
-Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
-live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
-document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
-handle these entries" is not a finding.
+**Any concern about text that was deleted, weakened or retargeted needs the decision behind it.**
+The issue that authorised the change is titled in the language of the *decision*, not of the text,
+so a finding about a charset requirement never matches an issue called "review the top-level type
+descriptions".
 
-The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
-registry from here. A replacing document that drops those has dropped something still doing work.
+Walk the repo:
 
-### Text that changed: find the commit, not the keyword
+- **The commit** -- `git log -S "<a distinctive phrase from the removed text>" -- <draft source>`
+- **Its pull request** -- `grep_corpus` the sha, since `digests/pulls.md` carries each merge commit.
+  Where the pulls are not gathered, `gh api repos/<org>/<repo>/commits/<sha>/pulls`.
+- **The issue it closes** -- read the issue, not just the diff. It carries the condition the change
+  was agreed under, which is usually where the finding lives.
 
-**Any concern about text that was deleted, weakened or retargeted needs the commit that did it.**
-Searching the tracker by the finding's own vocabulary will miss it: the issue that authorised the
-change is titled in the language of the *decision*, not of the text, so a finding about a charset
-requirement never matches an issue called "review the top-level type descriptions".
+Without a repo the published revisions give the change and the revision it landed in, not the
+reason. That goes in *Could not obtain*: an unfound decision is not an absent one.
 
-The reliable path is the repo, and it is three steps: the commit, its pull request, the issue that
-pull request closes.
-
-```
-git log -S "<a distinctive phrase from the removed text>" -- <draft source>
-```
-
-For the second step, `grep_corpus` the sha -- `digests/pulls.md` carries each pull request's merge
-commit, so one grep finds it -- falling back to `gh api repos/<org>/<repo>/commits/<sha>/pulls`
-where the pulls are not gathered. Read the issue, not just the diff -- it carries the condition the
-change was agreed under, and that is usually where the finding actually lives.
-
-What this turns up, in rough order of how often:
+What this turns up:
 
 - **The change was agreed, and the finding is dead.** Drop it.
 - **The change was agreed and the edit was incomplete.** Text the decision should have removed is
@@ -604,16 +599,12 @@ What this turns up, in rough order of how often:
   anything you would have written yourself.
 - **Nothing behind it at all.** Now you can say so.
 
-Findings on text with a decision behind it are unreliable until you have found the decision. A lens
-reads the document, so it cannot see one, and will report a deliberate removal in the same voice as
-an accidental one.
-
 **The originating issue is not the whole answer.** For text that was *added*, the issue that added
-it is easy to find and often says nothing about your concern -- the question you are raising was
-settled next door. Search the tracker for the *concept*, not your own words for it, and read the
-adjacent issues out. A finding about a stranded contact address can be settled in an issue titled
-about an unresponsive change controller, and in another about whether a mailing list can be a
-contact -- neither of which matches the words of the finding.
+it is easy to find and often says nothing about your concern. Search the tracker for the
+*concept*, not your own words for it, and read the adjacent issues out. A finding about a stranded
+contact address can be settled in an issue titled about an unresponsive change controller, and in
+another about whether a mailing list can be a contact -- neither of which matches the words of the
+finding.
 
 ## 9. Rank the concerns, and form a provisional view
 
