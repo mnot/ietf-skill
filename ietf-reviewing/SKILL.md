@@ -18,7 +18,8 @@ separate step in `delivering.md`, taken after those decisions.
 
 Run them in order, one at a time, except around Step 4's dispatches. Step 3 fires with them. Steps
 5 to 7 run while they are out, taking Step 6 when the actor table lands. Bring it all back for
-Step 8. Step 10 dispatches again, over what survives Step 9.
+Step 8, which dispatches again over what survives its scope questions. Step 10 dispatches once more,
+over what survives Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
@@ -37,9 +38,9 @@ Five files sit beside this one, each read at the point it is called for:
 - **The `ietf-http` skill** -- the text behind the `rfc8820` and `rfc9205` rubrics. Resolve either
   one's `Text:` path.
 
-**If your harness requires user permission to use subagents, get it now.** Steps 4 and 10 are
-written around them -- roughly a dozen at Step 4, and one per claim at Step 10 on a WGLC or later
-review. Ask once, for both.
+**If your harness requires user permission to use subagents, get it now.** Steps 4, 8 and 10 are
+written around them -- roughly a dozen at Step 4, one for the record search at Step 8, and one per
+claim at Step 10 on a WGLC or later review. Ask once, for all three.
 
 **Then name each absence and what it costs, in one message before Step 1.** The list below carries
 both.
@@ -65,8 +66,8 @@ both.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
-- **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
-  Step 0 settles which case you are in. Run the passes serially, in the order they are listed, and
+- **No subagents, or no permission to use them.** Steps 4, 8 and 10 are written around dispatch,
+  and Step 0 settles which case you are in. Run the passes serially, in the order they are listed, and
   expect several times the wall-clock.
 
   Concurrency is only cost. Isolation is not: Step 4's research contexts keep other people's
@@ -307,7 +308,7 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
-count -- Step 11 hands the file over. Only one lens waits on it -- see below.
+count -- Step 11 hands the file over. Only `rfc8890.md` waits on it, under *The lenses*.
 
 #### The lenses
 
@@ -492,46 +493,41 @@ and a concern they hand you is yours.
 
 ### Take every concern to the record
 
-The lenses read only the draft, so a finding arrives not knowing whether the point has already been
-raised, decided or ruled elsewhere. Close that here, over **every** concern, starting with the
-scope questions.
+Start with the scope questions.
 
-**Was the silence this document's to fill?** A gap is only a gap where the answer was this
-document's to give -- not where it belongs to IANA, a Designated Expert, a deployment, or another
-document. A definition deferred to a companion draft, a normative reference in progress, or work the
-charter puts elsewhere is not missing: say where it went, or narrow the finding to whether this
-document can publish before that one does. A deferral shows up first in the draft's own recent
-commits and references.
+**Was the silence this document's to fill?** The answer may belong to IANA, a Designated Expert, a
+deployment, or another document. A definition deferred to a companion draft, a normative reference
+in progress, or work the charter puts elsewhere is not missing. Drop the concern and say where the
+answer lives, or narrow it to whether this document can publish before that one does. A deferral
+shows up first in the draft's own recent commits and references.
 
 **Is this IANA's own procedure?** Whether the instructions are well-formed, whether the template
-matches the registry, whether IANA will accept them -- IANA reviews that itself. *IANA findings*
-below has what is left.
+matches the registry, whether IANA will accept them -- IANA reviews that itself, so drop it. An
+IANA concern that is not about procedure is settled by *IANA findings* below.
 
-Then two questions per surviving concern:
+**Dispatch the survivors.** Hand over the concerns and the sources, and require evidence per
+verdict: issue number, commit, revision, message URL.
+
+Two questions per concern:
 
 - What introduced or changed this text?
 - Where has this *concept* been discussed -- under its own name, not yours?
 
-Search whatever the effort has:
+Search whatever the effort has -- the inventory from Step 1 says which. A gathered issue or pull
+request already carries its closing rationale, its reviews and its merge commit, so do not re-fetch
+it; where a source was not gathered, the repo's API is the only route and the cost is real.
 
-- **Issues and threads** -- `search_corpus` for the concept, `get_issue` to read one out. Where
-  issues *are* gathered, do not re-fetch them over the network: a gathered issue already carries its
-  closing rationale and each participant's role. Where they are not -- check the inventory, Step 1 --
-  the repo's API is the only route and the cost is real, so budget for it. Where a repo holds several
-  drafts, a per-draft label narrows the sweep; `list_labels` carries each label's description where
-  the repo wrote one, and check how consistently the label is applied before relying on it, since a
+- **Issues and pull requests** -- `search_corpus` for the concept, `get_issue` to read one out. The
+  pull request carries the reasoning behind a change; the issue carries the complaint. Confirm
+  `pulls/` with `list_files`, since a cache gathered before they were added will not have them. A
+  per-draft label narrows a shared repo, but check how consistently it is applied -- a
   partly-applied label reads as an empty record.
-- **Pull requests**, gathered beside the issues -- on a cache gathered since they were added, so
-  confirm with `list_files` on `pulls/` rather than assuming. A gathered pull request carries its
-  reviews, its disposition and its merge commit, and `get_issue` reads one out by number. The pull
-  request is where the reasoning behind a change lives; the issue records the complaint.
-- **Commits**, which are *not* gathered. Clone once and the walk below is local; reach for the
-  repo's API only where the pull requests are not gathered either.
-- **The revision history** -- diff around the text for the revision that introduced it. This is the
-  whole of the change record when there is no repo.
-- **The draft's changes section.** Its absence beside a substantive change is a finding.
-- **Minutes, and the transcript where one exists.** Minutes summarise and drop things; a transcript
-  has carried design questions the minutes of the same session omitted entirely.
+- **Commits**, which are never gathered. Clone once, and the walk in *Text that changed* is local.
+- **The published revisions**, diffed around the text to find the one that introduced it -- the
+  whole change record where there is no repo.
+- **The draft's changes section**, whose absence beside a substantive change is itself a finding.
+- **Minutes, and the transcript where one exists.** A transcript has carried design questions the
+  minutes of the same session omitted entirely.
 
 A search returning nothing is ambiguous -- it can mean the point is unraised, or that the index is
 missing or the filter wrong. Confirm the search works before recording silence. And `search_corpus`
@@ -544,24 +540,17 @@ misses.
 you could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
 negative resting on it.
 
-**And it carries the ceiling `grep_corpus` printed**, quoted rather than paraphrased. A zero over
-`issues/` or `pulls/` states where the GitHub record ends -- `owner/repo through #N (archive built
-<date>)` -- and anything above that number was never fetched, so the zero is silent about it. Two
-details are easy to restate wrongly: that date is the archive's, not the gather's, and issues and
-pull requests share one number sequence, so the ceiling is not per-kind.
+**A negative over `issues/` or `pulls/` quotes the line `grep_corpus` printed** -- `owner/repo
+through #N (archive built <date>)` -- verbatim. That date is the archive's, not the gather's, and
+issues and pull requests share one number sequence, so #N bounds both.
 
-Each concern comes back **settled**, **out of scope**, **wrong**, **live**, or **reframed** -- it
-holds but is about something else now, usually a condition the change was agreed under.
+Record a verdict per concern: **settled**, **out of scope**, **wrong**, **live**, or **reframed**
+-- reframed meaning the concern holds but is about something else now, usually a condition the
+change was agreed under.
 
-Dispatch it. Hand over the concerns and the sources, and require evidence per verdict: issue number,
-commit, revision, message URL.
-
-What the gate returns changes with how much record exists. Past Last Call, with years of issues, it
-prunes hard. On a young document it kills nothing, and the product is the opposite: **being able to
-say a concern has never been raised by anyone, anywhere, under any name.** A claim of that shape
-rests on `grep_corpus`, not on a semantic miss. That is what licenses a verdict against the
-authors' own account of how settled the document is. Record the silence as deliberately as you
-would record a decision.
+On a document with years of issues the search prunes hard. On a young one it kills nothing, and the
+negative is the product: that a concern has never been raised anywhere, under any name. Record a
+silence as deliberately as you would record a decision.
 
 ### IANA findings
 
@@ -710,7 +699,7 @@ deployment that fails is an Issue at every stage -- adoption is the moment to sa
 
 Rank on the tests alone; there is no target number of issues.
 
-Step 8's gate has already dropped what was settled or out of scope, so do not re-adjudicate. Two
+Step 8 has already dropped what was settled or out of scope, so do not re-adjudicate. Two
 things come back to you. Whether a closing reason *engaged* the point is a judgement a
 dispatched pass is poor at -- check the ones it called settled. And a concern it reframed ranks on
 its new shape, not the one you started with.
