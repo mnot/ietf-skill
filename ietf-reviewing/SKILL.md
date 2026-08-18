@@ -11,8 +11,8 @@ license: CC-BY-4.0
 they are accountable for every word of it. See `ietf-contributing`.
 
 So the default output of these steps is **findings**, not a finished review. The reviewer decides
-what to raise and what it adds up to. Producing the review itself -- as prose or as issues -- is a separate step in
-`delivering.md`, taken after those decisions.
+what to raise and what it adds up to. Producing the review itself -- as prose or as issues -- is a
+separate step in `delivering.md`, taken after those decisions.
 
 ## How the steps run
 
@@ -442,17 +442,45 @@ Each question you are left with is a new concern. Add it as the question rather 
 
 ## 8. Assess disposition
 
-For each concern, assess its disposition from the answers you receive:
+### What the lenses returned
+
+What a lens returns is yours, including a concern you did not have before. Give a new concern a
+record, with **From** naming the lens.
+
+**Never cite a passage no one read.** Anything you want to cite that no lens returned, open
+yourself. A rubric is a citable source about itself: recording that a lens does not fire because
+its rubric names this as a non-case needs no reading of the RFC.
+
+**Read an artefact rather than a description of it.** A finding turning on a figure, a message
+exchange, a worked example, an ABNF rule or a state table needs you to have read the artefact
+yourself. A lens's prose account of one is not the artefact, even where that lens read it.
+
+**Lenses framed the same way do not corroborate each other.** Two returns reading a passage the
+same way are one reading counted twice unless each reached it independently. Check what you sent
+before treating convergence as evidence.
+
+Spot-check the quotes your findings rest on against the files before anything goes out, following
+`quoting.md`. This applies to the draft text you hand the lenses: copy it and you are the extraction
+bug, so check what comes back against the authoritative fetch.
+
+Record the lenses you ruled out without dispatching -- each with the criterion it fails, quoted from
+its rubric's `Firing` section, per Step 4 -- and the ones that came back not applying or supporting
+the design. Keep both so the next reviewer does not rediscover them; they go to *Checked, not
+raised*.
+
+### What the research returned
+
+For each concern (including new ones found by lenses), assess its disposition from the answers you
+receive:
 
 - Already raised elsewhere: note that.
-- Answered by the author: evaluate their answer.
+- Answered by the author: evaluate the answer and record what it leaves open.
 - Position changed *and* an intent to update the draft expressed: update the concern to the
   disposition of that intent.
 
-What the research returns is disposition, not findings: what the record did to concerns you already
-have. A point you did not find yourself does not become yours by reading it. Check each returned
-point against your Step 2 list before adopting it. A returned point with no matching record is a new
-concern or someone else's. Give it a record with **From** naming the lens, or attribute it.
+Check each returned point against your concern list before adopting it. One with no matching
+record is a new concern or someone else's: give it a record with **From** naming the source, or
+attribute it.
 
 If another reviewer's point is right and unaddressed, support it by attribution -- "I agree with
 X's point about Y" -- rather than restating it as your own; if it moves your disposition, say what
@@ -465,10 +493,8 @@ and a concern they hand you is yours.
 ### Take every concern to the record
 
 The lenses read only the draft, so a finding arrives not knowing whether the point has already been
-raised, decided or ruled elsewhere. Close that here, over **every** concern.
-
-**Start with the two scope questions.** Neither needs anything fetched, and they drop concerns
-before you spend anything on them.
+raised, decided or ruled elsewhere. Close that here, over **every** concern, starting with the
+scope questions.
 
 **Was the silence this document's to fill?** A gap is only a gap where the answer was this
 document's to give -- not where it belongs to IANA, a Designated Expert, a deployment, or another
@@ -478,23 +504,8 @@ document can publish before that one does. A deferral shows up first in the draf
 commits and references.
 
 **Is this IANA's own procedure?** Whether the instructions are well-formed, whether the template
-matches the registry, whether IANA will accept them -- IANA reviews that itself.
-
-Instructions to IANA are one-shot. A document replacing another does not restate instructions the
-earlier one already executed; the registry exists, and not re-creating it is not a finding.
-
-Reference updates are the exception. A bis has to ask IANA to repoint the entries it inherits at
-itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and reviewers
-do raise it. The rule above covers instructions already *carried out*, not the ones publication
-newly requires.
-
-Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
-live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
-document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
-handle these entries" is not a finding.
-
-The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
-registry from here. A replacing document that drops those has dropped something still doing work.
+matches the registry, whether IANA will accept them -- IANA reviews that itself. *IANA findings*
+below has what is left.
 
 Then two questions per surviving concern:
 
@@ -529,9 +540,8 @@ distinctive string, which scans every gathered file, embedded or not, and states
 Match within a line -- search `8890`, not `RFC 8890` -- since a phrase split across a mail wrap
 misses.
 
-**A negative names the corpora it scanned**, from *The corpus* at Step 1: grep over the wrong
-corpus is a false negative carrying the confidence of a checked one. A stage-required corpus you
-could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
+**A negative names the corpora it scanned**, from *The corpus* at Step 1. A stage-required corpus
+you could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
 negative resting on it.
 
 **And it carries the ceiling `grep_corpus` printed**, quoted rather than paraphrased. A zero over
@@ -552,6 +562,24 @@ say a concern has never been raised by anyone, anywhere, under any name.** A cla
 rests on `grep_corpus`, not on a semantic miss. That is what licenses a verdict against the
 authors' own account of how settled the document is. Record the silence as deliberately as you
 would record a decision.
+
+### IANA findings
+
+Instructions to IANA are one-shot. A document replacing another does not restate instructions the
+earlier one already executed; the registry exists, and not re-creating it is not a finding.
+
+Reference updates are the exception. A bis has to ask IANA to repoint the entries it inherits at
+itself. Where it does not, the registry goes on citing an RFC this document obsoletes, and reviewers
+do raise it. The rule above covers instructions already *carried out*, not the ones publication
+newly requires.
+
+Delegating a decision to IANA is normal, and more so where what gets decided changes -- the set of
+live registrations, entries in flight, whatever is stale by publication. Setting the policy is the
+document's job; applying it to a moving set is IANA's. "The document does not say how IANA should
+handle these entries" is not a finding.
+
+The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
+registry from here. A replacing document that drops those has dropped something still doing work.
 
 ### Text that changed: find the commit, not the keyword
 
@@ -597,34 +625,6 @@ settled next door. Search the tracker for the *concept*, not your own words for 
 adjacent issues out. A finding about a stranded contact address can be settled in an issue titled
 about an unresponsive change controller, and in another about whether a mailing list can be a
 contact -- neither of which matches the words of the finding.
-
-### Processing lens returns
-
-A lens you dispatched is working on your behalf: what it returns is yours -- including a concern you
-did not have before -- and you carry it under your own name.
-
-**Never cite a lens you did not read.** Anything you want to cite that no lens returned, open
-yourself. A passage returned by the lens that read it is citable. A passage *described* by a lens
-that did not read it is not: lenses cross-refer each other, and a description is not the source. A
-rubric is a citable source about itself -- recording that a lens does not fire because its rubric
-names this as a non-case needs no reading of the RFC. The RFC's own words do.
-
-**Read an artefact rather than a description of it.** A finding turning on a figure, a message
-exchange, a worked example, an ABNF rule or a state table needs you to have read the artefact
-yourself. A lens's prose account of one is not the artefact, even where that lens read it.
-
-**Lenses framed the same way do not corroborate each other.** Two returns reading a passage the
-same way are one reading counted twice unless each reached it independently. Check what you sent
-before treating convergence as evidence.
-
-Spot-check the quotes your findings rest on against the files before anything goes out, following
-`quoting.md`. This applies to the draft text you hand the lenses: copy it and you are the extraction
-bug, so check what comes back against the authoritative fetch.
-
-Record the lenses you ruled out without dispatching -- each with the criterion it fails, quoted from
-its rubric's `Firing` section, per Step 4 -- and the ones that came back not applying or supporting
-the design. Keep both so the next reviewer does not rediscover them; `findings.md` writes them up on
-request rather than by default.
 
 ## 9. Rank the concerns, and form a provisional view
 
