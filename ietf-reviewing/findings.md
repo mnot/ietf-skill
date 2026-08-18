@@ -39,11 +39,12 @@ _one-line index, then a subsection each_
 
 ## Potential Comments
 ## Observed Nits
+## Checked, not raised
 ## Could not obtain
 ## Your call
 ```
 
-Four more are available on request and are not written unless asked -- see *On request*, below.
+Three more are available on request and are not written unless asked -- see *On request*, below.
 
 ## Provisional view
 
@@ -81,7 +82,8 @@ one sentence naming one defect, stated as a claim about the document; Step 9 spl
 Do not restate it as a field.
 
 These fields and no others: an issue that has grown one of its own is telling you something belongs
-in another section. The four marked *only where* are conditional; the rest are always present.
+in another section. The three marked *only where* are conditional, and *Grounding* is conditional
+on its own terms; the rest are always present.
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
   block of its own. Break it into short paragraphs, one point each: what the document says, what that
@@ -154,6 +156,17 @@ statement. If one needs more than that, it is an issue in disguise.
 
 **Observed Nits**, one line each, and only ones quoted from the document verbatim and checked.
 
+**Checked, not raised**, one bullet each: what, and why not. Everything a lens produced that
+reached neither an Issue nor a Comment goes here -- that set is what goes missing quietly, and Step
+9's reconcile is what finds it. Then a lens that did not apply, a concern the draft's own text
+refuses, an objection that is about the topic, a finding Step 10 refuted. A refuted finding carries
+the refutation, so the reviewer can reverse it. Beyond the lens output, only what a reader might
+expect to see raised; not a log of everything you thought about.
+
+A lens that came back *supporting* the design is exempt from the economy test below: keep it in
+full. A run of issues reads as an attack on the approach, and the supporting results are what stops
+it.
+
 **Could not obtain** -- what, and what it means the analysis cannot say. A run without the gathered
 record says so here *and* beside the provisional view: the reader weighs every "never raised"
 differently.
@@ -174,17 +187,16 @@ Keep it to a few lines. If nothing is theirs to settle, say that rather than man
 a list -- a ritual section trains them to skip it, and this is the one section that is asking them
 for something.
 
-Apply the economy test to *Your call*, and to *Checked, not raised* when it is asked for: would
-removing this change what the reviewer decides to raise, or how they would defend it? It does not
-govern Comments and Nits -- Step 9 says keep every concrete, checkable, quotable one, and that
-stands.
+Apply the economy test to *Your call* and to *Checked, not raised*: would removing this change
+what the reviewer decides to raise, or how they would defend it? It does not govern Comments and
+Nits -- Step 9 says keep every concrete, checkable, quotable one, and that stands.
 
 ## On request
 
-Four things the run already has and does not write up. Do not draft any of them before the ask --
+Three things the run already has and does not write up. Do not draft any of them before the ask --
 the material is in hand, so writing it out unasked is the whole of the waste.
 
-Offer them in one line at the end of the findings, naming the four. No preamble, no description of
+Offer them in one line at the end of the findings, naming the three. No preamble, no description of
 what each would contain.
 
 **What changed and when** -- where the revision history bears on the findings, and as long as it
@@ -195,19 +207,6 @@ the context, not a place to keep a finding.
 
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
 addressed, partly, unaddressed, or answered on the list without a text change.
-
-**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a
-concern the draft's own text refuses, an objection that is about the topic, a finding Step 10
-refuted. A refuted finding carries the refutation, so the reviewer can reverse it. Only what a
-reader might expect to see raised; not a log of everything you thought about.
-
-A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
-run of issues reads as an attack on the approach, and the supporting results are what stops it.
-
-Two things in here the reviewer cannot know to ask for, so name them in the offer: a lens that came
-back supporting the design, and a concern you killed that a reader would expect to see raised. The
-second is the one that gets rediscovered -- a concern the draft's own text refuses still looks wrong
-on its face, and the reviewer will arrive at it again unless told it is answered.
 
 **The actor table** -- as Step 4 returned it, ranked at Step 6. Hand over the staged file; do not
 re-render it. Stage it now if Step 4 did not.

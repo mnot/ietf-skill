@@ -477,7 +477,7 @@ and a concern they hand you is yours.
 The lenses read only the draft, so a finding arrives not knowing whether the point has already been
 raised, decided or ruled elsewhere. Close that here, over **every** concern.
 
-**Start with the scope questions.** The first two need nothing fetched, and all three drop concerns
+**Start with the two scope questions.** Neither needs anything fetched, and they drop concerns
 before you spend anything on them.
 
 **Was the silence this document's to fill?** A gap is only a gap where the answer was this
@@ -505,11 +505,6 @@ handle these entries" is not a finding.
 
 The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
 registry from here. A replacing document that drops those has dropped something still doing work.
-
-**Does the base protocol already answer it?** A draft does not restate what it builds on -- a
-tunnel's lifecycle, an unknown element being ignored. `reference/rfc6709.md` carries this for
-unknown-element handling; the question is general. Unlike the two above it needs a fetch, so run it
-last of the three, and fetch the text; recall is not a basis.
 
 Then two questions per surviving concern:
 
@@ -757,7 +752,12 @@ harder to dismiss than asserting a defect.
   shared part and leave the residue as its own issue, cross-linked by *Related*.
 - **Chain.** Where several issues trace to one revision change, work that out now and decide which
   carry a *Caused by*.
-- **Calibrate.** Rate the whole set in one pass; severity and confidence are comparative.
+- **Calibrate.** Rate the whole set in one pass; severity and confidence are comparative. A set
+  where every rating is the same has not been calibrated.
+- **Reconcile.** Walk the concern list as it stands after Step 8 and account for every record on
+  it: ranked, merged into another, or dropped with a reason. A concern on neither the findings nor
+  that account was lost rather than decided, and **From** is what makes the walk possible. What a
+  lens produced and neither ranking reached goes to *Checked, not raised*.
 
 The pass will not catch everything. Writing an argument out sometimes shows that a lens assumed
 something the draft never says: filling a gap without noticing it is evidence the gap is real.
