@@ -20,7 +20,7 @@ Supply antecedents, not evidence. Name the document and revision, what an issue 
 
 The uniform-polish, fixed-template, self-summarising pattern is itself a tell. Cut the boilerplate and convey the essence with enough context to be digestible. Examples are encouraged when they add legibility, and especially when they help compact the message. Likewise, concrete proposals are encouraged, so long as they can help the group move towards agreement.
 
-Individual words are tells too -- *genuinely*, *honestly*, *seam*, *load-bearing*, *a sharper version of*. What they share is doing emphasis rather than carrying meaning, which is also the test: drop the word and see whether the sentence changed. None of them is wrong once; several in one message is a fingerprint. Sweep for them before it goes, and add to the list as you notice others.
+Individual words are tells too -- *genuinely*, *honestly*, *seam*, *load-bearing*, *a sharper version of*. What they share is doing emphasis rather than carrying meaning, which is also the test: drop the word and see whether the sentence changed. None of them is wrong once; several in one message is a fingerprint. Sweep for them before it goes, and add to the list as you notice others. Grep the bare token and judge each hit; a narrowed pattern reports clean.
 
 ### What the message is for
 
@@ -61,6 +61,6 @@ Before it goes out, against this section rather than from memory:
 6. Bullets only where the content is a list, spaced if the items run long?
 7. First person where the point stands without it? Structure announced instead of stated?
 8. A pronoun or a bare *this* on second mention, where a reply would quote the paragraph without the antecedent?
-9. Any word doing emphasis rather than work -- the tic list, and whatever else drops without changing the sentence?
+9. Any word doing emphasis rather than work -- the tic list grepped as bare tokens, and whatever else drops without changing the sentence?
 10. A quote longer than the argument uses, or restated in prose beside it?
 11. Prose hard-wrapped, or quoted text reflowed?

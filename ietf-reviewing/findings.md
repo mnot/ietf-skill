@@ -1,6 +1,6 @@
 # Assembling the findings
 
-Step 10 of `SKILL.md`, and the skill's output: what a reviewer needs in order to decide what to
+Step 11 of `SKILL.md`, and the skill's output: what a reviewer needs in order to decide what to
 raise, and to defend it once raised. It is not the review -- that is `delivering.md`, and it is
 optional.
 
@@ -93,8 +93,8 @@ in another section. The four marked *only where* are conditional; the rest are a
   paragraph. A pre-emption already in the draft is not an answer.
 
   Quote only what the argument uses, and do not restate a quote in prose beside it. Every fact it
-  rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then re-read each
-  sentence against the quote beside it and check it claims no more.
+  rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then check each
+  sentence against the quote beside it for scope, following `quoting.md`.
 
   Where a weaker form is still true, write the weaker one. Cut a consequence you cannot show from
   the text; do not hedge it into the case.
@@ -107,7 +107,8 @@ in another section. The four marked *only where* are conditional; the rest are a
   Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
   worth the words. *Severity* carries that, or nothing does. Keep the significance out too: *there is
   a lowercase "should" in Section 2.2.1*, not *and that matters here*. Keep what the record already
-  did with it out as well; that is *Disposition*.
+  did with it out as well; that is *Disposition*. Recite a decision's history only where the ask
+  depends on it.
 - **Can be resolved if:** what would fix it. Imperative for specification craft -- *Describe the
   semantics*, *Point at RFC 9111 instead*; hedged where the fix is a structural judgement -- *the
   document needs to say (probably globally) whether ...*. Where the answer is the authors' intent,
@@ -190,9 +191,10 @@ the context, not a place to keep a finding.
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
 addressed, partly, unaddressed, or answered on the list without a text change.
 
-**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a concern
-the draft's own text refuses, an objection that is about the topic. Only what a reader might expect
-to see raised; not a log of everything you thought about.
+**Checked, not raised**, one bullet each: what, and why not -- a lens that did not apply, a
+concern the draft's own text refuses, an objection that is about the topic, a finding Step 10
+refuted. A refuted finding carries the refutation, so the reviewer can reverse it. Only what a
+reader might expect to see raised; not a log of everything you thought about.
 
 A lens that came back *supporting* the design is exempt from that economy test: keep it in full. A
 run of issues reads as an attack on the approach, and the supporting results are what stops it.

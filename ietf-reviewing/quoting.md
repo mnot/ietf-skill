@@ -1,6 +1,7 @@
 # Checking a quote against the text
 
-Read this at Step 8 of `SKILL.md`, when checking what a finding rests on.
+Read this at Step 8 of `SKILL.md`, when checking what a finding rests on, and again at Step 11
+while writing the case.
 
 A wrapped quote will not match a raw grep -- the text is there, the newline is not in your quote.
 Flatten first:
@@ -45,3 +46,15 @@ that range by four to six words taken from the middle of a line.
 
 A quote that is verbatim and mis-attributed is one a reader cannot follow up, and a lens return is
 exactly where that arrives.
+
+## Checking what the quote covers
+
+Verbatim and correctly attributed still does not license the claim. A quote carrying a condition
+or a list of enumerated cases supports a claim about those cases and no others, and a finding that
+widens it passes every check above.
+
+Where the quote turns on *if*, *unless*, *prior to*, *where*, or an enumeration, read the sentence
+and the one either side of it, and write down what the quote excludes before building on it. Carry
+the excluded cases into the finding's basis.
+
+Requirements as much as disclaimers: *a server that has received X MUST Y* is not *servers MUST Y*.

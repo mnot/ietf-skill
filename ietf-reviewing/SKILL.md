@@ -17,8 +17,9 @@ it adds up to. Producing the review itself -- as prose or as issues -- is a sepa
 
 ## How the steps run
 
-Ten steps, but not ten in sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7 run while
-those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets at Step 8.
+Eleven steps, but not eleven in sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7
+run while those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets
+at Step 8. Step 10 dispatches a second time, over what survives Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
@@ -26,8 +27,8 @@ Five files sit beside this one, each read at the point it is called for:
   a closed round, a document past IESG approval. Step 1.
 - `nits.md` -- running idnits, and the checks it does not reach. Step 4.
 - `quoting.md` -- checking a quote against the text it came from. Step 8.
-- `findings.md` -- the shape of the output. Step 10.
-- `delivering.md` -- writing the review, or filing issues. Optional, and after Step 10.
+- `findings.md` -- the shape of the output. Step 11.
+- `delivering.md` -- writing the review, or filing issues. Optional, and after Step 11.
 
 ## Out of scope
 
@@ -60,9 +61,9 @@ procedure. Both are gates at Step 8, stated in full there.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
-- **No subagents.** Step 4 is written around dispatch. Without it, run the passes serially in the
-  order they are listed and expect several times the wall-clock. Nothing in the method depends on
-  concurrency -- only the cost does.
+- **No subagents.** Steps 4 and 10 are written around dispatch. Without it, run the passes
+  serially in the order they are listed and expect several times the wall-clock. Nothing in the
+  method depends on concurrency -- only the cost does.
 
 ## RFC text
 
@@ -145,7 +146,7 @@ What is their role in this group -- chair, AD, author or editor of this document
 or edit anything the draft normatively references? Ask rather than infer; the reference list and the
 RFCs' own author lines settle the second.
 
-Where either holds it goes in *Your call* at Step 10. Neither softens a finding.
+Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
 ### Reviews of a particular kind
 
@@ -289,7 +290,7 @@ It returns the table and the absences. On a short draft ask for the absences and
 ranking is yours -- see Step 6.
 
 Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
-count -- Step 10 hands the file over. Only one lens waits on it -- see below.
+count -- Step 11 hands the file over. Only one lens waits on it -- see below.
 
 #### The lenses
 
@@ -327,6 +328,11 @@ included, takes the table only if it is already in hand.
 
 Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
 held back for the actor table is on the list, not off it.
+
+**Give the lens the draft, the rubric and the question. Withhold your reading of the draft.** The
+numbered questions of A do not carry here. A research context is answering about the record, so
+your framing is the query; a lens is reading the text, and your framing contaminates it. Never
+phrase a question so it presupposes its own answer.
 
 Send them all at once, and **give each the draft text in the dispatch** rather than making it fetch
 its own. Staging it once to a file and passing the path counts, provided you verified that copy
@@ -542,6 +548,10 @@ change was agreed under, and that is usually where the finding actually lives.
 What this turns up, in rough order of how often:
 
 - **The change was agreed, and the finding is dead.** Drop it.
+- **The change was agreed and the edit was incomplete.** Text the decision should have removed is
+  still there. Assume an incomplete edit before assuming the residue encodes a position, a
+  rejected design, or an unstated limit -- it is usually three phrases nobody struck. Step 9 ranks
+  it.
 - **The change was agreed under a condition that was not met** -- a check the issue said to do
   first, a mitigation proposed alongside. Reopen that issue rather than filing a new one; a new
   issue loses the framing and reads as though nobody had considered it.
@@ -571,6 +581,14 @@ yourself. A passage returned by the lens that read it is citable. A passage *des
 that did not read it is not: lenses cross-refer each other, and a description is not the source. A
 rubric is a citable source about itself -- recording that a lens does not fire because its rubric
 names this as a non-case needs no reading of the RFC. The RFC's own words do.
+
+**Read an artefact rather than a description of it.** A finding turning on a figure, a message
+exchange, a worked example, an ABNF rule or a state table needs you to have read the artefact
+yourself. A lens's prose account of one is not the artefact, even where that lens read it.
+
+**Lenses framed the same way do not corroborate each other.** Two returns reading a passage the
+same way are one reading counted twice unless each reached it independently. Check what you sent
+before treating convergence as evidence.
 
 Spot-check the quotes your findings rest on against the files before anything goes out, following
 `quoting.md`. This applies to the draft text you hand the lenses: copy it and you are the extraction
@@ -605,17 +623,37 @@ question, not the sentence. An ambiguity that leaves two implementers building d
 an issue even though a sentence fixes it, because the authors have to decide something first. A
 concern where the decision is already made and only the wording is missing is not.
 
-Then ask what breaks if it is not fixed. An issue names one of three things: a decision the authors
-must take and have not, an implementation that goes wrong, or a deployment that fails. Any one is
-enough.
+Then ask what breaks if it is not fixed. An issue names one of three things, and each has a
+sentence you either can or cannot write. Write it; do not answer in the abstract.
 
-Watch for the first. A document that has simply not promised anything either way breaks nothing you
-can point at, so an undecided question is the easiest of the three to talk yourself out of.
+- **A decision the authors must take and have not.** Write the two answers they could give, and
+  what changes in the document under each. If you cannot write both, the decision is already made.
+- **An implementation that goes wrong.** Write what implementer A builds and what implementer B
+  builds, such that they differ -- from the document's text *and its normative references*. Both
+  sentences, or it is not an Issue: the base protocol often settles what the draft leaves open.
+- **A deployment that fails.** Name the deployment and the condition under which it fails.
+
+Any one is enough.
 
 Where the consequence is only that the document's own argument is unpersuasive, it is a comment: the
 authors can accept or reject it and nothing else changes.
 
 Both tests have to pass. The survivability test alone will keep findings a reviewer then drops.
+
+**The first two rank by stage; the third does not.** An undecided question is an input to design
+work that is still scheduled, and a defect in a document claiming to be finished. Below WGLC it is
+a Comment -- say what has to be decided and let the group decide it. At WGLC and past it, the
+question ships undecided, so it is an Issue. Past IESG approval it is harder still: nothing left
+can absorb it. At those stages watch the first branch, since a document that has promised nothing
+either way breaks nothing you can point at, and it is the easiest of the three to talk yourself
+out of. Something that actually goes wrong is an Issue at every stage -- adoption is the moment to
+say so.
+
+**Rank residue from a decision on its consequence.** Where Step 8 found the edit incomplete, ask
+whether following the text as written produces a wrong result. An implementer who reads the stale
+text and builds something that fails is an Issue; name the failure rather than the oversight. An
+implementer merely confused on the way to the right thing is a Comment. Write the ask in those
+terms: *these look like leftovers from before <decision>; strike them.*
 
 Rank on the tests alone; there is no target number of issues.
 
@@ -644,7 +682,7 @@ Form: quoted text, then one short question or one flat statement. No numbering, 
 thanks. Prefer the question -- asking whether you have read it correctly is both more accurate and
 harder to dismiss than asserting a defect.
 
-**Finish this step before you write a line of Step 10.**
+**Finish this step before you write a line of Step 11.**
 
 - **Merge.** Find the concerns that are one decision before writing either up. Where one decision
   fixes only part of two concerns, merge the shared part and leave the residue as its own issue,
@@ -655,9 +693,32 @@ harder to dismiss than asserting a defect.
 
 The pass will not catch everything. Writing an argument out sometimes shows that a lens assumed
 something the draft never says: filling a gap without noticing it is evidence the gap is real.
-Expect one or two at Step 10, and count them as findings rather than rework.
+Expect one or two at Step 11, and count them as findings rather than rework.
 
-## 10. Assemble the findings
+## 10. Refute the survivors
+
+One dispatch per surviving Issue. It changes what gets written up; nothing here deletes a concern.
+
+Gate it on stage: dispatch at WGLC and past it, skip below, and record the skip. Below WGLC the
+stage rule at Step 9 has already sent the undecided questions to Comments, so there is little left
+for a refutation to move.
+
+Give each context the claim, the draft and the normative references the claim touches. Do **not**
+give it the case -- the argument is what you are testing, and a context handed it checks the
+reasoning instead of the text. Instruct it to establish the claim independently from primary
+sources, and to default to *refuted* where the evidence is ambiguous.
+
+What comes back is evidence into fields you already have:
+
+- **A hit that bites.** Confidence drops, and the refutation is *Grounding* -- it is what would
+  change your mind. Where it is decisive, the finding demotes to a Comment.
+- **A total refutation** -- the claim is wrong about the text. It goes to *Checked, not raised*,
+  carrying the refutation so the reviewer can reverse it.
+- **A survivor.** Unchanged. Surviving is not corroboration and does not go in the findings.
+
+A demotion returns to Step 9; do not write it straight into Step 11.
+
+## 11. Assemble the findings
 
 The output. Its shape is specified in `findings.md` -- follow it. Each issue is a record you already
 have, merged, chained and calibrated at Step 9; assembling is rendering, and fresh thinking here
