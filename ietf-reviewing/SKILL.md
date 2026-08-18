@@ -1,6 +1,6 @@
 ---
 name: ietf-reviewing
-description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Produces findings for a human reviewer to consider -- each concern, what it rests on, and what would resolve it -- rather than finished review text; writing the review is a separate, optional step.
+description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Produces findings for a human reviewer rather than finished review text; writing the review is a separate, optional step.
 compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully. Dispatches subagents at two steps; where the harness requires the user to request them, Step 0 asks.
 license: CC-BY-4.0
 ---
@@ -10,17 +10,15 @@ license: CC-BY-4.0
 **You draft; the human sends.** A review goes into the record under a person's name and
 they are accountable for every word of it. See `ietf-contributing`.
 
-So the default output of these steps is **findings**, not a finished review: the concerns,
-what each rests on, and what would resolve it. The reviewer decides what to raise and what
-it adds up to. Producing the review itself -- as prose or as issues -- is a separate step in
+So the default output of these steps is **findings**, not a finished review. The reviewer decides
+what to raise and what it adds up to. Producing the review itself -- as prose or as issues -- is a separate step in
 `delivering.md`, taken after those decisions.
 
 ## How the steps run
 
-Step 0 settles whether the run can happen and how; the eleven after it are not eleven in
-sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7
-run while those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets
-at Step 8. Step 10 dispatches a second time, over what survives Step 9.
+Run them in order, one at a time, except around Step 4's dispatches. Step 3 fires with them. Steps
+5 to 7 run while they are out, taking Step 6 when the actor table lands. Bring it all back for
+Step 8. Step 10 dispatches again, over what survives Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
@@ -31,42 +29,20 @@ Five files sit beside this one, each read at the point it is called for:
 - `findings.md` -- the shape of the output. Step 11.
 - `delivering.md` -- writing the review, or filing issues. Optional, and after Step 11.
 
-## Out of scope
-
-Neither of these is a finding: silence that was not this document's to fill, and IANA's own
-procedure. Both are gates at Step 8, stated in full there.
-
-## RFC text
-
-Wherever a step says to fetch, open, or read an RFC: `get_rfc_section` returns a section by
-number, and `search_rfc_text` finds the section when the number is unknown. The lens RFCs are
-also shipped beside their rubrics -- each rubric's **Text:** line names its copy -- and are the
-fallback without `ietf-llm`. For any other RFC without `ietf-llm`, use the plain-text file at
-`https://www.rfc-editor.org/rfc/rfcNNNN.txt`.
-
-Name this route in every dispatch that may need RFC words; a fresh context does not know it.
-
 ## 0. Establish what the run has
 
-Before anything is read, fetched or gathered. Each answer changes how the run goes, and some of
-them bound what it can conclude.
+**Check each tool before relying on it.** A tool named in your instructions is not a tool you have.
 
-**Probe rather than assume.** `list_corpora` establishes `ietf-llm`; `rfcdiff --version` the diff
-tool; a rubric's `Text:` path resolving establishes the `ietf-http` skill. A tool named in your
-instructions is not a tool you have.
+- **`ietf-llm`** -- call `list_corpora`.
+- **`rfcdiff`** -- run `rfcdiff --version`.
+- **The `ietf-http` skill** -- resolve a rubric's `Text:` path.
 
-**Dispatch needs the reviewer's word where your harness requires it.** Steps 4 and 10 are written
-around subagents -- roughly a dozen at Step 4, and one per claim at Step 10 on a WGLC or later
-review. Where you may not dispatch until asked, ask here, and ask once for both. Asking at Step 4
-is too late: the cold read and the charter check are spent by then, and a refusal changes the
-method for all of it.
+**If your harness requires user permission to use subagents, get it now.** Steps 4 and 10 are
+written around them -- roughly a dozen at Step 4, and one per claim at Step 10 on a WGLC or later
+review. Ask once, for both.
 
-**Then say what the run has and has not, in one message, before Step 1.** Name each absence and
-what it costs, from the list below. An absence the reviewer can fix by restarting the session is
-theirs to decide on, and now is the only point at which they can.
-
-Keep the answers. Step 8's negatives are bounded by what you could scan, Step 10 records its own
-skip, and *Could not obtain* at Step 11 is written from here.
+**Then name each absence and what it costs, in one message before Step 1.** The list below carries
+both.
 
 ### Without the tooling
 
@@ -98,9 +74,19 @@ step where the absence bites needs the fallback.
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
 - **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
-  the probe above settles which case you are in. Without it, run the passes serially in the order they are
-  listed and expect several times the wall-clock. Nothing in the method depends on concurrency --
-  only the cost does.
+  Step 0 settles which case you are in. Without it, run the passes serially in the order
+  they are listed and expect several times the wall-clock. Nothing in the method depends on
+  concurrency -- only the cost does.
+
+### RFC text
+
+Wherever a step says to fetch, open, or read an RFC: `get_rfc_section` returns a section by
+number, and `search_rfc_text` finds the section when the number is unknown. The lens RFCs are
+also shipped beside their rubrics -- each rubric's **Text:** line names its copy -- and are the
+fallback without `ietf-llm`. For any other RFC without `ietf-llm`, use the plain-text file at
+`https://www.rfc-editor.org/rfc/rfcNNNN.txt`.
+
+Name this route in every dispatch that may need RFC words; a fresh context does not know it.
 
 ## 1. Establish the review question
 
@@ -365,7 +351,7 @@ Send them all at once, and **give each the draft text in the dispatch** rather t
 its own. Staging it once to a file and passing the path counts, provided you verified that copy
 against the authoritative source first. Either way, name the authoritative source alongside it so
 the lens can verify anything it means to quote, and spot-check the returns yourself. Name the *RFC
-text* route in the same dispatch.
+text* route from Step 0 in the same dispatch.
 
 Where the cache is behind the live revision, the live text is the authoritative one -- fetch it and
 hand the lenses that, whatever the corpus tool returns.
