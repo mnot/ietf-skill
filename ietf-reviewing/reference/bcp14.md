@@ -11,7 +11,8 @@ The text supplies the keywords' meaning rather than a position to test the desig
 findings here are about the draft's own sentences.
 
 **Not covered:** whether they are the right requirements, or whether the design is sound. Those are
-the other lenses.
+the other lenses. Nor the RFC 8174 boilerplate itself -- idnits checks it against the keywords used,
+and `nits.md` carries that.
 
 ## Firing
 
@@ -97,8 +98,6 @@ Then sweep the other way for test 8, which the keyword list cannot reach.
 
 10. **A party the protocol cannot bind.** Requirements on operators, content authors, deployments.
     Not wrong in itself -- raise it where the document's guarantees rest on it.
-
-11. **Boilerplate.** RFC 8174 boilerplate present, and matching the keywords used. Nit-level.
 
 ## Suppression
 
