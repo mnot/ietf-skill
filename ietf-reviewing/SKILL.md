@@ -1,7 +1,7 @@
 ---
 name: ietf-reviewing
 description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Produces findings for a human reviewer to consider -- each concern, what it rests on, and what would resolve it -- rather than finished review text; writing the review is a separate, optional step.
-compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully.
+compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully. Dispatches subagents at two steps; where the harness requires the user to request them, Step 0 asks.
 license: CC-BY-4.0
 ---
 
@@ -17,7 +17,8 @@ it adds up to. Producing the review itself -- as prose or as issues -- is a sepa
 
 ## How the steps run
 
-Eleven steps, but not eleven in sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7
+Step 0 settles whether the run can happen and how; the eleven after it are not eleven in
+sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7
 run while those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets
 at Step 8. Step 10 dispatches a second time, over what survives Step 9.
 
@@ -36,6 +37,8 @@ Neither of these is a finding: silence that was not this document's to fill, and
 procedure. Both are gates at Step 8, stated in full there.
 
 ## Without the tooling
+
+Step 0 probes for each of these. What an absence costs, and what stands in for it:
 
 - **No `ietf-llm`.** An informal read is unaffected; Step 8 is not. The Web archives and the
   GitHub API are slow and miss silently, and silence is the very thing the step exists to assert.
@@ -61,9 +64,10 @@ procedure. Both are gates at Step 8, stated in full there.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
-- **No subagents.** Steps 4 and 10 are written around dispatch. Without it, run the passes
-  serially in the order they are listed and expect several times the wall-clock. Nothing in the
-  method depends on concurrency -- only the cost does.
+- **No subagents, or no permission to use them.** Steps 4 and 10 are written around dispatch, and
+  Step 0 settles which case you are in. Without it, run the passes serially in the order they are
+  listed and expect several times the wall-clock. Nothing in the method depends on concurrency --
+  only the cost does.
 
 ## RFC text
 
@@ -74,6 +78,28 @@ fallback without `ietf-llm`. For any other RFC without `ietf-llm`, use the plain
 `https://www.rfc-editor.org/rfc/rfcNNNN.txt`.
 
 Name this route in every dispatch that may need RFC words; a fresh context does not know it.
+
+## 0. Establish what the run has
+
+Before anything is read, fetched or gathered. Each answer changes how the run goes, and some of
+them bound what it can conclude.
+
+**Probe rather than assume.** `list_corpora` establishes `ietf-llm`; `rfcdiff --version` the diff
+tool; a rubric's `Text:` path resolving establishes the `ietf-http` skill. A tool named in your
+instructions is not a tool you have.
+
+**Dispatch needs the reviewer's word where your harness requires it.** Steps 4 and 10 are written
+around subagents -- roughly a dozen at Step 4, and one per claim at Step 10 on a WGLC or later
+review. Where you may not dispatch until asked, ask here, and ask once for both. Asking at Step 4
+is too late: the cold read and the charter check are spent by then, and a refusal changes the
+method for all of it.
+
+**Then say what the run has and has not, in one message, before Step 1.** Name each absence and
+what it costs; *Without the tooling*, above, carries both. An absence the reviewer can fix by
+restarting the session is theirs to decide on, and now is the only point at which they can.
+
+Keep the answers. Step 8's negatives are bounded by what you could scan, Step 10 records its own
+skip, and *Could not obtain* at Step 11 is written from here.
 
 ## 1. Establish the review question
 
@@ -212,9 +238,9 @@ necessary locus of expertise here? Add a concern where the answer is not clearly
 ## 4. Dispatch tasks
 
 **Say what you are about to do, and how long, before you dispatch.** One short message: the revision
-and where it came from, the question you took from the table, which sources exist, which tooling is
-missing and what you are doing instead, and the lenses going out. Then the estimate -- fifteen to
-thirty minutes, longer if a gather has to run first.
+and where it came from, the question you took from the table, which sources exist, and the lenses
+going out. The tooling was settled at Step 0 and does not need restating. Then the estimate --
+fifteen to thirty minutes, longer if a gather has to run first.
 
 Step 4 is where the cost is, and everything that makes a run worthless is settled before it: the
 wrong revision, the wrong document, the wrong question. Saying them out loud is the last cheap
