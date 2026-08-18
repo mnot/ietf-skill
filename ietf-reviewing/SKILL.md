@@ -20,10 +20,11 @@ it adds up to. Producing the review itself -- as prose or as issues -- is a sepa
 Ten steps, but not ten in sequence. Step 3 fires with the Step 4 dispatches; Steps 5 to 7 run while
 those are out; Step 6 waits on the actor table that Step 4 dispatched. Everything meets at Step 8.
 
-Four files sit beside this one, each read at the point it is called for:
+Five files sit beside this one, each read at the point it is called for:
 
 - `stages.md` -- reviews of a particular kind: a directorate assignment, a bis, a revision answering
   a closed round, a document past IESG approval. Step 1.
+- `nits.md` -- running idnits, and the checks it does not reach. Step 4.
 - `quoting.md` -- checking a quote against the text it came from. Step 8.
 - `findings.md` -- the shape of the output. Step 10.
 - `delivering.md` -- writing the review, or filing issues. Optional, and after Step 10.
@@ -224,10 +225,13 @@ gather -- send it regardless._
 Dispatch the items below to subagents -- they are our slowest tasks and independent. While they
 run, perform Steps 5-7.
 
-Three things go out immediately: **A**, the **actor pass**, and **`bcp14.md`** -- none needs more
-than the cold read, and `bcp14.md` always fires, so there is nothing to pre-filter. The remaining
-lenses wait on the rubric read, which is what you do while those three run; send them as soon as it
-is done, before you start Step 5.
+Four things go out immediately: **A**, the **actor pass**, **`bcp14.md`** and the **nits pass** in
+`nits.md` -- none needs more than the cold read, so there is nothing to pre-filter on the text.
+`bcp14.md` always fires. The nits pass is gated on stage instead, and the gate is yours: on an
+adoption or DISPATCH review do not dispatch it, and record the skip. Otherwise send it with the
+stage from Step 1, which sets what it returns -- `nits.md` holds the table. The remaining
+lenses wait on the rubric read, which is what you do while the immediate batch runs; send them as
+soon as it is done, before you start Step 5.
 
 ### A. Research other views
 
@@ -633,7 +637,8 @@ Keep each comment to a line or two: if one needs a paragraph of setup, it is an 
 you are not ready to say it yet. And never fold or delete an issue to make room for a comment.
 
 **Nits.** Typos, stale references, wrong section numbers -- anything an editor fixes without asking
-anyone a question.
+anyone a question. What the Step 4 nits pass returned lands here, less the shapes `nits.md` ranks
+above a nit.
 
 Form: quoted text, then one short question or one flat statement. No numbering, no interleaved
 thanks. Prefer the question -- asking whether you have read it correctly is both more accurate and
