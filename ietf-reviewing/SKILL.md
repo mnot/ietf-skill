@@ -182,16 +182,13 @@ Read the section that applies in `stages.md` before going on:
 Read the entire draft without consulting anything else. Keep each concern found as a record with
 four fields, filled when you create it:
 
-- **ID** -- C1, C2, … Keep the ID if the concern becomes an issue; the mapping is how you show your
-  work.
+- **ID** -- C1, C2, … Keep the ID when a concern becomes an issue.
 - **Claim** -- one sentence about the document.
-- **Basis** -- the quotes it rests on, with section numbers. For an absence, what stands in its place
-  and where you expected the missing thing to be; the search that confirms it belongs to Step 8,
-  since the cold read is not consulting anything yet.
+- **Basis** -- the quotes it rests on, with section numbers. For an absence, what stands in its
+  place and where you expected the missing thing to be.
 - **From** -- where it came from: the cold read, the charter, a named lens, a question of your own.
 
-Fill nothing else yet. Severity is calibrated against the whole set, and a resolution written before
-you understand the problem is one you will defend out of sunk cost.
+Fill nothing else yet.
 
 This list is the control against which everything later gets filtered, and **From** is what makes
 that check possible.
