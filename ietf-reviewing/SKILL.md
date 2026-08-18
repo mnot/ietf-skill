@@ -392,16 +392,15 @@ Then, probe the charter, the slides, prior revisions, related and competing draf
 introductory mail, and the referenced specifications a concern of yours actually turns on -- just
 those sections, not the entire reference list.
 
-In particular read the draft's diffs. Use `rfcdiff --diff --stdout old new`, which strips page
-headers, footers and form feeds before comparing; the mode matters, because the default writes a
-two-column HTML file and emits nothing. Where a finding needs the before and after text, `--ab-diff
---stdout` gives labelled OLD/NEW blocks per section instead. (See *Without the tooling* at Step 0 if
-you do not have it.) A section deleted two revisions ago, or a slide the draft does not reflect, hands you a
-concern you did not know to ask for. Diff the current revision against the one
-before it as a matter of course, and go further back only when a concern turns on *when* something
-changed. This step is on the critical path and every extra revision is another read, so when you do
-go back, grep the revisions for the one string (flattened, per `quoting.md`) rather than diffing them
-pairwise.
+In particular read the draft's diffs. Diff the current revision against the one before it as a
+matter of course. Go further back only when a concern turns on *when* something changed, and then
+grep the revisions for the one string (flattened, per `quoting.md`) rather than diffing pairwise.
+
+**Fetch both sides rather than assuming either is on disk.** Older revisions are at
+`https://www.ietf.org/archive/id/draft-...-NN.txt`; `get_draft` returns whatever was gathered, so
+check which revision it gave you. Then `rfcdiff --diff --stdout old new`, which strips page headers,
+footers and form feeds -- the default mode writes a two-column HTML file and emits nothing.
+`--ab-diff --stdout` gives labelled OLD/NEW blocks where a finding needs both texts.
 
 **Find the predecessor, which is often not an earlier revision of this name.** Work that was
 adopted, renamed or re-chartered leaves its history under a different draft name, and `rfcdiff`
@@ -412,13 +411,6 @@ Then compare the predecessor's section list against this one's, not only its pro
 present there and absent here is a deletion, and a deletion is evidence where silence is not: it
 converts *the document does not say* into *the document used to say*. Where a normative sentence
 bounded a permissive one and only the bound is gone, the permission is now unowned.
-
-**Fetch both sides rather than assuming either is on disk.** A gather stores the revision that was
-current when it ran, so most corpora hold exactly one per draft -- a long back-catalogue is the
-exception, not the rule, and the *current* revision is missing whenever the draft moved since the
-gather. Older revisions are at `https://www.ietf.org/archive/id/draft-...-NN.txt`. `get_draft`
-returns what was gathered, which is neither reliably the old side nor reliably the new one, so check
-which revision it gave you before diffing it.
 
 If you have reviewed this draft before, your own prior findings are an input -- but after the cold
 read, not before it. Anything on that list which did not reappear either gets re-derived or gets
