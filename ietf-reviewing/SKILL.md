@@ -378,6 +378,16 @@ changed. This step is on the critical path and every extra revision is another r
 go back, grep the revisions for the one string (flattened, per `quoting.md`) rather than diffing them
 pairwise.
 
+**Find the predecessor, which is often not an earlier revision of this name.** Work that was
+adopted, renamed or re-chartered leaves its history under a different draft name, and `rfcdiff`
+against -00 stops at the rename. `find_related` names it, as do the draft's own abstract and changes
+section, and the repo where one draft's source replaced another's.
+
+Then compare the predecessor's section list against this one's, not only its prose. A subsection
+present there and absent here is a deletion, and a deletion is evidence where silence is not: it
+converts *the document does not say* into *the document used to say*. Where a normative sentence
+bounded a permissive one and only the bound is gone, the permission is now unowned.
+
 **Fetch both sides rather than assuming either is on disk.** A gather stores the revision that was
 current when it ran, so most corpora hold exactly one per draft -- a long back-catalogue is the
 exception, not the rule, and the *current* revision is missing whenever the draft moved since the
@@ -440,7 +450,7 @@ and a concern they hand you is yours.
 The lenses read only the draft, so a finding arrives not knowing whether the point has already been
 raised, decided or ruled elsewhere. Close that here, over **every** concern.
 
-**Start with the two scope questions.** Neither needs anything fetched, and they drop concerns
+**Start with the scope questions.** The first two need nothing fetched, and all three drop concerns
 before you spend anything on them.
 
 **Was the silence this document's to fill?** A gap is only a gap where the answer was this
@@ -468,6 +478,11 @@ handle these entries" is not a finding.
 
 The **policy** is in scope: the registration policy, the criteria, who decides, what governs the
 registry from here. A replacing document that drops those has dropped something still doing work.
+
+**Does the base protocol already answer it?** A draft does not restate what it builds on -- a
+tunnel's lifecycle, an unknown element being ignored. `reference/rfc6709.md` carries this for
+unknown-element handling; the question is general. Unlike the two above it needs a fetch, so run it
+last of the three, and fetch the text; recall is not a basis.
 
 Then two questions per surviving concern:
 
@@ -618,6 +633,13 @@ failures.
 Then rank each concern into **Issues**, **Comments** or **Nits** -- the three headings most IETF
 reviews use. They have different economies.
 
+**Split before you rank.** A finding is one claim naming one defect; a conjunction or a list is
+several, and each piece faces the tests alone. Count the limbs: past two, split. A finding that
+answers a challenge to one limb by pointing at another cannot be tested at all.
+
+Splitting does not lengthen the findings. What is one decision merges back at the end of this step,
+and what fails the tests alone was never a finding.
+
 **Issues.** The test: *would this remain regardless of editorial work?* The test is about the
 question, not the sentence. An ambiguity that leaves two implementers building different things is
 an issue even though a sentence fixes it, because the authors have to decide something first. A
@@ -640,20 +662,39 @@ authors can accept or reject it and nothing else changes.
 
 Both tests have to pass. The survivability test alone will keep findings a reviewer then drops.
 
-**The first two rank by stage; the third does not.** An undecided question is an input to design
-work that is still scheduled, and a defect in a document claiming to be finished. Below WGLC it is
-a Comment -- say what has to be decided and let the group decide it. At WGLC and past it, the
-question ships undecided, so it is an Issue. Past IESG approval it is harder still: nothing left
-can absorb it. At those stages watch the first branch, since a document that has promised nothing
-either way breaks nothing you can point at, and it is the easiest of the three to talk yourself
-out of. Something that actually goes wrong is an Issue at every stage -- adoption is the moment to
-say so.
+**State the boring explanation before you rank.** Incomplete edit, unrevisited sentence, known
+limitation, loose wording. Then ask what breaks *given* the boring explanation: an implementer
+builds the wrong thing, a deployment fails, a security property is lost. If something does, it is an
+Issue, and the consequence is what the Issue is about. If nothing does, it is a Comment asking
+whether the omission or the wording is intended.
 
-**Rank residue from a decision on its consequence.** Where Step 8 found the edit incomplete, ask
-whether following the text as written produces a wrong result. An implementer who reads the stale
-text and builds something that fails is an Issue; name the failure rather than the oversight. An
-implementer merely confused on the way to the right thing is a Comment. Write the ask in those
-terms: *these look like leftovers from before <decision>; strike them.*
+Where Step 8 found the edit incomplete, the ask says so: *these look like leftovers from before
+<decision>; strike them.*
+
+Comments by default, and needing positive evidence to rank higher:
+
+- **The document is silent about X.** Silence is the normal state of a specification about
+  everything it does not specify.
+- **The document says it does not do X.** An acknowledged limitation is an author's note, and the
+  ordinary explanation is that they know. Ask which way they intend to go. Do not build a case that
+  the acknowledgement is itself a defect, and do not borrow its authority for a broader claim -- a
+  disclaimer of two named cases is not a disclaimer of the case at large.
+
+**Lineage** promotes them: text a predecessor carried and this document dropped is a deletion
+rather than a silence, and Step 5 is where it comes from. So does **a documentation duty** -- where
+a BCP requires the authors to write something down, BCP 72 §5's *MUST describe* per
+`reference/rfc3552.md`, the missing text is the consequence and silence is an Issue with nothing
+further to show.
+
+**The first two branches rank by stage; a deployment that fails does not.** Step 8 settled whether
+the silence was this document's to fill, and the boring explanation asked whether anything breaks
+anyway; what survives both ranks here. An undecided question is an input to design work that is
+still scheduled, and a defect in a document claiming to be finished. Below WGLC it is a Comment --
+say what has to be decided and let the group decide it. At WGLC and past it, the question ships
+undecided, so it is an Issue. Past IESG approval it is harder still: nothing left can absorb it.
+At those stages watch the first branch, since a document that has promised nothing either way
+breaks nothing you can point at, and it is the easiest of the three to talk yourself out of. A
+deployment that fails is an Issue at every stage -- adoption is the moment to say so.
 
 Rank on the tests alone; there is no target number of issues.
 
@@ -684,9 +725,9 @@ harder to dismiss than asserting a defect.
 
 **Finish this step before you write a line of Step 11.**
 
-- **Merge.** Find the concerns that are one decision before writing either up. Where one decision
-  fixes only part of two concerns, merge the shared part and leave the residue as its own issue,
-  cross-linked by *Related*.
+- **Merge.** Find the concerns that are one decision before writing either up; this is where a
+  split finding comes back together. Where one decision fixes only part of two concerns, merge the
+  shared part and leave the residue as its own issue, cross-linked by *Related*.
 - **Chain.** Where several issues trace to one revision change, work that out now and decide which
   carry a *Caused by*.
 - **Calibrate.** Rate the whole set in one pass; severity and confidence are comparative.
@@ -697,7 +738,9 @@ Expect one or two at Step 11, and count them as findings rather than rework.
 
 ## 10. Refute the survivors
 
-One dispatch per surviving Issue. It changes what gets written up; nothing here deletes a concern.
+One dispatch per claim in each surviving Issue -- a merged Issue carrying two claims gets two.
+Refutation cannot bite on a conjunction: handed one, a context finds the true limb and reports
+support. It changes what gets written up; nothing here deletes a concern.
 
 Gate it on stage: dispatch at WGLC and past it, skip below, and record the skip. Below WGLC the
 stage rule at Step 9 has already sent the undecided questions to Comments, so there is little left
@@ -711,10 +754,15 @@ sources, and to default to *refuted* where the evidence is ambiguous.
 What comes back is evidence into fields you already have:
 
 - **A hit that bites.** Confidence drops, and the refutation is *Grounding* -- it is what would
-  change your mind. Where it is decisive, the finding demotes to a Comment.
+  change your mind. Where it is decisive that claim goes, and an Issue whose every claim goes
+  demotes to a Comment.
 - **A total refutation** -- the claim is wrong about the text. It goes to *Checked, not raised*,
   carrying the refutation so the reviewer can reverse it.
-- **A survivor.** Unchanged. Surviving is not corroboration and does not go in the findings.
+- **A survivor.** The finding is unchanged. Surviving is not corroboration, so record that the pass
+  ran and what it tried, and claim nothing from it.
+
+Record what the pass tried against each claim and what it did not shift, whatever the outcome.
+Without it, a pass that ran and agreed is indistinguishable from a pass that never ran.
 
 A demotion returns to Step 9; do not write it straight into Step 11.
 

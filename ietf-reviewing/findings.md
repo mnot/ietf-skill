@@ -77,7 +77,8 @@ without a legend. They are what decides which issue a reviewer opens first.
   🔥2/⭐️5
 
 Then a subsection per issue, as labelled fields rather than paragraphs. The heading is the concern --
-one sentence, stated as a claim about the document. Do not restate it as a field.
+one sentence naming one defect, stated as a claim about the document; Step 9 split anything larger.
+Do not restate it as a field.
 
 These fields and no others: an issue that has grown one of its own is telling you something belongs
 in another section. The four marked *only where* are conditional; the rest are always present.
@@ -133,9 +134,13 @@ in another section. The four marked *only where* are conditional; the rest are a
   and the reading is not open to dispute*; three is *the text supports this and another reading is
   available*; one is *I think this is true and cannot show it from the document*. It rates the
   reading, not the fate -- a finding can be five stars on the text and still be settled, out of
-  scope, or answered elsewhere.
-- **Grounding:** only where confidence is short of full -- the reason it is short, and what would
-  change your mind. An inference rather than the quoted text; or a source you could not read, named.
+  scope, or answered elsewhere. Not five where the heading characterises the document in words the
+  document does not use -- *admits*, *withdraws*, *concedes*. A characterisation is a reading, and a
+  reading is disputable.
+- **Grounding:** where Step 10 ran, what it tried against each claim and what it did not shift --
+  at full confidence too, so a pass that found nothing reads differently from a pass that never
+  ran. Then, only where confidence is short of full, the reason it is short and what would change
+  your mind: an inference rather than the quoted text, or a source you could not read, named.
 
 Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving early.
 

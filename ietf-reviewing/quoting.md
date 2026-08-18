@@ -58,3 +58,10 @@ and the one either side of it, and write down what the quote excludes before bui
 the excluded cases into the finding's basis.
 
 Requirements as much as disclaimers: *a server that has received X MUST Y* is not *servers MUST Y*.
+
+Then test the claim against the exclusion. A claim covering an excluded case is wrong rather than
+merely broad: narrow it to what the quote carries, or drop it.
+
+Read each quote for what it concedes, not only for what it supports. A quote fetched to establish
+one thing routinely settles another, and a finding whose own evidence answers it is the cheapest
+kind to catch.
