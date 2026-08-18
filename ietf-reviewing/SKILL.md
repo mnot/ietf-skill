@@ -33,9 +33,10 @@ Five files sit beside this one, each read at the point it is called for:
 
 **Check each tool before relying on it.** A tool named in your instructions is not a tool you have.
 
-- **`ietf-llm`** -- call `list_corpora`.
-- **`rfcdiff`** -- run `rfcdiff --version`.
-- **The `ietf-http` skill** -- resolve a rubric's `Text:` path.
+- **`ietf-llm`** -- the MCP server carrying the gathered record. Call `list_corpora`.
+- **`rfcdiff`** -- the revision differ. Run `rfcdiff --version`.
+- **The `ietf-http` skill** -- the text behind the `rfc8820` and `rfc9205` rubrics. Resolve either
+  one's `Text:` path.
 
 **If your harness requires user permission to use subagents, get it now.** Steps 4 and 10 are
 written around them -- roughly a dozen at Step 4, and one per claim at Step 10 on a WGLC or later
