@@ -675,6 +675,10 @@ The following are Comments by default, and need positive evidence to rank higher
   the acknowledgement is itself a defect, and do not borrow its authority for a broader claim -- a
   disclaimer of two named cases is not a disclaimer of the case at large.
 
+**Check whether another document did the same thing and drew the same silence.** Where one did,
+the silence is settled practice rather than an oversight: name that document and leave the concern
+a Comment.
+
 The evidence that promotes them:
 
 - **Lineage.** Text a predecessor carried and this document dropped is a deletion, not a silence.
@@ -755,6 +759,18 @@ give it the case -- the argument is what you are testing, and a context handed i
 reasoning instead of the text. Instruct it to establish the claim independently from primary
 sources, and to default to *refuted* where the evidence is ambiguous.
 
+**A refutation is a claim.** Check the step from its evidence to its kill: a refuter can be right
+about every document it cites and still wrong about yours. Its quotes get the same treatment as a
+lens's.
+
+**A refutation that answers from another document has to show that answer reaches this one.** That
+a rule exists elsewhere does not establish that this document may rely on it silently; that a base
+specification hedges the same way does not establish that the hedged branch is reachable here.
+
+**Write down what survives the kill before you accept it.** A refuter aims at the strongest reading
+of a claim, and what it leaves standing is often the finding. Ask whether it answered your claim or
+an adjacent one.
+
 What comes back is evidence into fields you already have:
 
 - **A hit that bites.** Confidence drops, and the refutation is *Grounding* -- it is what would
@@ -764,6 +780,8 @@ What comes back is evidence into fields you already have:
   carrying the refutation so the reviewer can reverse it.
 - **A survivor.** The finding is unchanged. Surviving is not corroboration, so record that the pass
   ran and what it tried, and claim nothing from it.
+- **A better finding than the one you sent.** What a refuter turns up is yours, as a lens's return
+  is. Give it a record and take it back to Step 9.
 
 Record what the pass tried against each claim and what it did not shift, whatever the outcome.
 Without it, a pass that ran and agreed is indistinguishable from a pass that never ran.

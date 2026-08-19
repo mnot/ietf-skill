@@ -8,10 +8,10 @@ Each issue is a record you already have, merged, chained and calibrated at Step 
 rendering; fresh thinking here means Step 9 is unfinished.
 
 These go to the reviewer, not into the record, so the Register in `register.md` beside this file
-does not reach them by its own scope. Follow it here anyway, for a different reason: *The case* and
-*Can be resolved if* transfer almost verbatim into the review or an issue body, so a finding written
-outside the Register has to be rewritten at the point where the reviewer is waiting. Write them so
-that the transfer is a copy.
+does not reach them by its own scope. Follow it here anyway, for a different reason: *The case*
+and *Can be resolved if* transfer almost verbatim into an issue body, and a review draws on both,
+so a finding written outside the Register has to be rewritten at the point where the reviewer is
+waiting. Write them so that the transfer is a copy.
 
 The Register's question about where content belongs is the one the fields below already ask, and
 its economy test is the one at the end of this file, with the reviewer as the recipient. Two rules
