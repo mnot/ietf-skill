@@ -23,7 +23,8 @@ over what survives Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
-- `stages.md` -- the special cases that add work before the method starts. Step 1.
+- `special-cases.md` -- what a particular kind of review or document adds before the method
+  starts. Step 1.
 - `nits.md` -- running idnits, and the checks it does not reach. Step 4.
 - `quoting.md` -- checking a quote against the text it came from. Step 8.
 - `findings.md` -- the shape of the output. Step 11.
@@ -171,7 +172,7 @@ Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
 ### Special cases
 
-Read the section that applies in `stages.md` before going on:
+Read the section that applies in `special-cases.md` before going on:
 
 - a directorate assignment
 - a revision of a published document
@@ -343,8 +344,8 @@ section that excludes this draft, and say why. One line each. *This is a caching
 not a rule-out: a rubric's topic does not predict whether its concern applies, which is what the
 `Firing` sections are for. Ruling out on another lens is the exception -- name that lens instead.
 
-On a directorate assignment, scope every dispatch to the team's lane -- `stages.md`, at Step 1. The
-lens set itself is not cut to the lane.
+On a directorate assignment, scope every dispatch to the team's lane -- `special-cases.md`, at
+Step 1. The lens set itself is not cut to the lane.
 
 **The actor table.** Only `rfc8890.md` waits for it: its fire test depends on the table outright.
 Hold that one and dispatch the rest; if the table has landed by the time you finish the rubrics,

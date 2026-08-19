@@ -24,7 +24,7 @@ here has already cost a run.
 | WG document in progress | Structural gaps only: a required section missing, a reference that does not resolve. |
 | WGLC | Everything below. Fixes cost nobody anything at this stage. |
 | IETF Last Call, directorate | Everything below, weighted to what a shepherd answers for -- references, downrefs, obsoletes and updates. |
-| IESG evaluation, and after | Sort by route, per `stages.md`. Most of it belongs to AUTH48. |
+| IESG evaluation, and after | Sort by route, per `special-cases.md`. Most of it belongs to AUTH48. |
 
 A skip is recorded, not silent. Nothing else in the review reports on nits, so an adoption review
 that says nothing about them reads as a pass that found none.
