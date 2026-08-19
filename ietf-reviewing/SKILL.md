@@ -304,9 +304,9 @@ Then check the draft's own adversary classes against the table: which parties ar
 theirs, and is each absence defensible? Ask without deciding the answer in advance. The gap may be
 a layer confusion, a party the authors assume benign, or nothing at all.
 
-It returns the table and the absences. On a short draft ask for the absences and one line per party
--- the full questionnaire on a one-field extension runs to thousands of words you will not use. The
-ranking is yours -- see Step 6.
+It returns the table and the absences. On a short draft ask for the absences and one line per
+party -- the full questionnaire on a one-field extension runs to thousands of words you will not
+use. The weighing is yours -- see Step 6.
 
 Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
 count -- Step 11 hands the file over. Only `rfc8890.md` waits on it, under *The lenses*.
@@ -420,13 +420,20 @@ dropped with a reason. A concern does not survive on the strength of having been
 
 Record what you could not obtain, and what it stops the review from concluding.
 
-## 6. Rank the actors
+## 6. Weigh the actors against each other
 
-When the actor table returns, rank it by **mismatch between a party's stated role and their actual
-power**. That judgement is yours rather than the dispatched context's, and it sharpens once the
-lenses are back.
+When the actor table returns, read the power relations out of it. That judgement is yours rather
+than the dispatched context's, and it sharpens once the lenses are back. Ask of each party:
 
-A mismatch you cannot explain, or an absence the draft does not defend, is a new concern. Add it.
+- **Does their stated role match their actual power?** The draft gives the role; the table gives
+  what they control and what affordances they hold.
+- **What can they not refuse?** A party bound by a decision it has no part in, and no way out of.
+- **Whose interests does the design serve where two parties' diverge?** `rfc8890.md` carries this
+  where one of them is an end user in its §2 sense; between stakeholders, no lens does.
+- **Which parties are absent from the draft's own adversary classes**, and is each absence
+  defensible?
+
+Anything you cannot explain is a new concern. Add it.
 
 ## 7. Ask what you cannot answer
 
@@ -632,6 +639,12 @@ Step 8 has already dropped what was settled or out of scope, so do not re-adjudi
 ones it called settled, since whether a closing reason *engaged* the point is a judgement a
 dispatched pass is poor at. A concern it reframed ranks on its new shape, not the one you started
 with.
+
+**A working group cannot settle a departure from a BCP.** A BCP records IETF consensus; a working
+group's is narrower, and whether an exception is warranted is what IETF Last Call and IESG review
+exist to test. So a decision that engaged the point squarely and went against a BCP leaves the
+concern live. Rank it on the departure, and say which BCP -- the rubric says whether its RFC is
+one.
 
 **One claim per finding, naming one defect.** A conjunction or a list is several, and each piece
 faces the tests alone. Count the limbs: past two, split. A finding that

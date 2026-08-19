@@ -78,6 +78,12 @@ should say the same thing the field does.
 **Decline whole categories out loud** rather than skipping silently: "I'll skip editorial issues
 given the state of the text."
 
+**A departure from a BCP is raised as a question for the wider review, not as the group being
+wrong.** The working group may have judged the BCP inapplicable or the exception warranted; what
+it cannot do is make that judgement final. Say what the BCP requires, what the document does, and
+that the two need reconciling before publication -- and say the group considered it, where the
+record shows they did.
+
 **A declared scope is permeable.** Reviewers announce a lane and then say the important thing
 anyway, flagging it -- "this is for the security directorate, but". If a finding matters and sits
 just outside the scope you declared, say it and mark it out of lane.

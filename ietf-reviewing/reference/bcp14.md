@@ -4,8 +4,10 @@
 
 ## Scope
 
-Whether the document's conformance requirements can be conformed to -- who is bound, and whether that
-party can tell.
+Whether the document's conformance requirements can be conformed to -- who is bound, and whether
+that party can tell.
+
+A **BCP**, so a working group cannot settle a departure from it.
 
 The text supplies the keywords' meaning rather than a position to test the design against, so
 findings here are about the draft's own sentences.

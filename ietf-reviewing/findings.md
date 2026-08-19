@@ -217,5 +217,5 @@ the context, not a place to keep a finding.
 **Prior concerns**, one bullet each: what was raised, by whom, and what this revision did with it --
 addressed, partly, unaddressed, or answered on the list without a text change.
 
-**The actor table** -- as Step 4 returned it, ranked at Step 6. Hand over the staged file; do not
-re-render it. Stage it now if Step 4 did not.
+**The actor table** -- as Step 4 returned it, with what Step 6 read out of it. Hand over the
+staged file; do not re-render it. Stage it now if Step 4 did not.
