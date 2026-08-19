@@ -4,21 +4,16 @@ The optional, second half of `SKILL.md`. Read it only when the reviewer asks for
 have chosen what to raise, and only on what they chose. Nothing here should reach back and change a
 finding.
 
-Two shapes -- prose, or issues against the draft's repo. Both are record text, so both open by
-reading `register.md` beside this file; both rely on the findings rather than re-verifying them; and
-in both the human sends.
+Two shapes -- prose, or issues against the draft's repo. Both rely on the findings rather than
+re-verifying them, and in both the human sends.
 
+Both are record text, so **read `register.md` beside this file before writing a line of either**.
+It is a generated copy of the section in `ietf-contributing`, whose other sections govern
+disclosure and what the sender has to be able to defend.
 
 ## Writing the review
 
-**Before the first sentence, read `register.md` beside this file.** The trigger is the moment, not a
-judgement that you need it -- a review is record text under a participant's name, so the Register
-governs it exactly as it governs list mail. Knowing what it says is not having read it, and the
-final pass below checks against that file rather than against your memory of it. It is a generated
-copy of the section in `ietf-contributing`, whose other sections govern disclosure and what the
-sender has to be able to defend.
-
-The short form, which is not a substitute for reading it:
+The Register in short, which is not a substitute for reading it:
 
 - Terse. No padding to soften a finding, no warmth to carry it.
 - Per sentence: would removing this change what the recipient does? If not, cut it.
@@ -67,8 +62,8 @@ httpdir, artart, tsvart, intdir, dnsdir -- offer `Ready`, `Ready with Nits`, `Re
 assume. Pick the result the document earns from the set that team actually uses; the prose verdict
 should say the same thing the field does.
 
-**Do not copy all finding contents** -- keep what's relevant to the review type being created. In
-particular *severity* and *confidence* are intended for the reviewer, not the review.
+**Do not copy all finding contents** -- keep what is relevant to the review type being created.
+*Severity*, *Confidence* and *Grounding* never ship in either shape; they were for the reviewer.
 
 **Decline whole categories out loud** rather than skipping silently: "I'll skip editorial issues
 given the state of the text."
@@ -112,9 +107,8 @@ Double check the review for each of these:
 
 ## Filing issues
 
-The other output shape, in a group that runs its draft from a repo. An issue body is record text too,
-and a run that files issues skips the section the Register gate sits in -- so read `register.md`
-before the first issue, and run its check over each body before showing it to the reviewer.
+The other output shape, in a group that runs its draft from a repo. Run the Register's check over
+each issue body before showing it to the reviewer.
 
 **One at a time, confirmed before each.** Show the reviewer the exact text -- title and body -- and
 file it only when they have approved that one. Never file a batch on a single approval, and never
@@ -153,9 +147,8 @@ message and no shared thread, so nothing may refer to the findings or to "the re
 
 ### What transfers
 
-*The case* and *Can be resolved if* go over almost verbatim. *Related* and *Caused by* become issue
-links, which is the one thing the tracker does better than prose. *Confidence* and *Grounding* do
-not ship; they were for the reviewer.
+*The case* and *Can be resolved if* go over almost verbatim. *Related* and *Caused by* become
+issue links, which is the one thing the tracker does better than prose.
 
 **Label the editorial ones.** Repos commonly carry an `editorial` label for issues that need no WG
 discussion; check `gh label list` and apply it where it exists. It is how the chairs keep the
@@ -175,7 +168,7 @@ Open the issue first for anything substantive and reference it from the pull req
 text arriving as a pull request with nothing behind it is the pattern Step 1 tells you to flag; do
 not create it.
 
-### The verdict has nowhere to go
+### Where the verdict goes
 
 A tracker has no slot for the Step 1 answer, and a set of issues without one reads as nits whatever
 is in them. It goes in a covering message to the list, the ballot, or the Last Call comment. Say
