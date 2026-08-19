@@ -36,6 +36,8 @@ file. The dispatched context runs the tool, interprets what comes back, and retu
 items in the shape at the end of this file, scoped to the row it was given. The raw report stays
 there.
 
+Everything below is that context's brief.
+
 ## Run idnits rather than emulating it
 
 ```
@@ -53,12 +55,18 @@ The report's first line names the version. The hosted service still serves v2; `
 @ietf-tools/idnits <file>` runs v3, a separate implementation with its own check set, so a clean v3
 run is not a clean v2 run.
 
-Between them the tool covers the TLP and Status of This Memo boilerplate; the filename, revision,
-document date and expiry; required sections present and non-empty; references cited but not listed
-and listed but not cited; obsoleted RFCs and superseded draft revisions; references against the
-intended status; the RFC 8174 boilerplate against the keywords used; line and page length, tabs,
-form feeds and control characters; example domains and addresses; the author count. Do not
-hand-check any of it.
+Between them the tool covers all of this. Do not hand-check any of it:
+
+- the TLP and Status of This Memo boilerplate
+- the filename, revision, document date and expiry
+- required sections present and non-empty
+- references cited but not listed, and listed but not cited
+- obsoleted RFCs and superseded draft revisions
+- references against the intended status
+- the RFC 8174 boilerplate against the keywords used
+- line and page length, tabs, form feeds and control characters
+- example domains and addresses
+- the author count
 
 **Without the network**, expiry and document dates, line length, tabs and form feeds, boilerplate
 presence, and citations against the reference list are still cheap. Reference status, obsoletion and
@@ -74,7 +82,7 @@ says so in its own question 14.
 So open the text every line names and quote it. An idnits line restated unverified is an unchecked
 quote.
 
-Most of what falls away falls away for a handful of reasons:
+Common reasons to drop a line:
 
 - The document-date and expiry comments, on any draft a few months old. Report one only where
   expiry bears on the stage.
@@ -83,8 +91,7 @@ Most of what falls away falls away for a handful of reasons:
 - A warning the document refutes on inspection.
 
 **Dropped lines do not come back in the return.** They belong in `findings.md`'s *Checked, not
-raised*, which is written on request. Return the count, and name only a line a reader would expect
-to see raised.
+raised*. Return the count, and name only a line a reader would expect to see raised.
 
 ## What the tool does not check
 
@@ -149,13 +156,12 @@ the authors to skim.
 
 - **A missing or empty Security Considerations section**, or a claim that the document raises none,
   on anything specifying protocol behaviour. Issue.
-- **A downref not in the registry, or a normative reference to a draft that is not ready.**
-  Publication stops on both, and at Last Call this is what the IESG acts on. Name the route, not
-  just the reference.
+- **A downref not in the registry, or a normative reference to a draft that is not ready.** Comment.
 - **Header, abstract and introduction disagreeing about what is obsoleted or updated.** Which one is
   right is a question for the authors, so it is a Comment.
-- **An IANA Considerations section inconsistent with the body.** Whether the instructions are
-  well-formed is IANA's, per Step 8; whether they match what the document specifies is not.
+- **An IANA Considerations section inconsistent with the body.** Which side is right is a question
+  for the authors, so it is a Comment. Whether the instructions are well-formed is IANA's, per
+  Step 8; whether they match what the document specifies is not.
 
 ## Return
 
