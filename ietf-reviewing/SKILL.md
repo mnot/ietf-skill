@@ -507,8 +507,11 @@ shows up first in the draft's own recent commits and references.
 matches the registry, whether IANA will accept them -- IANA reviews that itself, so drop it. An
 IANA concern that is not about procedure is settled by *Filter IANA concerns* below.
 
-**Dispatch the survivors.** Hand over the concerns and the sources, and require evidence per
-verdict: issue number, commit, revision, message URL.
+**Dispatch the survivors.** Hand over the concerns *with the annotations they already carry*, and
+require evidence per verdict: issue number, commit, revision, message URL. Step 4A asked what
+people said about a concern; this asks what changed the text and what was never raised at all. A
+concern the research already answered goes out with that answer attached, so the search extends it
+rather than redoing it.
 
 Two questions per concern:
 
