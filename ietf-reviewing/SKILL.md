@@ -514,6 +514,10 @@ people said about a concern; this asks what changed the text and what was never 
 concern the research already answered goes out with that answer attached, so the search extends it
 rather than redoing it.
 
+On a document with years of issues this prunes hard. On a young one it kills nothing, and the
+negative is the product: that a concern has never been raised anywhere, under any name. Record a
+silence as deliberately as you would record a decision.
+
 Two questions per concern:
 
 - What introduced or changed this text?
@@ -554,10 +558,6 @@ issues and pull requests share one number sequence, so #N bounds both.
 Record a verdict per concern: **settled**, **out of scope**, **wrong**, **live**, or **reframed**
 -- reframed meaning the concern holds but is about something else now, usually a condition the
 change was agreed under.
-
-On a document with years of issues the search prunes hard. On a young one it kills nothing, and the
-negative is the product: that a concern has never been raised anywhere, under any name. Record a
-silence as deliberately as you would record a decision.
 
 ### Filter IANA concerns
 
