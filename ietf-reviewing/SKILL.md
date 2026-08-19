@@ -427,14 +427,14 @@ When the actor table returns, read the power relations out of it. That judgement
 than the dispatched context's, and it sharpens once the lenses are back. Ask of each party:
 
 - **Does their stated role match their actual power?** The draft gives the role; the table gives
-  what they control and what affordances they hold.
+  what they control and what affordances they hold. A mismatch you cannot explain is a concern.
 - **What can they not refuse?** A party bound by a decision it has no part in, and no way out of.
+  Each one is a concern.
 - **Whose interests does the design serve where two parties' diverge?** `rfc8890.md` carries this
-  where one of them is an end user in its §2 sense; between stakeholders, no lens does.
-- **Which parties are absent from the draft's own adversary classes**, and is each absence
-  defensible?
-
-Anything you cannot explain is a new concern. Add it.
+  where one of them is an end user in its §2 sense; between stakeholders, no lens does. Where the
+  design picks a side and the document does not say so, that is a concern.
+- **Which parties are absent from the draft's own adversary classes?** An absence the draft does
+  not defend is a concern.
 
 ## 7. Ask what you cannot answer
 
@@ -728,6 +728,10 @@ authors can accept or reject it and nothing else changes.
 The survivability test does **not** apply -- being trivially fixable is what they are
 for. Keep every concrete, checkable, quotable one.
 
+Not every comment asks for a change. Where another specification already supplies the fallback, or
+the feature is off unless negotiated, say so -- otherwise the author reads the comment as a
+request.
+
 Keep each comment to a line or two: if one needs a paragraph of setup, it is an issue in disguise or
 you are not ready to say it yet. And never fold or delete an issue to make room for a comment.
 
@@ -799,6 +803,9 @@ What comes back is evidence into fields you already have:
   carrying the refutation so the reviewer can reverse it.
 - **A survivor.** The finding is unchanged. Surviving is not corroboration, so record that the pass
   ran and what it tried, and claim nothing from it.
+- **A survivor whose scope narrowed.** The claim holds under a condition the refuter established
+  and you had not stated. Take it back to Step 9 as a demotion is taken back: the narrowed claim is
+  the finding, and *Grounding* is not where it belongs.
 - **A better finding than the one you sent.** What a refuter turns up is yours, as a lens's return
   is. Give it a record and take it back to Step 9.
 

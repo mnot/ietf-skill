@@ -110,9 +110,10 @@ in another section. A field that opens *only where* is conditional; the rest are
   and the reading is not open to dispute*; three is *the text supports this and another reading is
   available*; one is *I think this is true and cannot show it from the document*. It rates the
   reading, not the fate -- a finding can be five stars on the text and still be settled, out of
-  scope, or answered elsewhere. Not five where the heading characterises the document in words the
-  document does not use -- *admits*, *withdraws*, *concedes*. A characterisation is a reading, and a
-  reading is disputable.
+  scope, or answered elsewhere. Never five where the claim takes a step past the quoted text:
+  characterising the document in words it does not use -- *admits*, *withdraws*, *concedes* -- or
+  generalising from the part you checked to the whole, as a claim about a draft defined over two
+  base protocols does when you checked one. Narrow the claim, or widen the check.
 - **Grounding:** where Step 10 ran, what it tried against each claim and what it did not shift --
   at full confidence too, so a pass that found nothing reads differently from a pass that never
   ran. Then, only where confidence is short of full, the reason it is short and what would change
