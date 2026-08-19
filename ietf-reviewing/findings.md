@@ -13,9 +13,9 @@ does not reach them by its own scope. Follow it here anyway, for a different rea
 outside the Register has to be rewritten at the point where the reviewer is waiting. Write them so
 that the transfer is a copy.
 
-Its question about where content belongs is the one the fields below already ask, and its economy
-test is the one at the end of this file, with the reviewer as the recipient. Two rules invert,
-because a finding is analysis rather than a contribution:
+The Register's question about where content belongs is the one the fields below already ask, and
+its economy test is the one at the end of this file, with the reviewer as the recipient. Two rules
+invert, because a finding is analysis rather than a contribution:
 
 - **First person belongs here.** A provisional view is yours and marked as yours; confidence and
   grounding are your judgement rather than the document's.
@@ -44,7 +44,7 @@ _one-line index, then a subsection each_
 ## Your call
 ```
 
-Three more are available on request and are not written unless asked -- see *On request*, below.
+More is available on request and is not written unless asked -- see *On request*, below.
 
 ## Provisional view
 
@@ -82,36 +82,10 @@ one sentence naming one defect, stated as a claim about the document; Step 9 spl
 Do not restate it as a field.
 
 These fields and no others: an issue that has grown one of its own is telling you something belongs
-in another section. The three marked *only where* are conditional, and *Grounding* is conditional
-on its own terms; the rest are always present.
+in another section. A field that opens *only where* is conditional; the rest are always present.
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
-  block of its own. Break it into short paragraphs, one point each: what the document says, what that
-  produces. Where the argument turns on how this document and another fit together, a third -- what
-  the *other* document says. Do not propose the fix. Keep it to what a reader
-  needs in order to check the claim, and write it so they can agree or disagree rather than
-  reassemble it.
-
-  Answer the authors' best objection only where it changes the ask, and in a clause rather than a
-  paragraph. A pre-emption already in the draft is not an answer.
-
-  Quote only what the argument uses, and do not restate a quote in prose beside it. Every fact it
-  rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then check each
-  sentence against the quote beside it for scope, following `quoting.md`.
-
-  Where a weaker form is still true, write the weaker one. Cut a consequence you cannot show from
-  the text; do not hedge it into the case.
-
-  That covers facts about anything, not just the draft: what a registry holds, what another RFC
-  says, who wrote what and when. Fetch and read the source; recall is not a basis. Where such a fact
-  carries the finding -- a registration, its date, its assignee -- ask whether the text is staying
-  rather than building the case on it.
-
-  Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
-  worth the words. *Severity* carries that, or nothing does. Keep the significance out too: *there is
-  a lowercase "should" in Section 2.2.1*, not *and that matters here*. Keep what the record already
-  did with it out as well; that is *Disposition*. Recite a decision's history only where the ask
-  depends on it.
+  block of its own. *Writing the case*, below, has the rest.
 - **Can be resolved if:** what would fix it. Imperative for specification craft -- *Describe the
   semantics*, *Point at RFC 9111 instead*; hedged where the fix is a structural judgement -- *the
   document needs to say (probably globally) whether ...*. Where the answer is the authors' intent,
@@ -149,30 +123,65 @@ Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving earl
 Across the fields: weaker in the claims than reads natural, no weaker in the asks. The default runs
 the other way.
 
-## The remaining sections
+### Writing the case
 
-**Potential Comments**, one bullet each: the section, the quoted text, then one question or one flat
-statement. If one needs more than that, it is an issue in disguise.
+Short paragraphs, one point each: what the document says, what that produces. Where the argument
+turns on how this document and another fit together, a third -- what the *other* document says. Do
+not propose the fix. Keep it to what a reader needs in order to check the claim, and write it so
+they can agree or disagree rather than reassemble it.
 
-**Observed Nits**, one line each, and only ones quoted from the document verbatim and checked.
+Answer the authors' best objection only where it changes the ask, and in a clause rather than a
+paragraph. A pre-emption already in the draft is not an answer.
 
-**Checked, not raised**, one bullet each: what, and why not. Everything a lens produced that
-reached neither an Issue nor a Comment goes here -- that set is what goes missing quietly, and Step
-9's reconcile is what finds it. Then a lens that did not apply, a concern the draft's own text
-refuses, an objection that is about the topic, a finding Step 10 refuted. A refuted finding carries
-the refutation, so the reviewer can reverse it. Beyond the lens output, only what a reader might
-expect to see raised; not a log of everything you thought about.
+Quote only what the argument uses, and do not restate a quote in prose beside it. Every fact it
+rests on needs its quote here -- if you cannot quote it, you cannot claim it. Then check each
+sentence against the quote beside it for scope, following `quoting.md`.
 
-A lens that came back *supporting* the design is exempt from the economy test below: keep it in
-full. A run of issues reads as an attack on the approach, and the supporting results are what stops
-it.
+Where a weaker form is still true, write the weaker one. Cut a consequence you cannot show from
+the text; do not hedge it into the case.
 
-**Could not obtain** -- what, and what it means the analysis cannot say. A run without the gathered
-record says so here *and* beside the provisional view: the reader weighs every "never raised"
-differently.
+That covers facts about anything, not just the draft: what a registry holds, what another RFC
+says, who wrote what and when. Fetch and read the source; recall is not a basis. Where such a fact
+carries the finding -- a registration, its date, its assignee -- ask whether the text is staying
+rather than building the case on it.
 
-**Your call** -- the forks only the reviewer can settle. Not a summary: each one is a question with
-a consequence attached.
+Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
+worth the words. *Severity* carries that, or nothing does. Keep the significance out too: *there is
+a lowercase "should" in Section 2.2.1*, not *and that matters here*. Keep what the record already
+did with it out as well; that is *Disposition*. Recite a decision's history only where the ask
+depends on it.
+
+## Potential Comments
+
+One bullet each: the section, the quoted text, then one question or one flat statement. If one
+needs more than that, it is an issue in disguise.
+
+## Observed Nits
+
+One line each, and only ones quoted from the document verbatim and checked.
+
+## Checked, not raised
+
+One bullet each: what, and why not. Everything a lens produced that reached neither an Issue nor a
+Comment goes here -- that set is what goes missing quietly, and Step 9's reconcile is what finds
+it. Then a lens that did not apply, a concern the draft's own text refuses, an objection that is
+about the topic, a finding Step 10 refuted. A refuted finding carries the refutation, so the
+reviewer can reverse it. Beyond the lens output, only what a reader might expect to see raised;
+not a log of everything you thought about.
+
+A lens that came back *supporting* the design is exempt from the economy test at the end of *Your
+call*: keep it in full. A run of issues reads as an attack on the approach, and the supporting
+results are what stops it.
+
+## Could not obtain
+
+What, and what it means the analysis cannot say. A run without the gathered record says so here
+*and* beside the provisional view: the reader weighs every "never raised" differently.
+
+## Your call
+
+The forks only the reviewer can settle. Not a summary: each one is a question with a consequence
+attached.
 
 - A finding resting on an inference rather than on quoted text, and what turns on it.
 - A finding where they have standing you do not -- they closed the issue, edited the RFC, chaired
@@ -183,9 +192,9 @@ a consequence attached.
 - A finding whose framing commits them to a position they may not want to hold.
 - Anything you could not verify, and what it would change.
 
-Keep it to a few lines. If nothing is theirs to settle, say that rather than manufacturing
-a list -- a ritual section trains them to skip it, and this is the one section that is asking them
-for something.
+Keep it to a few lines. If nothing is theirs to settle, say that rather than manufacturing a list
+-- a ritual section trains them to skip it, and this is the one section that is asking them for
+something.
 
 Apply the economy test to *Your call* and to *Checked, not raised*: would removing this change
 what the reviewer decides to raise, or how they would defend it? It does not govern Comments and

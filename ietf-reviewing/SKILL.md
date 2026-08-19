@@ -772,13 +772,7 @@ A demotion returns to Step 9; do not write it straight into Step 11.
 
 ## 11. Assemble the findings
 
-The output. Its shape is specified in `findings.md` -- follow it. Each issue is a record you already
-have, merged, chained and calibrated at Step 9; assembling is rendering, and fresh thinking here
-means Step 9 is unfinished.
-
-That governs *analysis*, not sources. **Re-print every record fact from the tool here** -- revision
-numbers, dates, reviewer and balloter names, review results, ballot positions, issue and pull
-request numbers -- rather than copying it from your notes. A summary of a tool return is recall.
+The output. Its shape is specified in `findings.md` -- follow it.
 
 ## Delivering the review
 
