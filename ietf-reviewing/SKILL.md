@@ -609,36 +609,41 @@ finding.
 ## 9. Rank the concerns, and form a provisional view
 
 **Settle what you think of the document before deciding how many concerns to surface.** The number
-of concerns you find measures how hard you looked, not how bad the document is; a thorough review of
-a good document produces a long list, and a long list is not a verdict.
+of concerns measures how hard you looked, and a long list is not a verdict.
 
-**The bar is set by intended status and stage, not only by contents.** An Experimental
-document with a stated experiment and a plan to revise on results is held to a different
-standard than a Proposed Standard, and saying so is part of the verdict. Ask what the
-document is *for* before asking what is wrong with it.
+**Ask what the document is *for* before asking what is wrong with it.** An Experimental document
+with a stated experiment and a plan to revise on results is held to a different standard than a
+Proposed Standard, and saying so is part of the verdict.
 
 **A document can be fine.** A review can legitimately be three lines: "you checked the thing you
-were asked to check, it holds up, here are two requests for clarification". If that is the honest
-answer, give it and stop. Under-reviewing a bad document and over-reviewing a good one are both
-failures.
+were asked to check, it holds up, here are two requests for clarification". Give that answer and
+stop where it is the honest one.
 
 Then rank each concern into **Issues**, **Comments** or **Nits** -- the three headings most IETF
 reviews use. They have different economies.
 
-**Split before you rank.** A finding is one claim naming one defect; a conjunction or a list is
-several, and each piece faces the tests alone. Count the limbs: past two, split. A finding that
+### Before you rank
+
+Step 8 has already dropped what was settled or out of scope, so do not re-adjudicate. Check the
+ones it called settled, since whether a closing reason *engaged* the point is a judgement a
+dispatched pass is poor at. A concern it reframed ranks on its new shape, not the one you started
+with.
+
+**One claim per finding, naming one defect.** A conjunction or a list is several, and each piece
+faces the tests alone. Count the limbs: past two, split. A finding that
 answers a challenge to one limb by pointing at another cannot be tested at all.
 
 Splitting does not lengthen the findings. What is one decision merges back at the end of this step,
 and what fails the tests alone was never a finding.
 
-**Issues.** The test: *would this remain regardless of editorial work?* The test is about the
-question, not the sentence. An ambiguity that leaves two implementers building different things is
-an issue even though a sentence fixes it, because the authors have to decide something first. A
-concern where the decision is already made and only the wording is missing is not.
+### Issues
 
-Then ask what breaks if it is not fixed. An issue names one of three things, and each has a
-sentence you either can or cannot write. Write it; do not answer in the abstract.
+The test: *would this remain regardless of editorial work?* An ambiguity that leaves two
+implementers building different things is an issue even though a sentence fixes it, because the
+authors have to decide something first. A concern where the decision is already made and only the
+wording is missing is not.
+
+Then ask what breaks if it is not fixed. Write each answer out rather than asserting it:
 
 - **A decision the authors must take and have not.** Write the two answers they could give, and
   what changes in the document under each. If you cannot write both, the decision is already made.
@@ -647,23 +652,17 @@ sentence you either can or cannot write. Write it; do not answer in the abstract
   sentences, or it is not an Issue: the base protocol often settles what the draft leaves open.
 - **A deployment that fails.** Name the deployment and the condition under which it fails.
 
-Any one is enough.
+Any one of the three is enough, provided the concern also survives editing.
 
-Where the consequence is only that the document's own argument is unpersuasive, it is a comment: the
-authors can accept or reject it and nothing else changes.
+**Write the boring explanation down first** -- consider that it might be an incomplete edit,
+unrevisited sentence, known limitation, or loose wording. Assume it is and ask the branches
+above again. If something still breaks, it is an Issue about that consequence. If nothing does, it
+is a Comment asking whether the omission or the wording is intended.
 
-Both tests have to pass. The survivability test alone will keep findings a reviewer then drops.
+Where Step 8 found the edit incomplete, write the resolution as: *these look like leftovers from
+before <decision>.*
 
-**State the boring explanation before you rank.** Incomplete edit, unrevisited sentence, known
-limitation, loose wording. Then ask what breaks *given* the boring explanation: an implementer
-builds the wrong thing, a deployment fails, a security property is lost. If something does, it is an
-Issue, and the consequence is what the Issue is about. If nothing does, it is a Comment asking
-whether the omission or the wording is intended.
-
-Where Step 8 found the edit incomplete, the ask says so: *these look like leftovers from before
-<decision>; strike them.*
-
-Comments by default, and needing positive evidence to rank higher:
+The following are Comments by default, and need positive evidence to rank higher:
 
 - **The document is silent about X.** Silence is the normal state of a specification about
   everything it does not specify.
@@ -672,42 +671,42 @@ Comments by default, and needing positive evidence to rank higher:
   the acknowledgement is itself a defect, and do not borrow its authority for a broader claim -- a
   disclaimer of two named cases is not a disclaimer of the case at large.
 
-**Lineage** promotes them: text a predecessor carried and this document dropped is a deletion
-rather than a silence, and Step 5 is where it comes from. So does **a documentation duty** -- where
-a BCP requires the authors to write something down, BCP 72 §5's *MUST describe* per
-`reference/rfc3552.md`, the missing text is the consequence and silence is an Issue with nothing
-further to show.
+The evidence that promotes them:
 
-**The first two branches rank by stage; a deployment that fails does not.** Step 8 settled whether
-the silence was this document's to fill, and the boring explanation asked whether anything breaks
-anyway; what survives both ranks here. An undecided question is an input to design work that is
-still scheduled, and a defect in a document claiming to be finished. Below WGLC it is a Comment --
-say what has to be decided and let the group decide it. At WGLC and past it, the question ships
-undecided, so it is an Issue. Past IESG approval it is harder still: nothing left can absorb it.
-At those stages watch the first branch, since a document that has promised nothing either way
+- **Lineage.** Text a predecessor carried and this document dropped is a deletion, not a silence.
+  Step 5 finds it.
+- **A documentation duty.** Where a BCP requires the authors to write something down -- BCP 72 §5's
+  *MUST describe*, per `reference/rfc3552.md` -- the missing text is the consequence, and silence
+  is an Issue with nothing further to show.
+
+**A decision not taken, and an implementation that goes wrong, rank by stage; a deployment that
+fails does not.** An undecided question is an input to design work that is still scheduled, and a
+defect in a document claiming to be finished.
+
+- **Below WGLC** -- a Comment. Say what has to be decided and let the group decide it.
+- **At WGLC and past it** -- an Issue. The question ships undecided.
+- **Past IESG approval** -- an Issue, and harder: nothing left can absorb it.
+
+At WGLC and past, watch the decision nobody took: a document that has promised nothing either way
 breaks nothing you can point at, and it is the easiest of the three to talk yourself out of. A
 deployment that fails is an Issue at every stage -- adoption is the moment to say so.
 
 Rank on the tests alone; there is no target number of issues.
 
-Step 8 has already dropped what was settled or out of scope, so do not re-adjudicate. Two
-things come back to you. Whether a closing reason *engaged* the point is a judgement a
-dispatched pass is poor at -- check the ones it called settled. And a concern it reframed ranks on
-its new shape, not the one you started with.
+### Comments
 
-Concerns with the same root cause are one issue. If two would be fixed by the same decision, merge
-them.
+Where the consequence is only that the document's own argument is unpersuasive, it is a comment: the
+authors can accept or reject it and nothing else changes.
 
-Severity is independent of both tests. They decide the category; severity says how much rides on
-the decision.
-
-**Comments.** The survivability test does **not** apply -- being trivially fixable is what they are
+The survivability test does **not** apply -- being trivially fixable is what they are
 for. Keep every concrete, checkable, quotable one.
 
 Keep each comment to a line or two: if one needs a paragraph of setup, it is an issue in disguise or
 you are not ready to say it yet. And never fold or delete an issue to make room for a comment.
 
-**Nits.** Typos, stale references, wrong section numbers -- anything an editor fixes without asking
+### Nits
+
+Typos, stale references, wrong section numbers -- anything an editor fixes without asking
 anyone a question. What the Step 4 nits pass returned lands here, less the shapes `nits.md` ranks
 above a nit.
 
@@ -715,7 +714,11 @@ Form: quoted text, then one short question or one flat statement. No numbering, 
 thanks. Prefer the question -- asking whether you have read it correctly is both more accurate and
 harder to dismiss than asserting a defect.
 
-**Finish this step before you write a line of Step 11.**
+### Rank the set
+
+The tests settled each concern's category. What follows works across the whole set rather than one
+concern at a time, and severity is its own judgement -- how much rides on the decision. Finish all
+of it before you write a line of Step 11.
 
 - **Merge.** Find the concerns that are one decision before writing either up; this is where a
   split finding comes back together. Where one decision fixes only part of two concerns, merge the
