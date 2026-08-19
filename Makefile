@@ -38,8 +38,13 @@ TOOL_DIRS := \
 # The subset of the above that actually exists right now.
 PRESENT := $(foreach d,$(TOOL_DIRS),$(wildcard $(d)))
 
+# Skills that carry a reference/ directory need zipping for claude.ai upload;
+# single-file skills are uploaded as a bare SKILL.md instead (see README).
+ZIP_SKILLS := ietf-reviewing ietf-http
+ZIP_DIR    := dist
+
 .DEFAULT_GOAL := list
-.PHONY: list help install update uninstall register \
+.PHONY: list help install update uninstall register zip \
 	check version version-major version-minor version-patch changelog release
 
 help: list
@@ -68,6 +73,7 @@ list:
 	@echo
 	@echo "Authoring targets:"
 	@echo "  make register         re-copy the Register section into the skills that depend on it"
+	@echo "  make zip              build claude.ai-uploadable zips into dist/ (also done by CI on tag push)"
 	@echo
 	@echo "Release targets:"
 	@echo "  make check            validate every SKILL.md, and that the Register copies are current"
@@ -115,6 +121,15 @@ register:
 	@for f in $(REGISTER_DSTS); do \
 		$(REGISTER_GEN) > "$$f"; \
 		echo "regenerated $$f from $(REGISTER_SRC)"; \
+	done
+
+# Build claude.ai-uploadable zips for the skills that carry a reference/ dir.
+zip: check
+	@mkdir -p $(ZIP_DIR)
+	@for s in $(ZIP_SKILLS); do \
+		rm -f "$(ZIP_DIR)/$$s.zip"; \
+		zip -r -q "$(ZIP_DIR)/$$s.zip" "$$s" -x '.*'; \
+		echo "built $(ZIP_DIR)/$$s.zip"; \
 	done
 
 # ---- Validate, version, release ----
