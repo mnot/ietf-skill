@@ -306,7 +306,8 @@ a layer confusion, a party the authors assume benign, or nothing at all.
 
 It returns the table and the absences. On a short draft ask for the absences and one line per
 party -- the full questionnaire on a one-field extension runs to thousands of words you will not
-use. The weighing is yours -- see Step 6.
+use. The weighing is yours -- see Step 6, which takes every row of this except the state a party
+holds; that one is `rfc6973.md`'s to develop where it fires.
 
 Stage the table to a file when it lands and pass the path; unlike the draft text, inline does not
 count -- Step 11 hands the file over. Only `rfc8890.md` waits on it, under *The lenses*.
@@ -668,8 +669,12 @@ Then ask what breaks if it is not fixed. Write each answer out rather than asser
   builds, such that they differ -- from the document's text *and its normative references*. Both
   sentences, or it is not an Issue: the base protocol often settles what the draft leaves open.
 - **A deployment that fails.** Name the deployment and the condition under which it fails.
+- **Publication stops.** Name the gate and what it catches -- a departure from a BCP, a missing
+  Security Considerations section on anything specifying protocol behaviour. Not a defect you think
+  ought to stop publication, and not a gate routine process clears: an unregistered downref is
+  called out at Last Call and approved, which makes saying so a courtesy rather than an Issue.
 
-Any one of the three is enough, provided the concern also survives editing.
+Any one is enough, provided the concern also survives editing.
 
 **Write the boring explanation down first** -- consider that it might be an incomplete edit,
 unrevisited sentence, known limitation, or loose wording. Assume it is and ask the branches
@@ -701,7 +706,7 @@ The evidence that promotes them:
   is an Issue with nothing further to show.
 
 **A decision not taken, and an implementation that goes wrong, rank by stage; a deployment that
-fails does not.** An undecided question is an input to design work that is still scheduled, and a
+fails and a publication that stops do not.** An undecided question is an input to design work that is still scheduled, and a
 defect in a document claiming to be finished.
 
 - **Below WGLC** -- a Comment. Say what has to be decided and let the group decide it.
@@ -709,8 +714,9 @@ defect in a document claiming to be finished.
 - **Past IESG approval** -- an Issue, and harder: nothing left can absorb it.
 
 At WGLC and past, watch the decision nobody took: a document that has promised nothing either way
-breaks nothing you can point at, and it is the easiest of the three to talk yourself out of. A
-deployment that fails is an Issue at every stage -- adoption is the moment to say so.
+breaks nothing you can point at, and it is the easiest to talk yourself out of. A deployment that
+fails is an Issue at every stage -- adoption is the moment to say so -- and so is a gate that will
+stop publication, though below Last Call say which stage the gate sits at.
 
 Rank on the tests alone; there is no target number of issues.
 
