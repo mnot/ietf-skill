@@ -60,31 +60,23 @@ already picked one, so give the `Result` only if it helps, and lead with the rou
 
 ## Candidate Issues
 
-Open with a one-line index to triage from. Each line: the sections, then the claim and what follows
-from it. Nothing else -- what an issue rests on is *The case*, a few lines down, and a compressed
-copy of it here reads as noise while saying less than the field does.
-
-Without the consequence the line is an observation, and the reader has to open the subsection to
-find out whether they care, which is what the index exists to save them.
-
-- **I1** (§3.1, §6) Mandates a fixed hostname label, so an operator cannot name their own host.
-- **I2** (§5) What a client may conclude from a failure is never stated, so two implementations
-  diverge.
-- **I3** (§4.2) The retry bound went in -06 and nothing replaced it, so the limit is now unstated.
-
-Then a subsection per issue, as labelled fields rather than paragraphs. The heading is the concern --
-one sentence naming one defect, stated as a claim about the document; Step 9 split anything larger.
-Do not restate it as a field.
+Create a subsection per issue, as labelled fields rather than paragraphs. The heading is the
+concern -- one sentence naming one defect, stated as a claim about the document; Step 9 split
+anything larger. Do not restate it as a field.
 
 These fields and no others: an issue that has grown one of its own is telling you something belongs
 in another section. A field that opens *only where* is conditional; the rest are always present.
 
 - **The case:** the argument, with each quote set off where it is used rather than gathered into a
   block of its own. *Writing the case*, below, has the rest.
-- **Can be resolved if:** what would fix it. Imperative for specification craft -- *Describe the
-  semantics*, *Point at RFC 9111 instead*; hedged where the fix is a structural judgement -- *the
-  document needs to say (probably globally) whether ...*. Where the answer is the authors' intent,
-  ask instead, on its own line: *Are these omissions intentional?*
+- **Can be resolved if:** what would fix it -- checked against what you wrote under *what breaks if
+  it is not fixed*, and against the actor table, the lenses, and the research Step 8 already
+  gathered for this claim; a fix that leaves the consequence standing, or that this context
+  contradicts, is a different finding wearing this one's claim. Imperative once checked this way --
+  *Describe the semantics*, *Point at RFC 9111 instead*; hedged where you have not, or where the fix
+  is itself a structural judgement -- *the document needs to say (probably globally) whether ...*.
+  Where the answer is the authors' intent, ask instead, on its own line: *Are these omissions
+  intentional?*
 - **Caused by:** only where a prior change created or sharpened this one -- which change, answering
   what, and which revision. It is often not a fix for this concern at all: a pull request answering
   a different issue that broke something in passing, or a review fix placed above text it
@@ -100,10 +92,11 @@ in another section. A field that opens *only where* is conditional; the rest are
 - **Grounding:** where Step 10 ran, what it tried against each claim and what it did not shift. Then, only where confidence is short of full, the reason it is short and what would change
   your mind: an inference rather than the quoted text, or a source you could not read, named.
 
-Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving early.
-
-Across the fields: weaker in the claims than reads natural, no weaker in the asks. The default runs
-the other way.
+Across the fields, hedge the claims more than comes naturally, and hedge the asks unless you have
+run the fix past what Step 8 already gathered for this claim -- the actor table, the lenses, the
+research -- not past residual doubt in the claim, which belongs in *Grounding*. Left alone, writing
+overcorrects the other way: confident about the defect, and just as confident about a fix that was
+never checked against what the rest of the review already knew.
 
 ### Writing the case
 
