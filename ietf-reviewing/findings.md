@@ -67,15 +67,10 @@ copy of it here reads as noise while saying less than the field does.
 Without the consequence the line is an observation, and the reader has to open the subsection to
 find out whether they care, which is what the index exists to save them.
 
-Close each line with the ratings -- 🔥 severity, ⭐️ confidence, different glyphs so the pair reads
-without a legend. They are what decides which issue a reviewer opens first.
-
 - **I1** (§3.1, §6) Mandates a fixed hostname label, so an operator cannot name their own host.
-  🔥4/⭐️5
 - **I2** (§5) What a client may conclude from a failure is never stated, so two implementations
-  diverge. 🔥3/⭐️4
+  diverge.
 - **I3** (§4.2) The retry bound went in -06 and nothing replaced it, so the limit is now unstated.
-  🔥2/⭐️5
 
 Then a subsection per issue, as labelled fields rather than paragraphs. The heading is the concern --
 one sentence naming one defect, stated as a claim about the document; Step 9 split anything larger.
@@ -102,21 +97,7 @@ in another section. A field that opens *only where* is conditional; the rest are
   closing reason was if there is one, and whether it engaged the point. A concern the authors have
   declined is raised differently from one they have never seen, and this is what carries that when
   *Prior concerns* is not written.
-- **Severity:** how significant the issue is / how strong its impact is; scale of one to five 🔥.
-  Five is *this cannot ship, and if it did the IETF would have to fix it afterwards*; three is
-  *the authors should fix this before publication, and a reviewer would expect them to*; one is
-  *worth saying, and the document survives without it*.
-- **Confidence:** how confident you are in the issue; scale of one to five ⭐️. Five is *quoted text,
-  and the reading is not open to dispute*; three is *the text supports this and another reading is
-  available*; one is *I think this is true and cannot show it from the document*. It rates the
-  reading, not the fate -- a finding can be five stars on the text and still be settled, out of
-  scope, or answered elsewhere. Never five where the claim takes a step past the quoted text:
-  characterising the document in words it does not use -- *admits*, *withdraws*, *concedes* -- or
-  generalising from the part you checked to the whole, as a claim about a draft defined over two
-  base protocols does when you checked one. Narrow the claim, or widen the check.
-- **Grounding:** where Step 10 ran, what it tried against each claim and what it did not shift --
-  at full confidence too, so a pass that found nothing reads differently from a pass that never
-  ran. Then, only where confidence is short of full, the reason it is short and what would change
+- **Grounding:** where Step 10 ran, what it tried against each claim and what it did not shift. Then, only where confidence is short of full, the reason it is short and what would change
   your mind: an inference rather than the quoted text, or a source you could not read, named.
 
 Leave the ratings bare. Justifying one inline is *Grounding*'s job arriving early.
@@ -147,10 +128,9 @@ carries the finding -- a registration, its date, its assignee -- ask whether the
 rather than building the case on it.
 
 Keep your reasoning about whether to raise it out of the case -- issue versus nit, whether it is
-worth the words. *Severity* carries that, or nothing does. Keep the significance out too: *there is
-a lowercase "should" in Section 2.2.1*, not *and that matters here*. Keep what the record already
-did with it out as well; that is *Disposition*. Recite a decision's history only where the ask
-depends on it.
+worth the words. Keep the significance out too: *there is a lowercase "should" in Section 2.2.1*,
+not *and that matters here*. Keep what the record already did with it out as well; that is
+*Disposition*. Recite a decision's history only where the ask depends on it.
 
 ## Potential Comments
 

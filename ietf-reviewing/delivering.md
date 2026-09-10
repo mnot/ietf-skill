@@ -73,7 +73,7 @@ assume. Pick the result the document earns from the set that team actually uses;
 should say the same thing the field does.
 
 **Do not copy all finding contents** -- keep what is relevant to the review type being created.
-*Severity*, *Confidence* and *Grounding* never ship in either shape; they were for the reviewer.
+*Grounding* never ships in either shape; it was for the reviewer.
 
 **Decline whole categories out loud** rather than skipping silently: "I'll skip editorial issues
 given the state of the text."
