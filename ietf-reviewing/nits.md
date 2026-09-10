@@ -1,6 +1,6 @@
 # Nits
 
-Read at Step 4 of `SKILL.md` and dispatch it there, with `bcp14.md` and the actor pass. Dispatch
+Read at Step 3 of `SKILL.md` and dispatch it there, with `bcp14.md` and the actor pass. Dispatch
 matters here beyond cost: the tool's response carries a copy of the whole draft, and it has no
 business in the reviewing context.
 

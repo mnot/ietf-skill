@@ -28,7 +28,7 @@ datatracker "about" page for a team links its wiki. Any review form there is for
 if a review gets written at all.
 
 **Scope each dispatch to the team's lane, and require it to *route* what falls outside rather than
-develop it.** Step 4's default -- when unsure, dispatch -- was written for an open-ended review,
+develop it.** Step 3's default -- when unsure, dispatch -- was written for an open-ended review,
 where the cost is wall clock. Here it is output volume and your own synthesis.
 
 **Do not cut the lens set to the lane.** The lens that fires outside it is often where the in-lane

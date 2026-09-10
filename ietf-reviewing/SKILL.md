@@ -16,16 +16,16 @@ separate step in `delivering.md`, taken after those decisions.
 
 ## How the steps run
 
-Run them in order, one at a time, except around Step 4's dispatches. Step 3 fires with them. Steps
-5 to 7 run while they are out, taking Step 6 when the actor table lands. Bring it all back for
-Step 8, which dispatches again over what survives its scope questions. Step 10 dispatches once more,
-over what survives Step 9.
+Run them in order, one at a time, except around Step 3's dispatches: Steps 4 to 7 run while they
+are out, taking Step 6 when the actor table lands. Bring it all back for Step 8, which dispatches
+again over what survives its scope questions. Step 10 dispatches once more, over what survives
+Step 9.
 
 Five files sit beside this one, each read at the point it is called for:
 
 - `special-cases.md` -- what a particular kind of review or document adds before the method
   starts. Step 1.
-- `nits.md` -- running idnits, and the checks it does not reach. Step 4.
+- `nits.md` -- running idnits, and the checks it does not reach. Step 3.
 - `quoting.md` -- checking a quote against the text it came from. Step 8.
 - `findings.md` -- the shape of the output. Step 11.
 - `delivering.md` -- writing the review, or filing issues. Optional, and after Step 11.
@@ -70,7 +70,7 @@ See below for details.
   and Step 0 settles which case you are in. Run the passes serially, in the order they are listed,
   and expect several times the wall-clock. 
   
-  Subagents are also used for isolation: Step 4's research contexts keep other people's material
+  Subagents are also used for isolation: Step 3's research contexts keep other people's material
   out of yours, and Step 10 tests a claim with something that did not build it. Run in your own
   context they lose both, so record it in *Could not obtain* and count neither as independent.
 
@@ -107,19 +107,19 @@ Write the question down before reading. Your provisional view, in Step 9, is the
 the request carried a note from the AD or chair, read it first -- it usually says what they actually
 want looked at.
 
-### Lock the draft revision
+### The draft revision
 
 **Establish the correct draft revision before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-### Survey review coverage
+### Review coverage
 
 **At or past WGLC, establish review coverage before you read the draft.** `review_record(name)`
 gives every review and ballot position with the revision it was cast against, and leads with
 whether anything has examined the current one.
 
-Only establish coverage at this point, not content. What a reviewer found waits for Step 4A, which
+Only establish coverage at this point, not content. What a reviewer found waits for Step 3A, which
 dispatches it to a context of its own so it stays out of the cold read; the ballot text and the
 gathered `ballots/` digest belong there too, not here.
 
@@ -131,7 +131,7 @@ positions have examined nothing current, note that first, and identify the revis
 Read the rows that produced nothing, too: a rejected assignment and a directorate that never
 returned are coverage facts, not rows to skip past.
 
-### Ground the corpus
+### The corpus
 
 **Check its source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
@@ -155,20 +155,18 @@ licenses claims that a point was never raised anywhere:
 
 Gather what is missing now. What you cannot gather bounds every negative the review makes -- Step 8.
 
-### Note the reviewer's standing
+### The reviewer's own standing
 
 Two things about the person whose name this goes out under change what the findings have to say.
 What is their role in this group -- chair, AD, author or editor of this document? And did they write
-or edit anything the draft normatively references? 
-
-Ask rather than infer the first; the reference list and the RFCs' own author lines settle the
-second.
+or edit anything the draft normatively references? Ask rather than infer; the reference list and the
+RFCs' own author lines settle the second.
 
 Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
-### Check for special cases
+### Special cases
 
-If one applies, read the section that applies in `special-cases.md` before going on. This currently covers:
+Read the section that applies in `special-cases.md` before going on:
 
 - a directorate assignment
 - a revision of a published document
@@ -177,50 +175,30 @@ If one applies, read the section that applies in `special-cases.md` before going
 
 ## 2. Read the draft cold
 
-Read the entire draft without consulting anything else, recording the concerns you identify. Keep each concern found as a record with four fields, filled when you create it:
+Read the entire draft without consulting anything else. Keep each concern found as a record with
+four fields, filled when you create it:
 
 - **ID** -- C1, C2, … Keep the ID when a concern becomes an issue.
-- **Claim** -- one sentence about the concern.
+- **Claim** -- one sentence about the document.
 - **Basis** -- the quotes it rests on, with section numbers. For an absence, what stands in its
   place and where you expected the missing thing to be.
 - **From** -- where it came from: the cold read, the charter, a named lens, a question of your own.
 
-This list is the control against which everything later gets filtered.
+Fill nothing else yet.
+
+This list is the control against which everything later gets filtered, and **From** is what makes
+that check possible.
 
 **Quote before you claim.** Never build an objection on your paraphrase -- that is where fabricated
-findings come from.
+findings come from. A concern whose **Basis** you cannot locate is not yet a concern. Locating it is
+what has to be true at creation; transcribing it verbatim can wait for the Step 8 sweep.
 
-**Never rule a concern out because a source is unavailable.** If a document you would need to
-confirm or refute a point is unavailable, raise the point with the uncertainty stated. 
+**Never rule a concern out on a source you could not read.** If a document you would need to
+confirm or refute a point is unavailable -- an RFC body, a registration template, a referenced
+specification -- raise the point with the uncertainty stated. Say "I could not verify X" and make
+the concern anyway. Better still, get the text and cite by section.
 
-## 3. Verify the draft's fit to the venue
-
-_Abandon the Step 4 dispatches if this step ends the review._
-
-If this is a proposal to or an adopted draft of an active Working Group, that group's charter is a
-primary artefact and the draft should be evaluated within it. If the draft is out of defined scope
-of the charter, point out why and stop here.
-
-The charter check does not apply to a DISPATCH group, which exists to figure out where the proposal
-should go.
-
-### The institutional questions
-
-Ask each of these questions against the cold read and the charter. Each one the document does not
-answer is a concern.
-
-- Does something this depends on live in another SDO, and if so, what is its status? Who holds
-  change control over the semantics?
-- Does this depend on policy defined elsewhere? Can the technical work be evaluated without seeing
-  that policy?
-- Is the mechanism narrower than its framing? If chartered under framing X, would the artefact
-  serve purposes X disclaims?
-- What is the incremental deployment story, and what does the first implementer get?
-
-On an adoption or DISPATCH review, consider: is the IETF the right venue for this work, and is the
-necessary locus of expertise here? Add a concern where the answer is not clearly yes.
-
-## 4. Dispatch tasks
+## 3. Dispatch tasks
 
 **Say what you are about to do, and how long, before you dispatch.** One short message: the revision
 and where it came from, the question you took from the table, which sources exist, and the lenses
@@ -240,7 +218,7 @@ Send these first; none needs more than the cold read:
   `nits.md` holds what each stage returns.
 
 Read the rubrics while those run, and send the surviving lenses as soon as you are done. Then run
-Steps 5 to 7 while everything is out.
+Steps 4 to 7 while everything is out.
 
 ### A. Research other views
 
@@ -374,6 +352,33 @@ Each reads its rubric and returns:
 - what it produces -- a concern, support for one you already hold, a result that the lens does not
   apply, or a result that the lens *supports* the design.
 
+## 4. Verify the draft's fit to the venue
+
+_Abandon the Step 3 dispatches if this step ends the review._
+
+If this is a proposal to or an adopted draft of an active Working Group, that group's charter is a
+primary artefact and the draft should be evaluated within it. If the draft is out of defined scope
+of the charter, point out why and stop here.
+
+The charter check does not apply to a DISPATCH group, which exists to figure out where the proposal
+should go.
+
+### The institutional questions
+
+Ask each of these questions against the cold read and the charter. Each one the document does not
+answer is a concern.
+
+- Does something this depends on live in another SDO, and if so, what is its status? Who holds
+  change control over the semantics?
+- Does this depend on policy defined elsewhere? Can the technical work be evaluated without seeing
+  that policy?
+- Is the mechanism narrower than its framing? If chartered under framing X, would the artefact
+  serve purposes X disclaims?
+- What is the incremental deployment story, and what does the first implementer get?
+
+On an adoption or DISPATCH review, consider: is the IETF the right venue for this work, and is the
+necessary locus of expertise here? Add a concern where the answer is not clearly yes.
+
 ## 5. Review related material
 
 Write down what you currently expect the answer to the Step 1 question to be. The verdict is Step 9
@@ -465,7 +470,7 @@ Spot-check the quotes your findings rest on against the files before anything go
 bug, so check what comes back against the authoritative fetch.
 
 Record the lenses you ruled out without dispatching -- each with the criterion it fails, quoted from
-its rubric's `Firing` section, per Step 4 -- and the ones that came back not applying or supporting
+its rubric's `Firing` section, per Step 3 -- and the ones that came back not applying or supporting
 the design. Keep both so the next reviewer does not rediscover them; they go to *Checked, not
 raised*.
 
@@ -506,7 +511,7 @@ matches the registry, whether IANA will accept them -- IANA reviews that itself,
 IANA concern that is not about procedure is settled by *Filter IANA concerns* below.
 
 **Dispatch the survivors.** Hand over the concerns *with the annotations they already carry*, and
-require evidence per verdict: issue number, commit, revision, message URL. Step 4A asked what
+require evidence per verdict: issue number, commit, revision, message URL. Step 3A asked what
 people said about a concern; this asks what changed the text and what was never raised at all. A
 concern the research already answered goes out with that answer attached, so the search extends it
 rather than redoing it.
@@ -727,7 +732,7 @@ you are not ready to say it yet. And never fold or delete an issue to make room 
 ### Nits
 
 Typos, stale references, wrong section numbers -- anything an editor fixes without asking
-anyone a question. What the Step 4 nits pass returned lands here, less the shapes `nits.md` ranks
+anyone a question. What the Step 3 nits pass returned lands here, less the shapes `nits.md` ranks
 above a nit.
 
 Form: quoted text, then one short question or one flat statement. No numbering, no interleaved
