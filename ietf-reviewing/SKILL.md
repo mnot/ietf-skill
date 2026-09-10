@@ -198,27 +198,26 @@ confirm or refute a point is unavailable -- an RFC body, a registration template
 specification -- raise the point with the uncertainty stated. Say "I could not verify X" and make
 the concern anyway. Better still, get the text and cite by section.
 
-## 3. Dispatch tasks
+## 3. Dispatch review tasks
+
+Dispatch to subagents -- these are the slowest tasks and they are independent.
 
 **Say what you are about to do, and how long, before you dispatch.** One short message: the revision
 and where it came from, the question you took from the table, which sources exist, and the lenses
 going out. The tooling was settled at Step 0 and does not need restating. Then the estimate --
-fifteen to thirty minutes, longer if a gather has to run first.
+fifteen to thirty minutes, longer if a gather has to finish first.
 
-Dispatch to subagents -- these are the slowest tasks and they are independent.
-
-Send these first; none needs more than the cold read:
+Send these first; they only need the cold read:
 
 - **A**, the research contexts. Wait for any gather kicked off at Step 1 to finish; nothing else
   here does.
 - **The actor pass.**
 - **`bcp14.md`**, which always fires.
-- **The nits pass** in `nits.md`. The gate is stage, and it is yours: on an adoption or DISPATCH
-  review do not send it, and record the skip. Otherwise send the stage from Step 1 with it;
-  `nits.md` holds what each stage returns.
+- **The nits pass** in `nits.md`. On an adoption or DISPATCH review do not send it, and record the
+  skip. Otherwise send the stage from Step 1 with it; `nits.md` holds what each stage returns.
 
-Read the rubrics while those run, and send the surviving lenses as soon as you are done. Then run
-Steps 4 to 7 while everything is out.
+Read the rubrics for the lenses while those run, and send the surviving lenses as soon as you are
+done. Then run Steps 4 to 7 while everything is out.
 
 ### A. Research other views
 
@@ -255,7 +254,7 @@ What is this system, who are the parties, and does the design match positions th
 written down? Two passes, and the actors come first: it is the general one, and it is what the
 second is checked against.
 
-#### The actors
+#### Assess the actors
 
 Dispatch this with A. For any draft describing a system, list *every* party the architecture names
 or implies, and for each:
@@ -321,8 +320,7 @@ which is the usual case, send it with them. It is not reliably the first thing b
 `rfc8890.md` when it arrives rather than holding the batch for it. Every other lens, `bcp14.md`
 included, takes the table only if it is already in hand.
 
-Write the surviving list down before dispatching anything, and dispatch exactly that list. A lens
-held back for the actor table is on the list, not off it.
+Write the surviving lenses down before dispatching, and send exactly that list. rfc8890.md, held back for the actor table, still belongs on it -- held back is not ruled out.
 
 **Give the lens the draft, the rubric and the question. Withhold your reading of the draft.** The
 numbered questions of A do not carry here. A research context is answering about the record, so
@@ -381,9 +379,7 @@ necessary locus of expertise here? Add a concern where the answer is not clearly
 
 ## 5. Review related material
 
-Write down what you currently expect the answer to the Step 1 question to be. The verdict is Step 9
-and has a specification; this is here only so you notice when something moves your expectation, and
-can say what moved it.
+Write down what you currently expect the answer to the Step 1 question to be. The verdict comes at Step 9, which spells out how to form it; this note is only so you notice when something moves your expectation, and can say what moved it.
 
 Then, probe the charter, the slides, prior revisions, related and competing drafts, the author's
 introductory mail, and the referenced specifications a concern of yours actually turns on -- just
@@ -405,9 +401,9 @@ against -00 stops at the rename. `find_related` names it, as do the draft's own 
 section, and the repo where one draft's source replaced another's.
 
 Then compare the predecessor's section list against this one's, not only its prose. A subsection
-present there and absent here is a deletion, and a deletion is evidence where silence is not: it
-converts *the document does not say* into *the document used to say*. Where a normative sentence
-bounded a permissive one and only the bound is gone, the permission is now unowned.
+the predecessor had and this one lacks is a deletion, not silence -- deletion is evidence: it shows
+the document used to say something, not just that it doesn't say it now. Where a bounding sentence
+was cut but the permission it bounded stayed, that permission is now unowned.
 
 If you have reviewed this draft before, your own prior findings are an input -- but after the cold
 read, not before it. Anything on that list which did not reappear either gets re-derived or gets
@@ -650,7 +646,7 @@ and what fails the tests alone was never a finding.
 
 ### Issues
 
-The test: *would this remain regardless of editorial work?* An ambiguity that leaves two
+The test: *would this concern remain regardless of editorial work?* An ambiguity that leaves two
 implementers building different things is an issue even though a sentence fixes it, because the
 authors have to decide something first. A concern where the decision is already made and only the
 wording is missing is not.
@@ -742,8 +738,7 @@ harder to dismiss than asserting a defect.
 ### Rank the set
 
 The tests settled each concern's category. What follows works across the whole set rather than one
-concern at a time, and severity is its own judgement -- how much rides on the decision. Finish all
-of it before you write a line of Step 11.
+concern at a time.
 
 - **Merge.** Find the concerns that are one decision before writing either up; this is where a
   split finding comes back together. Where one decision fixes only part of two concerns, merge the
