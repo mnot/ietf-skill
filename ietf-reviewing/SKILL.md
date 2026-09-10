@@ -30,21 +30,20 @@ Five files sit beside this one, each read at the point it is called for:
 - `findings.md` -- the shape of the output. Step 11.
 - `delivering.md` -- writing the review, or filing issues. Optional, and after Step 11.
 
-## 0. Establish what the run has
+## 0. Establish tool availability
 
-**Check each tool before relying on it.** A tool named in your instructions is not a tool you have.
+**Check each tool before relying on it.** A tool named in your instructions is not a tool you have. If a tool is available, strongly prefer it to doing things yourself. In particular, if `ietf-llm` is available, you should only use tools like `curl` when you use it first and it doesn't return what you need.
 
-- **`ietf-llm`** -- the MCP server carrying the gathered record. Call `list_corpora`.
+- **`ietf-llm`** -- the MCP server carrying the gathered record. Call `list_corpora` to check its proper operation.
 - **`rfcdiff`** -- the revision differ. Run `rfcdiff --version`.
 - **The `ietf-http` skill** -- the text behind the `rfc8820` and `rfc9205` rubrics. Resolve either
   one's `Text:` path.
 
 **If your harness requires user permission to use subagents, get it now.** Steps 4, 8 and 10 are
-written around them -- roughly a dozen at Step 4, one for the record search at Step 8, and one per
-claim at Step 10 on a WGLC or later review. Ask once, for all three.
+written around them. Ask once, for all three.
 
-**Then name each absence and what it costs, in one message before Step 1.** The list below carries
-both.
+**Then, if any are absent, list them and warn what this will cost, in one message before Step 1.** 
+See below for details.
 
 ### Without the tooling
 
@@ -69,12 +68,11 @@ both.
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
 - **No subagents, or no permission to use them.** Steps 4, 8 and 10 are written around dispatch,
   and Step 0 settles which case you are in. Run the passes serially, in the order they are listed,
-  and expect several times the wall-clock.
-
-  Concurrency is only cost. Isolation is not: Step 4's research contexts keep other people's
-  material out of yours, and Step 10 tests a claim with something that did not build it. Run in
-  your own context they lose both, so record it in *Could not obtain* and count neither as
-  independent.
+  and expect several times the wall-clock. 
+  
+  Subagents are also used for isolation: Step 4's research contexts keep other people's material
+  out of yours, and Step 10 tests a claim with something that did not build it. Run in your own
+  context they lose both, so record it in *Could not obtain* and count neither as independent.
 
 ### Obtaining RFC text
 
@@ -84,11 +82,11 @@ also shipped beside their rubrics -- each rubric's **Text:** line names its copy
 fallback without `ietf-llm`. For any other RFC without `ietf-llm`, use the plain-text file at
 `https://www.rfc-editor.org/rfc/rfcNNNN.txt`.
 
-Name this route in every dispatch that may need RFC words; a fresh context does not know it.
+Give this instruction to every dispatch that may need RFC access; a fresh context does not know it.
 
 ## 1. Establish the review question
 
-A review answers the question in front of the audience:
+The underlying question (and your stance) will change depending on the stage of a review:
 
 | Stage | The question |
 |---|---|
@@ -99,45 +97,41 @@ A review answers the question in front of the audience:
 | IETF Last Call / directorate | Is there a blocking problem? |
 | Approved, RFC Editor queue | Must anything be fixed before publication, and can AUTH48 fix it? |
 
-The table is about the document's stage. The review type is a separate axis: an early directorate
-review asks "what has to change" whatever the stage.
-
 Answer the stage's own question even when the group is about to move past it. Chairs contemplating
 a Last Call on a document nominally in progress add a second question -- is it ready for the next
 stage -- rather than replacing the first.
 
-`draft_status` reports the WG stream state, where a declared Last Call shows and an intended one
-does not.
+`draft_status` reports the document state, but note that this does not account for upcoming transitions.
 
 Write the question down before reading. Your provisional view, in Step 9, is the answer to it. If
 the request carried a note from the AD or chair, read it first -- it usually says what they actually
 want looked at.
 
-### The revision and the stage
+### Lock the draft revision
 
-**Establish both before you read anything.** If you are working from a
+**Establish the correct draft revision before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-### The review coverage
+### Survey review coverage
 
-**At or past WGLC, establish it before you read the draft.** `review_record(name)`
+**At or past WGLC, establish review coverage before you read the draft.** `review_record(name)`
 gives every review and ballot position with the revision it was cast against, and leads with
 whether anything has examined the current one.
 
-Coverage, not content. What a reviewer found waits for Step 4A, which dispatches it to a context of
-its own so it stays out of the cold read; the ballot text and the gathered `ballots/` digest belong
-there too, not here.
+Only establish coverage at this point, not content. What a reviewer found waits for Step 4A, which
+dispatches it to a context of its own so it stays out of the cold read; the ballot text and the
+gathered `ballots/` digest belong there too, not here.
 
-Read the two halves separately, as it reports them. Reviews and ballot routinely disagree -- an AD
-who has re-balloted on the current text while the directorate reviews stop two revisions back is not
-a document anyone has re-read. Where a half has examined nothing current, say so first: a concern in
-text no reviewer has seen is a different concern.
+Reviews and ballot positions routinely stop at different revisions -- read them separately rather
+than folding them into one coverage judgement. For example, an AD may have re-balloted on the
+current text while the directorate reviews stop two revisions back. Where reviews or ballot
+positions have examined nothing current, note that first, and identify the revision they stop at.
 
-Read the rows that produced nothing, too. A rejected assignment and a directorate that never
-returned are facts about the coverage, and they are the rows the eye skips.
+Read the rows that produced nothing, too: a rejected assignment and a directorate that never
+returned are coverage facts, not rows to skip past.
 
-### The corpus
+### Ground the corpus
 
 **Check its source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
@@ -161,18 +155,20 @@ licenses claims that a point was never raised anywhere:
 
 Gather what is missing now. What you cannot gather bounds every negative the review makes -- Step 8.
 
-### The reviewer's own standing
+### Note the reviewer's standing
 
 Two things about the person whose name this goes out under change what the findings have to say.
 What is their role in this group -- chair, AD, author or editor of this document? And did they write
-or edit anything the draft normatively references? Ask rather than infer; the reference list and the
-RFCs' own author lines settle the second.
+or edit anything the draft normatively references? 
+
+Ask rather than infer the first; the reference list and the RFCs' own author lines settle the
+second.
 
 Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
-### Special cases
+### Check for special cases
 
-Read the section that applies in `special-cases.md` before going on:
+If one applies, read the section that applies in `special-cases.md` before going on. This currently covers:
 
 - a directorate assignment
 - a revision of a published document
@@ -181,28 +177,21 @@ Read the section that applies in `special-cases.md` before going on:
 
 ## 2. Read the draft cold
 
-Read the entire draft without consulting anything else. Keep each concern found as a record with
-four fields, filled when you create it:
+Read the entire draft without consulting anything else, recording the concerns you identify. Keep each concern found as a record with four fields, filled when you create it:
 
 - **ID** -- C1, C2, … Keep the ID when a concern becomes an issue.
-- **Claim** -- one sentence about the document.
+- **Claim** -- one sentence about the concern.
 - **Basis** -- the quotes it rests on, with section numbers. For an absence, what stands in its
   place and where you expected the missing thing to be.
 - **From** -- where it came from: the cold read, the charter, a named lens, a question of your own.
 
-Fill nothing else yet.
-
-This list is the control against which everything later gets filtered, and **From** is what makes
-that check possible.
+This list is the control against which everything later gets filtered.
 
 **Quote before you claim.** Never build an objection on your paraphrase -- that is where fabricated
-findings come from. A concern whose **Basis** you cannot locate is not yet a concern. Locating it is
-what has to be true at creation; transcribing it verbatim can wait for the Step 8 sweep.
+findings come from.
 
-**Never rule a concern out on a source you could not read.** If a document you would need to
-confirm or refute a point is unavailable -- an RFC body, a registration template, a referenced
-specification -- raise the point with the uncertainty stated. Say "I could not verify X" and make
-the concern anyway. Better still, get the text and cite by section.
+**Never rule a concern out because a source is unavailable.** If a document you would need to
+confirm or refute a point is unavailable, raise the point with the uncertainty stated. 
 
 ## 3. Verify the draft's fit to the venue
 
