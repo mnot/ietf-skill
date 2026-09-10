@@ -107,13 +107,13 @@ Write the question down before reading. Your provisional view, in Step 9, is the
 the request carried a note from the AD or chair, read it first -- it usually says what they actually
 want looked at.
 
-### The draft revision
+### Lock the draft revision
 
 **Establish the correct draft revision before you read anything.** If you are working from a
 gathered corpus, compare it against the live state now. If the corpus is behind or missing, start
 the gather now. Verify the text you are about to read cold against the authoritative source.
 
-### Review coverage
+### Survey review coverage
 
 **At or past WGLC, establish review coverage before you read the draft.** `review_record(name)`
 gives every review and ballot position with the revision it was cast against, and leads with
@@ -131,7 +131,7 @@ positions have examined nothing current, note that first, and identify the revis
 Read the rows that produced nothing, too: a rejected assignment and a directorate that never
 returned are coverage facts, not rows to skip past.
 
-### The corpus
+### Ground the corpus
 
 **Check its source inventory, not the gather's status.** A gather reports `done` while
 saying nothing about a source it never had, so `gather_status` will not tell you the issue tracker
@@ -155,18 +155,20 @@ licenses claims that a point was never raised anywhere:
 
 Gather what is missing now. What you cannot gather bounds every negative the review makes -- Step 8.
 
-### The reviewer's own standing
+### Note the reviewer's standing
 
 Two things about the person whose name this goes out under change what the findings have to say.
 What is their role in this group -- chair, AD, author or editor of this document? And did they write
-or edit anything the draft normatively references? Ask rather than infer; the reference list and the
-RFCs' own author lines settle the second.
+or edit anything the draft normatively references? 
+
+Ask rather than infer the first; the reference list and the RFCs' own author lines settle the
+second.
 
 Where either holds it goes in *Your call* at Step 11. Neither softens a finding.
 
-### Special cases
+### Check for special cases
 
-Read the section that applies in `special-cases.md` before going on:
+If one applies, read the section that applies in `special-cases.md` before going on. This currently covers:
 
 - a directorate assignment
 - a revision of a published document
