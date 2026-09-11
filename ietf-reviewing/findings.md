@@ -6,10 +6,10 @@ it is optional.
 
 Each issue is a record you already have; fresh thinking here means Step 9 is unfinished.
 
-This goes to the reviewer, not into the record, but follow `register.md` regardless. The Register's
-question about where content belongs is the one the fields below already ask, and its economy test
-is the one at the end of this file, with the reviewer as the recipient. Two rules invert, because a
-finding is analysis rather than a contribution:
+Findings go to the reviewer, not into the record, but follow `register.md` regardless. The
+Register's question about where content belongs is the one the fields below already ask, and its
+economy test is the one at the end of this file, with the reviewer as the recipient. Two rules
+invert, because a finding is analysis rather than a contribution:
 
 - **First person belongs here.** A provisional view is yours and marked as yours; confidence and
   grounding are your judgement rather than the document's.
@@ -20,8 +20,8 @@ finding is analysis rather than a contribution:
 Re-print every record fact -- revisions, dates, reviewer and balloter
 names, results, ballot positions, issue and pull request numbers -- from the tool as you write it.
 
-Headings in the order below. Drop the qualifiers when the review is written,
-and then only for what the reviewer chose.
+Headings in the order below. Drop the qualifiers when the review is written, and then only for what
+the reviewer chose.
 
 ```
 ## Provisional view
