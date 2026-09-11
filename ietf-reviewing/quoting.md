@@ -1,8 +1,7 @@
 # Checking a quote against the text
 
 Read this at Step 8 of `SKILL.md`, when checking what a finding rests on, and again at Step 11
-while writing the case. Each check below is separate: the passage is there, it is where you say it
-is, and it covers the claim.
+while writing the case. Each check below is separate.
 
 ## Checking the passage is present
 
@@ -15,7 +14,7 @@ tr -s ' \n\f' ' ' < FILE | grep -o -F 'the quoted passage'
 
 Use it as written rather than improvising something that also strips page headers and footers.
 
-These failures are the recipe's, not the quote's:
+Watch for these failures in the recipe:
 
 - **Double spacing.** `-s` squeezes runs, so the two spaces after a full stop collapse to one. A
   quote copied verbatim from a double-spaced source then fails -- squeeze the quote the same way.
@@ -39,24 +38,21 @@ proves the string exists somewhere and not that you attributed it correctly.
 
 ## Checking the section number
 
-The same wrapping defeats the obvious move: `grep -n` on the full quote runs against the raw file
-and returns nothing, which looks exactly like a wrong section number. Bound the section by its
-heading (`grep -n '^4\.1\.'`), then locate the quote inside that range by four to six words taken
-from the middle of a line.
+Prefer using `get_rfc_section()` to verify that the quoted text is in the identified RFC section.
 
-A quote that is verbatim and mis-attributed is one a reader cannot follow up, and a lens return is
-exactly where that arrives.
+If that is not available, Bound the section by its heading (`grep -n '^4\.1\.'`), then locate the
+quote inside that range by four to six words taken from the middle of a line.
 
 ## Checking what the quote covers
-
-A quote carrying a condition or a list of enumerated cases supports a claim about those cases and
-no others, and a finding that widens it passes every check above.
 
 Where the quote turns on *if*, *unless*, *prior to*, *where*, or an enumeration, read the sentence
 and the one either side of it, and write down what the quote excludes before building on it. Carry
 the excluded cases into the finding's basis.
 
-Requirements as much as disclaimers: *a server that has received X MUST Y* is not *servers MUST Y*.
+Requirements matter as much as disclaimers: *a server that has received X MUST Y* is not *servers
+MUST Y*.
+
+Pay particular attention to the target of requirements: *a proxy MUST N* does not apply to gateways.
 
 Then test the claim against the exclusion. A claim covering an excluded case is wrong rather than
 merely broad: narrow it to what the quote carries, or drop it.
