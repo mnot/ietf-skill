@@ -38,9 +38,9 @@ proves the string exists somewhere and not that you attributed it correctly.
 
 ## Checking the section number
 
-Prefer using `get_rfc_section()` to verify that the quoted text is in the identified RFC section.
+Prefer using `get_rfc_section` to verify that the quoted text is in the identified RFC section.
 
-If that is not available, Bound the section by its heading (`grep -n '^4\.1\.'`), then locate the
+If that is not available, bound the section by its heading (`grep -n '^4\.1\.'`), then locate the
 quote inside that range by four to six words taken from the middle of a line.
 
 ## Checking what the quote covers

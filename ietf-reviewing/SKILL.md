@@ -1,7 +1,7 @@
 ---
 name: ietf-reviewing
 description: How to review an Internet-Draft. Use when asked to review, critique, or assess a draft or specification -- a directorate or IETF Last Call review, a WGLC response, a dispatch or call-for-adoption assessment, or an informal "what do you make of this draft". Produces findings for a human reviewer rather than finished review text; writing the review is a separate, optional step.
-compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully. Dispatches subagents at two steps; where the harness requires the user to request them, Step 0 asks.
+compatibility: Built around the ietf-llm MCP server for the gathered IETF record and live Datatracker state; an informal read works without it, but a review for the record degrades badly -- see the skill body. Uses rfcdiff for revision diffs, and the ietf-http skill for two of the architectural lens texts; both degrade gracefully. Dispatches subagents at three steps; where the harness requires the user to request them, Step 0 asks.
 license: CC-BY-4.0
 ---
 
@@ -39,7 +39,7 @@ Five files sit beside this one, each read at the point it is called for:
 - **The `ietf-http` skill** -- the text behind the `rfc8820` and `rfc9205` rubrics. Resolve either
   one's `Text:` path.
 
-**If your harness requires user permission to use subagents, get it now.** Steps 4, 8 and 10 are
+**If your harness requires user permission to use subagents, get it now.** Steps 3, 8 and 10 are
 written around them. Ask once, for all three.
 
 **Then, if any are absent, list them and warn what this will cost, in one message before Step 1.** 
@@ -66,7 +66,7 @@ See below for details.
 - **No `rfcdiff`.** A single script, no install:
   <https://raw.githubusercontent.com/ietf-tools/rfcdiff/main/rfcdiff>
   Failing that, strip page headers, footers and form feeds before a raw `diff`.
-- **No subagents, or no permission to use them.** Steps 4, 8 and 10 are written around dispatch,
+- **No subagents, or no permission to use them.** Steps 3, 8 and 10 are written around dispatch,
   and Step 0 settles which case you are in. Run the passes serially, in the order they are listed,
   and expect several times the wall-clock. 
   
@@ -547,7 +547,7 @@ distinctive string, which scans every gathered file, embedded or not, and states
 Match within a line -- search `8890`, not `RFC 8890` -- since a phrase split across a mail wrap
 misses.
 
-**A negative names the corpora it scanned**, from *The corpus* at Step 1. A stage-required corpus
+**A negative names the corpora it scanned**, from *Ground the corpus* at Step 1. A stage-required corpus
 you could not gather goes in *Could not obtain* and beside the provisional view, and bounds every
 negative resting on it.
 
@@ -747,8 +747,6 @@ concern at a time.
   shared part and leave the residue as its own issue, cross-linked by *Related*.
 - **Chain.** Where several issues trace to one revision change, work that out now and decide which
   carry a *Caused by*.
-- **Calibrate.** Rate the whole set in one pass; severity and confidence are comparative. A set
-  where every rating is the same has not been calibrated.
 - **Reconcile.** Walk the concern list as it stands after Step 8 and account for every record on
   it: ranked, merged into another, or dropped with a reason. A concern on neither the findings nor
   that account was lost rather than decided, and **From** is what makes the walk possible. What a

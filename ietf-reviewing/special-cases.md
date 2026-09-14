@@ -60,7 +60,7 @@ review, an IESG ballot -- start here.
 Diff it against the revision the round read. New text has been reviewed by nobody, and a document
 answering reviews is where new text arrives.
 
-Which revision that is comes from *The review coverage* at Step 1, and there is usually more than
+Which revision that is comes from *Survey review coverage* at Step 1, and there is usually more than
 one: a single round's reviews and positions are cast against different revisions, and the earliest
 bounds what "reviewed" covers. Diff against that, not against the round's closing date.
 
