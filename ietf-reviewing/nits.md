@@ -14,9 +14,7 @@ where you can say which spelling goes -- `delivering.md` sets that test.
 
 ## Stage
 
-The stage decides what the pass returns, and on two stages whether it runs at all. It is settled at
-Step 1, so the caller applies this table before dispatching -- a dispatched context that reads it
-here has already cost a run.
+The stage decides what the pass returns, and on two stages whether it runs at all. Decide before dispatching.
 
 | Stage | The pass |
 |---|---|
@@ -26,8 +24,7 @@ here has already cost a run.
 | IETF Last Call, directorate | Everything below, weighted to what a shepherd answers for -- references, downrefs, obsoletes and updates. |
 | IESG evaluation, and after | Sort by route, per `special-cases.md`. Most of it belongs to AUTH48. |
 
-A skip is recorded, not silent. Nothing else in the review reports on nits, so an adoption review
-that says nothing about them reads as a pass that found none.
+A skip is recorded, not silent.
 
 ## The dispatch
 
@@ -35,8 +32,6 @@ Hand over the draft text, the draft's filename, the intended status, the stage r
 file. The dispatched context runs the tool, interprets what comes back, and returns the surviving
 items in the shape at the end of this file, scoped to the row it was given. The raw report stays
 there.
-
-Everything below is that context's brief.
 
 ## Run idnits rather than emulating it
 
@@ -48,14 +43,13 @@ curl -s -X POST https://author-tools.ietf.org/api/idnits \
 The local file must carry the draft's own name. idnits compares the filename against the document
 name, so a copy saved as `d.txt` returns a `Mismatching filename` warning about your download.
 
-The `sed` cuts the response at the summary line. What follows it is the entire draft, line-numbered,
-and it is the bulk of the response. No warning is lost by cutting there.
+The `sed` cuts the response at the summary line -- the entire draft follows, so this saves a duplicate copy in context.
 
 The report's first line names the version. The hosted service still serves v2; `npx
 @ietf-tools/idnits <file>` runs v3, a separate implementation with its own check set, so a clean v3
-run is not a clean v2 run.
+run is not necessarily equivalent to a clean v2 run.
 
-Between them the tool covers all of this. Do not hand-check any of it:
+Between them the tools cover all of this. Do not hand-check any of it:
 
 - the TLP and Status of This Memo boilerplate
 - the filename, revision, document date and expiry
@@ -76,8 +70,8 @@ revision currency are not. Record what you could not run, for *Could not obtain*
 
 idnits marks each line `**` error, `~~` flaw, `==` warning or `--` comment. That marker rates the
 tool's own check and does not carry over to Step 9: a `--` comment can be an Issue and a `**` error
-can be a nit. v2's markers are unreliable in their own terms too -- the shepherd write-up template
-says so in its own question 14.
+can be a nit. v2's markers are unreliable in their own terms too (the shepherd write-up template
+says so in its own question 14).
 
 So open the text every line names and quote it. An idnits line restated unverified is an unchecked
 quote.
@@ -95,18 +89,17 @@ raised*. Return the count, and name only a line a reader would expect to see rai
 
 ## What the tool does not check
 
-The shepherd write-up asks these of the shepherd. The document facts behind them are the reviewer's.
+The shepherd write-up asks these of the shepherd.
 
 ### The document's account of itself
 
 - The abstract stands alone and carries no citations (RFC 7322 §4.3). The authors' guideline is 50
   to 150 words.
 - Where the draft obsoletes or updates an RFC, the header, the abstract and the introduction all say
-  so, and the introduction says what changed and why. A header `Obsoletes:` the abstract does not
-  mention is the common form.
+  so, and the introduction says what changed and why. A header `Obsoletes:` that the abstract does not mention is the most common form of error.
 - The datatracker's `Obsoletes` and `Updates` metadata agrees with the header.
 - Abbreviations expanded on first use and in the title, and the abbreviation used thereafter (RFC
-  7322 §3.6). Check the expansion, not its presence.
+  7322 §3.6). Check the expansion, not just its presence.
 - The Requirements Language section sits in or after the introduction (RFC 7322 §4.8.2).
 - A document obsoleting another has considered the errata filed against it.
 
