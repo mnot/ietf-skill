@@ -335,7 +335,27 @@ New fields MUST be registered.
 
 HTTP fields defined in the IETF should be [Structured Fields](https://httpwg.org/specs/rfc9651.html). This isn't an official policy, but many participants will argue that their interoperability and security benefits override most other concerns, so failing to use them may cause issues during Last Call.
 
-Field names should be short -- there is overhead even when field compression is used -- but appropriately specific. A field that is specific to an application can use an identifier for that application as a prefix, separated by a hyphen; e.g., the "example" application might define "example-foo", "example-bar", and "example-baz". The motivation is to avoid consuming more generic field names, not to reserve a portion of the namespace for the application.
+Field names should be short -- there is overhead even when field compression is used -- but appropriately specific. A field that is specific to an application can use an identifier for that application as a prefix, separated by a hyphen; e.g., the "example" application might define "example-foo", "example-bar", and "example-baz". The motivation is to avoid consuming more generic field names, not to reserve a portion of the namespace for the application. Don't repeat context the message already supplies (that the field is in a response, or the application's full name), and don't take a generic term such as "Desc" -- the namespace is shared.
+
+Compression is one consideration in designing a field; see "Field Compression".
+
+### Field Compression
+
+Compression is one input to a field's design, alongside its semantics, how clear it is to humans reading it, its data model, its extensibility, and whether intermediaries add values to it where appropriate (a field that each hop appends to can't be split into per-member fields). Where they conflict with the list below, make the trade-off explicitly; compression alone rarely decides it.
+
+HTTP/2 compresses fields with HPACK (RFC 7541) and HTTP/3 with QPACK (RFC 9204). Neither behaves like GZIP: each indexes a whole field line (name and value), and a later message can refer to an entry only if the line matches it exactly. A field whose values churn the table evicts entries for other fields, so the cost isn't confined to the field itself.
+
+Where nothing else argues against it, design each new field to fit:
+
+* Prefer a field whose value doesn't change over the life of a connection. It goes on the wire once and is referenced thereafter, so the more messages carry it, the more it saves.
+* Avoid a field whose value changes often. Each distinct value takes a table entry (name, value, and 32 octets of overhead), evicts other entries, and is sent as a literal every time if it's too big to index. `Date` is the example.
+* Keep values small. 20 to 100 octets is fine; a 2 KiB value takes half the default 4096-octet table, and many implementations won't index one that size.
+* Give each independently varying value its own field. One field combining members with 20, 2, 10 and 2 possible values has 800 distinct values, each needing its own entry; four fields have 34 between them.
+* Define separate fields rather than one field that senders are expected to split across several field lines. Senders forget to, and intermediaries may combine the lines again.
+* Specify a canonical serialisation: one form of quoting, whitespace, punctuation and member order, so equivalent values are byte-identical. Structured Fields supply this. Intermediaries merge many clients onto one connection, so implementations that vary will be seen together.
+* Don't tune for a compressor's internals, such as which characters get short Huffman codes. They differ between HPACK and QPACK and are likely to change.
+
+In review, check every field whose value can vary from message to message against this list, including one defined as a Structured Fields Dictionary or List. Raise a hit as a question about the trade-off, not as a defect.
 
 ## Caching
 
