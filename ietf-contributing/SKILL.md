@@ -6,7 +6,7 @@ license: CC-BY-4.0
 
 # Participating in an IETF effort
 
-Helping a human draft list mail, GitHub issues/comments, or other discussion contributions. Authoring Internet-Drafts is out of scope.
+Helping a human draft list mail, GitHub issues/comments, or other discussion contributions. Authoring Internet-Drafts is out of scope. For whether, and where, to bring new work to the IETF, use `ietf-new-work`.
 
 <!-- The section between these markers is the source of the Register. It is copied into the other
      skills that depend on it (see REGISTER_DSTS in the Makefile) -- edit it here, then run

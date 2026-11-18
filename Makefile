@@ -10,7 +10,7 @@
 #
 # Run it from a clone of this repository.
 
-SKILLS := ietf-contributing ietf-interpreting ietf-reviewing ietf-http
+SKILLS := ietf-contributing ietf-interpreting ietf-reviewing ietf-http ietf-new-work
 
 VERSION    := $(shell cat VERSION 2>/dev/null)
 
